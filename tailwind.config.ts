@@ -15,7 +15,8 @@ const config: Config = {
 
             colors: {
                 'sidebar-gray': '#0A0A0A',
-                'active-purple': '#A887F8'
+                'active-purple': '#A887F8',
+                'gray-header': '#EBEBEB'
             }
         }
     },
