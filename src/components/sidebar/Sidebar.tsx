@@ -2,14 +2,15 @@
 
 import React, { useMemo } from 'react';
 import { usePathname } from 'next/navigation';
-import Image from 'next/image';
 
-import { GoHeart, GoHome } from 'react-icons/go';
-import { BsPlusSquare } from 'react-icons/bs';
-import SidebarItem, { RouteType } from '@/components/sidebar/SidebarItem';
+import SidebarItem from '@/components/sidebar/SidebarItem';
 
-import SmashUpLogo from '/public/smashup.svg';
 import SidebarPlaylist from '@/components/sidebar/SidebarPlaylist';
+import SmashUpLogo from '@/components/icons/SmashUpLogo';
+import HomeIcon from '@/components/icons/HomeIcon';
+import HeartIcon from '@/components/icons/HeartIcon';
+import PlusIcon from '@/components/icons/PlusIcon';
+import { RouteType } from '@/models/sidebar';
 
 function Sidebar({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -17,19 +18,19 @@ function Sidebar({ children }: { children: React.ReactNode }) {
     const routes: RouteType[] = useMemo(
         () => [
             {
-                icon: GoHome,
+                icon: HomeIcon,
                 label: 'Главная',
                 active: pathname === '/',
                 href: '/'
             },
             {
-                icon: GoHeart,
+                icon: HeartIcon,
                 label: 'Мне нравится',
                 active: pathname === '/favorites',
                 href: '/favorites'
             },
             {
-                icon: BsPlusSquare,
+                icon: PlusIcon,
                 label: 'Создать плейлист',
                 active: pathname === '/playlists/create',
                 href: '/playlists/create'
@@ -42,7 +43,7 @@ function Sidebar({ children }: { children: React.ReactNode }) {
         <div className='flex h-full'>
             <div className='hidden md:flex flex-col gap-y-2 h-full bg-sidebar-gray  w-[282px] py-2 pl-2'>
                 <div className='flex justify-center items-center h-[200px]'>
-                    <Image src={SmashUpLogo} alt='SmashUp Logo' width={82} height={42}></Image>
+                    <SmashUpLogo width={82} height={42} color='active-purple' />
                 </div>
 
                 <div className='flex flex-col gap-y-4 px-8 pb-5'>

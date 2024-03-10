@@ -1,10 +1,9 @@
 import React from 'react';
 import profile from '/public/dev/profile.png';
 import Image from 'next/image';
-import { IoMdNotifications } from 'react-icons/io';
-import { IoSearchSharp } from 'react-icons/io5';
+import SearchIcon from '@/components/icons/SearchIcon';
+import NotificationLogo from '@/components/icons/NotificationIcon';
 
-// TODO: colors are not actually gray (they are not changing)
 function Header() {
     return (
         <div className='w-full h-[40px] mb-4 flex items-center justify-between pt-12 pb-10 px-8'>
@@ -13,11 +12,11 @@ function Header() {
                     placeholder='Поиск'
                     className='border border-gray-400 rounded-lg px-10 py-2.5 w-[350px] h-[40px] focus:outline-none text-gray-header'
                 />
-                <IoSearchSharp className='absolute ml-4 text-gray-header' />
+                <SearchIcon width={16} height={16} color='gray-header' className='absolute ml-4' />
             </div>
 
             <div className='flex gap-8 items-center w-[232px]'>
-                <IoMdNotifications size={24} />
+                <NotificationLogo width={24} height={24} color='active-purple' active={true} />
                 <div className='h-[40px] flex items-center gap-4'>
                     <Image
                         src={profile}

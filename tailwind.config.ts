@@ -14,9 +14,11 @@ const config: Config = {
             },
 
             colors: {
+                current: 'currentColor',
                 'sidebar-gray': '#0A0A0A',
                 'active-purple': '#A887F8',
-                'gray-header': '#EBEBEB'
+                'gray-header': '#EBEBEB',
+                primary: '#A887F8'
             }
         }
     },

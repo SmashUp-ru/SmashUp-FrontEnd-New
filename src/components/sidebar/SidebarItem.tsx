@@ -1,14 +1,7 @@
 import React from 'react';
-import { IconType } from 'react-icons';
 import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
-
-export interface RouteType {
-    icon: IconType;
-    label: string;
-    active: boolean;
-    href: string;
-}
+import { RouteType } from '@/models/sidebar';
 
 function SidebarItem({ icon: Icon, label, active, href }: RouteType) {
     return (
@@ -33,7 +26,7 @@ function SidebarItem({ icon: Icon, label, active, href }: RouteType) {
                 active && 'text-white'
             )}
         >
-            <Icon size={26} className={twMerge('', active && `text-active-purple`)} />
+            <Icon width={18} height={18} color={active ? 'active-purple' : 'sidebar-gray'} />
             <p className='truncate w-full'>{label}</p>
         </Link>
     );
