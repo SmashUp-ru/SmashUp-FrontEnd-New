@@ -1,41 +1,26 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-function Button({
-    children,
-    className,
-    href
-}: {
-    children: React.ReactNode;
-    className?: string;
-    href?: string;
-}) {
-    return (
-        <>
-            {href === undefined && (
-                <button
-                    className={twMerge(
-                        'rounded-2xl bg-primary text-button-text font-semibold text-xl',
-                        className
-                    )}
-                >
-                    {children}
-                </button>
-            )}
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-            {href !== undefined && (
-                <a
-                    href={href}
-                    className={twMerge(
-                        'rounded-2xl bg-primary text-button-text font-semibold text-xl text-center',
-                        className
-                    )}
-                >
-                    {children}
-                </a>
-            )}
-        </>
-    );
-}
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+    ({ className, type, children, ...props }, ref) => {
+        return (
+            <button
+                type={type}
+                className={twMerge(
+                    'rounded-2xl bg-primary text-button-text font-semibold text-xl',
+                    className
+                )}
+                ref={ref}
+                {...props}
+            >
+                {children}
+            </button>
+        );
+    }
+);
+
+Button.displayName = 'Button';
 
 export default Button;

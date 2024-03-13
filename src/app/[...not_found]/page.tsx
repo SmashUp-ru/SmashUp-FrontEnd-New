@@ -1,7 +1,7 @@
 import BorderSmashUpLogo from '@/components/icons/BorderSmashUpLogo';
 
 import '../globals.css';
-import Button from '@/components/Button';
+import LinkButton from '@/components/LinkButton';
 
 export default function NotFound() {
     return (
@@ -11,9 +11,9 @@ export default function NotFound() {
                 <h1 className='text-primary font-bold text-9xl'>404</h1>
                 <p className='text-gray-header font-normal text-2xl'>Что-то пошло не так</p>
             </div>
-            <Button href='/' className='w-[400px] py-4 z-10'>
+            <LinkButton href='/' className='w-[400px] py-4 z-10'>
                 Вернуться на главную
-            </Button>
+            </LinkButton>
         </div>
     );
 }
