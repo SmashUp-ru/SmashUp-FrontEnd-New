@@ -23,7 +23,7 @@ function Header() {
                         alt='Фото профиля'
                         className='text-gray-header h-[40px] w-[40px] rounded'
                     ></Image>
-                    <span className='text-gray-header'>LeonidM</span>
+                    <span className='text-gray-header'>dmhd6219</span>
                 </div>
             </div>
         </div>
