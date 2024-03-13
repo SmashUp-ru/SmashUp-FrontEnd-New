@@ -43,7 +43,7 @@ function Sidebar({ children }: { children: React.ReactNode }) {
         <div className='flex h-full'>
             <div className='hidden md:flex flex-col gap-y-2 h-full bg-sidebar-gray  w-[282px] py-2 pl-2'>
                 <div className='flex justify-center items-center h-[200px]'>
-                    <SmashUpLogo width={82} height={42} color='active-purple' />
+                    <SmashUpLogo width={82} height={42} color='primary' />
                 </div>
 
                 <div className='flex flex-col gap-y-4 px-8 pb-5'>

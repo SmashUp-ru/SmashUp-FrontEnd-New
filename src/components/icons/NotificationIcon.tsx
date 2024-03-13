@@ -4,6 +4,7 @@ import { IconComponentProps } from '@/models/icons';
 interface NotificationIconProps extends IconComponentProps {
     active: boolean;
 }
+
 function NotificationLogo({ width, height, color, active }: NotificationIconProps) {
     return (
         <svg
@@ -36,7 +37,7 @@ function NotificationLogo({ width, height, color, active }: NotificationIconProp
                     width='16'
                     height='16'
                     filterUnits='userSpaceOnUse'
-                    color-interpolation-filters='sRGB'
+                    colorInterpolationFilters='sRGB'
                 >
                     <feFlood floodOpacity='0' result='BackgroundImageFix' />
                     <feColorMatrix

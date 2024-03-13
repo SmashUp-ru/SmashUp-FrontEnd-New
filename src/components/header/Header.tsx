@@ -16,7 +16,7 @@ function Header() {
             </div>
 
             <div className='flex gap-8 items-center w-[232px]'>
-                <NotificationLogo width={24} height={24} color='active-purple' active={true} />
+                <NotificationLogo width={24} height={24} color='primary' active={true} />
                 <div className='h-[40px] flex items-center gap-4'>
                     <Image
                         src={profile}
