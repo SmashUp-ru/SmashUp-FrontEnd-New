@@ -18,6 +18,7 @@ const config: Config = {
                 'sidebar-gray': '#0A0A0A',
                 'gray-header': '#EBEBEB',
                 primary: '#A887F8',
+                error: '#FF4545',
                 'button-text': '#121212'
             }
         }
