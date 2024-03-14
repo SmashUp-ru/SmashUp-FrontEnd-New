@@ -11,6 +11,7 @@ import HomeIcon from '@/components/icons/HomeIcon';
 import HeartIcon from '@/components/icons/HeartIcon';
 import PlusIcon from '@/components/icons/PlusIcon';
 import { RouteType } from '@/models/sidebar';
+import SettingsIcon from '@/components/icons/SettingsIcon';
 
 function Sidebar({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -34,6 +35,12 @@ function Sidebar({ children }: { children: React.ReactNode }) {
                 label: 'Создать плейлист',
                 active: pathname === '/playlists/create',
                 href: '/playlists/create'
+            },
+            {
+                icon: SettingsIcon,
+                label: 'Открыть дебаг меню',
+                active: pathname === '/test',
+                href: '/test'
             }
         ],
         [pathname]
