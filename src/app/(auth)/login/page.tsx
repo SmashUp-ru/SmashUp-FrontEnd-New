@@ -4,8 +4,11 @@ import PasswordIcon from '@/components/icons/PasswordIcon';
 import Button from '@/components/Button/Button';
 import VkIcon from '@/components/icons/VkIcon';
 import OauthButton from '@/components/Button/OauthButton';
+import { v4 } from 'uuid';
 
 export default function Login() {
+    const query = `uuid=${v4()}&app_id=${process.env.NEXT_PUBLIC_VK_APP_ID}&response_type=silent_token&redirect_uri=${process.env.NEXT_PUBLIC_VK_REDIRECT_URL}&redirect_state=smashup`;
+
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
             <div className='w-[90%] max-w-[580px] text-center'>
@@ -63,7 +66,7 @@ export default function Login() {
                     </div>
 
                     <div className='flex flex-col gap-4'>
-                        <OauthButton className='h-[54px]'>
+                        <OauthButton className='h-[54px]' href={`https://id.vk.com/auth?${query}`}>
                             <VkIcon width={25} height={25} /> VK ID
                         </OauthButton>
                         <span>
