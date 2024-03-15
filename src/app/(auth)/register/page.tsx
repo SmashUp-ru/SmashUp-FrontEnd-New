@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import MailIcon from '@/components/icons/MailIcon';
 import ProfileIcon from '@/components/icons/ProfileIcon';
@@ -5,6 +7,7 @@ import PasswordIcon from '@/components/icons/PasswordIcon';
 import Button from '@/components/Button/Button';
 import VkIcon from '@/components/icons/VkIcon';
 import OauthButton from '@/components/Button/OauthButton';
+import * as VKID from '@vkid/sdk';
 
 export default function Register() {
     return (
@@ -86,7 +89,7 @@ export default function Register() {
                     </div>
 
                     <div className='flex flex-col gap-4'>
-                        <OauthButton className='h-[54px]'>
+                        <OauthButton className='h-[54px]' onClick={() => VKID.Auth.login()}>
                             <VkIcon width={25} height={25} /> VK ID
                         </OauthButton>
                         <span>
