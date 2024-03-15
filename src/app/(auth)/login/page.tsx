@@ -13,7 +13,7 @@ export default function Login() {
                 <p className='text-secondary-text font-medium text-xl'>Добро пожаловать снова!</p>
             </div>
 
-            <div className='text-center w-full max-w-[460px]'>
+            <div className='text-center w-[90%] max-w-[460px]'>
                 <form className='flex flex-col gap-6 w-full'>
                     <div className='w-full flex flex-col gap-2.5'>
                         <label className='text-left'>Электронная почта</label>
