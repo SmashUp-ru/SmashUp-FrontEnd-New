@@ -5,13 +5,6 @@ import React from 'react';
 import Sidebar from '@/components/sidebar/Sidebar';
 import Header from '@/components/header/Header';
 
-import * as VKID from '@vkid/sdk';
-
-VKID.Config.set({
-    app: process.env.VK_APP_ID as number | undefined, // Идентификатор приложения.
-    redirectUrl: process.env.VK_REDIRECT_URL // Адрес для перехода после авторизации.
-});
-
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
 export const metadata: Metadata = {

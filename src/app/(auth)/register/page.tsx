@@ -9,6 +9,11 @@ import VkIcon from '@/components/icons/VkIcon';
 import OauthButton from '@/components/Button/OauthButton';
 import * as VKID from '@vkid/sdk';
 
+VKID.Config.set({
+    app: process.env.NEXT_PUBLIC_VK_APP_ID as number | undefined, // Идентификатор приложения.
+    redirectUrl: process.env.NEXT_PUBLIC_VK_REDIRECT_URL // Адрес для перехода после авторизации.
+});
+
 export default function Register() {
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
@@ -92,6 +97,7 @@ export default function Register() {
                         <OauthButton className='h-[54px]' onClick={() => VKID.Auth.login()}>
                             <VkIcon width={25} height={25} /> VK ID
                         </OauthButton>
+
                         <span>
                             Уже зарегистрированы?{' '}
                             <a className='text-primary' href='/login'>
