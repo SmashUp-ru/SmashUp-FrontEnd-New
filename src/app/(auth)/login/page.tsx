@@ -8,7 +8,7 @@ import OauthButton from '@/components/Button/OauthButton';
 export default function Login() {
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
-            <div className='text-center'>
+            <div className='w-[90%] max-w-[580px] text-center'>
                 <h1 className='text-primary font-semibold text-5xl'>Вход</h1>
                 <p className='text-secondary-text font-medium text-xl'>Добро пожаловать снова!</p>
             </div>
@@ -39,8 +39,8 @@ export default function Login() {
 
                             <div className='w-full flex justify-start items-center relative'>
                                 <input
-                                    type='email'
-                                    placeholder='tapiri@smashup.ru'
+                                    type='password'
+                                    placeholder='12345qwerty'
                                     className='px-10 py-4 w-full rounded-2xl focus:outline-none'
                                 />
 
