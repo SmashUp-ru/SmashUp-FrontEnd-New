@@ -6,7 +6,7 @@ function SettingsIcon({ width, height, color }: IconComponentProps) {
         <svg
             width={width}
             height={height}
-            viewBox='0 0 20 17'
+            viewBox='0 0 22 22'
             xmlns='http://www.w3.org/2000/svg'
             className={`text-${color} stroke-current`}
         >

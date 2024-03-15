@@ -21,7 +21,8 @@ const config: Config = {
                 'gray-header': '#EBEBEB',
                 primary: '#A887F8',
                 error: '#FF4545',
-                'button-text': '#121212'
+                'button-text': '#121212',
+                outline: '#1A1A1A'
             }
         }
     },
