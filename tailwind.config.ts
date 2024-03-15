@@ -15,6 +15,8 @@ const config: Config = {
 
             colors: {
                 current: 'currentColor',
+                text: '#020202',
+                'secondary-text': '#EBEBEB',
                 'sidebar-gray': '#0A0A0A',
                 'gray-header': '#EBEBEB',
                 primary: '#A887F8',
