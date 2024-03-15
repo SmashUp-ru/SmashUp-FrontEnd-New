@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconComponentProps } from '@/models/icons';
 
-function SettingsIcon({ width, height, color }: IconComponentProps) {
+export default function SettingsIcon({ width, height, color }: IconComponentProps) {
     return (
         <svg
             width={width}
@@ -19,5 +19,3 @@ function SettingsIcon({ width, height, color }: IconComponentProps) {
         </svg>
     );
 }
-
-export default SettingsIcon;

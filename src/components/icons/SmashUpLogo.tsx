@@ -2,7 +2,7 @@ import React from 'react';
 import { IconComponentProps } from '@/models/icons';
 import { twMerge } from 'tailwind-merge';
 
-function SmashUpLogo({ width, height, color, className }: IconComponentProps) {
+export default function SmashUpLogo({ width, height, color, className }: IconComponentProps) {
     return (
         <svg
             width={width}
@@ -15,5 +15,3 @@ function SmashUpLogo({ width, height, color, className }: IconComponentProps) {
         </svg>
     );
 }
-
-export default SmashUpLogo;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconComponentProps } from '@/models/icons';
 
-function HeartIcon({ width, height, color }: IconComponentProps) {
+export default function HeartIcon({ width, height, color }: IconComponentProps) {
     return (
         <svg
             width={width}
@@ -14,5 +14,3 @@ function HeartIcon({ width, height, color }: IconComponentProps) {
         </svg>
     );
 }
-
-export default HeartIcon;

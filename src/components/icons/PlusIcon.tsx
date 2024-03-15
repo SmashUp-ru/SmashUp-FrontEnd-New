@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconComponentProps } from '@/models/icons';
 
-function PlusIcon({ width, height, color }: IconComponentProps) {
+export default function PlusIcon({ width, height, color }: IconComponentProps) {
     return (
         <svg
             width={width}
@@ -24,5 +24,3 @@ function PlusIcon({ width, height, color }: IconComponentProps) {
         </svg>
     );
 }
-
-export default PlusIcon;

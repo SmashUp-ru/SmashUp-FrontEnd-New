@@ -5,7 +5,7 @@ interface NotificationIconProps extends IconComponentProps {
     active: boolean;
 }
 
-function NotificationLogo({ width, height, color, active }: NotificationIconProps) {
+export default function NotificationLogo({ width, height, color, active }: NotificationIconProps) {
     return (
         <svg
             width={width}
@@ -72,5 +72,3 @@ function NotificationLogo({ width, height, color, active }: NotificationIconProp
         </svg>
     );
 }
-
-export default NotificationLogo;

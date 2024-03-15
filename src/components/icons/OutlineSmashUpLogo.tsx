@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-function OutlineSmashUpLogo() {
+export default function OutlineSmashUpLogo() {
     return (
         <svg
             viewBox='0 0 1920 990'
@@ -19,5 +19,3 @@ function OutlineSmashUpLogo() {
         </svg>
     );
 }
-
-export default OutlineSmashUpLogo;

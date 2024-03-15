@@ -2,7 +2,7 @@ import React from 'react';
 import { IconComponentProps } from '@/models/icons';
 import { twMerge } from 'tailwind-merge';
 
-function SearchIcon({ width, height, color, className }: IconComponentProps) {
+export default function SearchIcon({ width, height, color, className }: IconComponentProps) {
     return (
         <svg
             width={width}
@@ -19,5 +19,3 @@ function SearchIcon({ width, height, color, className }: IconComponentProps) {
         </svg>
     );
 }
-
-export default SearchIcon;

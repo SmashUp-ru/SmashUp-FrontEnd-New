@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconComponentProps } from '@/models/icons';
 
-function MailIcon({ width, height, className }: IconComponentProps) {
+export default function MailIcon({ width, height, className }: IconComponentProps) {
     return (
         <svg
             width={width}
@@ -27,5 +27,3 @@ function MailIcon({ width, height, className }: IconComponentProps) {
         </svg>
     );
 }
-
-export default MailIcon;
