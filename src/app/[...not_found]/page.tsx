@@ -1,6 +1,5 @@
 import OutlineSmashUpLogo from '@/components/icons/OutlineSmashUpLogo';
 
-import '../globals.css';
 import LinkButton from '@/components/Button/LinkButton';
 
 export default function NotFound() {

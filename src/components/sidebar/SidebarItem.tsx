@@ -26,7 +26,7 @@ function SidebarItem({ icon: Icon, label, active, href }: RouteType) {
                 active && 'text-white'
             )}
         >
-            <Icon width={18} height={18} color={active ? 'primary' : 'sidebar-gray'} />
+            <Icon width={18} height={18} color={active ? 'primary' : 'text-neutral-400'} />
             <p className='truncate w-full'>{label}</p>
         </Link>
     );

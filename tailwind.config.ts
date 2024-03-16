@@ -23,6 +23,10 @@ const config: Config = {
                 error: '#FF4545',
                 'button-text': '#121212',
                 outline: '#1A1A1A'
+            },
+
+            borderRadius: {
+                '4xl': '32px'
             }
         }
     },
