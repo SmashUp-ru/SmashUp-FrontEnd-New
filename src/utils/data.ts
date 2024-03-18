@@ -10,6 +10,7 @@ import track3 from '/public/dev/main/track3.png';
 import track4 from '/public/dev/main/track4.png';
 import track5 from '/public/dev/main/track5.png';
 import track6 from '/public/dev/main/track6.png';
+
 export const selections = [
     {
         id: 1,
@@ -73,6 +74,45 @@ export const recently = [
         title: 'EL РАНДЕВУ',
         description: 'Илья Муррка',
         image: track4
+    },
+    {
+        id: 5,
+        title: 'Ненавижу SugarCrash',
+        description: 'Citicrazi',
+        image: track5
+    },
+    {
+        id: 6,
+        title: 'Робот Rammstein',
+        description: 'Ramzes Govnomes',
+        image: track6
+    }
+];
+
+export const search = [
+    {
+        id: 1,
+        title: 'EL Leonid',
+        description: 'LeonidM',
+        image: track4
+    },
+    {
+        id: 2,
+        title: 'LeonidM лох',
+        description: 'Утонул в пиве',
+        image: track1
+    },
+    {
+        id: 3,
+        title: 'Crystal LeonidM',
+        description: 'tupa kiso4ka',
+        image: track2
+    },
+    {
+        id: 4,
+        title: 'Around Skrillex',
+        description: 'LeonidM',
+        image: track3
     },
     {
         id: 5,

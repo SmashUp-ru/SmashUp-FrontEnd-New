@@ -23,6 +23,7 @@ export default function TestPage() {
                 <a href='/update-password'>
                     Открыть страницу смены пароля после подтверждения аккаунта
                 </a>
+                <a href='/search'>Открыть страницу поиска</a>
                 <a href='/not-found'>Открыть страницу 404</a>
             </div>
 
