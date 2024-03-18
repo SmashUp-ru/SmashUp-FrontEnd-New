@@ -10,6 +10,7 @@ import track3 from '/public/dev/main/track3.png';
 import track4 from '/public/dev/main/track4.png';
 import track5 from '/public/dev/main/track5.png';
 import track6 from '/public/dev/main/track6.png';
+import cover from '/public/dev/main/cover.png';
 
 export const selections = [
     {
@@ -125,5 +126,32 @@ export const search = [
         title: 'Робот Rammstein',
         description: 'Ramzes Govnomes',
         image: track6
+    }
+];
+
+export const mashups_search = [
+    {
+        id: 1,
+        image: cover,
+        title: 'Название мэшапа',
+        author: 'dmhd6219'
+    },
+    {
+        id: 2,
+        image: cover,
+        title: 'Название мэшапа',
+        author: 'dmhd6219'
+    },
+    {
+        id: 3,
+        image: cover,
+        title: 'Название мэшапа',
+        author: 'dmhd6219'
+    },
+    {
+        id: 4,
+        image: cover,
+        title: 'Название мэшапа',
+        author: 'dmhd6219'
     }
 ];
