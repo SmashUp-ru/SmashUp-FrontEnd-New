@@ -5,6 +5,7 @@ import Button from '@/components/Button/Button';
 export default function Restore() {
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
+            {/* Заголовок */}
             <div className='w-[90%] max-w-[580px] text-center'>
                 <h1 className='text-4xl md:text-5xl text-primary font-semibold'>
                     Восстановление пароля
@@ -12,8 +13,10 @@ export default function Restore() {
                 <p className='text-secondary-text font-medium text-xl'>Чота тут</p>
             </div>
 
+            {/* Форма */}
             <div className='text-center w-[90%] max-w-[460px]'>
                 <form className='flex flex-col gap-6 w-full'>
+                    {/* Почта */}
                     <div className='w-full flex flex-col gap-2.5'>
                         <label className='text-left'>Электронная почта</label>
                         <div className='w-full flex justify-start items-center relative'>

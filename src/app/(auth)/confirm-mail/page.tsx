@@ -4,6 +4,7 @@ import Button from '@/components/Button/Button';
 export default function ConfirmMail() {
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
+            {/* Заголовок */}
             <div className='w-[90%] max-w-[580px] text-center'>
                 <h1 className='text-4xl md:text-5xl text-primary font-semibold'>
                     Восстановление пароля
@@ -13,6 +14,7 @@ export default function ConfirmMail() {
                 </p>
             </div>
 
+            {/* Форма */}
             <div className='text-center w-[90%] max-w-[460px]'>
                 <form className='flex flex-col gap-6 w-full'>
                     <div className='w-full flex flex-col gap-5'>

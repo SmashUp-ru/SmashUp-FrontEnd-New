@@ -12,13 +12,16 @@ export default function Register() {
 
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
+            {/* Заголовок */}
             <div className='w-[90%] max-w-[580px] text-center'>
                 <h1 className='text-primary font-semibold text-5xl'>Регистрация</h1>
                 <p className='text-secondary-text font-medium text-xl'>Рады знакомству!</p>
             </div>
 
+            {/* Форма */}
             <div className='text-center w-[90%] max-w-[460px]'>
                 <form className='flex flex-col gap-6 w-full'>
+                    {/* Ник */}
                     <div className='w-full flex flex-col gap-2.5'>
                         <label className='text-left'>Псевдоним</label>
                         <div className='w-full flex justify-start items-center relative'>
@@ -32,6 +35,7 @@ export default function Register() {
                         </div>
                     </div>
 
+                    {/* Почта */}
                     <div className='w-full flex flex-col gap-2.5'>
                         <label className='text-left'>Электронная почта</label>
                         <div className='w-full flex justify-start items-center relative'>
@@ -45,6 +49,7 @@ export default function Register() {
                         </div>
                     </div>
 
+                    {/* Пароль */}
                     <div className='w-full flex flex-col gap-5'>
                         <div className='w-full flex flex-col gap-2.5'>
                             <div className='flex flex-row justify-between'>
@@ -65,6 +70,7 @@ export default function Register() {
                             </div>
                         </div>
 
+                        {/* Соглашения и бла бла бла */}
                         <div className='text-left flex flex-row items-center gap-4'>
                             <input className='w-[32px] h-[32px]' type='checkbox' />
                             <label>
@@ -81,6 +87,7 @@ export default function Register() {
 
                         <Button className='h-[54px]'>Войти</Button>
 
+                        {/* Разделитель */}
                         <div className='flex flex-row justify-between items-center'>
                             <div className='w-[15%] bg-gray-header h-[1px]'></div>
                             <span className='w-[60%]'>Зарегистрироваться с помощью</span>
@@ -89,6 +96,7 @@ export default function Register() {
                     </div>
 
                     <div className='flex flex-col gap-4'>
+                        {/* Вход через Oauth */}
                         <OauthButton className='h-[54px]' href={`https://id.vk.com/auth?${query}`}>
                             <VkIcon width={25} height={25} /> VK ID
                         </OauthButton>

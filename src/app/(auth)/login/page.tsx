@@ -11,13 +11,16 @@ export default function Login() {
 
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
+            {/* Заголовок */}
             <div className='w-[90%] max-w-[580px] text-center'>
                 <h1 className='text-primary font-semibold text-5xl'>Вход</h1>
                 <p className='text-secondary-text font-medium text-xl'>Добро пожаловать снова!</p>
             </div>
 
+            {/* Форма */}
             <div className='text-center w-[90%] max-w-[460px]'>
                 <form className='flex flex-col gap-6 w-full'>
+                    {/* Почта */}
                     <div className='w-full flex flex-col gap-2.5'>
                         <label className='text-left'>Электронная почта</label>
                         <div className='w-full flex justify-start items-center relative'>
@@ -31,6 +34,7 @@ export default function Login() {
                         </div>
                     </div>
 
+                    {/* Пароль */}
                     <div className='w-full flex flex-col gap-5'>
                         <div className='w-full flex flex-col gap-2.5'>
                             <div className='flex flex-row justify-between'>
@@ -58,6 +62,7 @@ export default function Login() {
 
                         <Button className='h-[54px]'>Войти</Button>
 
+                        {/* Разделитель */}
                         <div className='flex flex-row justify-between items-center'>
                             <div className='w-[25%] bg-gray-header h-[1px]'></div>
                             <span className='w-[35%]'>Войти с помощью</span>
@@ -65,6 +70,7 @@ export default function Login() {
                         </div>
                     </div>
 
+                    {/* Вход через Oauth */}
                     <div className='flex flex-col gap-4'>
                         <OauthButton className='h-[54px]' href={`https://id.vk.com/auth?${query}`}>
                             <VkIcon width={25} height={25} /> VK ID

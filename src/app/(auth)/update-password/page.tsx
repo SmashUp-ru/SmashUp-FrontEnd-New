@@ -5,6 +5,7 @@ import PasswordIcon from '@/components/icons/PasswordIcon';
 export default function UpdatePage() {
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
+            {/* Заголовок */}
             <div className='w-[90%] max-w-[580px] text-center'>
                 <h1 className='text-4xl md:text-5xl text-primary font-semibold'>
                     Восстановление пароля
@@ -12,8 +13,10 @@ export default function UpdatePage() {
                 <p className='text-secondary-text font-medium text-xl'>Не забывайте!</p>
             </div>
 
+            {/* Форма */}
             <div className='text-center w-[90%] max-w-[460px]'>
                 <form className='flex flex-col gap-6 w-full'>
+                    {/* Первый пароль */}
                     <div className='w-full flex flex-col gap-2.5'>
                         <label className='text-left'>Новый пароль</label>
                         <div className='w-full flex justify-start items-center relative'>
@@ -27,6 +30,7 @@ export default function UpdatePage() {
                         </div>
                     </div>
 
+                    {/* Второй пароль */}
                     <div className='w-full flex flex-col gap-2.5'>
                         <label className='text-left'>Подтверждение пароля</label>
                         <div className='w-full flex justify-start items-center relative'>
