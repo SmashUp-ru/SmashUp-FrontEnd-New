@@ -11,12 +11,12 @@ export default function Search() {
             {/* Поиск */}
             <div className='flex flex-row space-betwen gap-8'>
                 {/* Лучший результат */}
-                <div className='w-1/2 max-w-[790px]'>
+                <div className='w-1/2'>
                     <h2 className='font-semibold text-2xl text-gray-header pb-5'>
                         Лучший результат
                     </h2>
 
-                    <div className='flex flex-row bg-sidebar-gray w-[790px] h-[238px] rounded-4xl px-6 py-6 gap-12'>
+                    <div className='flex flex-row bg-sidebar-gray w-full max-w-[790px] h-[238px] rounded-4xl px-6 py-6 gap-12'>
                         <Image
                             src={profile}
                             width={188}
@@ -41,7 +41,7 @@ export default function Search() {
                 </div>
 
                 {/* Мэшапы */}
-                <div className='w-full'>
+                <div className='w-1/2'>
                     <div className='w-full flex flex-row justify-between'>
                         <h2 className='font-semibold text-2xl text-gray-header pb-5'>Мэшапы</h2>
                         <span className='font-bold text-sm text-gray-300 uppercase'>
@@ -76,7 +76,7 @@ export default function Search() {
                     </h2>
                     <span className='font-bold text-sm text-gray-300 uppercase'>Показать всё</span>
                 </div>
-                <div className='flex flex-row gap-7'>
+                <div className='w-full h-[301px] flex-wrap overflow-hidden flex flex-row gap-7'>
                     {search.map((item) => (
                         <Card key={item.id} {...item} />
                     ))}

@@ -11,7 +11,7 @@ export default function Card({
     image: string | StaticImageData;
 }) {
     return (
-        <div className='flex flex-col items-center gap-3 bg-sidebar-gray w-[238px] h-[301px] rounded-4xl px-6 py-6'>
+        <div className='flex flex-col items-center gap-3 bg-sidebar-gray min-w-[238px] h-[301px] rounded-4xl px-6 py-6'>
             <Image src={image} alt={title} className='w-full' />
             <div className='flex flex-col gap-2 text-left w-full'>
                 <span className='text-secondary-text font-semibold text-base'>{title}</span>
