@@ -24,6 +24,7 @@ export default function TestPage() {
                     Открыть страницу смены пароля после подтверждения аккаунта
                 </a>
                 <a href='/search'>Открыть страницу поиска</a>
+                <a href='/profile/dmhd6219'>Открыть страницу профиля</a>
                 <a href='/not-found'>Открыть страницу 404</a>
             </div>
 

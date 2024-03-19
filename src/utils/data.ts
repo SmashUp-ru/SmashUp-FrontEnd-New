@@ -11,6 +11,11 @@ import track4 from '/public/dev/main/track4.png';
 import track5 from '/public/dev/main/track5.png';
 import track6 from '/public/dev/main/track6.png';
 import cover from '/public/dev/main/cover.png';
+import track7 from '/public/dev/profile/track1.png';
+import track8 from '/public/dev/profile/track2.png';
+import track9 from '/public/dev/profile/track3.png';
+import track10 from '/public/dev/profile/track4.png';
+import track11 from '/public/dev/profile/track5.png';
 
 export const selections = [
     {
@@ -153,5 +158,53 @@ export const mashups_search = [
         image: cover,
         title: 'Название мэшапа',
         author: 'dmhd6219'
+    }
+];
+
+export const profile_popular = [
+    {
+        id: 1,
+        image: track7,
+        title: 'Доброе судно',
+        author: 'dmhd6219',
+        listened: 157,
+        length: '3:44',
+        explicit: false
+    },
+    {
+        id: 2,
+        image: track8,
+        title: 'Развлекайтесь на 180db',
+        author: 'dmhd6219',
+        listened: 87,
+        length: '3:44',
+        explicit: false
+    },
+    {
+        id: 3,
+        image: track9,
+        title: 'У моей девушки день рождения в Париже',
+        author: 'dmhd6219',
+        listened: 74,
+        length: '3:44',
+        explicit: false
+    },
+    {
+        id: 4,
+        image: track10,
+        title: 'Без Парижа',
+        author: 'dmhd6219',
+        listened: 52,
+        length: '3:44',
+        explicit: true
+    },
+    {
+        id: 5,
+        image: track11,
+        title: 'Свежие окна',
+        author: 'dmhd6219',
+        listened: 2,
+        length: '3:44',
+        explicit: true
     }
 ];

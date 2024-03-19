@@ -17,14 +17,14 @@ function Header() {
 
             <div className='flex gap-8 items-center w-[232px]'>
                 <NotificationLogo width={24} height={24} color='primary' active={true} />
-                <div className='h-[40px] flex items-center gap-4'>
+                <a className='h-[40px] flex items-center gap-4' href='/profile/dmhd6219'>
                     <Image
                         src={profile}
                         alt='Фото профиля'
                         className='text-gray-header h-[40px] w-[40px] rounded'
                     ></Image>
-                    <span className='text-gray-header'>dmhd6219</span>
-                </div>
+                    <span className='text-icon'>dmhd6219</span>
+                </a>
             </div>
         </div>
     );
