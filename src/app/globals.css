@@ -40,7 +40,15 @@ input[type=range]::-webkit-slider-thumb {
     -225px 0 0 160px theme('colors.primary'),
     -275px 0 0 160px theme('colors.primary'),
     -325px 0 0 160px theme('colors.primary'),
-    -375px 0 0 160px theme('colors.primary');
+    -375px 0 0 160px theme('colors.primary'),
+    -425px 0 0 160px theme('colors.primary'),
+    -475px 0 0 160px theme('colors.primary'),
+    -525px 0 0 160px theme('colors.primary'),
+    -575px 0 0 160px theme('colors.primary'),
+    -625px 0 0 160px theme('colors.primary'),
+    -675px 0 0 160px theme('colors.primary'),
+    -725px 0 0 160px theme('colors.primary'),
+    -775px 0 0 160px theme('colors.primary')
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
