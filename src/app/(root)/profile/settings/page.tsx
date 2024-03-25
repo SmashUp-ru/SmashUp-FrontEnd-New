@@ -1,17 +1,11 @@
 'use client';
 
-import React, { useRef } from 'react';
 import Image from 'next/image';
 import profile from '/public/dev/profile.png';
+import { useState } from 'react';
 
 export default function Settings() {
-    const [active, setActive] = React.useState<string>('0');
-
-    const bitrate0 = useRef<HTMLDivElement>(null);
-    const bitrate1 = useRef<HTMLDivElement>(null);
-    const bitrate2 = useRef<HTMLDivElement>(null);
-    const bitrate3 = useRef<HTMLDivElement>(null);
-    const bitrate4 = useRef<HTMLDivElement>(null);
+    const [active, setActive] = useState<string>('0');
 
     return (
         <div className='px-8 flex flex-col gap-6'>
@@ -57,9 +51,8 @@ export default function Settings() {
                                         64кб
                                     </span>
                                     <div
-                                        ref={bitrate0}
                                         id='0'
-                                        className={`absolute rounded-sm bg-button-text w-2.5 h-5 top-4 ${bitrate0.current !== null && active === bitrate0.current.id && 'bg-gray-header z-20'}`}
+                                        className={`absolute rounded-sm bg-button-text w-2.5 h-5 top-4 ${active === '0' && 'bg-gray-header z-20'}`}
                                     />
                                 </li>
                                 <li className='flex justify-center relative'>
@@ -67,9 +60,8 @@ export default function Settings() {
                                         96кб
                                     </span>
                                     <div
-                                        ref={bitrate1}
                                         id='1'
-                                        className={`absolute rounded-sm bg-button-text w-2.5 h-5 top-4 ${bitrate1.current !== null && active === bitrate1.current.id && 'bg-gray-header z-20'}`}
+                                        className={`absolute rounded-sm bg-button-text w-2.5 h-5 top-4 ${active === '1' && 'bg-gray-header z-20'}`}
                                     />
                                 </li>
                                 <li className='flex justify-center relative'>
@@ -77,9 +69,8 @@ export default function Settings() {
                                         128к
                                     </span>
                                     <div
-                                        ref={bitrate2}
                                         id='2'
-                                        className={`absolute rounded-sm bg-button-text w-2.5 h-5 top-4 ${bitrate2.current !== null && active === bitrate2.current.id && 'bg-gray-header z-20'}`}
+                                        className={`absolute rounded-sm bg-button-text w-2.5 h-5 top-4 ${active === '2' && 'bg-gray-header z-20'}`}
                                     />
                                 </li>
                                 <li className='flex justify-center relative'>
@@ -87,9 +78,8 @@ export default function Settings() {
                                         160кб
                                     </span>
                                     <div
-                                        ref={bitrate3}
                                         id='3'
-                                        className={`absolute rounded-sm bg-button-text w-2.5 h-5 top-4 ${bitrate3.current !== null && active === bitrate3.current.id && 'bg-gray-header z-20'}`}
+                                        className={`absolute rounded-sm bg-button-text w-2.5 h-5 top-4 ${active === '3' && 'bg-gray-header z-20'}`}
                                     />
                                 </li>
                                 <li className='flex justify-center relative'>
@@ -97,15 +87,15 @@ export default function Settings() {
                                         Оригинал
                                     </span>
                                     <div
-                                        ref={bitrate4}
                                         id='4'
-                                        className={`absolute rounded-sm bg-button-text w-2.5 h-5 top-4 ${bitrate4.current !== null && active === bitrate4.current.id && 'bg-gray-header z-20'}`}
+                                        className={`absolute rounded-sm bg-button-text w-2.5 h-5 top-4 ${active === '4' && 'bg-gray-header z-20'}`}
                                     />
                                 </li>
                             </ul>
                             <input
                                 type='range'
                                 className='w-full'
+                                value={active}
                                 min='0'
                                 max='4'
                                 step='1'
