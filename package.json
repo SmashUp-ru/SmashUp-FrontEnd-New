@@ -17,6 +17,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
+    "react-tabs": "^6.0.2",
     "tailwind-merge": "^2.2.1",
     "uuid": "^9.0.1"
   },

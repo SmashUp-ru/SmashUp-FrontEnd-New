@@ -55,3 +55,50 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     overflow: hidden;
     background: theme('colors.button-text');
 }
+
+.react-tabs__tab {
+    background: theme('colors.button-text');
+}
+
+.react-tabs__tab:focus {
+    border: none;
+    outline: none;
+}
+
+.react-tabs__tab--selected {
+    background: theme('colors.primary');
+    border-radius: 12px;
+}
+
+.react-tabs__tab--selected:focus {
+    border: none;
+    outline: none;
+}
+
+.react-tabs__tab-panel {
+    display: none;
+}
+
+.react-tabs__tab-panel--selected {
+    display: flex;
+}
+
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: theme('colors.button-text');
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.button-text');
+}
