@@ -7,7 +7,6 @@ import Button from '@/components/Button/Button';
 export default function UploadTrack() {
     return (
         <div className='px-8 flex flex-col gap-8'>
-            {/* Профиль */}
             <div className='flex flex-row bg-sidebar-gray w-full h-[238px] rounded-4xl px-6 py-6 gap-12'>
                 <Image
                     src={uploadIcon}
@@ -23,17 +22,19 @@ export default function UploadTrack() {
                 </div>
             </div>
 
-            <div className='w-[764px] h-[64px] flex justify-start items-center relative'>
-                <input
-                    type='text'
-                    placeholder='Ссылка на оффициальное видео исходника ( YouTube )'
-                    className='px-12 py-4 w-full rounded-2xl focus:outline-none bg-sidebar-gray'
-                />
+            <form className='flex flex-col gap-8'>
+                <div className='w-[764px] h-[64px] flex justify-start items-center relative'>
+                    <input
+                        type='text'
+                        placeholder='Ссылка на оффициальное видео исходника ( YouTube )'
+                        className='px-12 py-4 w-full rounded-2xl focus:outline-none bg-sidebar-gray'
+                    />
 
-                <LinkIcon width={20} height={19} className='absolute ml-4' />
-            </div>
+                    <LinkIcon width={20} height={19} className='absolute ml-4' />
+                </div>
 
-            <Button className='w-[764px] h-[64px]'>Подтвердить</Button>
+                <Button className='w-[764px] h-[64px]'>Подтвердить</Button>
+            </form>
         </div>
     );
 }
