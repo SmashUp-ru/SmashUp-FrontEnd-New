@@ -28,6 +28,8 @@ export default function TestPage() {
                 <a href='/profile/settings'>Открыть страницу настроек профиля</a>
                 <a href='/profile/dmhd6219/uploaded'>Открыть страницу загруженных мэшапов</a>
                 <a href='/profile/moderation'>Открыть страницу модерации мэшапов</a>
+                <a href='/upload/track'>Открыть страницу загрузки трека</a>
+                <a href='/upload/mashup'>Открыть страницу загрузки мэшапа</a>
                 <a href='/not-found'>Открыть страницу 404</a>
             </div>
 
