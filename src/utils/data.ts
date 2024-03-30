@@ -16,6 +16,9 @@ import track8 from '/public/dev/profile/track2.png';
 import track9 from '/public/dev/profile/track3.png';
 import track10 from '/public/dev/profile/track4.png';
 import track11 from '/public/dev/profile/track5.png';
+import track12 from '/public/dev/upload/track1.png';
+import track13 from '/public/dev/upload/track2.png';
+import track14 from '/public/dev/upload/track3.png';
 
 export const selections = [
     {
@@ -206,5 +209,113 @@ export const profile_popular = [
         listened: 2,
         length: '3:44',
         explicit: true
+    }
+];
+
+export const upload = [
+    {
+        id: 1,
+        image: track12,
+        title: 'Вечер у бабушки',
+        author: 'КУКЕБУРЕ',
+        explicit: false,
+        chosen: false
+    },
+    {
+        id: 2,
+        image: track13,
+        title: 'Вечер у бабушки',
+        author: 'КУКЕБУРЕ',
+        explicit: false,
+        chosen: false
+    },
+    {
+        id: 3,
+        image: track14,
+        title: 'Вечер у бабушки',
+        author: 'КУКЕБУРЕ',
+        explicit: false,
+        chosen: true
+    }
+];
+
+export const genres = [
+    {
+        id: 1,
+        title: 'Электро',
+        chosen: false
+    },
+    {
+        id: 2,
+        title: 'Классика',
+        chosen: false
+    },
+    {
+        id: 3,
+        title: 'Фонк',
+        chosen: false
+    },
+    {
+        id: 4,
+        title: 'Поп',
+        chosen: false
+    },
+    {
+        id: 5,
+        title: 'Мегамэшап',
+        chosen: false
+    },
+    {
+        id: 6,
+        title: 'Мемы',
+        chosen: false
+    },
+    {
+        id: 7,
+        title: 'Shitpost',
+        chosen: false
+    },
+    {
+        id: 8,
+        title: 'Рок',
+        chosen: true
+    },
+    {
+        id: 9,
+        title: 'Cover',
+        chosen: false
+    },
+    {
+        id: 10,
+        title: 'SoundClown',
+        chosen: false
+    },
+    {
+        id: 11,
+        title: 'Rip',
+        chosen: false
+    },
+    {
+        id: 12,
+        title: 'Morph',
+        chosen: false
+    }
+];
+
+export const coauthors = [
+    {
+        id: 1,
+        title: 'Дора',
+        chosen: true
+    },
+    {
+        id: 2,
+        title: 'Дора',
+        chosen: false
+    },
+    {
+        id: 3,
+        title: 'Дора',
+        chosen: false
     }
 ];

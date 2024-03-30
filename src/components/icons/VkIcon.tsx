@@ -1,7 +1,8 @@
 import React from 'react';
 import { IconComponentProps } from '@/models/icons';
+import { twMerge } from 'tailwind-merge';
 
-export default function VkIcon({ width, height, className }: IconComponentProps) {
+export default function VkIcon({ width, height, color, className }: IconComponentProps) {
     return (
         <svg
             width={width}
@@ -9,7 +10,7 @@ export default function VkIcon({ width, height, className }: IconComponentProps)
             viewBox='0 0 25 25'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
-            className={className}
+            className={twMerge(`text-${color} fill-current`, className)}
         >
             <g clipPath='url(#clip0_4832_3959)'>
                 <path
