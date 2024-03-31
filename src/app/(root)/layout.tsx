@@ -3,7 +3,8 @@ import { Inter } from 'next/font/google';
 import '../globals.css';
 import React from 'react';
 import Sidebar from '@/components/sidebar/Sidebar';
-import Header from '@/components/header/Header';
+import Providers from '@/providers/Providers';
+import MainLayout from '@/app/(root)/MainLayout';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
@@ -20,10 +21,11 @@ export default function RootLayout({
     return (
         <html lang='ru'>
             <body className={inter.className}>
-                <Sidebar>
-                    <Header />
-                    {children}
-                </Sidebar>
+                <Providers>
+                    <Sidebar>
+                        <MainLayout>{children}</MainLayout>
+                    </Sidebar>
+                </Providers>
             </body>
         </html>
     );

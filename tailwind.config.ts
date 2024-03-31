@@ -24,7 +24,8 @@ const config: Config = {
                 'button-text': '#121212',
                 outline: '#1A1A1A',
                 'outline-text': '#FFFFFF',
-                icon: '#bcbcbc'
+                icon: '#bcbcbc',
+                vk: '#0077FF'
             },
 
             borderRadius: {

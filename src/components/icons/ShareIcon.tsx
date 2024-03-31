@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconComponentProps } from '@/models/icons';
 
-export default function DoneIcon({ width, height, color }: IconComponentProps) {
+export default function ShareIcon({ width, height, color }: IconComponentProps) {
     // w: 26; h: 22
     return (
         <svg

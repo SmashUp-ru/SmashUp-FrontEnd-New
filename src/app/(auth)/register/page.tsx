@@ -98,7 +98,7 @@ export default function Register() {
                     <div className='flex flex-col gap-4'>
                         {/* Вход через Oauth */}
                         <OauthButton className='h-[54px]' href={`https://id.vk.com/auth?${query}`}>
-                            <VkIcon width={25} height={25} /> VK ID
+                            <VkIcon color='vk' width={25} height={25} /> VK ID
                         </OauthButton>
 
                         <span>
