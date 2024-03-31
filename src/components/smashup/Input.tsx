@@ -13,17 +13,26 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 
 export default function Input({
     className,
-    type,
     isFocused,
     isError,
     helper,
     icon,
     heading,
     children,
+    value,
+    defaultValue,
     ...props
 }: InputProps) {
     const [focus, setFocus] = useState<boolean>(isFocused ? isFocused : false);
     const [error] = useState<boolean>(isError ? isError : false);
+
+    const [inputValue, setInputValue] = useState<string>(
+        typeof value === 'string' && value
+            ? value
+            : typeof defaultValue === 'string' && defaultValue
+              ? defaultValue
+              : ''
+    );
 
     return (
         <div className='flex flex-col gap-2.5'>
@@ -46,7 +55,9 @@ export default function Input({
 
                         className
                     )}
-                    type={type}
+                    type='text'
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
                     {...props}
                 >
                     {children}
