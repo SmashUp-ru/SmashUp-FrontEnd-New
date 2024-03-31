@@ -9,6 +9,8 @@ export default function TestPage() {
     return (
         <div className='px-8'>
             <div className='flex flex-col gap-2 text-center'>
+                <a href='/test/components'>Открыть страницу со всеми компонентами</a>
+
                 <button onClick={() => notify('Добавлено в плейлист', 'success')}>
                     Открыть добрый попап
                 </button>

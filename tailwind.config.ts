@@ -25,7 +25,9 @@ const config: Config = {
                 outline: '#1A1A1A',
                 'outline-text': '#FFFFFF',
                 icon: '#bcbcbc',
-                vk: '#0077FF'
+                vk: '#0077FF',
+                input: '#0B0B0B',
+                'input-text': '#636363'
             },
 
             borderRadius: {
