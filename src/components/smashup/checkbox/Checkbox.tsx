@@ -12,12 +12,9 @@ export default function SmashUpCheckBox({ label, className, checked, ...props }:
     const [isChecked, setIsChecked] = React.useState(checked ? checked : false);
 
     return (
-        <div className='flex items-center'>
+        <div className={twMerge('flex items-center', className)}>
             <label
-                className={twMerge(
-                    'flex items-center rounded-full cursor-pointer gap-4',
-                    className
-                )}
+                className='flex items-center rounded-full cursor-pointer gap-4'
                 htmlFor='checkbox'
             >
                 <div className='relative flex items-center'>
