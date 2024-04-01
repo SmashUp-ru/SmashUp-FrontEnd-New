@@ -1,6 +1,6 @@
-import SmashUpToggle from '@/components/smashup/toggle/Toggle';
+import SmashUpCheckBox from '@/components/smashup/checkbox/Checkbox';
 
-export default function ToggleOverview() {
+export default function CheckboxOverview() {
     return (
         <div className='px-8 py-8 w-full'>
             {/*Toggle*/}
@@ -12,11 +12,11 @@ export default function ToggleOverview() {
                     <span className='w-[400px]'>On</span>
                 </div>
 
-                {/*Type=Text+Toggle*/}
+                {/*Type=Text+Checkbox*/}
                 <div className='w-full flex flex-row justify-around items-center'>
-                    <span className='min-w-[200px]'>Type=Text+Toggle</span>
-                    <SmashUpToggle defaultChecked={false} label='Text' className='w-[400px]' />
-                    <SmashUpToggle defaultChecked={true} label='Text' className='w-[400px]' />
+                    <span className='min-w-[200px]'>Type=Text+Checkbox</span>
+                    <SmashUpCheckBox label='Text' className='w-[400px]' />
+                    <SmashUpCheckBox label='Text' checked={true} className='w-[400px]' />
                 </div>
             </div>
         </div>
