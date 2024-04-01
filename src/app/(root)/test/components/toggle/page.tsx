@@ -3,7 +3,7 @@ import SmashUpToggle from '@/components/smashup/toggle/Toggle';
 export default function ButtonsOverview() {
     return (
         <div className='px-8 py-8 w-full'>
-            {/*Buttons*/}
+            {/*Toggle*/}
             <div className='w-full flex flex-col gap-20'>
                 {/*Заголовок*/}
                 <div className='w-full flex flex-row justify-around items-center'>
@@ -12,14 +12,11 @@ export default function ButtonsOverview() {
                     <span className='w-[400px]'>On</span>
                 </div>
 
-                {/*Off*/}
+                {/*Type=Text+Toggle*/}
                 <div className='w-full flex flex-row justify-around items-center'>
-                    <SmashUpToggle defaultChecked={false} label='Text' />
-                </div>
-
-                {/*On*/}
-                <div className='w-full flex flex-row justify-around items-center'>
-                    <SmashUpToggle defaultChecked={true} label='Text' />
+                    <span className='min-w-[200px]'>Type=Text+Toggle</span>
+                    <SmashUpToggle defaultChecked={false} label='Text' className='w-[400px]' />
+                    <SmashUpToggle defaultChecked={true} label='Text' className='w-[400px]' />
                 </div>
             </div>
         </div>

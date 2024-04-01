@@ -10,12 +10,13 @@ export interface SmashupToggleProps extends ToggleProps {
 }
 
 export default function SmashUpToggle({ defaultChecked, label, className }: SmashupToggleProps) {
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(defaultChecked ? defaultChecked : false);
+
     return (
         <label className={twMerge('flex flex-row items-center gap-5', className)}>
             <span className='font-medium text-base text-icon'>{label}</span>
             <Toggle
-                defaultChecked={defaultChecked}
+                defaultChecked={checked}
                 icons={false}
                 onChange={() => {
                     setChecked(!checked);
