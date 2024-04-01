@@ -35,7 +35,7 @@ export default function Input({
     );
 
     return (
-        <div className='flex flex-col gap-2.5'>
+        <div className={twMerge('w-full flex flex-col gap-2.5', className)}>
             <span className='font-normal text-xs text-icon'>{heading}</span>
 
             <div className='w-full flex justify-start items-center relative'>
@@ -47,13 +47,11 @@ export default function Input({
                         if (isFocused === undefined) setFocus(false);
                     }}
                     className={twMerge(
-                        'bg-input py-[17.5px] pl-[25px] rounded-2xl',
+                        'w-full bg-input py-[17.5px] pl-[25px] rounded-2xl',
                         'font-normal text-base text-icon placeholder-input-text',
                         icon ? 'pl-14' : '',
                         focus ? 'border-none outline outline-2 ring-0 outline-primary' : '',
-                        error ? 'border-none outline outline-2 ring-0 outline-red-600' : '',
-
-                        className
+                        error ? 'border-none outline outline-2 ring-0 outline-red-600' : ''
                     )}
                     type='text'
                     value={inputValue}

@@ -7,88 +7,132 @@ export default function InputsOverview() {
             {/*Inputs*/}
             <div className='w-fill flex flex-col gap-20 w-full'>
                 {/*Заголовок*/}
-                <div className='w-full flex flex-row justify-around items-center'>
-                    <span className='text-primary'>Inputs</span>
-                    <span>Default</span>
-                    <span>Focus</span>
-                    <span>Filled</span>
-                    <span>Error</span>
+                <div className='w-full flex flex-row gap-10 items-center'>
+                    <span className='text-primary min-w-[200px]'>Inputs</span>
+                    <span className='w-[200px]'>Default</span>
+                    <span className='w-[200px]'>Focus</span>
+                    <span className='w-[200px]'>Filled</span>
+                    <span className='w-[200px]'>Error</span>
                 </div>
 
                 {/*Type=Text*/}
-                <div className='w-full flex flex-row justify-around items-center'>
-                    <span>Type=Text</span>
-                    <Input placeholder='Text' />
-                    <Input placeholder='Text' isFocused={true} />
-                    <Input defaultValue='Text' />
-                    <Input defaultValue='Text' isError={true} />
+                <div className='w-full flex flex-row gap-10 items-center'>
+                    <span className='min-w-[200px]'>Type=Text</span>
+                    <Input placeholder='Text' className='w-[200px]' />
+                    <Input placeholder='Text' isFocused={true} className='w-[200px]' />
+                    <Input defaultValue='Text' className='w-[200px]' />
+                    <Input defaultValue='Text' isError={true} className='w-[200px]' />
                 </div>
 
                 {/*Type=Text+Helper*/}
-                <div className='w-full flex flex-row justify-around items-center'>
-                    <span>Type=Text+Helper</span>
-                    <Input placeholder='Text' helper='Вспомогательный текст' />
-                    <Input placeholder='Text' isFocused={true} helper='Вспомогательный текст' />
-                    <Input defaultValue='Text' helper='Вспомогательный текст' />
-                    <Input defaultValue='Text' isError={true} helper='Вспомогательный текст' />
+                <div className='w-full flex flex-row gap-10 items-center'>
+                    <span className='min-w-[200px]'>Type=Text+Helper</span>
+                    <Input
+                        placeholder='Text'
+                        helper='Вспомогательный текст'
+                        className='w-[200px]'
+                    />
+                    <Input
+                        placeholder='Text'
+                        isFocused={true}
+                        helper='Вспомогательный текст'
+                        className='w-[200px]'
+                    />
+                    <Input
+                        defaultValue='Text'
+                        helper='Вспомогательный текст'
+                        className='w-[200px]'
+                    />
+                    <Input
+                        defaultValue='Text'
+                        isError={true}
+                        helper='Вспомогательный текст'
+                        className='w-[200px]'
+                    />
                 </div>
 
                 {/*Type=Text+Icon*/}
-                <div className='w-full flex flex-row justify-around items-center'>
-                    <span>Type=Text+Icon</span>
+                <div className='w-full flex flex-row gap-10 items-center'>
+                    <span className='min-w-[200px]'>Type=Text+Icon</span>
                     <Input
                         placeholder='Text'
                         icon={<SettingsIcon width={21} height={21} color='icon' />}
+                        className='w-[200px]'
                     />
                     <Input
                         placeholder='Text'
                         isFocused={true}
                         icon={<SettingsIcon width={21} height={21} color='icon' />}
+                        className='w-[200px]'
                     />
                     <Input
                         defaultValue='Text'
                         icon={<SettingsIcon width={21} height={21} color='icon' />}
+                        className='w-[200px]'
                     />
                     <Input
                         defaultValue='Text'
                         isError={true}
                         icon={<SettingsIcon width={21} height={21} color='icon' />}
+                        className='w-[200px]'
                     />
                 </div>
 
                 {/*Type=Text+Heading*/}
-                <div className='w-full flex flex-row justify-around items-center'>
-                    <span>Type=Text+Heading</span>
-                    <Input placeholder='Text' heading='Вспомогательный текст' />
-                    <Input placeholder='Text' isFocused={true} heading='Вспомогательный текст' />
-                    <Input defaultValue='Text' heading='Вспомогательный текст' />
-                    <Input defaultValue='Text' isError={true} heading='Вспомогательный текст' />
+                <div className='w-full flex flex-row gap-10 items-center'>
+                    <span className='min-w-[200px]'>Type=Text+Heading</span>
+                    <Input
+                        placeholder='Text'
+                        heading='Вспомогательный текст'
+                        className='w-[200px]'
+                    />
+                    <Input
+                        placeholder='Text'
+                        isFocused={true}
+                        heading='Вспомогательный текст'
+                        className='w-[200px]'
+                    />
+                    <Input
+                        defaultValue='Text'
+                        heading='Вспомогательный текст'
+                        className='w-[200px]'
+                    />
+                    <Input
+                        defaultValue='Text'
+                        isError={true}
+                        heading='Вспомогательный текст'
+                        className='w-[200px]'
+                    />
                 </div>
 
                 {/*Type=Text+Icon+Heading*/}
-                <div className='w-full flex flex-row justify-around items-center'>
-                    <span>Type=Text+Icon+Heading</span>
+                <div className='w-full flex flex-row gap-10 items-center'>
+                    <span className='min-w-[200px]'>Type=Text+Icon+Heading</span>
                     <Input
                         placeholder='Text'
                         heading='Вспомогательный текст'
                         icon={<SettingsIcon width={21} height={21} color='icon' />}
+                        className='w-[200px]'
                     />
                     <Input
                         placeholder='Text'
                         isFocused={true}
                         heading='Вспомогательный текст'
                         icon={<SettingsIcon width={21} height={21} color='icon' />}
+                        className='w-[200px]'
                     />
                     <Input
                         defaultValue='Text'
                         heading='Вспомогательный текст'
                         icon={<SettingsIcon width={21} height={21} color='icon' />}
+                        className='w-[200px]'
                     />
                     <Input
                         defaultValue='Text'
                         isError={true}
                         heading='Вспомогательный текст'
                         icon={<SettingsIcon width={21} height={21} color='icon' />}
+                        className='w-[200px]'
                     />
                 </div>
             </div>
