@@ -20,6 +20,8 @@ const config: Config = {
                 'sidebar-gray': '#0A0A0A',
                 'gray-header': '#EBEBEB',
                 primary: '#A887F8',
+                'primary-hover': '#B987F8',
+                'primary-disabled': '#A887F8',
                 error: '#FF4545',
                 'button-text': '#121212',
                 outline: '#1A1A1A',
