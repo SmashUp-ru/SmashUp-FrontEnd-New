@@ -1,4 +1,4 @@
-import Password from '@/components/smashup/Password';
+import SmashUpPassword from '@/components/smashup/password/Password';
 
 export default function PasswordOverview() {
     return (
@@ -17,26 +17,26 @@ export default function PasswordOverview() {
                 {/*Type=Forgot*/}
                 <div className='w-full flex flex-row justify-around items-center'>
                     <span className='min-w-[170px]'>Type=Forgot</span>
-                    <Password
+                    <SmashUpPassword
                         value='1kLaSsRULIT6969'
                         disabled={true}
                         showForgotButton={true}
                         className='w-[400px]'
                     />
-                    <Password
+                    <SmashUpPassword
                         value='1kLaSsRULIT6969'
                         isFocused={true}
                         showPasswordButton={true}
                         showForgotButton={true}
                         className='w-[400px]'
                     />
-                    <Password
+                    <SmashUpPassword
                         value='1kLaSsRULIT6969'
                         showPasswordButton={true}
                         showForgotButton={true}
                         className='w-[400px]'
                     />
-                    <Password
+                    <SmashUpPassword
                         value='1kLaSsRULIT6969'
                         showPasswordButton={true}
                         showForgotButton={true}
@@ -48,19 +48,23 @@ export default function PasswordOverview() {
                 {/*Type=No Forgot*/}
                 <div className='w-full flex flex-row justify-around items-center'>
                     <span className='min-w-[170px]'>Type=No Forgot</span>
-                    <Password value='1kLaSsRULIT6969' disabled={true} className='w-[400px]' />
-                    <Password
+                    <SmashUpPassword
+                        value='1kLaSsRULIT6969'
+                        disabled={true}
+                        className='w-[400px]'
+                    />
+                    <SmashUpPassword
                         value='1kLaSsRULIT6969'
                         isFocused={true}
                         showPasswordButton={true}
                         className='w-[400px]'
                     />
-                    <Password
+                    <SmashUpPassword
                         value='1kLaSsRULIT6969'
                         showPasswordButton={true}
                         className='w-[400px]'
                     />
-                    <Password
+                    <SmashUpPassword
                         value='1kLaSsRULIT6969'
                         showPasswordButton={true}
                         isError={true}

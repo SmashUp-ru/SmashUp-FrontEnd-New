@@ -1,4 +1,4 @@
-import Button from '@/components/smashup/Button';
+import SmashUpButton from '@/components/smashup/button/Button';
 import SettingsIcon from '@/components/icons/SettingsIcon';
 
 export default function ButtonsOverview() {
@@ -16,41 +16,43 @@ export default function ButtonsOverview() {
                 {/*Type=Fill*/}
                 <div className='w-full flex flex-row justify-around items-center'>
                     <span className='min-w-[170px]'>Type=Fill</span>
-                    <Button>Text</Button>
-                    <Button disabled>Text</Button>
+                    <SmashUpButton>Text</SmashUpButton>
+                    <SmashUpButton disabled>Text</SmashUpButton>
                 </div>
 
                 {/*Type=Fill+Icon*/}
                 <div className='w-full flex flex-row justify-around items-center'>
                     <span className='min-w-[170px]'>Type=Fill+Icon</span>
-                    <Button icon={<SettingsIcon width={21} height={21} />}>Text</Button>
-                    <Button icon={<SettingsIcon width={21} height={21} />} disabled>
+                    <SmashUpButton icon={<SettingsIcon width={21} height={21} />}>
                         Text
-                    </Button>
+                    </SmashUpButton>
+                    <SmashUpButton icon={<SettingsIcon width={21} height={21} />} disabled>
+                        Text
+                    </SmashUpButton>
                 </div>
 
                 {/*Type=Stroke*/}
                 <div className='w-full flex flex-row justify-around items-center'>
                     <span className='min-w-[170px]'>Type=Stroke</span>
-                    <Button category='stoke'>Text</Button>
-                    <Button category='stoke' disabled>
+                    <SmashUpButton category='stoke'>Text</SmashUpButton>
+                    <SmashUpButton category='stoke' disabled>
                         Text
-                    </Button>
+                    </SmashUpButton>
                 </div>
 
                 {/*Type=Stroke+Icon*/}
                 <div className='w-full flex flex-row justify-around items-center'>
                     <span className='min-w-[170px]'>Type=Stroke+Icon</span>
-                    <Button category='stoke' icon={<SettingsIcon width={21} height={21} />}>
+                    <SmashUpButton category='stoke' icon={<SettingsIcon width={21} height={21} />}>
                         Text
-                    </Button>
-                    <Button
+                    </SmashUpButton>
+                    <SmashUpButton
                         category='stoke'
                         icon={<SettingsIcon width={21} height={21} />}
                         disabled
                     >
                         Text
-                    </Button>
+                    </SmashUpButton>
                 </div>
             </div>
         </div>

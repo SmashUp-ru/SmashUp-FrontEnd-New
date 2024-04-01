@@ -6,7 +6,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     icon?: React.ReactNode;
 }
 
-export default function Button({
+export default function SmashUpButton({
     category,
     icon,
     children,

@@ -11,7 +11,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
     heading?: string;
 }
 
-export default function Input({
+export default function SmashUpInput({
     className,
     isFocused,
     isError,

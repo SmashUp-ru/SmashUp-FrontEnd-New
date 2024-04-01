@@ -14,7 +14,7 @@ export interface PasswordProps extends React.InputHTMLAttributes<HTMLInputElemen
     showForgotButton?: boolean;
 }
 
-export default function Password({
+export default function SmashUpPassword({
     className,
     disabled,
     isFocused,
