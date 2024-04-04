@@ -41,7 +41,6 @@ export default function SmashUpSlider({
                     value={sliderValue}
                     onChange={(val) => setSliderValue(val)}
                     thumbClassName='bg-white rounded-sm -top-2/3 w-2.5 h-5'
-                    trackClassName=''
                     renderMark={(props) => {
                         return (
                             <span
@@ -50,19 +49,26 @@ export default function SmashUpSlider({
                                     props.className,
                                     (props.key as number) < sliderValue ? 'bg-primary' : ''
                                 )}
+                                key={props.key}
                             />
                         );
                     }}
                     renderThumb={(props, state) => (
-                        <div className='' {...props}>
+                        <div className='' {...props} key={props.key}>
                             {state.valueNow}
                         </div>
                     )}
                     renderTrack={(props, state) => {
-                        if (state.index === 1) {
-                            return <div {...props} className='h-2 bg-outline' />;
-                        }
-                        return <div {...props} className='h-2 bg-primary' />;
+                        return (
+                            <div
+                                {...props}
+                                className={twMerge(
+                                    'h-2',
+                                    state.index === 0 ? 'bg-primary' : 'bg-outline'
+                                )}
+                                key={props.key}
+                            />
+                        );
                     }}
                 />
             </div>
