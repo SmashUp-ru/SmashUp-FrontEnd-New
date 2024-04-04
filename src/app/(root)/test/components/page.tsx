@@ -6,6 +6,7 @@ export default function ComponentsOverview() {
             <a href='/test/components/buttons'>Открыть страницу с Buttons</a>
             <a href='/test/components/toggle'>Открыть страницу с Toggle</a>
             <a href='/test/components/checkbox'>Открыть страницу с CheckBox</a>
+            <a href='/test/components/slider'>Открыть страницу с Slider (Bit Toggle)</a>
         </div>
     );
 }
