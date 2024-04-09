@@ -1,4 +1,4 @@
-import SmashUpSlider from '@/components/smashup/slider/Slider';
+import SmashUpSlider from '@/components/smashup/Slider/Slider';
 
 export default function SliderOverview() {
     return (
