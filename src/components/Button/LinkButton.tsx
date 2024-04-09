@@ -10,7 +10,7 @@ const LinkButton = forwardRef<HTMLAnchorElement, AnchorProps>(
                 href={href}
                 type={type}
                 className={twMerge(
-                    'rounded-2xl bg-primary text-button-text font-semibold text-xl text-center',
+                    'rounded-2xl bg-primary text-Button-text font-semibold text-xl text-center',
                     className
                 )}
                 ref={ref}

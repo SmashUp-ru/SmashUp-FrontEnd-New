@@ -62,8 +62,8 @@ export default function SmashUpPassword({
                         if (isFocused === undefined) setFocus(false);
                     }}
                     className={twMerge(
-                        'w-full bg-input py-[17.5px] pl-[25px] rounded-2xl z-10',
-                        'font-normal text-base text-icon placeholder-input-text',
+                        'w-full bg-Input py-[17.5px] pl-[25px] rounded-2xl z-10',
+                        'font-normal text-base text-icon placeholder-Input-text',
                         'pl-14',
                         focus ? 'border-none outline outline-2 ring-0 outline-primary' : '',
                         error ? 'border-none outline outline-2 ring-0 outline-red-600' : ''

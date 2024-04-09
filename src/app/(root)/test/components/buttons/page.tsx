@@ -1,4 +1,4 @@
-import SmashUpButton from '@/components/smashup/button/Button';
+import SmashUpButton from '@/components/smashup/Button/Button';
 import SettingsIcon from '@/components/icons/SettingsIcon';
 
 export default function ButtonsOverview() {

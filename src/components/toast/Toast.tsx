@@ -9,7 +9,7 @@ export default function getToast(text: string, type: 'success' | 'error', classN
                     `cursor-pointer w-64 h-12 flex flex-row items-center justify-center px-4 py-6 rounded-xl relative`,
                     t.visible ? 'bottom-5' : '-bottom-96',
                     className,
-                    type === 'success' ? 'bg-primary text-button-text' : 'bg-error text-button-text'
+                    type === 'success' ? 'bg-primary text-Button-text' : 'bg-error text-Button-text'
                 )}
                 onClick={() => toast.dismiss(t.id)}
             >

@@ -1,4 +1,4 @@
-import SmashUpPassword from '@/components/smashup/password/Password';
+import SmashUpPassword from '@/components/smashup/Password/Password';
 
 export default function PasswordOverview() {
     return (

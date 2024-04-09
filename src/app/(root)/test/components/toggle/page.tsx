@@ -1,4 +1,4 @@
-import SmashUpToggle from '@/components/smashup/toggle/Toggle';
+import SmashUpToggle from '@/components/smashup/Toggle/Toggle';
 
 export default function ToggleOverview() {
     return (

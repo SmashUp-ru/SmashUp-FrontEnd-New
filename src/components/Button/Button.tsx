@@ -9,7 +9,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <button
                 type={type}
                 className={twMerge(
-                    'rounded-2xl bg-primary text-button-text font-semibold text-xl',
+                    'rounded-2xl bg-primary text-Button-text font-semibold text-xl',
                     className
                 )}
                 ref={ref}

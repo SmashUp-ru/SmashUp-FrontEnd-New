@@ -1,4 +1,4 @@
-import SmashUpInput from '@/components/smashup/input/Input';
+import SmashUpInput from '@/components/smashup/Input/Input';
 import SettingsIcon from '@/components/icons/SettingsIcon';
 
 export default function InputsOverview() {

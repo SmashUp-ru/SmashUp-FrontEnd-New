@@ -1,4 +1,4 @@
-import SmashUpCheckBox from '@/components/smashup/checkbox/Checkbox';
+import SmashUpCheckBox from '@/components/smashup/Checkbox/Checkbox';
 
 export default function CheckboxOverview() {
     return (
