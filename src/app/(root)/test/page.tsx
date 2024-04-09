@@ -3,10 +3,12 @@
 import { Toaster, ToastBar } from 'react-hot-toast';
 import getWarningToast from '@/components/toast/Warning';
 import getNotificationToast from '@/components/toast/Notification';
+import getComplexNotificationToast from '@/components/toast/ComplexNotification';
 
 export default function TestPage() {
     const warning = getWarningToast;
     const notification = getNotificationToast;
+    const complexNotification = getComplexNotificationToast;
 
     return (
         <div className='px-8'>
@@ -29,6 +31,17 @@ export default function TestPage() {
                     }
                 >
                     Добавить уведомление
+                </button>
+
+                <button
+                    onClick={() =>
+                        complexNotification(
+                            'Title',
+                            'Text Text Text Text Text Text Text Text Text Text Text Text Text Text'
+                        )
+                    }
+                >
+                    Добавить большое уведомление
                 </button>
 
                 <a href='/login'>Открыть страницу входа</a>
