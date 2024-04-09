@@ -4,6 +4,7 @@ export default function ComponentsOverview() {
             <a href='/test/components/inputs'>Открыть страницу с Inputs</a>
             <a href='/test/components/password'>Открыть страницу с Password</a>
             <a href='/test/components/buttons'>Открыть страницу с Buttons</a>
+            <a href='/test/components/upload_buttons'>Открыть страницу с Upload Buttons</a>
             <a href='/test/components/toggle'>Открыть страницу с Toggle</a>
             <a href='/test/components/checkbox'>Открыть страницу с CheckBox</a>
         </div>
