@@ -1,19 +1,23 @@
 import toast from 'react-hot-toast';
 import { twMerge } from 'tailwind-merge';
 
-export default function getToast(text: string, type: 'success' | 'error', className?: string) {
+export default function getWarningToast(
+    text: string,
+    type: 'success' | 'error',
+    className?: string
+) {
     return toast.custom(
         (t) => (
             <div
                 className={twMerge(
-                    `cursor-pointer w-64 h-12 flex flex-row items-center justify-center px-4 py-6 rounded-xl relative`,
+                    `cursor-pointer flex flex-row items-center justify-center rounded-xl relative`,
                     t.visible ? 'bottom-5' : '-bottom-96',
                     className,
                     type === 'success' ? 'bg-primary text-Button-text' : 'bg-error text-Button-text'
                 )}
                 onClick={() => toast.dismiss(t.id)}
             >
-                <div className='flex flex-col items-start justify-center'>
+                <div className='flex flex-col items-start justify-center mx-12 my-4'>
                     <p>{text}</p>
                 </div>
             </div>

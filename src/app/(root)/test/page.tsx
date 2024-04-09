@@ -1,21 +1,34 @@
 'use client';
 
 import { Toaster, ToastBar } from 'react-hot-toast';
-import getToast from '@/components/toast/Toast';
+import getWarningToast from '@/components/toast/Warning';
+import getNotificationToast from '@/components/toast/Notification';
 
 export default function TestPage() {
-    const notify = getToast;
+    const warning = getWarningToast;
+    const notification = getNotificationToast;
 
     return (
         <div className='px-8'>
             <div className='flex flex-col gap-2 text-center'>
                 <a href='/test/components'>Открыть страницу со всеми компонентами</a>
 
-                <button onClick={() => notify('Добавлено в плейлист', 'success')}>
+                <button onClick={() => warning('Добавлено в плейлист', 'success')}>
                     Открыть добрый попап
                 </button>
-                <button onClick={() => notify('Ебать 400 рублей', 'error')}>
+                <button onClick={() => warning('Ебать 400 рублей', 'error')}>
                     Открыть злой попап
+                </button>
+
+                <button
+                    onClick={() =>
+                        notification(
+                            'Title',
+                            'Text Text Text Text Text Text Text Text Text Text Text Text Text Text'
+                        )
+                    }
+                >
+                    Добавить уведомление
                 </button>
 
                 <a href='/login'>Открыть страницу входа</a>
