@@ -9,7 +9,7 @@ import SettingsIcon from '@/components/icons/SettingsIcon';
 import ShareIcon from '@/components/icons/ShareIcon';
 import AddIcon from '@/components/icons/AddIcon';
 import { profile_popular } from '@/utils/data';
-import ExplicitIcon from '@/components/icons/ExplicitIcon';
+import TrackItem from '@/components/TrackItem';
 
 export default function Profile() {
     return (
@@ -51,38 +51,9 @@ export default function Profile() {
             {/* Семые популярные мэшапы */}
             <div className='flex flex-col gap-4'>
                 <h2 className='font-semibold text-2xl'>Самые популярные мэшапы</h2>
-                <div className='flex flex-col gap-5'>
+                <div className='flex flex-col'>
                     {profile_popular.map((item) => (
-                        <div key={item.id} className='flex flex-row justify-between'>
-                            <div className='flex flex-row gap-6 items-center'>
-                                <span className='text-icon'>{item.id}</span>
-                                <div className='flex flex-row gap-3.5'>
-                                    <Image
-                                        src={item.image}
-                                        alt={item.title}
-                                        className='w-[40px] h-[40px]'
-                                    />
-                                    <div className='flex flex-col gap-y-0.5'>
-                                        <div className='flex flex-row gap-2 items-center'>
-                                            <span className='font-normal text-base'>
-                                                {item.title}
-                                            </span>
-                                            {item.explicit && (
-                                                <ExplicitIcon width={16} height={17} color='icon' />
-                                            )}
-                                        </div>
-                                        <span className='font-normal text-sm text-icon'>
-                                            {item.author}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className='w-1/3 flex flex-row gap-2.5 justify-between'>
-                                <span className='text-icon'>{item.listened}</span>
-                                <span className='text-icon'>{item.length}</span>
-                            </div>
-                        </div>
+                        <TrackItem key={item.id} {...item} />
                     ))}
                 </div>
                 <span className='font-bold text-sm text-gray-300 uppercase'>Все</span>

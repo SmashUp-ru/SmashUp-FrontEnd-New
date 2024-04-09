@@ -4,6 +4,7 @@ import Card from '@/components/main/Card';
 import profile from '/public/dev/profile.png';
 import Image from 'next/image';
 import Separator from '@/components/Separator';
+import TrackItem from '@/components/TrackItem';
 
 export default function Search() {
     return (
@@ -51,18 +52,7 @@ export default function Search() {
 
                     <div className='flex flex-col justify-between'>
                         {mashups_search.map((item) => (
-                            <div key={item.id} className='flex flex-row gap-6 py-2 items-center'>
-                                <span>{item.id}</span>
-                                <Image
-                                    src={item.image}
-                                    alt={item.title}
-                                    className='w-[40px] h-[40px]'
-                                ></Image>
-                                <div className='flex flex-col '>
-                                    <span>{item.title}</span>
-                                    <span>{item.author}</span>
-                                </div>
-                            </div>
+                            <TrackItem key={item.id} {...item} />
                         ))}
                     </div>
                 </div>

@@ -1,6 +1,3 @@
-'use client';
-
-import React, { useContext } from 'react';
 import Image from 'next/image';
 import profile from '/public/dev/profile.png';
 import favorites from '/public/icons/like.png';
@@ -8,14 +5,11 @@ import Separator from '@/components/Separator';
 import PlayIcon from '@/components/icons/PlayIcon';
 import ShareIcon from '@/components/icons/ShareIcon';
 import { profile_popular } from '@/utils/data';
-import ExplicitIcon from '@/components/icons/ExplicitIcon';
 import HeartIcon from '@/components/icons/HeartIcon';
 import WatchIcon from '@/components/icons/WatchIcon';
-import { TrackContext } from '@/providers/Providers';
+import TrackItem from '@/components/TrackItem';
 
 export default function Favorites() {
-    const { setTrack } = useContext(TrackContext);
-
     return (
         <div className='px-8'>
             {/* Профиль */}
@@ -49,9 +43,11 @@ export default function Favorites() {
             {/* Мэшапы */}
             <div className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-2.5'>
-                    <div className='flex flex-row justify-between px-4 py-6 border-b border-sidebar-gray'>
-                        <div className='flex flex-row gap-6 items-center'>
-                            <span className='text-icon'>#</span>
+                    <div className='flex flex-row justify-between py-6 border-b border-sidebar-gray pr-4'>
+                        <div className='flex flex-row items-center'>
+                            <div className='w-6 h-6 mx-4 flex flex-row items-center justify-center'>
+                                <span className='text-icon'>#</span>
+                            </div>
                             <span className='text-icon'>Название</span>
                         </div>
 
@@ -62,45 +58,12 @@ export default function Favorites() {
                             </span>
                         </div>
                     </div>
-                    {profile_popular.map((item) => (
-                        <div key={item.id} className='flex flex-row justify-between'>
-                            <div className='flex flex-row gap-6 items-center'>
-                                <span className='text-icon'>{item.id}</span>
-                                <div className='flex flex-row gap-3.5'>
-                                    <Image
-                                        src={item.image}
-                                        alt={item.title}
-                                        className='w-[40px] h-[40px]'
-                                    />
-                                    <div className='flex flex-col gap-y-0.5'>
-                                        <div className='flex flex-row gap-2 items-center'>
-                                            <span
-                                                className='font-normal text-base cursor-pointer'
-                                                onClick={() => {
-                                                    if (setTrack) {
-                                                        setTrack(item.id);
-                                                    }
-                                                }}
-                                            >
-                                                {item.title}
-                                            </span>
-                                            {item.explicit && (
-                                                <ExplicitIcon width={16} height={17} color='icon' />
-                                            )}
-                                        </div>
-                                        <span className='font-normal text-sm text-icon'>
-                                            {item.author}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div className='w-1/3 flex flex-row gap-2.5 justify-between'>
-                                <span className='text-icon'>{item.listened}</span>
-                                <span className='text-icon'>{item.length}</span>
-                            </div>
-                        </div>
-                    ))}
+                    <div>
+                        {profile_popular.map((item) => (
+                            <TrackItem key={item.id} {...item} />
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

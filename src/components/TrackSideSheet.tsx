@@ -10,7 +10,7 @@ import { TrackContext } from '@/providers/Providers';
 import React, { useContext } from 'react';
 import { mashups_search } from '@/utils/data';
 
-export default function Track() {
+export default function TrackSideSheet() {
     const { setTrack } = useContext(TrackContext);
     return (
         <div className='w-[468px] h-full flex flex-col items-center gap-14 py-10'>

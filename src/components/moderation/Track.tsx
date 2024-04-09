@@ -13,7 +13,7 @@ export default function Track() {
 
     return (
         <div>
-            {/* Track */}
+            {/* TrackSideSheet */}
             <div className='w-full h-[72px] px-4 bg-button-text rounded-2xl flex flex-row justify-between items-center'>
                 <div className='flex flex-row gap-4'>
                     <Image src={track} alt='Я устал' className='size-12' />
@@ -45,7 +45,7 @@ export default function Track() {
                 </div>
             </div>
 
-            {/* Expanded Track */}
+            {/* Expanded TrackSideSheet */}
             {expanded && (
                 <div className='w-full flex flex-row flex-wrap gap-8 py-6'>
                     <Image src={track} alt='Я устал' className='w-[182px] h-[182px]' />

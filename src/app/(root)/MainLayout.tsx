@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import { TrackContext } from '@/providers/Providers';
 import Header from '@/components/header/Header';
-import Track from '@/components/Track';
+import TrackSideSheet from '@/components/TrackSideSheet';
 
 export default function MainLayout({
     children
@@ -18,7 +18,7 @@ export default function MainLayout({
                 <Header />
                 {children}
             </div>
-            {track && <Track />}
+            {track && <TrackSideSheet />}
         </div>
     );
 }

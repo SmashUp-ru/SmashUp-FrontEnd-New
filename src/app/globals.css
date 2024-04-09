@@ -88,7 +88,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     width: 3px;
 }
 
-/* Track */
+/* TrackSideSheet */
 ::-webkit-scrollbar-track {
     background: transparent;
 }
