@@ -8,7 +8,7 @@ export default function PopoverOverview() {
             <SmashUpPopover
                 icon={<InfoIcon width={20} height={21} />}
                 content={
-                    <div className='flex flex-col gap-7'>
+                    <div className='flex flex-col gap-7 max-w-[737px]'>
                         <h1 className='font-semibold text-2xl'>
                             Жанры выбираются в соответствии с жанром оригинального трека, однако это
                             не подходит для следующих категорий:

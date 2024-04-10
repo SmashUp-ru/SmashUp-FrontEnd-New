@@ -13,7 +13,7 @@ import React from 'react';
 export default function UploadMashup() {
     return (
         <div className='px-8 flex flex-col gap-8'>
-            <div className='flex flex-row bg-sidebar-gray w-full h-[238p    x] rounded-4xl px-6 py-6 gap-12'>
+            <div className='flex flex-row bg-sidebar-gray w-full h-[238px] rounded-4xl px-6 py-6 gap-12'>
                 <Image
                     src={uploadIcon}
                     width={188}
@@ -51,7 +51,7 @@ export default function UploadMashup() {
                             <SmashUpPopover
                                 icon={<InfoIcon width={20} height={21} />}
                                 content={
-                                    <div className='flex flex-col gap-7'>
+                                    <div className='flex flex-col gap-7 max-w-[737px]'>
                                         <h1 className='font-semibold text-2xl'>
                                             Жанры выбираются в соответствии с жанром оригинального
                                             трека, однако это не подходит для следующих категорий:
@@ -131,7 +131,7 @@ export default function UploadMashup() {
                             <SmashUpPopover
                                 icon={<InfoIcon width={20} height={21} />}
                                 content={
-                                    <div className='flex flex-col gap-7'>
+                                    <div className='flex flex-col gap-7 max-w-[737px]'>
                                         <h1 className='font-semibold text-2xl'>
                                             Жанры выбираются в соответствии с жанром оригинального
                                             трека, однако это не подходит для следующих категорий:
@@ -196,7 +196,7 @@ export default function UploadMashup() {
                             <SmashUpPopover
                                 icon={<InfoIcon width={20} height={21} />}
                                 content={
-                                    <div className='flex flex-col gap-7'>
+                                    <div className='flex flex-col gap-7 max-w-[737px]'>
                                         <h1 className='font-semibold text-2xl'>
                                             Жанры выбираются в соответствии с жанром оригинального
                                             трека, однако это не подходит для следующих категорий:
@@ -266,7 +266,7 @@ export default function UploadMashup() {
                             <SmashUpPopover
                                 icon={<InfoIcon width={20} height={21} />}
                                 content={
-                                    <div className='flex flex-col gap-7'>
+                                    <div className='flex flex-col gap-7 max-w-[737px]'>
                                         <h1 className='font-semibold text-2xl'>
                                             Жанры выбираются в соответствии с жанром оригинального
                                             трека, однако это не подходит для следующих категорий:
