@@ -5,7 +5,7 @@ import DoneIcon from '@/components/icons/DoneIcon';
 import { twMerge } from 'tailwind-merge';
 
 export interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
-    label?: string;
+    label?: string | React.JSX.Element;
 }
 
 export default function SmashUpCheckBox({ label, className, checked, ...props }: CheckBoxProps) {
@@ -31,7 +31,7 @@ export default function SmashUpCheckBox({ label, className, checked, ...props }:
                     </span>
                 </div>
 
-                <span>{label}</span>
+                <span className='text-left'>{label}</span>
             </label>
         </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { search } from '@/utils/data';
-import Card from '@/components/main/Card';
+import Card from '@/components/Card';
 
 export default function UploadPage() {
     return (

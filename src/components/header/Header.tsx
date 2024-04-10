@@ -3,17 +3,16 @@ import profile from '/public/dev/profile.png';
 import Image from 'next/image';
 import SearchIcon from '@/components/icons/SearchIcon';
 import NotificationLogo from '@/components/icons/NotificationIcon';
+import SmashUpInput from '@/components/smashup/Input/Input';
 
 function Header() {
     return (
         <div className='w-full h-[40px] mb-4 flex items-center justify-between pt-12 pb-10 px-8'>
-            <div className='h-[40px] flex justify-start items-center relative'>
-                <input
-                    placeholder='Поиск'
-                    className='border border-gray-400 rounded-lg px-10 py-2.5 w-[350px] h-[40px] focus:outline-none text-gray-header'
-                />
-                <SearchIcon width={16} height={16} color='gray-header' className='absolute ml-4' />
-            </div>
+            <SmashUpInput
+                placeholder='Поиск'
+                icon={<SearchIcon width={16} height={16} color='gray-header' />}
+                className='w-[350px]'
+            />
 
             <div className='flex gap-8 items-center w-[232px]'>
                 <NotificationLogo width={24} height={24} color='primary' active={true} />

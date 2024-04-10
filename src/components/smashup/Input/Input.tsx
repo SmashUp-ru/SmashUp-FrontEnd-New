@@ -36,7 +36,7 @@ export default function SmashUpInput({
 
     return (
         <div className={twMerge('w-full flex flex-col gap-2.5', className)}>
-            <span className='font-normal text-xs text-icon'>{heading}</span>
+            <span className='font-medium text-base text-icon text-left'>{heading}</span>
 
             <div className='w-full flex justify-start items-center relative'>
                 <input
@@ -47,7 +47,7 @@ export default function SmashUpInput({
                         if (isFocused === undefined) setFocus(false);
                     }}
                     className={twMerge(
-                        'w-full bg-Input py-[17.5px] pl-[25px] rounded-2xl',
+                        'w-full bg-button-text py-[17.5px] pl-[25px] rounded-2xl',
                         'font-normal text-base text-icon placeholder-Input-text',
                         icon ? 'pl-14' : '',
                         focus ? 'border-none outline outline-2 ring-0 outline-primary' : '',

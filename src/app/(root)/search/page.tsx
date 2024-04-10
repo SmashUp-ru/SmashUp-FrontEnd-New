@@ -1,6 +1,6 @@
 import React from 'react';
 import { mashups_search, search } from '@/utils/data';
-import Card from '@/components/main/Card';
+import Card from '@/components/Card';
 import profile from '/public/dev/profile.png';
 import Image from 'next/image';
 import Separator from '@/components/Separator';
@@ -28,7 +28,7 @@ export default function Search() {
 
                         <div className='flex flex-col justify-center gap-2.5'>
                             <h1 className='font-semibold text-5xl text-secondary-text'>dmhd6219</h1>
-                            <div>
+                            <div className='flex gap-2'>
                                 <span className='font-medium text-base text-gray-400'>
                                     500 подписчиков
                                 </span>

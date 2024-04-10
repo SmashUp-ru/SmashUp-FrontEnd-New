@@ -8,6 +8,8 @@ export interface SliderProps extends ReactSliderProps {
     label?: string;
     markHints?: string[];
     amount: number;
+    width?: string;
+    height?: string;
 }
 
 export default function SmashUpSlider({
@@ -16,12 +18,14 @@ export default function SmashUpSlider({
     amount,
     value,
     className,
+    width,
+    height,
     ...props
 }: SliderProps) {
     const [sliderValue, setSliderValue] = useState(value ? value : 0);
 
     return (
-        <div className={twMerge('flex flex-row gap-6 items-center justify-between', className)}>
+        <div className={twMerge('flex flex-row gap-6 items-center', className)}>
             <span className='font-normal text-base text-icon'>{label}</span>
             <div className='flex flex-col gap-2'>
                 <div className='w-[300px] flex flex-row justify-between'>
@@ -33,7 +37,7 @@ export default function SmashUpSlider({
                 </div>
                 <ReactSlider
                     {...props}
-                    className='w-[275px] h-2'
+                    className={twMerge('w-[275px] h-2', `w-${width} h-${height}`)}
                     marks
                     markClassName='bg-outline rounded-sm w-0.5 h-5 -top-2/3'
                     min={0}

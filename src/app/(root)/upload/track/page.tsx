@@ -2,7 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import uploadIcon from '/public/icons/upload.png';
 import LinkIcon from '@/components/icons/LinkIcon';
-import Button from '@/components/Button/Button';
+import SmashUpButton from '@/components/smashup/Button/Button';
+import SmashUpInput from '@/components/smashup/Input/Input';
 
 export default function UploadTrack() {
     return (
@@ -23,17 +24,13 @@ export default function UploadTrack() {
             </div>
 
             <form className='flex flex-col gap-8'>
-                <div className='w-[764px] h-[64px] flex justify-start items-center relative'>
-                    <input
-                        type='text'
-                        placeholder='Ссылка на оффициальное видео исходника ( YouTube )'
-                        className='px-12 py-4 w-full rounded-2xl focus:outline-none bg-sidebar-gray'
-                    />
+                <SmashUpInput
+                    icon={<LinkIcon width={20} height={19} />}
+                    placeholder='Ссылка на оффициальное видео исходника ( YouTube )'
+                    className='w-[764px]'
+                />
 
-                    <LinkIcon width={20} height={19} className='absolute ml-4' />
-                </div>
-
-                <Button className='w-[764px] h-[64px]'>Подтвердить</Button>
+                <SmashUpButton className='w-[764px] h-[64px]'>Подтвердить</SmashUpButton>
             </form>
         </div>
     );

@@ -2,11 +2,11 @@ import Image from 'next/image';
 import track from '/public/dev/moderation/track.png';
 import ExplicitIcon from '@/components/icons/ExplicitIcon';
 import PlayIcon from '@/components/icons/PlayIcon';
-import Button from '@/components/Button/Button';
 import EditIcon from '@/components/icons/EditIcon';
 import ExpandIcon from '@/components/icons/ExpandIcon';
 import React from 'react';
 import LinkIcon from '@/components/icons/LinkIcon';
+import SmashUpButton from '@/components/smashup/Button/Button';
 
 export default function Track() {
     const [expanded, setExpanded] = React.useState(false);
@@ -29,11 +29,13 @@ export default function Track() {
                     <button>
                         <PlayIcon width={32} height={32} color='primary' />
                     </button>
-                    <Button className='w-[140px] h-[36px] font-semibold text-base'>Принять</Button>
+                    <SmashUpButton className='w-[140px] h-[36px] font-semibold text-base'>
+                        Принять
+                    </SmashUpButton>
 
-                    <Button className='w-[140px] h-[36px] font-semibold text-base bg-outline text-secondary-text'>
+                    <SmashUpButton className='w-[140px] h-[36px] font-semibold text-base bg-outline text-secondary-text'>
                         Отклонить
-                    </Button>
+                    </SmashUpButton>
 
                     <button>
                         <EditIcon width={20} height={20} />

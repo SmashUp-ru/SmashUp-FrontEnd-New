@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@/components/Button/Button';
+import SmashUpButton from '@/components/smashup/Button/Button';
 
 export default function ConfirmMail() {
     return (
@@ -18,7 +18,7 @@ export default function ConfirmMail() {
             <div className='text-center w-[90%] max-w-[460px]'>
                 <form className='flex flex-col gap-6 w-full'>
                     <div className='w-full flex flex-col gap-5'>
-                        <Button className='h-[54px]'>Подтвердить</Button>
+                        <SmashUpButton>Подтвердить</SmashUpButton>
                     </div>
                 </form>
             </div>

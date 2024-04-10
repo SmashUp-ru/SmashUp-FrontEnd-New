@@ -1,6 +1,7 @@
 import React from 'react';
 import MailIcon from '@/components/icons/MailIcon';
-import Button from '@/components/Button/Button';
+import SmashUpInput from '@/components/smashup/Input/Input';
+import SmashUpButton from '@/components/smashup/Button/Button';
 
 export default function Restore() {
     return (
@@ -17,22 +18,13 @@ export default function Restore() {
             <div className='text-center w-[90%] max-w-[460px]'>
                 <form className='flex flex-col gap-6 w-full'>
                     {/* Почта */}
-                    <div className='w-full flex flex-col gap-2.5'>
-                        <label className='text-left'>Электронная почта</label>
-                        <div className='w-full flex justify-start items-center relative'>
-                            <input
-                                type='email'
-                                placeholder='tapiri@smashup.ru'
-                                className='px-10 py-4 w-full rounded-2xl focus:outline-none'
-                            />
+                    <SmashUpInput
+                        heading='Электронная почта'
+                        placeholder='tapiri@example.com'
+                        icon={<MailIcon width={20} height={17} />}
+                    />
 
-                            <MailIcon width={20} height={16} className='absolute ml-4' />
-                        </div>
-                    </div>
-
-                    <div className='w-full flex flex-col gap-5'>
-                        <Button className='h-[54px]'>Подтвердить</Button>
-                    </div>
+                    <SmashUpButton>Подтвердить</SmashUpButton>
                 </form>
             </div>
         </div>

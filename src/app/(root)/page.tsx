@@ -1,5 +1,5 @@
 import { recently, selections } from '@/utils/data';
-import Card from '@/components/main/Card';
+import Card from '@/components/Card';
 
 export default function Home() {
     return (

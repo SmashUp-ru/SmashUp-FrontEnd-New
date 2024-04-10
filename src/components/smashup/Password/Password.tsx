@@ -12,6 +12,8 @@ export interface PasswordProps extends React.InputHTMLAttributes<HTMLInputElemen
     showPassword?: boolean;
     showPasswordButton?: boolean;
     showForgotButton?: boolean;
+    showHelper?: boolean;
+    heading?: string;
 }
 
 export default function SmashUpPassword({
@@ -24,6 +26,8 @@ export default function SmashUpPassword({
     showPassword,
     showPasswordButton,
     showForgotButton,
+    showHelper,
+    heading,
     defaultValue,
     ...props
 }: PasswordProps) {
@@ -45,9 +49,11 @@ export default function SmashUpPassword({
     return (
         <div className={twMerge('w-full flex flex-col gap-2.5', className)}>
             <div className='w-full flex flex-row justify-between'>
-                <span className='font-normal text-xs text-icon'>Пароль</span>
+                <span className='font-medium text-base text-icon'>
+                    {heading ? heading : 'Пароль'}
+                </span>
                 {showForgotButton && (
-                    <a className='font-normal text-xs text-primary' href='/restore'>
+                    <a className='font-medium text-base text-primary' href='/restore'>
                         Забыл пароль?
                     </a>
                 )}
@@ -79,26 +85,28 @@ export default function SmashUpPassword({
                 <div className='absolute w-full px-6 flex flex-row justify-between items-center'>
                     <PasswordIcon width={20} height={17} className='z-20' />
                     {!disabled && showPasswordButton && (
-                        <button
+                        <div
                             onClick={() => {
                                 setShowPasswordValue(!showPasswordValue);
                             }}
-                            className='z-20'
+                            className='z-20 cursor-pointer'
                         >
                             {showPasswordValue ? (
                                 <HideIcon width={28} height={28} />
                             ) : (
                                 <ShowIcon width={28} height={26} />
                             )}
-                        </button>
+                        </div>
                     )}
                 </div>
             </div>
 
-            <span className='w-full font-normal text-xs text-icon'>
-                Пароль должен содержать 8 - 32 символа и может содержать: Прописные и строчные буквы
-                латиницы, цифры и спец. символы.
-            </span>
+            {showHelper && (
+                <span className='w-full font-normal text-xs text-icon text-left'>
+                    Пароль должен содержать 8 - 32 символа и может содержать: Прописные и строчные
+                    буквы латиницы, цифры и спец. символы.
+                </span>
+            )}
         </div>
     );
 }
