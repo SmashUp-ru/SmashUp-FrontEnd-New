@@ -1,5 +1,6 @@
 import SmashUpButton from '@/components/smashup/Button/Button';
 import SettingsIcon from '@/components/icons/SettingsIcon';
+import VkIcon from '@/components/icons/VkIcon';
 
 export default function ButtonsOverview() {
     return (
@@ -48,7 +49,7 @@ export default function ButtonsOverview() {
                     </SmashUpButton>
                     <SmashUpButton
                         category='stroke'
-                        icon={<SettingsIcon width={21} height={21} />}
+                        icon={<VkIcon width={25} height={25} color='vk' textColor='white' />}
                         disabled
                     >
                         Text

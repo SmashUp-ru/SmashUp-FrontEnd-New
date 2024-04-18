@@ -15,7 +15,7 @@ const config: Config = {
                 '15': '3.75rem',
                 '17': '4.5rem'
             },
-            extend: {
+            colors: {
                 current: 'currentColor',
                 vk: '#0077FF'
             }
@@ -49,7 +49,7 @@ const config: Config = {
                     name: 'test-theme',
                     extend: {
                         colors: {
-                            primary: '0077FF'
+                            primary: '#0077FF'
                         }
                     }
                 }
