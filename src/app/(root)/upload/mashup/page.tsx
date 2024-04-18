@@ -3,7 +3,6 @@ import uploadIcon from '/public/icons/upload.png';
 import InfoIcon from '@/components/icons/InfoIcon';
 import { coauthors, genres, upload } from '@/utils/data';
 import { twMerge } from 'tailwind-merge';
-import VkIcon from '@/components/icons/VkIcon';
 import DoneIcon from '@/components/icons/DoneIcon';
 import SmashUpPopover from '@/components/smashup/Popover/Popover';
 import React from 'react';
@@ -11,6 +10,7 @@ import SmashUpButton from '@/components/smashup/Button/Button';
 import SmashUpInput from '@/components/smashup/Input/Input';
 import SmashUpCheckBox from '@/components/smashup/Checkbox/Checkbox';
 import SmashUpUploadButton from '@/components/smashup/UploadButton/UploadButton';
+import VkGrayIcon from '@/components/icons/VkGrayIcon';
 
 export default function UploadMashup() {
     return (
@@ -293,9 +293,7 @@ export default function UploadMashup() {
 
                             <SmashUpInput
                                 placeholder='Ссылка на основу / alt ( Если есть )'
-                                icon={
-                                    <VkIcon width={25} height={25} color='icon' textColor='black' />
-                                }
+                                icon={<VkGrayIcon width={25} height={25} />}
                             />
                         </div>
                     </div>

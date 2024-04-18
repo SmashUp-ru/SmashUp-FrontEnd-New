@@ -3,7 +3,7 @@
 import React from 'react';
 import MailIcon from '@/components/icons/MailIcon';
 import ProfileIcon from '@/components/icons/ProfileIcon';
-import VkIcon from '@/components/icons/VkIcon';
+import VkBlueIcon from '@/components/icons/VkBlueIcon';
 import { v4 } from 'uuid';
 import SmashUpInput from '@/components/smashup/Input/Input';
 import SmashUpPassword from '@/components/smashup/Password/Password';
@@ -80,7 +80,9 @@ export default function Register() {
                     <div className='flex flex-col gap-4'>
                         <SmashUpButton
                             category='stroke-default'
-                            icon={<VkIcon width={25} height={25} color='vk' textColor='white' />}
+                            icon={
+                                <VkBlueIcon width={25} height={25} color='vk' textColor='white' />
+                            }
                             onClick={() => router.push(`https://id.vk.com/auth?${query}`)}
                         >
                             VK ID
