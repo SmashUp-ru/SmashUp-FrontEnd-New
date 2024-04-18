@@ -53,7 +53,7 @@ export default function Login() {
 
                     <SmashUpButton
                         category='stroke-default'
-                        icon={<VkIcon width={25} height={25} color='vk' />}
+                        icon={<VkIcon width={25} height={25} color='vk' textColor='white' />}
                         onClick={() => router.push(`https://id.vk.com/auth?${query}`)}
                     >
                         VK ID

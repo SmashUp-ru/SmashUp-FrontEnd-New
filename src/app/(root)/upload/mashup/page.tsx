@@ -297,7 +297,9 @@ export default function UploadMashup() {
 
                             <SmashUpInput
                                 placeholder='Ссылка на основу / alt ( Если есть )'
-                                icon={<VkIcon width={25} height={25} color='icon' />}
+                                icon={
+                                    <VkIcon width={25} height={25} color='icon' textColor='black' />
+                                }
                             />
                         </div>
                     </div>
