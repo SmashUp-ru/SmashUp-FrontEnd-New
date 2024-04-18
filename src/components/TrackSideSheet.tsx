@@ -13,8 +13,8 @@ import { mashups_search } from '@/utils/data';
 export default function TrackSideSheet() {
     const { setTrack } = useContext(TrackContext);
     return (
-        <div className='w-[468px] h-full flex flex-col items-center gap-14 py-10'>
-            <div className='w-full flex flex-row justify-end'>
+        <div className='w-[468px] h-full flex flex-col items-center'>
+            <div className='w-full flex flex-row justify-end h-[130px]'>
                 <button
                     onClick={() => {
                         if (setTrack) {
@@ -25,6 +25,7 @@ export default function TrackSideSheet() {
                     <ExitIcon width={28} height={28} className='cursor-pointer' />
                 </button>
             </div>
+
             <div className='flex flex-col gap-7'>
                 <Image
                     alt='EL РАНДЕВУ'
