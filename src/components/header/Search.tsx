@@ -18,7 +18,7 @@ export default function Search() {
             positions={['bottom']}
             padding={-15}
             content={
-                <div className='w-[350px] bg-surfaceVariant rounded-lg flex flex-col gap-2.5 px-5'>
+                <div className='w-[350px] bg-surfaceVariant rounded-lg flex flex-col gap-2.5 px-5 pb-2.5'>
                     <a className='mt-[15px] py-5 font-medium text-base' href='/search'>
                         Все результаты
                     </a>
