@@ -18,7 +18,7 @@ export default function Login() {
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
             {/* Заголовок */}
-            <div className='w-[90%] max-w-[580px] text-center'>
+            <div className='w-[90%] max-w-[580px] text-center flex flex-col gap-2.5'>
                 <h1 className='text-primary font-semibold text-5xl'>Вход</h1>
                 <p className='text-secondary-text font-medium text-xl'>Добро пожаловать снова!</p>
             </div>
@@ -26,45 +26,51 @@ export default function Login() {
             {/* Форма */}
             <div className='text-center w-[90%] max-w-[460px]'>
                 <form className='flex flex-col gap-6 w-full'>
-                    {/* Почта */}
-                    <SmashUpInput
-                        heading='Электронная почта'
-                        placeholder='tapiri@smashup.ru'
-                        icon={<MailIcon width={20} height={16} />}
-                    />
+                    <div className='flex flex-col gap-5'>
+                        <div className='flex flex-col gap-6'>
+                            {/* Почта */}
+                            <SmashUpInput
+                                heading='Электронная почта'
+                                placeholder='tapiri@smashup.ru'
+                                icon={<MailIcon width={20} height={16} />}
+                            />
 
-                    {/* Пароль */}
-                    <SmashUpPassword
-                        showForgotButton
-                        showPasswordButton
-                        placeholder='12345qwerty'
-                    />
+                            {/* Пароль */}
+                            <SmashUpPassword
+                                showForgotButton
+                                showPasswordButton
+                                placeholder='12345qwerty'
+                            />
+                        </div>
 
-                    <SmashUpCheckBox label='Запомнить меня' />
+                        <SmashUpCheckBox label='Запомнить меня' />
+                    </div>
 
                     <SmashUpButton>Войти</SmashUpButton>
 
-                    {/* Разделитель */}
-                    <div className='flex flex-row justify-between items-center'>
-                        <div className='w-[25%] bg-gray-header h-[1px]'></div>
-                        <span className='w-[35%]'>Войти с помощью</span>
-                        <div className='w-[25%] bg-gray-header h-[1px]'></div>
+                    <div className='flex flex-col gap-6'>
+                        {/* Разделитель */}
+                        <div className='flex flex-row justify-between items-center'>
+                            <div className='w-[25%] bg-gray-header h-[1px]'></div>
+                            <span className='w-[35%]'>Войти с помощью</span>
+                            <div className='w-[25%] bg-gray-header h-[1px]'></div>
+                        </div>
+
+                        <SmashUpButton
+                            category='stroke-default'
+                            icon={<VkIcon width={25} height={25} color='vk' textColor='white' />}
+                            onClick={() => router.push(`https://id.vk.com/auth?${query}`)}
+                        >
+                            VK ID
+                        </SmashUpButton>
+
+                        <span>
+                            Нет аккаунта?{' '}
+                            <a className='text-primary' href='/register'>
+                                Зарегистрируйтесь
+                            </a>
+                        </span>
                     </div>
-
-                    <SmashUpButton
-                        category='stroke-default'
-                        icon={<VkIcon width={25} height={25} color='vk' textColor='white' />}
-                        onClick={() => router.push(`https://id.vk.com/auth?${query}`)}
-                    >
-                        VK ID
-                    </SmashUpButton>
-
-                    <span>
-                        Нет аккаунта?{' '}
-                        <a className='text-primary' href='/register'>
-                            Зарегистрируйтесь
-                        </a>
-                    </span>
                 </form>
             </div>
         </div>
