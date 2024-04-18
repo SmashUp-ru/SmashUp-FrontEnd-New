@@ -19,7 +19,7 @@ export default function Register() {
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
             {/* Заголовок */}
-            <div className='w-[90%] max-w-[580px] text-center'>
+            <div className='w-[90%] max-w-[580px] text-center flex flex-col gap-2.5'>
                 <h1 className='text-primary font-semibold text-5xl'>Регистрация</h1>
                 <p className='text-secondary-text font-medium text-xl'>Рады знакомству!</p>
             </div>
@@ -27,42 +27,46 @@ export default function Register() {
             {/* Форма */}
             <div className='text-center w-[90%] max-w-[460px]'>
                 <form className='flex flex-col gap-6 w-full'>
-                    {/* Ник */}
-                    <SmashUpInput
-                        heading='Псевдоним'
-                        placeholder='Аркадий Гачибасов'
-                        icon={<ProfileIcon width={24} height={25} />}
-                    />
+                    <div className='flex flex-col gap-5'>
+                        <div className='flex flex-col gap-6'>
+                            {/* Ник */}
+                            <SmashUpInput
+                                heading='Псевдоним'
+                                placeholder='Аркадий Гачибасов'
+                                icon={<ProfileIcon width={24} height={25} />}
+                            />
 
-                    {/* Почта */}
-                    <SmashUpInput
-                        heading='Электронная почта'
-                        placeholder='tapiri@example.com'
-                        icon={<MailIcon width={20} height={17} />}
-                    />
+                            {/* Почта */}
+                            <SmashUpInput
+                                heading='Электронная почта'
+                                placeholder='tapiri@example.com'
+                                icon={<MailIcon width={20} height={17} />}
+                            />
 
-                    {/* Пароль */}
-                    <SmashUpPassword
-                        showForgotButton
-                        showPasswordButton
-                        placeholder='12345qwerty'
-                    />
+                            {/* Пароль */}
+                            <SmashUpPassword
+                                showForgotButton
+                                showPasswordButton
+                                placeholder='12345qwerty'
+                            />
+                        </div>
 
-                    {/* Соглашения и бла бла бла */}
-                    <SmashUpCheckBox
-                        label={
-                            <span className=''>
-                                Я принимаю{' '}
-                                <a className='text-primary underline' href='#'>
-                                    пользовательское соглашение
-                                </a>{' '}
-                                и{' '}
-                                <a className='text-primary underline' href='#'>
-                                    политику конфиденциальности
-                                </a>
-                            </span>
-                        }
-                    />
+                        {/* Соглашения и бла бла бла */}
+                        <SmashUpCheckBox
+                            label={
+                                <span className=''>
+                                    Я принимаю{' '}
+                                    <a className='text-primary underline' href='#'>
+                                        пользовательское соглашение
+                                    </a>{' '}
+                                    и{' '}
+                                    <a className='text-primary underline' href='#'>
+                                        политику конфиденциальности
+                                    </a>
+                                </span>
+                            }
+                        />
+                    </div>
 
                     <SmashUpButton>Зарегистрироваться</SmashUpButton>
 
@@ -73,20 +77,22 @@ export default function Register() {
                         <div className='w-[15%] bg-gray-header h-[1px]'></div>
                     </div>
 
-                    <SmashUpButton
-                        category='stroke-default'
-                        icon={<VkIcon width={25} height={25} color='vk' textColor='white' />}
-                        onClick={() => router.push(`https://id.vk.com/auth?${query}`)}
-                    >
-                        VK ID
-                    </SmashUpButton>
+                    <div className='flex flex-col gap-4'>
+                        <SmashUpButton
+                            category='stroke-default'
+                            icon={<VkIcon width={25} height={25} color='vk' textColor='white' />}
+                            onClick={() => router.push(`https://id.vk.com/auth?${query}`)}
+                        >
+                            VK ID
+                        </SmashUpButton>
 
-                    <span>
-                        Уже зарегистрированы?{' '}
-                        <a className='text-primary' href='/login'>
-                            Войдите
-                        </a>
-                    </span>
+                        <span>
+                            Уже зарегистрированы?{' '}
+                            <a className='text-primary' href='/login'>
+                                Войдите
+                            </a>
+                        </span>
+                    </div>
                 </form>
             </div>
         </div>

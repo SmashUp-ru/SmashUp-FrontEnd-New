@@ -48,14 +48,14 @@ export default function Login() {
 
                     <SmashUpButton>Войти</SmashUpButton>
 
-                    <div className='flex flex-col gap-6'>
-                        {/* Разделитель */}
-                        <div className='flex flex-row justify-between items-center'>
-                            <div className='w-[25%] bg-gray-header h-[1px]'></div>
-                            <span className='w-[35%]'>Войти с помощью</span>
-                            <div className='w-[25%] bg-gray-header h-[1px]'></div>
-                        </div>
+                    {/* Разделитель */}
+                    <div className='flex flex-row justify-between items-center'>
+                        <div className='w-[25%] bg-gray-header h-[1px]'></div>
+                        <span className='w-[35%]'>Войти с помощью</span>
+                        <div className='w-[25%] bg-gray-header h-[1px]'></div>
+                    </div>
 
+                    <div className='flex flex-col gap-4'>
                         <SmashUpButton
                             category='stroke-default'
                             icon={<VkIcon width={25} height={25} color='vk' textColor='white' />}
