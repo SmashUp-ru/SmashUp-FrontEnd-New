@@ -20,7 +20,7 @@ export default function SmashUpPopover({
             positions={['top', 'bottom', 'left', 'right']} // preferred positions by priority
             padding={10}
             content={
-                <div className='p-16 bg-button-text rounded-2xl relative'>
+                <div className='p-16 bg-surface rounded-2xl relative'>
                     <div
                         className='absolute cursor-pointer right-8 top-8'
                         onClick={() => setIsPopoverOpen(false)}

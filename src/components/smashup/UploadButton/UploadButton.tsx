@@ -17,7 +17,7 @@ export default function SmashUpUploadButton({
     return (
         <div
             className={twMerge(
-                'cursor-pointer w-[764px] h-[64px] bg-sidebar-gray rounded-2xl flex justify-start items-center relative',
+                'cursor-pointer w-[764px] h-[64px] bg-surfaceVariant rounded-2xl flex justify-start items-center relative',
                 className
             )}
         >

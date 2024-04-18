@@ -13,9 +13,9 @@ export default function Search() {
             <div className='flex flex-row space-betwen gap-8'>
                 {/* Лучший результат */}
                 <div className='w-1/2 flex flex-col gap-5'>
-                    <h2 className='font-semibold text-2xl text-gray-header'>Лучший результат</h2>
+                    <h2 className='font-semibold text-2xl text-onSurface'>Лучший результат</h2>
 
-                    <div className='flex flex-row gap-12 bg-sidebar-gray w-full max-w-[790px] h-[238px] rounded-4xl px-6 py-6 '>
+                    <div className='flex flex-row gap-12 bg-surfaceVariant w-full max-w-[790px] h-[238px] rounded-4xl px-6 py-6 '>
                         <Image
                             src={profile}
                             width={188}
@@ -25,13 +25,15 @@ export default function Search() {
                         />
 
                         <div className='flex flex-col justify-center gap-2.5'>
-                            <h1 className='font-semibold text-5xl text-secondary-text'>dmhd6219</h1>
+                            <h1 className='font-semibold text-5xl text-onSurface'>dmhd6219</h1>
                             <div className='flex gap-2.5'>
-                                <span className='font-medium text-base text-icon'>
+                                <span className='font-medium text-base text-onSurfaceVariant'>
                                     500 подписчиков
                                 </span>
-                                <Separator className='font-medium text-base text-icon' />
-                                <span className='font-medium text-base text-icon'>115 мэшапов</span>
+                                <Separator className='font-medium text-base text-onSurfaceVariant' />
+                                <span className='font-medium text-base text-onSurfaceVariant'>
+                                    115 мэшапов
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -40,7 +42,7 @@ export default function Search() {
                 {/* Мэшапы */}
                 <div className='w-1/2 flex flex-col gap-5'>
                     <div className='w-full flex flex-row justify-between '>
-                        <h2 className='font-semibold text-2xl text-gray-header'>Мэшапы</h2>
+                        <h2 className='font-semibold text-2xl text-onSurface'>Мэшапы</h2>
                         <span className='font-bold text-sm text-gray-300 uppercase'>
                             Показать всё
                         </span>
@@ -57,7 +59,7 @@ export default function Search() {
             {/* Недавно прослушано */}
             <div className='flex flex-col gap-5'>
                 <div className='flex flex-row justify-between'>
-                    <h2 className='font-semibold text-2xl text-gray-header'>Недавно прослушано</h2>
+                    <h2 className='font-semibold text-2xl text-onSurface'>Недавно прослушано</h2>
                     <span className='font-bold text-sm text-gray-300 uppercase'>Показать всё</span>
                 </div>
                 <div className='w-full flex flex-row gap-7'>

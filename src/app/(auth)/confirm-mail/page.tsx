@@ -9,7 +9,7 @@ export default function ConfirmMail() {
                 <h1 className='text-4xl md:text-5xl text-primary font-semibold'>
                     Восстановление пароля
                 </h1>
-                <p className='text-icon font-medium text-xl'>
+                <p className='text-onSurfaceVariant font-medium text-xl'>
                     На вашу почту было отправлено письмо с ссылкой на восстановление пароля.
                 </p>
             </div>

@@ -39,3 +39,11 @@ yarn run dev
 ```
 
 Откройте [http://localhost:80](http://localhost:80) чтобы увидеть результат.
+
+## Темы
+
+Для того, чтобы добавить новую тему, зайдите в [tailwind.config.ts](tailwind.config.ts) и пропишите её в конфиге плагина
+tailwindcss-themer. В качестве примера там имеется test-theme.
+
+Для того, чтобы применить тему, добавьте в тег <html> каждого из существующих
+layout.tsx ([root](./src/app/(root)/layout.tsx), [auth](./src/app/(auth)/layout.tsx), [not found](./src/app/[...not_found]/layout.tsx)) `className='test-theme'`.

@@ -26,11 +26,11 @@ export default function SmashUpSlider({
 
     return (
         <div className={twMerge('flex flex-row gap-6 items-center', className)}>
-            <span className='font-normal text-base text-icon'>{label}</span>
+            <span className='font-normal text-base text-onSurfaceVariant'>{label}</span>
             <div className='flex flex-col gap-2'>
                 <div className='w-[300px] flex flex-row justify-between'>
                     {markHints?.map((hint, index) => (
-                        <span key={index} className='font-normal text-xs text-icon'>
+                        <span key={index} className='font-normal text-xs text-onSurfaceVariant'>
                             {hint}
                         </span>
                     ))}
@@ -39,7 +39,7 @@ export default function SmashUpSlider({
                     {...props}
                     className={twMerge('w-[275px] h-2', `w-${width} h-${height}`)}
                     marks
-                    markClassName='bg-outline rounded-sm w-0.5 h-5 -top-2/3'
+                    markClassName='bg-onPrimary rounded-sm w-0.5 h-5 -top-2/3'
                     min={0}
                     max={amount - 1}
                     value={sliderValue}
@@ -68,7 +68,7 @@ export default function SmashUpSlider({
                                 {...props}
                                 className={twMerge(
                                     'h-2',
-                                    state.index === 0 ? 'bg-primary' : 'bg-outline'
+                                    state.index === 0 ? 'bg-primary' : 'bg-onPrimary'
                                 )}
                                 key={props.key}
                             />

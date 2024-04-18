@@ -14,27 +14,27 @@ export default function PopoverOverview() {
                             не подходит для следующих категорий:
                         </h1>
                         <div className='flex flex-col gap-1'>
-                            <span className='font-medium text-lg text-icon'>
+                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                 <span className='text-white'>Мемы -</span> Если в мэшапе активно
                                 использовались мемы, например, &ldquo;Случай в казино&ldquo;
                             </span>
-                            <span className='font-medium text-lg text-icon'>
+                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                 <span className='text-white'>Мегамэшап -</span> Если использовалось
                                 очень много разных треков и мемов
                             </span>
-                            <span className='font-medium text-lg text-icon'>
+                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                 <span className='text-white'>Cover -</span> Если мэшап был записан
                                 вживую с вашим голосом
                             </span>
-                            <span className='font-medium text-lg text-icon'>
+                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                 <span className='text-white'>Soundclown -</span> Если мэшап
                                 представляет из себя не совсем музыкальную композицию
                             </span>
-                            <span className='font-medium text-lg text-icon'>
+                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                 <span className='text-white'>Morph -</span> Если в мэшапе активно
                                 использовался такой эффект, как &ldquo;morphing&ldquo;
                             </span>
-                            <span className='font-medium text-lg text-icon'>
+                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                 <span className='text-white'>Shitpost -</span> Если мэшап был создан
                                 исключительно как шутка без долгой работы над ним
                             </span>

@@ -8,39 +8,53 @@ const config: Config = {
     ],
     theme: {
         extend: {
-            backgroundImage: {
-                'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
-            },
-
-            colors: {
-                current: 'currentColor',
-                text: '#020202',
-                'secondary-text': '#EBEBEB',
-                'sidebar-gray': '#0A0A0A',
-                'gray-header': '#EBEBEB',
-                primary: '#A887F8',
-                'primary-hover': '#B987F8',
-                'primary-disabled': '#A887F8',
-                error: '#FF4545',
-                'button-text': '#121212',
-                outline: '#1A1A1A',
-                'outline-text': '#FFFFFF',
-                icon: '#bcbcbc',
-                vk: '#0077FF',
-                input: '#0B0B0B',
-                'input-text': '#636363'
-            },
-
             borderRadius: {
                 '4xl': '32px'
             },
             padding: {
                 '15': '3.75rem',
                 '17': '4.5rem'
+            },
+            extend: {
+                current: 'currentColor',
+                vk: '#0077FF'
             }
         }
     },
-    plugins: []
+    plugins: [
+        require('tailwindcss-themer')({
+            defaultTheme: {
+                extend: {
+                    colors: {
+                        background: '#020202',
+                        onBackground: '#f5f5f5',
+                        onSurface: '#ebebeb',
+                        surface: '#121212',
+                        onSurfaceVariant: '#bcbcbc',
+                        primary: '#a37df3',
+                        onPrimary: '#191919',
+                        primaryVariant: '#b07df3',
+                        secondary: '#5d2fdc',
+                        secondaryVariant: '#7168db',
+                        onSecondary: '#eeeeee',
+                        error: '#db4e4e',
+                        onError: '#0b0b0b',
+                        surfaceVariant: '#0a0a0a'
+                    }
+                }
+            },
+
+            themes: [
+                {
+                    name: 'test-theme',
+                    extend: {
+                        colors: {
+                            primary: '0077FF'
+                        }
+                    }
+                }
+            ]
+        })
+    ]
 };
 export default config;

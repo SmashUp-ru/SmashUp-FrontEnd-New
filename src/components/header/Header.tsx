@@ -15,9 +15,9 @@ export default function Header() {
                     <Image
                         src={profile}
                         alt='Фото профиля'
-                        className='text-gray-header h-[40px] w-[40px] rounded'
+                        className='text-onSurface h-[40px] w-[40px] rounded'
                     ></Image>
-                    <span className='text-icon'>dmhd6219</span>
+                    <span className='text-onSurfaceVariant'>dmhd6219</span>
                 </a>
             </div>
         </div>

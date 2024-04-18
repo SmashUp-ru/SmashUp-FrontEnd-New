@@ -10,7 +10,7 @@ export default function UpdatePage() {
                 <h1 className='text-4xl md:text-5xl text-primary font-semibold'>
                     Восстановление пароля
                 </h1>
-                <p className='text-secondary-text font-medium text-xl'>Не забывайте!</p>
+                <p className='text-onSurface font-medium text-xl'>Не забывайте!</p>
             </div>
 
             {/* Форма */}

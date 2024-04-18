@@ -11,7 +11,7 @@ export default function NotFound() {
             <OutlineSmashUpLogo />
             <div className='z-10'>
                 <h1 className='text-primary font-bold text-9xl'>404</h1>
-                <p className='text-gray-header font-normal text-2xl'>Что-то пошло не так</p>
+                <p className='text-onSurface font-normal text-2xl'>Что-то пошло не так</p>
             </div>
             <SmashUpButton className='w-[90%] max-w-[400px] z-10' onClick={() => router.push('/')}>
                 Вернуться на главную

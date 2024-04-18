@@ -12,7 +12,7 @@ export default function getComplexNotificationToast(
 ) {
     return toast.custom(
         (t) => (
-            <div className={twMerge('bg-button-text rounded-2xl', className)}>
+            <div className={twMerge('bg-surface rounded-2xl', className)}>
                 <div className='flex flex-col gap-2.5'>
                     <span className='px-5 py-4 font-bold text-base text-white'>
                         Уведомления (35)
@@ -24,7 +24,7 @@ export default function getComplexNotificationToast(
                     <div className='flex flex-col gap-2.5'>
                         <div className='flex flex-col gap-1'>
                             <h3 className='font-semibold text-base text-white'>{title}</h3>
-                            <p className='font-normal text-sm text-icon'>{text}</p>
+                            <p className='font-normal text-sm text-onSurfaceVariant'>{text}</p>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@ export default function getComplexNotificationToast(
                     <div className='flex flex-col gap-2.5'>
                         <div className='flex flex-col gap-1'>
                             <h3 className='font-semibold text-base text-white'>{title}</h3>
-                            <p className='font-normal text-sm text-icon'>{text}</p>
+                            <p className='font-normal text-sm text-onSurfaceVariant'>{text}</p>
                         </div>
                         <SmashUpButton
                             className='w-[259px] h-[27px] font-semibold text-xs'
@@ -50,7 +50,7 @@ export default function getComplexNotificationToast(
                     <div className='flex flex-col gap-2.5'>
                         <div className='flex flex-col gap-1'>
                             <h3 className='font-semibold text-base text-white'>{title}</h3>
-                            <p className='font-normal text-sm text-icon'>{text}</p>
+                            <p className='font-normal text-sm text-onSurfaceVariant'>{text}</p>
                         </div>
                         <div className='flex flex-row justify-between'>
                             <SmashUpButton

@@ -37,7 +37,7 @@ export default function TrackSideSheet() {
                         <span className='text-base font-semibold'>EL RANDEVU</span>
                         <ExplicitIcon width={16} height={17} color='icon' />
                     </div>
-                    <span className='text-base font-normal text-icon'>Илья Муррка</span>
+                    <span className='text-base font-normal text-onSurfaceVariant'>Илья Муррка</span>
                 </div>
 
                 <div className='flex flex-row gap-5 items-center'>

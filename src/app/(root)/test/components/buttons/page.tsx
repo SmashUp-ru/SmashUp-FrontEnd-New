@@ -34,8 +34,8 @@ export default function ButtonsOverview() {
                 {/*Type=Stroke*/}
                 <div className='w-full flex flex-row justify-around items-center'>
                     <span className='min-w-[170px]'>Type=Stroke</span>
-                    <SmashUpButton category='stoke'>Text</SmashUpButton>
-                    <SmashUpButton category='stoke' disabled>
+                    <SmashUpButton category='stroke'>Text</SmashUpButton>
+                    <SmashUpButton category='stroke' disabled>
                         Text
                     </SmashUpButton>
                 </div>
@@ -43,11 +43,11 @@ export default function ButtonsOverview() {
                 {/*Type=Stroke+Icon*/}
                 <div className='w-full flex flex-row justify-around items-center'>
                     <span className='min-w-[170px]'>Type=Stroke+Icon</span>
-                    <SmashUpButton category='stoke' icon={<SettingsIcon width={21} height={21} />}>
+                    <SmashUpButton category='stroke' icon={<SettingsIcon width={21} height={21} />}>
                         Text
                     </SmashUpButton>
                     <SmashUpButton
-                        category='stoke'
+                        category='stroke'
                         icon={<SettingsIcon width={21} height={21} />}
                         disabled
                     >

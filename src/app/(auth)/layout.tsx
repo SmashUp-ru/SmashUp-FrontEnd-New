@@ -17,7 +17,7 @@ export default function AuthLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang='ru'>
+        <html lang='ru' className=''>
             <body className={inter.className}>
                 <div className='flex flex-row w-full h-full'>
                     <div className='hidden md:flex w-1/2 h-full bg-primary flex-col justify-center items-center'>

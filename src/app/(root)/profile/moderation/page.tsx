@@ -12,7 +12,7 @@ export default function Moderation() {
             <h1 className='font-semibold text-3xl'>Модерация</h1>
 
             <Tabs className='' selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-                <TabList className='inline-flex bg-button-text rounded-xl mb-6'>
+                <TabList className='inline-flex bg-surface rounded-xl mb-6'>
                     <Tab className='py-3 px-10 '>Ожидает проверки</Tab>
                     <Tab className='py-3 px-10'>Принятые</Tab>
                     <Tab className='py-3 px-10 '>Отклоненные</Tab>

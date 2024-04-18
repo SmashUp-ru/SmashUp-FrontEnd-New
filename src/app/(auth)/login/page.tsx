@@ -20,7 +20,7 @@ export default function Login() {
             {/* Заголовок */}
             <div className='w-[90%] max-w-[580px] text-center flex flex-col gap-2.5'>
                 <h1 className='text-primary font-semibold text-5xl'>Вход</h1>
-                <p className='text-secondary-text font-medium text-xl'>Добро пожаловать снова!</p>
+                <p className='text-onSurface font-medium text-xl'>Добро пожаловать снова!</p>
             </div>
 
             {/* Форма */}
@@ -50,9 +50,9 @@ export default function Login() {
 
                     {/* Разделитель */}
                     <div className='flex flex-row justify-between items-center'>
-                        <div className='w-[25%] bg-gray-header h-[1px]'></div>
+                        <div className='w-[25%] bg-onSurface h-[1px]'></div>
                         <span className='w-[35%]'>Войти с помощью</span>
-                        <div className='w-[25%] bg-gray-header h-[1px]'></div>
+                        <div className='w-[25%] bg-onSurface h-[1px]'></div>
                     </div>
 
                     <div className='flex flex-col gap-4'>

@@ -15,7 +15,7 @@ import SmashUpUploadButton from '@/components/smashup/UploadButton/UploadButton'
 export default function UploadMashup() {
     return (
         <div className='px-8 flex flex-col gap-8'>
-            <div className='flex flex-row bg-sidebar-gray w-full h-[238px] rounded-4xl px-6 py-6 gap-12'>
+            <div className='flex flex-row bg-surfaceVariant w-full h-[238px] rounded-4xl px-6 py-6 gap-12'>
                 <Image
                     src={uploadIcon}
                     width={188}
@@ -25,8 +25,8 @@ export default function UploadMashup() {
                 />
 
                 <div className='flex flex-col justify-center gap-2.5'>
-                    <h1 className='font-semibold text-5xl text-secondary-text'>Название мэшапа</h1>
-                    <span className='font-medium text-base text-icon'>dmhd6219</span>
+                    <h1 className='font-semibold text-5xl text-onSurface'>Название мэшапа</h1>
+                    <span className='font-medium text-base text-onSurfaceVariant'>dmhd6219</span>
                 </div>
             </div>
 
@@ -37,7 +37,7 @@ export default function UploadMashup() {
                     {/*Поиск использованных треков*/}
                     <div className='flex flex-col gap-6'>
                         <div className='flex flex-row items-center gap-4'>
-                            <h2 className='font-semibold text-2xl text-gray-header'>
+                            <h2 className='font-semibold text-2xl text-onSurface'>
                                 Поиск использованных треков
                             </h2>
                             <SmashUpPopover
@@ -49,30 +49,30 @@ export default function UploadMashup() {
                                             трека, однако это не подходит для следующих категорий:
                                         </h1>
                                         <div className='flex flex-col gap-1'>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Мемы -</span> Если в
                                                 мэшапе активно использовались мемы, например,
                                                 &ldquo;Случай в казино&ldquo;
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Мегамэшап -</span> Если
                                                 использовалось очень много разных треков и мемов
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Cover -</span> Если
                                                 мэшап был записан вживую с вашим голосом
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Soundclown -</span>{' '}
                                                 Если мэшап представляет из себя не совсем
                                                 музыкальную композицию
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Morph -</span> Если в
                                                 мэшапе активно использовался такой эффект, как
                                                 &ldquo;morphing&ldquo;
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Shitpost -</span> Если
                                                 мэшап был создан исключительно как шутка без долгой
                                                 работы над ним
@@ -89,7 +89,7 @@ export default function UploadMashup() {
                                 {upload.map((item) => (
                                     <div
                                         key={item.id}
-                                        className='cursor-pointer flex flex-row justify-between items-center py-2 px-6 hover:bg-sidebar-gray rounded-2xl'
+                                        className='cursor-pointer flex flex-row justify-between items-center py-2 px-6 hover:bg-surfaceVariant rounded-2xl'
                                     >
                                         <div className='flex flex-row gap-6 '>
                                             <Image
@@ -113,9 +113,7 @@ export default function UploadMashup() {
                     {/*Выбор жанров*/}
                     <div className='flex flex-col gap-6'>
                         <div className='flex flex-row items-center gap-4'>
-                            <h2 className='font-semibold text-2xl text-gray-header'>
-                                Выбор жанров
-                            </h2>
+                            <h2 className='font-semibold text-2xl text-onSurface'>Выбор жанров</h2>
                             <SmashUpPopover
                                 icon={<InfoIcon width={20} height={21} />}
                                 content={
@@ -125,30 +123,30 @@ export default function UploadMashup() {
                                             трека, однако это не подходит для следующих категорий:
                                         </h1>
                                         <div className='flex flex-col gap-1'>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Мемы -</span> Если в
                                                 мэшапе активно использовались мемы, например,
                                                 &ldquo;Случай в казино&ldquo;
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Мегамэшап -</span> Если
                                                 использовалось очень много разных треков и мемов
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Cover -</span> Если
                                                 мэшап был записан вживую с вашим голосом
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Soundclown -</span>{' '}
                                                 Если мэшап представляет из себя не совсем
                                                 музыкальную композицию
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Morph -</span> Если в
                                                 мэшапе активно использовался такой эффект, как
                                                 &ldquo;morphing&ldquo;
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Shitpost -</span> Если
                                                 мэшап был создан исключительно как шутка без долгой
                                                 работы над ним
@@ -163,8 +161,8 @@ export default function UploadMashup() {
                                 <div
                                     key={item.id}
                                     className={twMerge(
-                                        'cursor-pointer hover:bg-sidebar-gray rounded-2xl gap-y-6 gap-x-12 font-medium text-base text-icon flex flex-col justify-center items-center w-[172px] h-[66px]',
-                                        item.chosen && 'bg-outline'
+                                        'cursor-pointer hover:bg-surfaceVariant rounded-2xl gap-y-6 gap-x-12 font-medium text-base text-onSurfaceVariant flex flex-col justify-center items-center w-[172px] h-[66px]',
+                                        item.chosen && 'bg-onPrimary'
                                     )}
                                 >
                                     {item.title}
@@ -178,7 +176,7 @@ export default function UploadMashup() {
                     {/*Добавить соавторов*/}
                     <div className='flex flex-col gap-6'>
                         <div className='flex flex-row items-center gap-4'>
-                            <h2 className='font-semibold text-2xl text-gray-header'>
+                            <h2 className='font-semibold text-2xl text-onSurface'>
                                 Добавить соавторов
                             </h2>
                             <SmashUpPopover
@@ -190,30 +188,30 @@ export default function UploadMashup() {
                                             трека, однако это не подходит для следующих категорий:
                                         </h1>
                                         <div className='flex flex-col gap-1'>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Мемы -</span> Если в
                                                 мэшапе активно использовались мемы, например,
                                                 &ldquo;Случай в казино&ldquo;
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Мегамэшап -</span> Если
                                                 использовалось очень много разных треков и мемов
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Cover -</span> Если
                                                 мэшап был записан вживую с вашим голосом
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Soundclown -</span>{' '}
                                                 Если мэшап представляет из себя не совсем
                                                 музыкальную композицию
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Morph -</span> Если в
                                                 мэшапе активно использовался такой эффект, как
                                                 &ldquo;morphing&ldquo;
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Shitpost -</span> Если
                                                 мэшап был создан исключительно как шутка без долгой
                                                 работы над ним
@@ -230,7 +228,7 @@ export default function UploadMashup() {
                                 {coauthors.map((item) => (
                                     <div
                                         key={item.id}
-                                        className='cursor-pointer hover:bg-sidebar-gray rounded-2xl flex flex-row items-center justify-between px-6 py-5'
+                                        className='cursor-pointer hover:bg-surfaceVariant rounded-2xl flex flex-row items-center justify-between px-6 py-5'
                                     >
                                         <span className='font-normal text-base'>Дора</span>
 
@@ -244,9 +242,7 @@ export default function UploadMashup() {
                     {/*Дополнительно*/}
                     <div className='flex flex-col gap-6'>
                         <div className='flex flex-row items-center gap-4'>
-                            <h2 className='font-semibold text-2xl text-gray-header'>
-                                Дополнительно
-                            </h2>
+                            <h2 className='font-semibold text-2xl text-onSurface'>Дополнительно</h2>
                             <SmashUpPopover
                                 icon={<InfoIcon width={20} height={21} />}
                                 content={
@@ -256,30 +252,30 @@ export default function UploadMashup() {
                                             трека, однако это не подходит для следующих категорий:
                                         </h1>
                                         <div className='flex flex-col gap-1'>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Мемы -</span> Если в
                                                 мэшапе активно использовались мемы, например,
                                                 &ldquo;Случай в казино&ldquo;
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Мегамэшап -</span> Если
                                                 использовалось очень много разных треков и мемов
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Cover -</span> Если
                                                 мэшап был записан вживую с вашим голосом
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Soundclown -</span>{' '}
                                                 Если мэшап представляет из себя не совсем
                                                 музыкальную композицию
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Morph -</span> Если в
                                                 мэшапе активно использовался такой эффект, как
                                                 &ldquo;morphing&ldquo;
                                             </span>
-                                            <span className='font-medium text-lg text-icon'>
+                                            <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Shitpost -</span> Если
                                                 мэшап был создан исключительно как шутка без долгой
                                                 работы над ним
@@ -307,10 +303,10 @@ export default function UploadMashup() {
 
                 <div className='w-full flex flex-row flex-wrap gap-12'>
                     {/*Условия и бла бла бла*/}
-                    <div className='w-[764px] h-[64px] bg-sidebar-gray rounded-2xl flex flex-row items-center gap-4 px-5'>
+                    <div className='w-[764px] h-[64px] bg-surfaceVariant rounded-2xl flex flex-row items-center gap-4 px-5'>
                         <SmashUpCheckBox
                             label={
-                                <span className='text-icon font-medium text-base'>
+                                <span className='text-onSurfaceVariant font-medium text-base'>
                                     Я прочитал(-а) и согласен(-на) с{' '}
                                     <a className='text-primary underline' href='#'>
                                         условиями пользовательского соглашения

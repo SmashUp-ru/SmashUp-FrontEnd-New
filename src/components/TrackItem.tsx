@@ -28,11 +28,11 @@ export default function TrackItem({
     const { setTrack } = useContext(TrackContext);
 
     return (
-        <div className='pr-4 flex flex-row justify-between group hover:bg-button-text rounded-lg'>
+        <div className='pr-4 flex flex-row justify-between group hover:bg-surface rounded-lg'>
             <div className='flex flex-row my-2.5 items-center h-[40px]'>
                 {id && (
                     <button className='w-6 h-6 m-4 flex flex-row items-center justify-center'>
-                        <span className='text-icon group-hover:hidden'>{id}</span>
+                        <span className='text-onSurfaceVariant group-hover:hidden'>{id}</span>
                         <BorderlessPlayIcon
                             width={11}
                             height={12}
@@ -57,7 +57,10 @@ export default function TrackItem({
                             </span>
                             {explicit && <ExplicitIcon width={16} height={17} color='icon' />}
                         </div>
-                        <a className='font-normal text-sm text-icon' href={`/artist/${author}`}>
+                        <a
+                            className='font-normal text-sm text-onSurfaceVariant'
+                            href={`/artist/${author}`}
+                        >
                             {author}
                         </a>
                     </div>
@@ -66,8 +69,8 @@ export default function TrackItem({
 
             {(listened || length) && (
                 <div className='w-1/3 flex flex-row gap-2.5 justify-between items-center'>
-                    {listened && <span className='text-icon'>{listened}</span>}
-                    {length && <span className='text-icon'>{length}</span>}
+                    {listened && <span className='text-onSurfaceVariant'>{listened}</span>}
+                    {length && <span className='text-onSurfaceVariant'>{length}</span>}
                 </div>
             )}
         </div>

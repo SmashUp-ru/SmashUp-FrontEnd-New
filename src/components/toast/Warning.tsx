@@ -13,7 +13,7 @@ export default function getWarningToast(
                     `cursor-pointer flex flex-row items-center justify-center rounded-xl relative`,
                     t.visible ? 'bottom-5' : '-bottom-96',
                     className,
-                    type === 'success' ? 'bg-primary text-Button-text' : 'bg-error text-Button-text'
+                    type === 'success' ? 'bg-primary text-surface' : 'bg-error text-surface'
                 )}
                 onClick={() => toast.dismiss(t.id)}
             >

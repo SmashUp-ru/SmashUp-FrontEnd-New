@@ -14,7 +14,7 @@ export default function SmashUpToggle({ defaultChecked, label, className }: Smas
 
     return (
         <label className={twMerge('flex flex-row items-center gap-5', className)}>
-            <span className='font-medium text-base text-icon'>{label}</span>
+            <span className='font-medium text-base text-onSurfaceVariant'>{label}</span>
             <Toggle
                 defaultChecked={checked}
                 icons={false}

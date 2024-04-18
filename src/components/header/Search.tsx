@@ -18,7 +18,7 @@ export default function Search() {
             positions={['bottom']}
             padding={-15}
             content={
-                <div className='w-[350px] bg-sidebar-gray rounded-lg flex flex-col gap-2.5 px-5'>
+                <div className='w-[350px] bg-surfaceVariant rounded-lg flex flex-col gap-2.5 px-5'>
                     <a className='mt-[15px] py-5 font-medium text-base' href='/search'>
                         Все результаты
                     </a>
@@ -33,7 +33,9 @@ export default function Search() {
                                     alt='Иконка профиля'
                                     className='w-8 h-8 rounded'
                                 />
-                                <span className='font-medium text-base text-icon'>dmhd6219</span>
+                                <span className='font-medium text-base text-onSurfaceVariant'>
+                                    dmhd6219
+                                </span>
                             </div>
                         </div>
 
@@ -46,7 +48,9 @@ export default function Search() {
                                     alt='Иконка мэшапа'
                                     className='w-8 h-8 rounded'
                                 />
-                                <span className='font-medium text-base text-icon'>ДОРАДУЛО</span>
+                                <span className='font-medium text-base text-onSurfaceVariant'>
+                                    ДОРАДУЛО
+                                </span>
                             </div>
                         </div>
 
@@ -59,7 +63,9 @@ export default function Search() {
                                     alt='Иконка трека'
                                     className='w-8 h-8 rounded'
                                 />
-                                <span className='font-medium text-base text-icon'>Дора Дура</span>
+                                <span className='font-medium text-base text-onSurfaceVariant'>
+                                    Дора Дура
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -70,7 +76,7 @@ export default function Search() {
             <div onClick={() => setIsPopoverOpen(!isPopoverOpen)} className='z-30'>
                 <SmashUpInput
                     placeholder='Поиск'
-                    icon={<SearchIcon width={16} height={16} color='gray-header' />}
+                    icon={<SearchIcon width={16} height={16} color='onSurface' />}
                     className='w-[350px]'
                     onClick={() => setIsPopoverOpen(true)}
                 />

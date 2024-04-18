@@ -20,7 +20,7 @@ export default function SmashUpCheckBox({ label, className, checked, ...props }:
                 <div className='relative flex items-center'>
                     <input
                         type='checkbox'
-                        className='w-[32px] h-[32px] peer relative cursor-pointer appearance-none rounded-md  bg-button-text'
+                        className='w-[32px] h-[32px] peer relative cursor-pointer appearance-none rounded-md  bg-surface'
                         {...props}
                         checked={isChecked}
                         onChange={(e) => setIsChecked(e.target.checked)}

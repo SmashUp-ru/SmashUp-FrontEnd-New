@@ -9,7 +9,7 @@ html, body, :root {
 }
 
 .react-tabs__tab {
-    background: theme('colors.button-text');
+    background: theme('colors.surface');
 }
 
 .react-tabs__tab:focus {
@@ -47,10 +47,10 @@ html, body, :root {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: theme('colors.button-text');
+    background: theme('colors.surface');
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: theme('colors.button-text');
+    background: theme('colors.surface');
 }

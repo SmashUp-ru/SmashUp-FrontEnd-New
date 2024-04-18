@@ -13,7 +13,7 @@ export default function Favorites() {
     return (
         <div className='px-8'>
             {/* Профиль */}
-            <div className='flex flex-row bg-sidebar-gray w-full h-[238px] rounded-4xl px-6 py-6 gap-12'>
+            <div className='flex flex-row bg-surfaceVariant w-full h-[238px] rounded-4xl px-6 py-6 gap-12'>
                 <Image
                     src={favorites}
                     width={188}
@@ -23,12 +23,16 @@ export default function Favorites() {
                 />
 
                 <div className='flex flex-col justify-center gap-2.5'>
-                    <h1 className='font-semibold text-5xl text-secondary-text'>Мне нравится</h1>
+                    <h1 className='font-semibold text-5xl text-onSurface'>Мне нравится</h1>
                     <div className='flex gap-2'>
                         <Image src={profile} alt='dmhd6219' className='w-[24px] h-[24px] rounded' />
-                        <span className='font-medium text-base text-icon'>dmhd6219</span>
-                        <Separator className='font-medium text-base text-icon' />
-                        <span className='font-medium text-base text-icon'>115 мэшапов</span>
+                        <span className='font-medium text-base text-onSurfaceVariant'>
+                            dmhd6219
+                        </span>
+                        <Separator className='font-medium text-base text-onSurfaceVariant' />
+                        <span className='font-medium text-base text-onSurfaceVariant'>
+                            115 мэшапов
+                        </span>
                     </div>
                 </div>
             </div>
@@ -43,17 +47,17 @@ export default function Favorites() {
             {/* Мэшапы */}
             <div className='flex flex-col gap-4'>
                 <div className='flex flex-col gap-2.5'>
-                    <div className='flex flex-row justify-between py-6 border-b border-sidebar-gray pr-4'>
+                    <div className='flex flex-row justify-between py-6 border-b border-surfaceVariant pr-4'>
                         <div className='flex flex-row items-center'>
                             <div className='w-6 h-6 mx-4 flex flex-row items-center justify-center'>
-                                <span className='text-icon'>#</span>
+                                <span className='text-onSurfaceVariant'>#</span>
                             </div>
-                            <span className='text-icon'>Название</span>
+                            <span className='text-onSurfaceVariant'>Название</span>
                         </div>
 
                         <div className='w-1/3 flex flex-row gap-2.5 justify-between'>
-                            <span className='text-icon'>Прослушивания</span>
-                            <span className='text-icon'>
+                            <span className='text-onSurfaceVariant'>Прослушивания</span>
+                            <span className='text-onSurfaceVariant'>
                                 <WatchIcon width={14} height={14} />
                             </span>
                         </div>

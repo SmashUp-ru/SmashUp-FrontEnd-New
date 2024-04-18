@@ -49,7 +49,7 @@ export default function SmashUpPassword({
     return (
         <div className={twMerge('w-full flex flex-col gap-2.5', className)}>
             <div className='w-full flex flex-row justify-between'>
-                <span className='font-medium text-base text-icon'>
+                <span className='font-medium text-base text-onSurfaceVariant'>
                     {heading ? heading : 'Пароль'}
                 </span>
                 {showForgotButton && (
@@ -68,8 +68,8 @@ export default function SmashUpPassword({
                         if (isFocused === undefined) setFocus(false);
                     }}
                     className={twMerge(
-                        'w-full bg-Input py-[17.5px] pl-[25px] rounded-2xl z-10',
-                        'font-normal text-base text-icon placeholder-Input-text',
+                        'w-full bg-surfaceVariant py-[17.5px] pl-[25px] rounded-2xl z-10',
+                        'font-normal text-base text-onSurfaceVariant placeholder-onSurfaceVariant',
                         'pl-14',
                         focus ? 'border-none outline outline-2 ring-0 outline-primary' : '',
                         error ? 'border-none outline outline-2 ring-0 outline-red-600' : ''
@@ -102,7 +102,7 @@ export default function SmashUpPassword({
             </div>
 
             {showHelper && (
-                <span className='w-full font-normal text-xs text-icon text-left'>
+                <span className='w-full font-normal text-xs text-onSurfaceVariant text-left'>
                     Пароль должен содержать 8 - 32 символа и может содержать: Прописные и строчные
                     буквы латиницы, цифры и спец. символы.
                 </span>

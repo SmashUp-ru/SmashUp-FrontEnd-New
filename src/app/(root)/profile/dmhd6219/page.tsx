@@ -15,7 +15,7 @@ export default function Profile() {
     return (
         <div className='px-8 flex flex-col gap-5'>
             {/* Профиль */}
-            <div className='flex flex-row bg-sidebar-gray w-full h-[238px] rounded-4xl px-6 py-6 gap-12'>
+            <div className='flex flex-row bg-surfaceVariant w-full h-[238px] rounded-4xl px-6 py-6 gap-12'>
                 <Image
                     src={profile}
                     width={188}
@@ -26,15 +26,21 @@ export default function Profile() {
 
                 <div className='flex flex-col justify-center gap-2.5'>
                     <div className='flex items-center gap-4'>
-                        <h1 className='font-semibold text-5xl text-secondary-text'>dmhd6219</h1>
+                        <h1 className='font-semibold text-5xl text-onSurface'>dmhd6219</h1>
                         <DoneIcon width={34} height={24} />
                     </div>
                     <div className='flex gap-2.5'>
-                        <span className='font-medium text-base text-icon'>5 Мэшапов</span>
-                        <Separator className='font-medium text-base text-icon' />
-                        <span className='font-medium text-base text-icon'>666 подписчиков</span>
-                        <Separator className='font-medium text-base text-icon' />
-                        <span className='font-medium text-base text-icon'>5 Плейлистов</span>
+                        <span className='font-medium text-base text-onSurfaceVariant'>
+                            5 Мэшапов
+                        </span>
+                        <Separator className='font-medium text-base text-onSurfaceVariant' />
+                        <span className='font-medium text-base text-onSurfaceVariant'>
+                            666 подписчиков
+                        </span>
+                        <Separator className='font-medium text-base text-onSurfaceVariant' />
+                        <span className='font-medium text-base text-onSurfaceVariant'>
+                            5 Плейлистов
+                        </span>
                     </div>
                 </div>
             </div>

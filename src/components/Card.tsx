@@ -19,7 +19,7 @@ export default function Card({
     const [isPlaying, setIsPlaying] = useState(false);
 
     return (
-        <div className='flex flex-col items-center gap-3 bg-sidebar-gray min-w-[238px] h-[301px] rounded-4xl px-6 py-6'>
+        <div className='flex flex-col items-center gap-3 bg-surfaceVariant min-w-[238px] h-[301px] rounded-4xl px-6 py-6'>
             <div className='w-full relative group'>
                 <Image src={image} alt={title} className='w-full ' />
                 <button
@@ -36,7 +36,7 @@ export default function Card({
                 </button>
             </div>
             <a className='flex flex-col gap-2 text-left w-full' href={`/playlist/${id}`}>
-                <span className='text-secondary-text font-semibold text-base'>{title}</span>
+                <span className='text-onSurface font-semibold text-base'>{title}</span>
                 <span className='text-neutral-400 font-normal text-base '>{description}</span>
             </a>
         </div>

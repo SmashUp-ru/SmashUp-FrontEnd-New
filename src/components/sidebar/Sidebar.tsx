@@ -48,7 +48,7 @@ function Sidebar({ children }: { children: React.ReactNode }) {
 
     return (
         <div className='flex h-full'>
-            <div className='hidden md:flex flex-col h-full bg-sidebar-gray w-[282px] px-10 gap-5'>
+            <div className='hidden md:flex flex-col h-full bg-surfaceVariant w-[282px] px-10 gap-5'>
                 {/* Логотип */}
                 <div className='px-15 py-17'>
                     <SmashUpLogo width={82} height={42} color='primary' />

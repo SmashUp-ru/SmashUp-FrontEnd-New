@@ -22,16 +22,16 @@ export default function SmashUpButton({
                 'w-[460px] h-[54px] rounded-2xl font-semibold text-xl',
                 'flex flex-row justify-center items-center gap-2.5',
                 category === undefined || category === 'fill'
-                    ? `bg-primary hover:bg-primary-hover text-outline  ${disabled ? 'brightness-75 bg-primary-disabled hover:bg-primary-disabled' : ''}`
+                    ? `bg-primary hover:bg-primaryVariant text-onPrimary  ${disabled ? 'brightness-75' : ''}`
                     : '',
                 category === 'fill-default'
-                    ? `bg-button-text text-white  ${disabled ? 'brightness-75' : ''}`
+                    ? `bg-surface text-white  ${disabled ? 'brightness-75' : ''}`
                     : '',
                 category === 'stroke'
-                    ? `bg-transparent text-secondary-text outline outline-primary hover:outline-primary-hover ${disabled ? 'brightness-75 outline-primary-disabled hover:outline-primary-disabled' : ''}`
+                    ? `bg-transparent text-onSurface outline outline-primary hover:outline-primaryVariant ${disabled ? 'brightness-75' : ''}`
                     : '',
                 category === 'stroke-default'
-                    ? `bg-transparent text-secondary-text outline outline-button-text ${disabled ? 'brightness-75' : ''}`
+                    ? `bg-transparent text-onSurface outline outline-onPrimary ${disabled ? 'brightness-75' : ''}`
                     : '',
                 className
             )}
