@@ -18,7 +18,6 @@ export default function SmashUpInput({
     helper,
     icon,
     heading,
-    children,
     value,
     defaultValue,
     ...props
@@ -36,7 +35,9 @@ export default function SmashUpInput({
 
     return (
         <div className={twMerge('w-full flex flex-col gap-2.5', className)}>
-            <span className='font-medium text-base text-icon text-left'>{heading}</span>
+            {heading && (
+                <span className='font-medium text-base text-icon text-left'>{heading}</span>
+            )}
 
             <div className='w-full flex justify-start items-center relative'>
                 <input
@@ -57,13 +58,11 @@ export default function SmashUpInput({
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     {...props}
-                >
-                    {children}
-                </input>
+                />
                 <div className='absolute ml-6'>{icon}</div>
             </div>
 
-            <span className='font-normal text-xs text-icon'>{helper}</span>
+            {helper && <span className='font-normal text-xs text-icon'>{helper}</span>}
         </div>
     );
 }

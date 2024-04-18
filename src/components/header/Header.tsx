@@ -6,7 +6,7 @@ import Search from '@/components/header/Search';
 
 export default function Header() {
     return (
-        <div className='w-full h-[40px] mb-4 flex items-center justify-between pt-12 pb-10 px-8'>
+        <div className='w-full h-[130px] flex items-center justify-between px-8'>
             <Search />
 
             <div className='flex gap-8 items-center w-[232px]'>
