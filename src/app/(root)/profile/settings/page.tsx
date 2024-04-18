@@ -23,15 +23,21 @@ export default function Settings() {
 
             {/* Настройки */}
             <div className='w-full flex flex-col gap-6'>
-                <SmashUpCheckBox label='Проигрывать треки с пометкой Explicit (Мат)' />
+                <div className='py-4 px-6'>
+                    <SmashUpCheckBox label='Проигрывать треки с пометкой Explicit (Мат)' />
+                </div>
 
-                <SmashUpCheckBox label='Разрешить мультисессии' />
+                <div className='py-4 px-6'>
+                    <SmashUpCheckBox label='Разрешить мультисессии' />
+                </div>
 
-                <SmashUpSlider
-                    amount={5}
-                    label='Битрейт мэшапов'
-                    markHints={['64кб', '96кб', '128кб', '160кб', 'Оригинал']}
-                />
+                <div className='py-4 px-6'>
+                    <SmashUpSlider
+                        amount={5}
+                        label='Битрейт мэшапов'
+                        markHints={['64кб', '96кб', '128кб', '160кб', 'Оригинал']}
+                    />
+                </div>
             </div>
         </div>
     );
