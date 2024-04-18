@@ -6,7 +6,7 @@ export default function UpdatePage() {
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
             {/* Заголовок */}
-            <div className='w-[90%] max-w-[580px] text-center'>
+            <div className='w-[90%] max-w-[580px] text-center flex flex-col gap-2.5'>
                 <h1 className='text-4xl md:text-5xl text-primary font-semibold'>
                     Восстановление пароля
                 </h1>
@@ -15,7 +15,7 @@ export default function UpdatePage() {
 
             {/* Форма */}
             <div className='text-center w-[90%] max-w-[460px]'>
-                <form className='flex flex-col gap-6 w-full'>
+                <form className='flex flex-col gap-8 w-full'>
                     {/* Первый пароль */}
                     <SmashUpPassword showPasswordButton placeholder='12345qwerty' />
 

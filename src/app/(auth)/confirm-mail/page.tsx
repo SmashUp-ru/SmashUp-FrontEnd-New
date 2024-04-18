@@ -5,18 +5,18 @@ export default function ConfirmMail() {
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
             {/* Заголовок */}
-            <div className='w-[90%] max-w-[580px] text-center'>
+            <div className='w-[90%] max-w-[580px] text-center flex flex-col gap-2.5'>
                 <h1 className='text-4xl md:text-5xl text-primary font-semibold'>
                     Восстановление пароля
                 </h1>
-                <p className='text-secondary-text font-medium text-xl'>
+                <p className='text-icon font-medium text-xl'>
                     На вашу почту было отправлено письмо с ссылкой на восстановление пароля.
                 </p>
             </div>
 
             {/* Форма */}
             <div className='text-center w-[90%] max-w-[460px]'>
-                <form className='flex flex-col gap-6 w-full'>
+                <form className='flex flex-col gap-8 w-full'>
                     <div className='w-full flex flex-col gap-5'>
                         <SmashUpButton>Подтвердить</SmashUpButton>
                     </div>
