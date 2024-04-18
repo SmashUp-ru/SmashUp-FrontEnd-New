@@ -18,17 +18,16 @@ export default function Search() {
             positions={['bottom']}
             padding={-15}
             content={
-                <div className='w-[350px] bg-sidebar-gray rounded-lg flex flex-col gap-2.5'>
-                    <a className='mt-[15px] p-5 font-medium text-base' href='/search'>
+                <div className='w-[350px] bg-sidebar-gray rounded-lg flex flex-col gap-2.5 px-5'>
+                    <a className='mt-[15px] py-5 font-medium text-base' href='/search'>
                         Все результаты
                     </a>
-                    <div>
+
+                    <div className='flex flex-col gap-4'>
                         {/*Мэшаперы*/}
-                        <div className='px-5'>
-                            <span className='font-semibold text-base text-white py-2.5'>
-                                Мэшаперы
-                            </span>
-                            <div className='flex flex-row items-center gap-4 py-2.5'>
+                        <div className='flex flex-col gap-2.5'>
+                            <span className='font-semibold text-base text-white'>Мэшаперы</span>
+                            <div className='flex flex-row items-center gap-4'>
                                 <Image
                                     src={profile}
                                     alt='Иконка профиля'
@@ -39,11 +38,9 @@ export default function Search() {
                         </div>
 
                         {/*Мэшапы*/}
-                        <div className='px-5'>
-                            <span className='font-semibold text-base text-white py-2.5'>
-                                Мэшапы
-                            </span>
-                            <div className='flex flex-row items-center gap-4 py-2.5'>
+                        <div className='flex flex-col gap-2.5'>
+                            <span className='font-semibold text-base text-white'>Мэшапы</span>
+                            <div className='flex flex-row items-center gap-4'>
                                 <Image
                                     src={avatarka3}
                                     alt='Иконка мэшапа'
@@ -54,9 +51,9 @@ export default function Search() {
                         </div>
 
                         {/*Треки*/}
-                        <div className='px-5'>
-                            <span className='font-semibold text-base text-white py-2.5'>Треки</span>
-                            <div className='flex flex-row items-center gap-4 py-2.5'>
+                        <div className='flex flex-col gap-2.5'>
+                            <span className='font-semibold text-base text-white'>Треки</span>
+                            <div className='flex flex-row items-center gap-4'>
                                 <Image
                                     src={avatarka4}
                                     alt='Иконка трека'
