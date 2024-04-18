@@ -34,6 +34,10 @@ const config: Config = {
 
             borderRadius: {
                 '4xl': '32px'
+            },
+            padding: {
+                '15': '3.75rem',
+                '17': '4.5rem'
             }
         }
     },

@@ -9,15 +9,12 @@ function SidebarItem({ icon: Icon, label, active, href }: RouteType) {
             href={href}
             className={twMerge(
                 `
-                text-base
         flex
         flex-row
-        h-auto
         items-center
-        w-full
         gap-x-4
-        text-md
         font-medium
+        text-base
         cursor-pointer
         hover:text-white
         transition
@@ -27,7 +24,7 @@ function SidebarItem({ icon: Icon, label, active, href }: RouteType) {
             )}
         >
             <Icon width={18} height={18} color={active ? 'primary' : 'text-neutral-400'} />
-            <p className='truncate w-full'>{label}</p>
+            <p className='truncate'>{label}</p>
         </Link>
     );
 }

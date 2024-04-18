@@ -48,19 +48,22 @@ function Sidebar({ children }: { children: React.ReactNode }) {
 
     return (
         <div className='flex h-full'>
-            <div className='hidden md:flex flex-col h-full bg-sidebar-gray  w-[282px] py-2 pl-2'>
-                <div className='flex justify-center items-center h-[200px]'>
+            <div className='hidden md:flex flex-col h-full bg-sidebar-gray w-[282px] px-10 gap-5'>
+                {/* Логотип */}
+                <div className='px-15 py-17'>
                     <SmashUpLogo width={82} height={42} color='primary' />
                 </div>
 
                 <div className='flex flex-col gap-y-12'>
-                    <div className='flex flex-col gap-y-4 px-8'>
+                    {/* Навигация */}
+                    <div className='flex flex-col gap-y-4'>
                         {routes.map((item: RouteType) => (
                             <SidebarItem key={item.label} {...item} />
                         ))}
                     </div>
 
-                    <div className='flex flex-col gap-y-4 px-8'>
+                    {/* Плейлисты */}
+                    <div className='flex flex-col gap-y-4'>
                         <SidebarPlaylist href='/playlists/1' label='Плейлист 1' />
                         <SidebarPlaylist
                             href='/playlists/2'

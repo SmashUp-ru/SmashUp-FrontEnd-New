@@ -8,23 +8,16 @@ function SidebarPlaylist({ href, label }: { href: string; label: string }) {
             href={href}
             className={twMerge(
                 `
-                text-base
-        flex
-        flex-row
-        h-auto
-        items-center
-        w-full
-        gap-x-4
-        text-md
+        text-base
         font-medium
         cursor-pointer
         hover:text-white
         transition
         text-neutral-400
-        py-1`
+        `
             )}
         >
-            <p className='truncate w-full'>{label}</p>
+            <p className='truncate'>{label}</p>
         </Link>
     );
 }
