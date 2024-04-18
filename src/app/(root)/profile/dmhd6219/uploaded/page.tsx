@@ -4,10 +4,10 @@ import Card from '@/components/Card';
 
 export default function UploadPage() {
     return (
-        <div className='px-8 flex flex-col gap-6'>
+        <div className='pl-8 flex flex-col gap-6'>
             {/* На модерации */}
-            <div>
-                <h2 className='font-semibold text-2xl text-gray-header pb-5'>На модерации</h2>
+            <div className='flex flex-col gap-5'>
+                <h2 className='font-semibold text-2xl text-gray-header'>На модерации</h2>
 
                 <div className='w-full flex-wrap flex flex-row gap-7'>
                     {search.map((item) => (
@@ -17,8 +17,8 @@ export default function UploadPage() {
             </div>
 
             {/* Принято */}
-            <div>
-                <h2 className='font-semibold text-2xl text-gray-header pb-5'>Принято</h2>
+            <div className='flex flex-col gap-5'>
+                <h2 className='font-semibold text-2xl text-gray-header'>Принято</h2>
 
                 <div className='w-full flex-wrap flex flex-row gap-7'>
                     {search.map((item) => (
@@ -28,8 +28,8 @@ export default function UploadPage() {
             </div>
 
             {/* Отклонено */}
-            <div>
-                <h2 className='font-semibold text-2xl text-gray-header pb-5'>Отклонено</h2>
+            <div className='flex flex-col gap-5'>
+                <h2 className='font-semibold text-2xl text-gray-header'>Отклонено</h2>
 
                 <div className='w-full flex-wrap flex flex-row gap-7'>
                     {search.map((item) => (

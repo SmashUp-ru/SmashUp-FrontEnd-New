@@ -18,16 +18,21 @@ export default function Moderation() {
                     <Tab className='py-3 px-10 '>Отклоненные</Tab>
                 </TabList>
 
+                {/*Ожидает проверки*/}
                 <TabPanel className='flex flex-col gap-6'>
                     <Track />
                     <Track />
                     <Track />
                     <Track />
                 </TabPanel>
-                <TabPanel>
+
+                {/*Принятые*/}
+                <TabPanel className='flex flex-col gap-6'>
                     <h2>Принятые</h2>
                 </TabPanel>
-                <TabPanel>
+
+                {/*Отклоненные*/}
+                <TabPanel className='flex flex-col gap-6'>
                     <h2>Отклоненные</h2>
                 </TabPanel>
             </Tabs>

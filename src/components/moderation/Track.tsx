@@ -7,6 +7,10 @@ import ExpandIcon from '@/components/icons/ExpandIcon';
 import React from 'react';
 import LinkIcon from '@/components/icons/LinkIcon';
 import SmashUpButton from '@/components/smashup/Button/Button';
+import SmashUpCheckBox from '@/components/smashup/Checkbox/Checkbox';
+import SmashUpInput from '@/components/smashup/Input/Input';
+import { mashups_search } from '@/utils/data';
+import TrackItem from '@/components/TrackItem';
 
 export default function Track() {
     const [expanded, setExpanded] = React.useState(false);
@@ -42,7 +46,11 @@ export default function Track() {
                     </button>
 
                     <button onClick={() => setExpanded(!expanded)}>
-                        <ExpandIcon width={12} height={7} />
+                        <ExpandIcon
+                            width={12}
+                            height={7}
+                            className={!expanded ? 'rotate-180' : ''}
+                        />
                     </button>
                 </div>
             </div>
@@ -50,94 +58,37 @@ export default function Track() {
             {/* Expanded TrackSideSheet */}
             {expanded && (
                 <div className='w-full flex flex-row flex-wrap gap-8 py-6'>
-                    <Image src={track} alt='Я устал' className='w-[182px] h-[182px]' />
+                    <div className='flex flex-col justify-center'>
+                        <Image src={track} alt='Я устал' className='w-[194px] h-[194px]' />
+                    </div>
 
                     {/* Название, авторы */}
-                    <div className='flex flex-col justify-between'>
-                        <div className='w-full flex flex-col gap-2.5'>
-                            <label className='text-left text-icon font-medium text-base'>
-                                Название
-                            </label>
-                            <div className='w-full flex justify-start items-center relative'>
-                                <input
-                                    type='text'
-                                    placeholder='Я устал'
-                                    className='px-6 py-[15px] w-[304px] rounded-2xl focus:outline-none'
-                                    disabled={true}
-                                />
-                            </div>
-                        </div>
+                    <div className='flex flex-col gap-2'>
+                        <SmashUpInput
+                            disabled
+                            heading='Название'
+                            placeholder='Я устал'
+                            className='w-[304px]'
+                        />
 
-                        <div className='w-full flex flex-col gap-2.5'>
-                            <label className='text-left text-icon font-medium text-base'>
-                                Мэшаперы
-                            </label>
-                            <div className='w-full flex justify-start items-center relative'>
-                                <input
-                                    type='text'
-                                    placeholder='MeowOnidMuuuow, 3awarka'
-                                    className='px-6 py-[15px] w-[304px] rounded-2xl focus:outline-none'
-                                    disabled={true}
-                                />
-                            </div>
-                        </div>
+                        <SmashUpInput
+                            disabled
+                            heading='Мэшаперы'
+                            placeholder='MeowOnidMuuuow, 3awarka'
+                            className='w-[304px]'
+                        />
                     </div>
 
                     {/* Исходники */}
-                    <div className='flex flex-col gap-2.5 w-[313px] h-[182px] overflow-y-scroll overflow-x-hidden flex-shrink-0'>
+                    <div className='flex flex-col gap-2.5 w-[313px] h-[194px] overflow-y-scroll overflow-x-hidden flex-shrink-0'>
                         <span className='text-icon font-medium text-base'>Исходники</span>
-                        <div className='w-[304px] min-h-[49px] rounded-xl bg-button-text flex flex-row gap-6 py-2 pl-6 items-center'>
-                            <span>1</span>
-                            <Image
-                                src={track}
-                                alt='Tous Les Mêmes'
-                                className='w-[40px] h-[40px]'
-                            ></Image>
-                            <div className='flex flex-col '>
-                                <span className='font-normal text-sm'>Tous Les Mêmes</span>
-                                <span className='font-normal text-sm text-icon'>Stromae</span>
-                            </div>
-                        </div>
-                        <div className='w-[304px] min-h-[49px] rounded-xl bg-button-text flex flex-row gap-6 py-2 pl-6 items-center'>
-                            <span>1</span>
-                            <Image
-                                src={track}
-                                alt='Tous Les Mêmes'
-                                className='w-[40px] h-[40px]'
-                            ></Image>
-                            <div className='flex flex-col '>
-                                <span className='font-normal text-sm'>Tous Les Mêmes</span>
-                                <span className='font-normal text-sm text-icon'>Stromae</span>
-                            </div>
-                        </div>
-                        <div className='w-[304px] min-h-[49px] rounded-xl bg-button-text flex flex-row gap-6 py-2 pl-6 items-center'>
-                            <span>1</span>
-                            <Image
-                                src={track}
-                                alt='Tous Les Mêmes'
-                                className='w-[40px] h-[40px]'
-                            ></Image>
-                            <div className='flex flex-col '>
-                                <span className='font-normal text-sm'>Tous Les Mêmes</span>
-                                <span className='font-normal text-sm text-icon'>Stromae</span>
-                            </div>
-                        </div>
-                        <div className='w-[304px] min-h-[49px] rounded-xl bg-button-text flex flex-row gap-6 py-2 pl-6 items-center'>
-                            <span>1</span>
-                            <Image
-                                src={track}
-                                alt='Tous Les Mêmes'
-                                className='w-[40px] h-[40px]'
-                            ></Image>
-                            <div className='flex flex-col '>
-                                <span className='font-normal text-sm'>Tous Les Mêmes</span>
-                                <span className='font-normal text-sm text-icon'>Stromae</span>
-                            </div>
-                        </div>
+                        {mashups_search.map((item) => (
+                            <TrackItem key={item.id} {...item} />
+                        ))}
                     </div>
 
                     {/* Жанры */}
-                    <div className='flex flex-col gap-2.5 w-[313px] h-[182px] overflow-y-scroll overflow-x-hidden flex-shrink-0'>
+                    <div className='flex flex-col gap-2.5 w-[313px] h-[194px] overflow-y-scroll overflow-x-hidden flex-shrink-0'>
                         <span className='text-icon font-medium text-base'>Жанры</span>
                         <div className='w-[304px] min-h-[49px] rounded-xl bg-button-text text-center flex flex-col justify-center font-medium text-base text-icon'>
                             Мемы
@@ -154,36 +105,21 @@ export default function Track() {
                     </div>
 
                     {/* Дополнительно, ссылка в вк */}
-                    <div className='flex flex-col justify-between w-[313px] h-[182px]'>
+                    <div className='flex flex-col justify-between w-[313px] gap-2'>
                         <div className='w-full flex flex-col gap-2.5'>
                             <label className='text-left text-icon font-medium text-base'>
                                 Дополнительно
                             </label>
-                            <div className='w-full bg-outline h-[49px] rounded-xl flex flex-row items-center gap-1.5'>
-                                <input
-                                    type='checkbox'
-                                    className='w-[32px] h-[32px] ml-4'
-                                    value={1}
-                                    disabled={true}
-                                />
-                                <span>Explixit (Мат, Банворды)</span>
+                            <div className='w-full bg-sidebar-gray h-[49px] rounded-xl flex flex-row items-center gap-1.5 px-4'>
+                                <SmashUpCheckBox label='Explixit (Мат, Банворды)' />
                             </div>
                         </div>
-                        <div className='w-full flex flex-col gap-2.5'>
-                            <label className='text-left text-icon font-medium text-base'>
-                                Ссылка на пост ВК (Основа, Альт)
-                            </label>
-                            <div className='w-full flex justify-start items-center relative'>
-                                <input
-                                    type='text'
-                                    placeholder='https'
-                                    className='px-11 py-[15px] w-[304px] rounded-xl focus:outline-none'
-                                    disabled={true}
-                                />
 
-                                <LinkIcon width={20} height={19} className='absolute ml-4' />
-                            </div>
-                        </div>
+                        <SmashUpInput
+                            heading='Ссылка на пост ВК (Основа, Альт)'
+                            icon={<LinkIcon width={20} height={19} />}
+                            placeholder='https'
+                        />
                     </div>
                 </div>
             )}
