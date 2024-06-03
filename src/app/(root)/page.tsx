@@ -5,10 +5,12 @@ import IPadAd from '@/components/banners/IPadAd';
 
 export default function Home() {
     return (
-        <div className='flex flex-col px-8 gap-12'>
+        <div className='flex flex-col gap-12'>
+            {/* Реклама */}
             <Banner>
                 <IPadAd />
             </Banner>
+
             {/* Подборки */}
             <div>
                 <h2 className='font-semibold text-2xl text-onSurface pb-5'>Подборки</h2>

@@ -3,21 +3,22 @@ import profile from '/public/dev/profile.png';
 import Image from 'next/image';
 import NotificationLogo from '@/components/icons/NotificationIcon';
 import Search from '@/components/header/Search';
+import BackButton from '@/components/header/BackButton';
 
 export default function Header() {
     return (
-        <div className='w-full h-[130px] flex items-center justify-between px-8'>
+        <div className='w-full pb-4 flex items-center gap-4'>
+            <BackButton />
             <Search />
 
-            <div className='flex gap-8 items-center w-[232px]'>
+            <div className='flex items-center gap-6'>
                 <NotificationLogo width={24} height={24} color='primary' active={true} />
-                <a className='h-[40px] flex items-center gap-4' href='/profile/dmhd6219'>
+                <a href='/profile/dmhd6219'>
                     <Image
                         src={profile}
                         alt='Фото профиля'
-                        className='text-onSurface h-[40px] w-[40px] rounded'
+                        className='text-onSurface h-12 w-12 rounded-full'
                     ></Image>
-                    <span className='text-onSurfaceVariant'>dmhd6219</span>
                 </a>
             </div>
         </div>

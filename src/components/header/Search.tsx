@@ -16,6 +16,7 @@ export default function Search() {
         <Popover
             isOpen={isPopoverOpen}
             positions={['bottom']}
+            align='start'
             padding={-15}
             content={
                 <div className='w-[350px] bg-surfaceVariant rounded-lg flex flex-col gap-2.5 px-5 pb-2.5'>
@@ -73,11 +74,14 @@ export default function Search() {
             }
             onClickOutside={() => setIsPopoverOpen(false)}
         >
-            <div onClick={() => setIsPopoverOpen(!isPopoverOpen)} className='z-30'>
+            <div
+                onClick={() => setIsPopoverOpen(!isPopoverOpen)}
+                className='z-30 py-[1px] flex-grow'
+            >
                 <SmashUpInput
                     placeholder='Поиск'
                     icon={<SearchIcon width={16} height={16} color='onSurface' />}
-                    className='w-[350px]'
+                    className=''
                     onClick={() => setIsPopoverOpen(true)}
                 />
             </div>

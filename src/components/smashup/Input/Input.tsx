@@ -45,11 +45,11 @@ export default function SmashUpInput({
                         if (isFocused === undefined) setFocus(false);
                     }}
                     className={twMerge(
-                        'w-full bg-surface py-[17.5px] pl-[25px] rounded-2xl',
+                        'w-full bg-surface py-[14px]  rounded-2xl',
                         'font-normal text-base text-onSurfaceVariant placeholder-onSurfaceVariant',
                         icon ? 'pl-14' : '',
-                        focus ? 'border-none outline outline-2 ring-0 outline-primary' : '',
-                        error ? 'border-none outline outline-2 ring-0 outline-red-600' : ''
+                        focus ? 'border-none outline outline-primary' : '',
+                        error ? 'border-none outline outline-red-600' : ''
                     )}
                     type='text'
                     value={value}
