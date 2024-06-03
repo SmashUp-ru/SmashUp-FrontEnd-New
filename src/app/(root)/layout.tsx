@@ -5,14 +5,17 @@ import React from 'react';
 import Sidebar from '@/components/sidebar/Sidebar';
 import Providers from '@/providers/Providers';
 import MainLayout from '@/app/(root)/MainLayout';
+import { siteConfig } from '@/config/site';
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
 export const metadata: Metadata = {
-    title: 'SmashUp',
-    description: 'Самый лучший плеер для мэшапов'
+    title: {
+        default: siteConfig.name,
+        template: `%s - ${siteConfig.name}`
+    },
+    description: siteConfig.description
 };
-
 export default function RootLayout({
     children
 }: Readonly<{

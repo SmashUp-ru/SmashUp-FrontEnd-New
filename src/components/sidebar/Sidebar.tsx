@@ -1,50 +1,26 @@
 'use client';
 
-import React, { useMemo } from 'react';
 import { usePathname } from 'next/navigation';
 
 import SidebarItem from '@/components/sidebar/SidebarItem';
 
 import SidebarPlaylist from '@/components/sidebar/SidebarPlaylist';
 import SmashUpLogo from '@/components/icons/SmashUpLogo';
-import HomeIcon from '@/components/icons/HomeIcon';
-import HeartIcon from '@/components/icons/HeartIcon';
-import PlusIcon from '@/components/icons/PlusIcon';
 import { RouteType } from '@/models/sidebar';
-import SettingsIcon from '@/components/icons/SettingsIcon';
+import { siteConfig } from '@/config/site';
+import React from 'react';
 
 function Sidebar({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
 
-    const routes: RouteType[] = useMemo(
-        () => [
-            {
-                icon: HomeIcon,
-                label: 'Главная',
-                active: pathname === '/',
-                href: '/'
-            },
-            {
-                icon: HeartIcon,
-                label: 'Мне нравится',
-                active: pathname === '/favorites',
-                href: '/favorites'
-            },
-            {
-                icon: PlusIcon,
-                label: 'Создать плейлист',
-                active: pathname === '/playlists/create',
-                href: '/playlists/create'
-            },
-            {
-                icon: SettingsIcon,
-                label: 'Открыть дебаг меню',
-                active: pathname === '/test',
-                href: '/test'
-            }
-        ],
-        [pathname]
-    );
+    const routes: RouteType[] = siteConfig.navItems.map((item) => {
+        return {
+            label: item.label,
+            active: pathname === item.href,
+            href: item.href,
+            icon: item.icon
+        };
+    });
 
     return (
         <div className='flex h-full'>
