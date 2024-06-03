@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { twMerge } from 'tailwind-merge';
 import { RouteType } from '@/models/sidebar';
 
-function SidebarItem({ icon: Icon, label, active, href }: RouteType) {
+function SidebarItem({ icon: Icon, active, href }: RouteType) {
     return (
         <Link
             href={href}
@@ -23,8 +23,7 @@ function SidebarItem({ icon: Icon, label, active, href }: RouteType) {
                 active && 'text-white'
             )}
         >
-            <Icon width={18} height={18} color={active ? 'primary' : 'text-neutral-400'} />
-            <p className='truncate'>{label}</p>
+            <Icon width={24} height={24} color={active ? 'primary' : 'text-neutral-400'} />
         </Link>
     );
 }

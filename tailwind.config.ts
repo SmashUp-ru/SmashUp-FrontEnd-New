@@ -13,11 +13,15 @@ const config: Config = {
             },
             padding: {
                 '15': '3.75rem',
-                '17': '4.5rem'
+                '17': '4.5rem',
+                '17.5': '4.75rem'
             },
             colors: {
                 current: 'currentColor',
                 vk: '#0077FF'
+            },
+            gap: {
+                '25': '100px'
             }
         }
     },

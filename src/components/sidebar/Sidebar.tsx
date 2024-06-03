@@ -4,7 +4,6 @@ import { usePathname } from 'next/navigation';
 
 import SidebarItem from '@/components/sidebar/SidebarItem';
 
-import SidebarPlaylist from '@/components/sidebar/SidebarPlaylist';
 import SmashUpLogo from '@/components/icons/SmashUpLogo';
 import { RouteType } from '@/models/sidebar';
 import { siteConfig } from '@/config/site';
@@ -23,28 +22,19 @@ function Sidebar({ children }: { children: React.ReactNode }) {
     });
 
     return (
-        <div className='flex h-full'>
-            <div className='hidden md:flex flex-col h-full bg-surfaceVariant w-[282px] px-10 gap-5'>
+        <div className='flex h-full p-4'>
+            <div className='hidden md:flex flex-col h-full bg-surfaceVariant rounded-4xl w-[123px] gap-25 py-17.5'>
                 {/* Логотип */}
-                <div className='px-15 py-17'>
-                    <SmashUpLogo width={82} height={42} color='primary' />
+                <div className='px-7'>
+                    <SmashUpLogo width={66} height={34} color='primary' />
                 </div>
 
-                <div className='flex flex-col gap-y-12'>
+                <div className='flex flex-col gap-y-12 px-12'>
                     {/* Навигация */}
-                    <div className='flex flex-col gap-y-4'>
+                    <div className='flex flex-col gap-y-12'>
                         {routes.map((item: RouteType) => (
                             <SidebarItem key={item.label} {...item} />
                         ))}
-                    </div>
-
-                    {/* Плейлисты */}
-                    <div className='flex flex-col gap-y-4'>
-                        <SidebarPlaylist href='/playlists/1' label='Плейлист 1' />
-                        <SidebarPlaylist
-                            href='/playlists/2'
-                            label='Это лучший самый крутой плейлист'
-                        />
                     </div>
                 </div>
             </div>
