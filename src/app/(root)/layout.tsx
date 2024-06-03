@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 import '../globals.css';
 import React from 'react';
 import Sidebar from '@/components/sidebar/Sidebar';
@@ -7,7 +7,7 @@ import Providers from '@/providers/Providers';
 import MainLayout from '@/app/(root)/MainLayout';
 import { siteConfig } from '@/config/site';
 
-const inter = Inter({ subsets: ['latin', 'cyrillic'] });
+const inter = Manrope({ subsets: ['latin', 'cyrillic'] });
 
 export const metadata: Metadata = {
     title: {

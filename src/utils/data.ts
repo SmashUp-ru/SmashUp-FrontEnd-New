@@ -24,37 +24,37 @@ export const selections = [
     {
         id: 1,
         title: 'Мэшап-Радио',
-        description: 'SmashUp',
+        author: 'SmashUp',
         image: radio
     },
     {
         id: 2,
         title: 'Новинки!!',
-        description: 'SmashUp',
+        author: 'SmashUp',
         image: news
     },
     {
         id: 3,
         title: 'Чарт 24 часа',
-        description: 'SmashUp',
+        author: 'SmashUp',
         image: chart
     },
     {
         id: 4,
         title: 'Подборка 1',
-        description: 'SmashUp',
+        author: 'SmashUp',
         image: selection1
     },
     {
         id: 5,
         title: 'Подборка 2',
-        description: 'SmashUp',
+        author: 'SmashUp',
         image: selection2
     },
     {
         id: 6,
         title: 'Подборка 3',
-        description: 'SmashUp',
+        author: 'SmashUp',
         image: selection3
     }
 ];
@@ -63,37 +63,37 @@ export const recently = [
     {
         id: 1,
         title: 'Лобби под подошвой',
-        description: 'Утонул в пиве',
+        author: 'Утонул в пиве',
         image: track1
     },
     {
         id: 2,
         title: 'Crystal Maxim',
-        description: 'tupa kiso4ka',
+        author: 'tupa kiso4ka',
         image: track2
     },
     {
         id: 3,
         title: 'Around Skrillex',
-        description: 'tupa kiso4ka',
+        author: 'tupa kiso4ka',
         image: track3
     },
     {
         id: 4,
         title: 'EL РАНДЕВУ',
-        description: 'Илья Муррка',
+        author: 'Илья Муррка',
         image: track4
     },
     {
         id: 5,
         title: 'Ненавижу SugarCrash',
-        description: 'Citicrazi',
+        author: 'Citicrazi',
         image: track5
     },
     {
         id: 6,
         title: 'Робот Rammstein',
-        description: 'Ramzes Govnomes',
+        author: 'Ramzes Govnomes',
         image: track6
     }
 ];
@@ -164,51 +164,69 @@ export const mashups_search = [
     }
 ];
 
-export const profile_popular = [
+export const profile_popular_tracks = [
     {
         id: 1,
         image: track7,
         title: 'Доброе судно',
         author: 'dmhd6219',
-        listened: 157,
         length: '3:44',
-        explicit: false
+        explicit: false,
+        liked: false
     },
     {
         id: 2,
         image: track8,
         title: 'Развлекайтесь на 180db',
         author: 'dmhd6219',
-        listened: 87,
         length: '3:44',
-        explicit: false
+        explicit: false,
+        liked: false
     },
     {
         id: 3,
         image: track9,
         title: 'У моей девушки день рождения в Париже',
         author: 'dmhd6219',
-        listened: 74,
         length: '3:44',
-        explicit: false
+        explicit: false,
+        liked: false
     },
     {
         id: 4,
         image: track10,
         title: 'Без Парижа',
         author: 'dmhd6219',
-        listened: 52,
         length: '3:44',
-        explicit: true
+        explicit: true,
+        liked: true
     },
     {
         id: 5,
         image: track11,
         title: 'Свежие окна',
         author: 'dmhd6219',
-        listened: 2,
         length: '3:44',
-        explicit: true
+        explicit: true,
+        liked: false
+    }
+];
+
+export const profile_popular_playlists = [
+    {
+        id: 1,
+        image: radio,
+        title: 'Плейлистик мой',
+        author: 'LeonidM',
+        visible: true
+    },
+
+    {
+        id: 2,
+        image: radio,
+        title: 'Черновички',
+        author: 'LeonidM',
+        visible: false
     }
 ];
 

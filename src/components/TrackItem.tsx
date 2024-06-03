@@ -5,6 +5,7 @@ import ExplicitIcon from '@/components/icons/ExplicitIcon';
 import React, { useContext } from 'react';
 import { TrackContext } from '@/providers/Providers';
 import BorderlessPlayIcon from '@/components/icons/BorderlessPlayIcon';
+import HeartIcon from '@/components/icons/HeartIcon';
 
 export interface TrackItemProps {
     id?: number;
@@ -14,6 +15,7 @@ export interface TrackItemProps {
     explicit?: boolean;
     listened?: number;
     length?: string;
+    liked?: boolean;
 }
 
 export default function TrackItem({
@@ -23,7 +25,8 @@ export default function TrackItem({
     author,
     explicit,
     listened,
-    length
+    length,
+    liked
 }: TrackItemProps) {
     const { setTrack } = useContext(TrackContext);
 
@@ -67,12 +70,17 @@ export default function TrackItem({
                 </div>
             </div>
 
-            {(listened || length) && (
-                <div className='w-1/3 flex flex-row gap-2.5 justify-between items-center'>
-                    {listened && <span className='text-onSurfaceVariant'>{listened}</span>}
-                    {length && <span className='text-onSurfaceVariant'>{length}</span>}
-                </div>
-            )}
+            <div className='flex flex-row gap-4 items-center'>
+                {
+                    <HeartIcon
+                        width={20}
+                        height={17}
+                        color={liked ? 'primary' : 'onSurfaceVariant'}
+                    />
+                }
+                {listened && <span className='text-onSurfaceVariant'>{listened}</span>}
+                {length && <span className='text-onSurfaceVariant'>{length}</span>}
+            </div>
         </div>
     );
 }

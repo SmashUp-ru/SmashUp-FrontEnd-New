@@ -1,71 +1,70 @@
 import React from 'react';
 import Image from 'next/image';
 import profile from '/public/dev/profile.png';
-import Separator from '@/components/Separator';
-import DoneIcon from '@/components/icons/DoneIcon';
-import PlayIcon from '@/components/icons/PlayIcon';
-import AllCategoriesIcon from '@/components/icons/AllCategoriesIcon';
 import SettingsIcon from '@/components/icons/SettingsIcon';
 import ShareIcon from '@/components/icons/ShareIcon';
-import AddIcon from '@/components/icons/AddIcon';
-import { profile_popular } from '@/utils/data';
+import { profile_popular_playlists, profile_popular_tracks } from '@/utils/data';
 import TrackItem from '@/components/TrackItem';
+import Pin from '@/components/smashup/Pin/Pin';
+import SmashUpButton from '@/components/smashup/Button/Button';
+import Card from '@/components/Card';
 
 export default function Profile() {
     return (
-        <div className='px-8 flex flex-col gap-5'>
+        <div className='flex flex-col gap-4'>
             {/* Профиль */}
-            <div className='flex flex-row bg-surfaceVariant w-full h-[238px] rounded-4xl px-6 py-6 gap-12'>
-                <Image
-                    src={profile}
-                    width={188}
-                    height={188}
-                    alt='dmhd6219'
-                    className='rounded-3xl'
-                />
+            <div className='flex flex-row bg-surfaceVariant w-full p-4 px-6 py-6 gap-12 rounded-tl-[120px] rounded-bl-[120px] rounded-r-4xl'>
+                <Image src={profile} alt='dmhd6219' className='w-[200px] h-[200px] rounded-full' />
 
-                <div className='flex flex-col justify-center gap-2.5'>
-                    <div className='flex items-center gap-4'>
-                        <h1 className='font-semibold text-5xl text-onSurface'>dmhd6219</h1>
-                        <DoneIcon width={34} height={24} />
-                    </div>
-                    <div className='flex gap-2.5'>
-                        <span className='font-medium text-base text-onSurfaceVariant'>
-                            5 Мэшапов
-                        </span>
-                        <Separator className='font-medium text-base text-onSurfaceVariant' />
-                        <span className='font-medium text-base text-onSurfaceVariant'>
-                            666 подписчиков
-                        </span>
-                        <Separator className='font-medium text-base text-onSurfaceVariant' />
-                        <span className='font-medium text-base text-onSurfaceVariant'>
-                            5 Плейлистов
-                        </span>
+                <div className='flex flex-col justify-center gap-4'>
+                    <div>
+                        <span className='font-medium text-lg text-onSurfaceVariant'>Профиль</span>
+                        <div className='flex flex-col gap-4'>
+                            <div className='flex flex-row gap-6'>
+                                <h2 className='font-bold text-3xl'>LeonidM</h2>
+                                <div className='flex flex-row gap-4 items-center'>
+                                    <Pin>15 подписок</Pin>
+                                    <Pin>5 подписчиков</Pin>
+                                    <Pin>2 Плейлиста</Pin>
+                                </div>
+                            </div>
+
+                            <div className='flex flex-row gap-4 items-center'>
+                                <SmashUpButton className='w-[224px] h-[48px]'>
+                                    Загрузить мэшап
+                                </SmashUpButton>
+                                <SettingsIcon width={28} height={28} color='onSurfaceVariant' />
+                                <ShareIcon width={26} height={22} color='onSurfaceVariant' />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div className='flex flex-col gap-8'>
-                {/* Действия */}
-                <div className='flex flex-row gap-5 items-center'>
-                    <PlayIcon width={48} height={48} color='primary' />
-                    <AllCategoriesIcon width={26} height={26} color='icon' />
-                    <SettingsIcon width={28} height={28} color='icon' />
-                    <ShareIcon width={26} height={22} color='icon' />
-                    <AddIcon width={26} height={26} color='icon' />
-                </div>
-
-                {/* Семые популярные мэшапы */}
-                <div className='flex flex-col gap-4'>
-                    <h2 className='font-semibold text-2xl'>Самые популярные мэшапы</h2>
-                    <div className='flex flex-col'>
-                        {profile_popular.map((item) => (
-                            <TrackItem key={item.id} {...item} />
-                        ))}
-                    </div>
-                    <span className='font-bold text-sm text-gray-300 uppercase cursor-pointer'>
-                        Все
+            {/* Семые популярные мэшапы */}
+            <div className='flex flex-col gap-4'>
+                <div className='flex flex-row justify-between items-center'>
+                    <h2 className='font-semibold text-2xl'>Популярные треки</h2>
+                    <span className='font-bold text-base text-onSurfaceVariant text-opacity-50 uppercase'>
+                        Показать все
                     </span>
+                </div>
+                <div className='flex flex-col'>
+                    {profile_popular_tracks.map((item) => (
+                        <TrackItem key={item.id} {...item} />
+                    ))}
+                </div>
+            </div>
+
+            {/* Плейлисты */}
+            <div className='flex flex-col gap-4'>
+                <div className='flex flex-row justify-between items-center'>
+                    <h2 className='font-semibold text-2xl'>Плейлисты</h2>
+                </div>
+                <div className='overflow-visible flex flex-row gap-7'>
+                    {profile_popular_playlists.map((item) => (
+                        <Card key={item.id} showVisibleButton={item.visible} {...item} />
+                    ))}
                 </div>
             </div>
         </div>

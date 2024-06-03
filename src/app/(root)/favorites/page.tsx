@@ -4,7 +4,7 @@ import favorites from '/public/icons/like.png';
 import Separator from '@/components/Separator';
 import PlayIcon from '@/components/icons/PlayIcon';
 import ShareIcon from '@/components/icons/ShareIcon';
-import { profile_popular } from '@/utils/data';
+import { profile_popular_tracks } from '@/utils/data';
 import HeartIcon from '@/components/icons/HeartIcon';
 import WatchIcon from '@/components/icons/WatchIcon';
 import TrackItem from '@/components/TrackItem';
@@ -64,7 +64,7 @@ export default function Favorites() {
                     </div>
 
                     <div>
-                        {profile_popular.map((item) => (
+                        {profile_popular_tracks.map((item) => (
                             <TrackItem key={item.id} {...item} />
                         ))}
                     </div>
