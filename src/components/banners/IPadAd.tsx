@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function IPadAd() {
     return (
-        <div className='flex flex-col gap-10 items-center'>
+        <div className='w-full h-full bg-black flex flex-col gap-8 justify-end items-center'>
             <div className='flex flex-col items-center'>
                 <h1 className='font-semibold text-5xl'>IPad Pro</h1>
                 <p className='text-lg'>Unbelievably thin. Incredibly powerful.</p>
