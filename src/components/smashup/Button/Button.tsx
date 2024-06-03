@@ -28,10 +28,10 @@ export default function SmashUpButton({
                     ? `bg-surface text-white  ${disabled ? 'brightness-75' : ''}`
                     : '',
                 category === 'stroke'
-                    ? `bg-transparent text-onSurface outline outline-primary hover:outline-primaryVariant ${disabled ? 'brightness-75' : ''}`
+                    ? `bg-transparent text-onSurface border-2 border-primary hover:border-primaryVariant ${disabled ? 'brightness-75' : ''}`
                     : '',
                 category === 'stroke-default'
-                    ? `bg-transparent text-onSurface outline outline-onPrimary ${disabled ? 'brightness-75' : ''}`
+                    ? `bg-transparent text-onSurface border-2 border-onPrimary ${disabled ? 'brightness-75' : ''}`
                     : '',
                 className
             )}
