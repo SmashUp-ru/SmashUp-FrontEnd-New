@@ -6,11 +6,16 @@ import { twMerge } from 'tailwind-merge';
 
 export interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: string | React.JSX.Element;
+    checked?: boolean;
 }
 
-export default function SmashUpCheckBox({ label, className, checked, ...props }: CheckBoxProps) {
-    const [isChecked, setIsChecked] = React.useState(checked ? checked : false);
-
+export default function SmashUpCheckBox({
+    label,
+    className,
+    checked,
+    onChange,
+    ...props
+}: CheckBoxProps) {
     return (
         <div className={twMerge('flex items-center', className)}>
             <label
@@ -22,8 +27,8 @@ export default function SmashUpCheckBox({ label, className, checked, ...props }:
                         type='checkbox'
                         className='w-[32px] h-[32px] peer relative cursor-pointer appearance-none rounded-md  bg-surface'
                         {...props}
-                        checked={isChecked}
-                        onChange={(e) => setIsChecked(e.target.checked)}
+                        checked={checked}
+                        onChange={onChange}
                     />
 
                     <span className='absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100'>

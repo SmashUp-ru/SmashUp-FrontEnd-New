@@ -29,18 +29,11 @@ export default function SmashUpPassword({
     showHelper,
     heading,
     defaultValue,
+    onChange,
     ...props
 }: PasswordProps) {
     const [focus, setFocus] = useState<boolean>(isFocused ? isFocused : false);
     const [error] = useState<boolean>(isError ? isError : false);
-
-    const [inputValue, setInputValue] = useState<string>(
-        typeof value === 'string' && value
-            ? value
-            : typeof defaultValue === 'string' && defaultValue
-              ? defaultValue
-              : ''
-    );
 
     const [showPasswordValue, setShowPasswordValue] = useState<boolean>(
         showPassword ? showPassword : false
@@ -75,9 +68,10 @@ export default function SmashUpPassword({
                         error ? 'border-none outline outline-2 ring-0 outline-red-600' : ''
                     )}
                     type={!showPasswordValue ? 'password' : 'text'}
-                    value={inputValue}
+                    value={value}
+                    defaultValue={defaultValue}
                     disabled={disabled}
-                    onChange={(e) => setInputValue(e.target.value)}
+                    onChange={onChange}
                     {...props}
                 >
                     {children}

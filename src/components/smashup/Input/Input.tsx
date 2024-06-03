@@ -9,6 +9,8 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
     helper?: string;
     icon?: React.ReactNode;
     heading?: string;
+    value?: string;
+    defaultValue?: string;
 }
 
 export default function SmashUpInput({
@@ -20,18 +22,11 @@ export default function SmashUpInput({
     heading,
     value,
     defaultValue,
+    onChange,
     ...props
 }: InputProps) {
     const [focus, setFocus] = useState<boolean>(isFocused ? isFocused : false);
     const [error] = useState<boolean>(isError ? isError : false);
-
-    const [inputValue, setInputValue] = useState<string>(
-        typeof value === 'string' && value
-            ? value
-            : typeof defaultValue === 'string' && defaultValue
-              ? defaultValue
-              : ''
-    );
 
     return (
         <div className={twMerge('w-full flex flex-col gap-2.5', className)}>
@@ -57,8 +52,9 @@ export default function SmashUpInput({
                         error ? 'border-none outline outline-2 ring-0 outline-red-600' : ''
                     )}
                     type='text'
-                    value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
+                    value={value}
+                    defaultValue={defaultValue}
+                    onChange={onChange}
                     {...props}
                 />
                 <div className='absolute ml-6'>{icon}</div>
