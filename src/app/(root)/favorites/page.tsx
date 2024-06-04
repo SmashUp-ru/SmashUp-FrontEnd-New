@@ -1,9 +1,10 @@
 import Image from 'next/image';
-import profile from '/public/dev/profile.png';
 import favorites from '/public/icons/like.png';
-import Separator from '@/components/Separator';
 import { profile_popular_tracks } from '@/utils/data';
 import TrackItem from '@/components/TrackItem';
+import PlayIcon from '@/components/icons/PlayIcon';
+import HideIcon from '@/components/icons/HideButton';
+import ShareIcon from '@/components/icons/ShareIcon';
 
 export default function Favorites() {
     return (
@@ -18,17 +19,26 @@ export default function Favorites() {
                     className='rounded-3xl'
                 />
 
-                <div className='flex flex-col justify-center gap-2.5'>
-                    <h1 className='font-semibold text-5xl text-onSurface'>Мне нравится</h1>
-                    <div className='flex gap-2'>
-                        <Image src={profile} alt='dmhd6219' className='w-[24px] h-[24px] rounded' />
-                        <span className='font-medium text-base text-onSurfaceVariant'>
-                            dmhd6219
-                        </span>
-                        <Separator className='font-medium text-base text-onSurfaceVariant' />
-                        <span className='font-medium text-base text-onSurfaceVariant'>
-                            115 мэшапов
-                        </span>
+                <div className='flex flex-col justify-center gap-6'>
+                    <div>
+                        <span className='font-medium text-lg text-onSurfaceVariant'>Плейлист</span>
+                        <h1 className='font-bold text-4xl text-onSurface'>Мне нравится</h1>
+                    </div>
+
+                    <div className='flex gap-5 items-center'>
+                        <PlayIcon width={48} height={48} color='primary' />
+                        <HideIcon
+                            width={26}
+                            height={28}
+                            color='onSurfaceVariant'
+                            className='w-8 h-8'
+                        />
+                        <ShareIcon
+                            width={26}
+                            height={22}
+                            color='onSurfaceVariant'
+                            className='w-8 h-8'
+                        />
                     </div>
                 </div>
             </div>
