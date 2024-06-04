@@ -45,7 +45,7 @@ export default function TrackItem({
                     </button>
                 )}
                 <div className='flex flex-row gap-3.5 items-center'>
-                    <Image src={image} alt={title} className='w-[40px] h-[40px]' />
+                    <Image src={image} alt={title} className='w-[40px] h-[40px] rounded-lg' />
                     <div className='flex flex-col'>
                         <div className='flex flex-row gap-2 items-center'>
                             <span
@@ -62,7 +62,7 @@ export default function TrackItem({
                         </div>
                         <a
                             className='font-normal text-sm text-onSurfaceVariant'
-                            href={`/artist/${author}`}
+                            href={`/profile/${author}`}
                         >
                             {author}
                         </a>
