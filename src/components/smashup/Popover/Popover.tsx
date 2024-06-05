@@ -3,7 +3,7 @@
 import { Popover } from 'react-tiny-popover';
 import { useState } from 'react';
 import React from 'react';
-import ExitIcon from '@/components/icons/ExitIcon';
+import CloseIcon from '@/components/icons/CloseIcon';
 
 export default function SmashUpPopover({
     icon,
@@ -25,7 +25,7 @@ export default function SmashUpPopover({
                         className='absolute cursor-pointer right-8 top-8'
                         onClick={() => setIsPopoverOpen(false)}
                     >
-                        <ExitIcon width={28} height={28} />
+                        <CloseIcon width={28} height={28} />
                     </div>
                     {content}
                 </div>

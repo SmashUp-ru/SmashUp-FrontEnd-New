@@ -1,7 +1,13 @@
 import React from 'react';
 import { IconComponentProps } from '@/models/icons';
 
-export default function MailIcon({ width, height, className }: IconComponentProps) {
+export default function ProfileIcon({
+    width,
+    height,
+    className,
+    onClick,
+    onMouseEnter
+}: IconComponentProps) {
     // 24 25
     return (
         <svg
@@ -11,6 +17,8 @@ export default function MailIcon({ width, height, className }: IconComponentProp
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
             className={className}
+            onClick={onClick}
+            onMouseEnter={onMouseEnter}
         >
             <g clipPath='url(#clip0_4832_2225)'>
                 <path

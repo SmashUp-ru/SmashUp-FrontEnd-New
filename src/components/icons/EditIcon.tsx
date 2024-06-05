@@ -2,7 +2,7 @@ import React from 'react';
 import { IconComponentProps } from '@/models/icons';
 import { twMerge } from 'tailwind-merge';
 
-export default function EditIcon({ width, height, color, className }: IconComponentProps) {
+export default function EditIcon({ width, height, color, className, onClick }: IconComponentProps) {
     return (
         <svg
             width={width}
@@ -11,6 +11,7 @@ export default function EditIcon({ width, height, color, className }: IconCompon
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
             className={twMerge(`text-${color} fill-current`, className)}
+            onClick={onClick}
         >
             <path
                 fillRule='evenodd'

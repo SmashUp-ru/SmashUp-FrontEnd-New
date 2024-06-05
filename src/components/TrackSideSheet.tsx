@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import track4 from '/public/dev/main/track4.png';
-import ExitIcon from '@/components/icons/ExitIcon';
+import CloseIcon from '@/components/icons/CloseIcon';
 import ExplicitIcon from '@/components/icons/ExplicitIcon';
 import PlayIcon from '@/components/icons/PlayIcon';
 import HeartIcon from '@/components/icons/HeartIcon';
@@ -22,7 +22,7 @@ export default function TrackSideSheet() {
                         }
                     }}
                 >
-                    <ExitIcon width={28} height={28} className='cursor-pointer' />
+                    <CloseIcon width={28} height={28} className='cursor-pointer' />
                 </button>
             </div>
 

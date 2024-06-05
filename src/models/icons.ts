@@ -3,4 +3,6 @@ export interface IconComponentProps {
     height?: number;
     color?: string;
     className?: string;
+    onClick?: () => void;
+    onMouseEnter?: () => void;
 }
