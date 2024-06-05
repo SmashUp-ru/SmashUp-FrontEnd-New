@@ -1,9 +1,10 @@
-import { recently, selections } from '@/utils/data';
+import { premier, selections } from '@/utils/data';
 import Card from '@/components/Card';
 import Banner from '@/components/banners/Banner';
 import IPadAd from '@/components/banners/IPadAd';
 import Footer from '@/components/footer/Footer';
 import React from 'react';
+import TrackItem from '@/components/TrackItem';
 
 export default function Home() {
     return (
@@ -25,11 +26,37 @@ export default function Home() {
 
             {/* Недавно прослушано */}
             <div>
-                <h2 className='font-semibold text-2xl text-onSurface pb-5'>Недавно прослушано</h2>
-                <div className='w-full h-[301px] overflow-visible flex flex-row gap-7'>
-                    {recently.map((item) => (
-                        <Card key={item.id} {...item} bg />
-                    ))}
+                <div className='flex flex-row justify-between'>
+                    <h2 className='font-semibold text-2xl text-onSurface pb-5'>Премьера!</h2>
+                    <span className='font-bold text-base text-onSurfaceVariant text-opacity-50 uppercase'>
+                        Показать все
+                    </span>
+                </div>
+
+                <div className='flex flex-row flex-wrap'>
+                    <div className='flex flex-col gap-4 w-1/3'>
+                        {premier
+                            .filter((item) => item.id <= 2)
+                            .map((item) => (
+                                <TrackItem key={item.id} {...item} id={undefined} />
+                            ))}
+                    </div>
+
+                    <div className='flex flex-col gap-4 w-1/3'>
+                        {premier
+                            .filter((item) => item.id > 2 && item.id <= 4)
+                            .map((item) => (
+                                <TrackItem key={item.id} {...item} id={undefined} />
+                            ))}
+                    </div>
+
+                    <div className='flex flex-col gap-4 w-1/3'>
+                        {premier
+                            .filter((item) => item.id > 4 && item.id <= 6)
+                            .map((item) => (
+                                <TrackItem key={item.id} {...item} id={undefined} />
+                            ))}
+                    </div>
                 </div>
             </div>
 

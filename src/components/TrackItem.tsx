@@ -31,7 +31,7 @@ export default function TrackItem({
     const { setTrack } = useContext(TrackContext);
 
     return (
-        <div className='pr-4 flex flex-row justify-between group hover:bg-surface rounded-lg'>
+        <div className='px-4 flex flex-row justify-between group hover:bg-surface rounded-lg'>
             <div className='flex flex-row my-2.5 items-center h-[40px]'>
                 {id && (
                     <button className='w-6 h-6 m-4 flex flex-row items-center justify-center'>

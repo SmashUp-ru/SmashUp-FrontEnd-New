@@ -59,42 +59,48 @@ export const selections = [
     }
 ];
 
-export const recently = [
+export const premier = [
     {
         id: 1,
         title: 'Лобби под подошвой',
         author: 'Утонул в пиве',
-        image: track1
+        image: track1,
+        length: '3:44'
     },
     {
         id: 2,
         title: 'Crystal Maxim',
         author: 'tupa kiso4ka',
-        image: track2
+        image: track2,
+        length: '3:44'
     },
     {
         id: 3,
         title: 'Around Skrillex',
         author: 'tupa kiso4ka',
-        image: track3
+        image: track3,
+        length: '3:44'
     },
     {
         id: 4,
         title: 'EL РАНДЕВУ',
         author: 'Илья Муррка',
-        image: track4
+        image: track4,
+        length: '3:44'
     },
     {
         id: 5,
         title: 'Ненавижу SugarCrash',
         author: 'Citicrazi',
-        image: track5
+        image: track5,
+        length: '3:44'
     },
     {
         id: 6,
         title: 'Робот Rammstein',
         author: 'Ramzes Govnomes',
-        image: track6
+        image: track6,
+        length: '3:44'
     }
 ];
 
