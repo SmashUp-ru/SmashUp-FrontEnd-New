@@ -45,7 +45,7 @@ export default function SmashUpInput({
                         if (isFocused === undefined) setFocus(false);
                     }}
                     className={twMerge(
-                        'w-full bg-surface py-[14px]  rounded-2xl',
+                        'w-full bg-surface py-[14px] pl-[25px] rounded-2xl',
                         'font-normal text-base text-onSurfaceVariant placeholder-onSurfaceVariant',
                         icon ? 'pl-14' : '',
                         focus ? 'border-none outline outline-primary' : '',
@@ -57,7 +57,7 @@ export default function SmashUpInput({
                     onChange={onChange}
                     {...props}
                 />
-                <div className='absolute ml-6'>{icon}</div>
+                <div className='absolute ml-5'>{icon}</div>
             </div>
 
             {helper && <span className='font-normal text-xs text-onSurfaceVariant'>{helper}</span>}

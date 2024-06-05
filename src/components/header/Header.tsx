@@ -7,7 +7,7 @@ import BackButton from '@/components/header/BackButton';
 
 export default function Header() {
     return (
-        <div className='w-full pb-4 flex items-center gap-4'>
+        <div className='w-full my-4 flex items-center gap-4'>
             <BackButton />
             <Search />
 

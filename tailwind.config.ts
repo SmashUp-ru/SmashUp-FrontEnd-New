@@ -21,7 +21,11 @@ const config: Config = {
                 vk: '#0077FF'
             },
             gap: {
+                '18': '72px',
                 '25': '100px'
+            },
+            height: {
+                inherit: 'inherit'
             }
         }
     },
