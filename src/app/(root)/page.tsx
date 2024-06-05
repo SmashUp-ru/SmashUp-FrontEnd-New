@@ -2,6 +2,8 @@ import { recently, selections } from '@/utils/data';
 import Card from '@/components/Card';
 import Banner from '@/components/banners/Banner';
 import IPadAd from '@/components/banners/IPadAd';
+import Footer from '@/components/footer/Footer';
+import React from 'react';
 
 export default function Home() {
     return (
@@ -30,6 +32,8 @@ export default function Home() {
                     ))}
                 </div>
             </div>
+
+            <Footer />
         </div>
     );
 }

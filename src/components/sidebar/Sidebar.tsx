@@ -25,9 +25,9 @@ function Sidebar({ children }: { children: React.ReactNode }) {
         <div className='flex h-full px-4'>
             <div className='mt-4 hidden md:flex flex-col h-[958px] bg-surfaceVariant rounded-4xl w-[123px] gap-25 py-17.5'>
                 {/* Логотип */}
-                <div className='px-7'>
+                <a className='px-7' href='/'>
                     <SmashUpLogo width={66} height={34} color='primary' />
-                </div>
+                </a>
 
                 <div className='flex flex-col gap-y-12 px-12'>
                     {/* Навигация */}

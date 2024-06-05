@@ -29,5 +29,16 @@ export const siteConfig = {
             href: '/test',
             icon: SettingsIcon
         }
-    ]
+    ],
+    footer: {
+        links: [
+            { label: 'Правообладателям', href: '#' },
+            {
+                label: 'Пользовательское соглашение',
+                href: '#'
+            },
+            { label: 'Контакты', href: '#' }
+        ],
+        text: 'Сервис smashup.ru может содержать информацию, не предназначенную для несовершеннолетних'
+    }
 };
