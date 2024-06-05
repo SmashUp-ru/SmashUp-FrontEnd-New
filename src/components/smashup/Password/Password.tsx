@@ -21,7 +21,6 @@ export default function SmashUpPassword({
     disabled,
     isFocused,
     isError,
-    children,
     value,
     showPassword,
     showPasswordButton,
@@ -73,9 +72,7 @@ export default function SmashUpPassword({
                     disabled={disabled}
                     onChange={onChange}
                     {...props}
-                >
-                    {children}
-                </input>
+                />
                 <div className='absolute w-full px-6 flex flex-row justify-between items-center'>
                     <PasswordIcon width={20} height={17} className='z-20' />
                     {!disabled && showPasswordButton && (
