@@ -16,6 +16,7 @@ export interface TrackItemProps {
     listened?: number;
     length?: string;
     liked?: boolean;
+    showLiked?: boolean;
 }
 
 export default function TrackItem({
@@ -26,7 +27,8 @@ export default function TrackItem({
     explicit,
     listened,
     length,
-    liked
+    liked,
+    showLiked
 }: TrackItemProps) {
     const { setTrack } = useContext(TrackContext);
 
@@ -71,13 +73,13 @@ export default function TrackItem({
             </div>
 
             <div className='flex flex-row gap-4 items-center'>
-                {
+                {showLiked !== false && (
                     <HeartIcon
                         width={20}
                         height={17}
                         color={liked ? 'primary' : 'onSurfaceVariant'}
                     />
-                }
+                )}
                 {listened && <span className='text-onSurfaceVariant'>{listened}</span>}
                 {length && <span className='text-onSurfaceVariant'>{length}</span>}
             </div>

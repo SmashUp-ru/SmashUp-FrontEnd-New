@@ -87,7 +87,7 @@ export default function Track() {
                             Исходники
                         </span>
                         {mashups_search.map((item) => (
-                            <TrackItem key={item.id} {...item} />
+                            <TrackItem key={item.id} {...item} id={undefined} showLiked={false} />
                         ))}
                     </div>
 
