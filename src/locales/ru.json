@@ -1,0 +1,11 @@
+{
+  "common": {
+    "meta": {
+      "title": "SmashUp",
+      "description": "Лучший плеер для мэшапов"
+    }
+  },
+  "test": {
+    "title": "Тест"
+  }
+}

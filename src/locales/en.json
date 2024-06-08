@@ -1,0 +1,11 @@
+{
+  "common": {
+    "meta": {
+      "title": "SmashUp",
+      "description": "Best player for mashups"
+    }
+  },
+  "test": {
+    "title": "test"
+  }
+}
