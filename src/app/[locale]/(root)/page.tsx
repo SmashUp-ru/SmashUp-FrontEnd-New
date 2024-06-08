@@ -5,8 +5,10 @@ import IPadAd from '@/components/banners/IPadAd';
 import Footer from '@/components/footer/Footer';
 import React from 'react';
 import TrackItem from '@/components/TrackItem';
+import { useTranslations } from 'next-intl';
 
 export default function Home() {
+    const t = useTranslations('home');
     return (
         <div className='flex flex-col gap-12'>
             {/* Реклама */}
@@ -16,7 +18,9 @@ export default function Home() {
 
             {/* Подборки */}
             <div>
-                <h2 className='font-semibold text-2xl text-onSurface pb-5'>Подборки</h2>
+                <h2 className='font-semibold text-2xl text-onSurface pb-5'>
+                    {t('compilations.title')}
+                </h2>
                 <div className='flex flex-row gap-7 w-full h-[301px] overflow-visible'>
                     {selections.map((item) => (
                         <Card key={item.id} {...item} bg />
@@ -27,9 +31,11 @@ export default function Home() {
             {/* Недавно прослушано */}
             <div>
                 <div className='flex flex-row justify-between'>
-                    <h2 className='font-semibold text-2xl text-onSurface pb-5'>Премьера!</h2>
+                    <h2 className='font-semibold text-2xl text-onSurface pb-5'>
+                        {t('premier.title')}
+                    </h2>
                     <span className='font-bold text-base text-onSurfaceVariant text-opacity-50 uppercase'>
-                        Показать все
+                        {t('premier.button')}
                     </span>
                 </div>
 

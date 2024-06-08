@@ -3,9 +3,28 @@
     "meta": {
       "title": "SmashUp",
       "description": "Лучший плеер для мэшапов"
+    },
+    "agreements": {
+      "rightholders": "Правообладателям",
+      "agreement": "Пользовательское соглашение",
+      "contacts": "Контакты",
+      "description": "Сервис smashup.ru может содержать информацию, не предназначенную для несовершеннолетних"
     }
   },
-  "test": {
-    "title": "Тест"
+  "home": {
+    "ad": {
+      "title": "IPad Pro",
+      "description": "Невероятно тонкий. Невероятно мощный.",
+      "button1": "Узнать больше",
+      "button2": "Купить"
+    },
+    "compilations": {
+      "title": "Подборки",
+      "button": "Посмотреть всё"
+    },
+    "premier": {
+      "title": "Премьера!",
+      "button": "Посмотреть всё"
+    }
   }
 }

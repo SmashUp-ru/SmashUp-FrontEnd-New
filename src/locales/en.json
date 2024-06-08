@@ -3,9 +3,28 @@
     "meta": {
       "title": "SmashUp",
       "description": "Best player for mashups"
+    },
+    "agreements": {
+      "rightholders": "For right holders",
+      "agreement": "User Agreement",
+      "contacts": "Contacts",
+      "description": "The smashup.ru service may contain information not intended for minors"
     }
   },
-  "test": {
-    "title": "test"
+  "home": {
+    "ad": {
+      "title": "IPad Pro",
+      "description": "Unbelievably thin. Incredibly powerful.",
+      "button1": "Learn more",
+      "button2": "Buy"
+    },
+    "compilations": {
+      "title": "Compilations",
+      "button": "View all"
+    },
+    "premier": {
+      "title": "Premier!",
+      "button": "View all"
+    }
   }
 }
