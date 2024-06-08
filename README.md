@@ -47,3 +47,14 @@ tailwindcss-themer. В качестве примера там имеется tes
 
 Для того, чтобы применить тему, добавьте в тег <html> каждого из существующих
 layout.tsx ([root](./src/app/(root)/layout.tsx), [auth](./src/app/(auth)/layout.tsx), [not found](./src/app/[...not_found]/layout.tsx)) `className='test-theme'`.
+
+## Локализация
+
+Для добавления нового языка перейдите в [src/i18n.config.ts](src/i18n.config.ts) и добавьте новый язык в
+
+```ts
+export const locales = ['ru', 'en'] as const;
+```
+
+После этого создайте соответствующий json файл в [src/locales](src/locales). Формат можно посмотреть
+в [src/locales/ru.json](src/locales/ru.json).
