@@ -19,7 +19,7 @@ export default function SmashUpButton({
             {...props}
             disabled={disabled}
             className={twMerge(
-                'w-[460px] h-[54px] rounded-2xl font-semibold text-xl',
+                'rounded-2xl font-semibold text-xl',
                 'flex flex-row justify-center items-center gap-2.5',
                 category === undefined || category === 'fill'
                     ? `bg-primary hover:bg-primaryVariant text-onPrimary  ${disabled ? 'brightness-75' : ''}`
