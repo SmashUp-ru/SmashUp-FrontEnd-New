@@ -10,7 +10,7 @@ export default function Moderation() {
     const [tabIndex, setTabIndex] = useState(0);
 
     return (
-        <div className='px-8 flex flex-col gap-6'>
+        <div className='flex flex-col gap-6'>
             <h1 className='font-semibold text-3xl'>Модерация</h1>
 
             {/*Селектор*/}

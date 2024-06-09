@@ -51,7 +51,7 @@ export default function TrackItem({
                     <div className='flex flex-col'>
                         <div className='flex flex-row gap-2 items-center'>
                             <span
-                                className='font-normal text-base cursor-pointer'
+                                className='font-bold text-base cursor-pointer'
                                 onClick={() => {
                                     if (setTrack) {
                                         setTrack(id);
@@ -72,7 +72,7 @@ export default function TrackItem({
                 </div>
             </div>
 
-            <div className='flex flex-row gap-4 items-center'>
+            <div className='w-[95px] flex flex-row items-center justify-between'>
                 {showLiked !== false && (
                     <HeartIcon
                         width={20}
