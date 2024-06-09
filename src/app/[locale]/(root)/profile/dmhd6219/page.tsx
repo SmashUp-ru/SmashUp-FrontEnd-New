@@ -8,6 +8,7 @@ import TrackItem from '@/components/TrackItem';
 import Pin from '@/components/smashup/Pin/Pin';
 import SmashUpButton from '@/components/smashup/Button/Button';
 import Card from '@/components/Card';
+import egor from '/public/dev/search/egor.png';
 
 export default function Profile() {
     return (
@@ -42,17 +43,26 @@ export default function Profile() {
             </div>
 
             {/* Семые популярные мэшапы */}
-            <div className='flex flex-col gap-4'>
-                <div className='flex flex-row justify-between items-center'>
-                    <h2 className='font-semibold text-2xl'>Популярные треки</h2>
-                    <span className='font-bold text-base text-onSurfaceVariant text-opacity-50 uppercase'>
-                        Показать все
-                    </span>
+            <div className='flex flex-row gap-6 flex-wrap w-full'>
+                {/*Популярные треки*/}
+                <div className='flex flex-col gap-4 w-1/2'>
+                    <div className='flex flex-row justify-between items-center'>
+                        <h2 className='font-semibold text-2xl'>Популярные треки</h2>
+                        <span className='font-bold text-base text-onSurfaceVariant text-opacity-50 uppercase'>
+                            Показать все
+                        </span>
+                    </div>
+                    <div className='flex flex-col'>
+                        {profile_popular_tracks.map((item) => (
+                            <TrackItem key={item.id} {...item} />
+                        ))}
+                    </div>
                 </div>
-                <div className='flex flex-col'>
-                    {profile_popular_tracks.map((item) => (
-                        <TrackItem key={item.id} {...item} />
-                    ))}
+
+                {/*Недавний релиз*/}
+                <div className='flex flex-col gap-4'>
+                    <h2 className='font-semibold text-2xl'>Недавний релиз</h2>
+                    <Card id={0} title='Егор комсомольцев' author='Егор ЛетоОоО' image={egor} />
                 </div>
             </div>
 
