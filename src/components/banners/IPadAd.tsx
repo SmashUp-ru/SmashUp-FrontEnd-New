@@ -12,8 +12,8 @@ export default function IPadAd() {
                 <p className='text-lg'>{t('description')}</p>
             </div>
             <div className='flex flex-row gap-5'>
-                <SmashUpButton className='w-[150px] h-[40px]'>{t('button1')}</SmashUpButton>
-                <SmashUpButton className='w-[150px] h-[40px]' category='stroke'>
+                <SmashUpButton className='w-[180px] h-[40px]'>{t('button1')}</SmashUpButton>
+                <SmashUpButton className='w-[110px] h-[40px]' category='stroke'>
                     {t('button2')}
                 </SmashUpButton>
             </div>
