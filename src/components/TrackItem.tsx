@@ -72,17 +72,19 @@ export default function TrackItem({
                 </div>
             </div>
 
-            <div className='w-[95px] flex flex-row items-center justify-between'>
-                {showLiked !== false && (
-                    <HeartIcon
-                        width={20}
-                        height={17}
-                        color={liked ? 'primary' : 'onSurfaceVariant'}
-                    />
-                )}
-                {listened && <span className='text-onSurfaceVariant'>{listened}</span>}
-                {length && <span className='text-onSurfaceVariant'>{length}</span>}
-            </div>
+            {(showLiked !== false || listened || length) && (
+                <div className='w-[95px] flex flex-row items-center justify-between'>
+                    {showLiked !== false && (
+                        <HeartIcon
+                            width={20}
+                            height={17}
+                            color={liked ? 'primary' : 'onSurfaceVariant'}
+                        />
+                    )}
+                    {listened && <span className='text-onSurfaceVariant'>{listened}</span>}
+                    {length && <span className='text-onSurfaceVariant'>{length}</span>}
+                </div>
+            )}
         </div>
     );
 }
