@@ -37,7 +37,7 @@ export default function Search() {
                 icon={<SearchIcon width={16} height={16} color='onSurface' />}
                 className=''
                 onClick={() => {
-                    router.push('/search?q=' + searchValue);
+                    router.push(`/search${searchValue ? `?q=${searchValue}` : ''}`);
                 }}
                 onChange={(e) => {
                     setSearchValue(e.target.value);
