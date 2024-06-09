@@ -23,6 +23,7 @@
     "react-toggle": "^4.1.3",
     "react-toggle-component": "^3.0.8",
     "tailwind-merge": "^2.2.1",
+    "use-debounce": "^10.0.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
