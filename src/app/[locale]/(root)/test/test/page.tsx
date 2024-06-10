@@ -3,6 +3,7 @@
 import Tabs from '@/components/tabs/Tabs';
 import Tab from '@/components/tabs/Tab';
 import { useState } from 'react';
+import Fullscreen from '@/components/player/Fullscreen';
 
 export default function Test() {
     const [activeTab, setActiveTab] = useState(0);
@@ -21,6 +22,8 @@ export default function Test() {
                     <div>second</div>
                 </Tab>
             </Tabs>
+
+            <Fullscreen />
         </div>
     );
 }

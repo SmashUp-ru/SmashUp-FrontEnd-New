@@ -9,7 +9,8 @@ const config: Config = {
     theme: {
         extend: {
             borderRadius: {
-                '4xl': '32px'
+                '4xl': '32px',
+                '8xl': '60px'
             },
             padding: {
                 '15': '3.75rem',
@@ -26,6 +27,9 @@ const config: Config = {
             },
             height: {
                 inherit: 'inherit'
+            },
+            zIndex: {
+                '9999': '9999'
             }
         }
     },
