@@ -4,15 +4,30 @@ import Image from 'next/image';
 import track from '/public/dev/moderation/picture.png';
 import BackIcon from '@/components/icons/BackIcon';
 
-export default function Fullscreen() {
+export default function Fullscreen({
+    active,
+    setActive
+}: {
+    active: boolean;
+    // eslint-disable-next-line no-unused-vars
+    setActive: (active: boolean) => void;
+}) {
     return (
-        <div className={twMerge('absolute top-0 left-0 w-[100vw] h-[100vh] bg-black z-9999', '')}>
+        <div
+            className={twMerge(
+                'absolute top-0 left-0 w-[100vw] h-[100vh] bg-black z-9999',
+                active ? '' : 'hidden'
+            )}
+        >
             <div className='w-full h-full bg-[#8F8FAB33]/[0.2] flex flex-col justify-center items-center relative'>
                 <div className='absolute top-10 px-10 w-full flex flex-row justify-between items-center'>
                     <SmashUpLogo width={66} height={34} color='onSurface' />
                     <div className='flex flex-row gap-4 items-center'>
                         <span>Вы находитесь в полноэкранном режиме</span>
-                        <div className='w-[40px] h-[40px] flex flex-col items-center justify-center rounded-full cursor-pointer bg-onSurfaceVariant -rotate-90'>
+                        <div
+                            className='w-[40px] h-[40px] flex flex-col items-center justify-center rounded-full cursor-pointer bg-onSurfaceVariant -rotate-90'
+                            onClick={() => setActive(false)}
+                        >
                             <BackIcon width={11} height={18} color='surface' />
                         </div>
                     </div>

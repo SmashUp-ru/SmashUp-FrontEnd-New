@@ -4,9 +4,12 @@ import Tabs from '@/components/tabs/Tabs';
 import Tab from '@/components/tabs/Tab';
 import { useState } from 'react';
 import Fullscreen from '@/components/player/Fullscreen';
+import SmashUpButton from '@/components/smashup/Button/Button';
 
 export default function Test() {
     const [activeTab, setActiveTab] = useState(0);
+
+    const [fullScreen, setFullScreen] = useState(false);
     return (
         <div>
             <div className='flex flex-row gap-4'>
@@ -23,7 +26,11 @@ export default function Test() {
                 </Tab>
             </Tabs>
 
-            <Fullscreen />
+            <SmashUpButton className='' onClick={() => setFullScreen(true)}>
+                Открыть
+            </SmashUpButton>
+
+            <Fullscreen active={fullScreen} setActive={setFullScreen} />
         </div>
     );
 }
