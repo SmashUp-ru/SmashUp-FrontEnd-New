@@ -9,7 +9,7 @@ export default function Footer() {
                     <a href='#' className='text-onSurface font-bold text-base'>
                         {t('rightholders')}
                     </a>
-                    <a href='#' className='text-onSurface font-bold text-base'>
+                    <a href='/agreement' className='text-onSurface font-bold text-base'>
                         {t('agreement')}
                     </a>{' '}
                     <a href='#' className='text-onSurface font-bold text-base'>
