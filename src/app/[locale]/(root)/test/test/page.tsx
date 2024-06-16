@@ -5,21 +5,24 @@ import Tab from '@/components/tabs/Tab';
 import { useEffect, useState } from 'react';
 import Fullscreen from '@/components/player/Fullscreen';
 import SmashUpButton from '@/components/smashup/Button/Button';
-import { UserCache } from '@/hooks/cache';
+import { useUserCache } from '@/hooks/repositories';
 import ArtistCard from '@/components/ArtistCard';
-import { useApi } from '@/hooks/api';
+import { User } from '@/hooks/entities';
 
 export default function Test() {
     const [activeTab, setActiveTab] = useState(0);
 
-    const cache = new UserCache(useApi());
-    const [users, setUsers] = useState<any>([]);
+    const cache = useUserCache();
+    const [users, setUsers] = useState<User[]>([]);
 
     useEffect(() => {
-        cache.get([1, 2, 3, 4, 5]).then((result) => {
+        cache.getMany([1, 2, 3, 4, 5]).then((result) => {
             setUsers(result);
+            console.log(result[0].permissions);
+            console.log(result[0].permissions.isAdmin);
+            console.log(result[0].permissions.isAdmin());
         });
-    }, []);
+    }, [cache]);
 
     const [fullScreen, setFullScreen] = useState(false);
     return (
@@ -49,7 +52,15 @@ export default function Test() {
                     id={user.id}
                     key={user.id}
                     title={user.username}
-                    description={user.permissions}
+                    description={
+                        user.permissions.isAdmin()
+                            ? 'Администратор'
+                            : user.permissions.isModerator()
+                              ? 'Модератор'
+                              : user.permissions.isMashuper()
+                                ? 'Мэшапер'
+                                : 'Пользователь'
+                    }
                     image={''}
                     /*image={'https://api.smashup.ru/uploads/user/' + user.imageUrl + '_800x800.png'}*/
                 />
