@@ -5,8 +5,10 @@ import TrackItem from '@/components/TrackItem';
 import PlayIcon from '@/components/icons/PlayIcon';
 import HideIcon from '@/components/icons/HideButton';
 import ShareIcon from '@/components/icons/ShareIcon';
+import { useTranslations } from 'next-intl';
 
 export default function Favorites() {
+    const transl = useTranslations('favorites');
     return (
         <div className='flex flex-col gap-6'>
             {/* Профиль */}
@@ -21,8 +23,8 @@ export default function Favorites() {
 
                 <div className='flex flex-col justify-center gap-6'>
                     <div>
-                        <span className='font-medium text-lg text-onSurfaceVariant'>Плейлист</span>
-                        <h1 className='font-bold text-4xl text-onSurface'>Мне нравится</h1>
+                        <span className='font-medium text-lg text-onSurfaceVariant'>{transl('playlist')}</span>
+                        <h1 className='font-bold text-4xl text-onSurface'>{transl('title')}</h1>
                     </div>
 
                     <div className='flex gap-5 items-center'>

@@ -8,17 +8,20 @@ import SmashUpSlider from '@/components/smashup/Slider/Slider';
 import SmashUpToggle from '@/components/smashup/Toggle/Toggle';
 import SmashUpButton from '@/components/smashup/Button/Button';
 import EditIcon from '@/components/icons/EditIcon';
+import { useTranslations } from 'next-intl';
 
 export default function Settings() {
+    const transl = useTranslations('settings');
+
     return (
         <div className='h-[calc(100%_-_150px)]'>
-            <h1 className='font-bold text-4xl text-onSurface mb-6'>Настройки</h1>
+            <h1 className='font-bold text-4xl text-onSurface mb-6'>{transl('title')}</h1>
             <div className='flex items-start gap-12 h-full'>
                 {/*Аватарка*/}
                 <label className='relative cursor-pointer' htmlFor='update-avatar'>
                     <Image
                         src={profile}
-                        alt='Аватарка профиля'
+                        alt={transl('pic')}
                         className='w-[200px] h-[200px] rounded-full brightness-50'
                     />
                     <EditIcon
@@ -31,19 +34,19 @@ export default function Settings() {
                 <div className='relative flex flex-col gap-18 h-full'>
                     {/*Настройки профиля*/}
                     <div className='flex flex-col gap-9'>
-                        <h2 className='font-bold text-3xl'>Настройки профиля</h2>
+                        <h2 className='font-bold text-3xl'>{transl('profile-settings')}</h2>
 
                         {/*Никнейм*/}
                         <div>
                             <h3 className='font-medium text-base text-onSurfaceVariant'>
-                                Отображаемый никнейм
+                                {transl('nickname')}
                             </h3>
                             <span className='font-bold text-2xl text-onSurface'>LeonidM</span>
                         </div>
 
                         {/*Почта*/}
                         <div>
-                            <h3 className='font-medium text-base text-onSurfaceVariant'>Почта</h3>
+                            <h3 className='font-medium text-base text-onSurfaceVariant'>{transl('mail')}</h3>
                             <span className='font-bold text-2xl text-onSurface'>
                                 leonidm@gmail.com
                             </span>
@@ -52,17 +55,17 @@ export default function Settings() {
                         {/*Пароль*/}
                         <div className='flex flex-row gap-x-20 gap-y-2 flex-wrap'>
                             <SmashUpPassword
-                                heading='Текущий пароль'
+                                heading={transl('password.current')}
                                 className='w-[400px]'
                                 showPasswordButton
                             />
                             <SmashUpPassword
-                                heading='Новый пароль'
+                                heading={transl('password.new')}
                                 className='w-[400px]'
                                 showPasswordButton
                             />
                             <SmashUpPassword
-                                heading='Новый ещё раз'
+                                heading={transl('password.again')}
                                 className='w-[400px]'
                                 showPasswordButton
                             />
@@ -76,7 +79,7 @@ export default function Settings() {
                                     <GoogleIcon width={32} height={32} />
                                     <div>
                                         <h3 className='font-medium text-base text-onSurfaceVariant'>
-                                            Не подключено
+                                            {transl('disabled')}
                                         </h3>
                                         <span className='font-bold text-2xl text-onSurface'>
                                             Google
@@ -93,7 +96,7 @@ export default function Settings() {
                                     <VkBlueIcon width={32} height={32} />
                                     <div>
                                         <h3 className='font-medium text-base text-onSurfaceVariant'>
-                                            Не подключено
+                                            {transl('disabled')}
                                         </h3>
                                         <span className='font-bold text-2xl text-onSurface'>
                                             VK
@@ -108,24 +111,24 @@ export default function Settings() {
 
                     {/*Настройки аккаунта*/}
                     <div className='flex flex-col gap-9'>
-                        <h2 className='font-bold text-3xl'>Настройки аккаунта</h2>
+                        <h2 className='font-bold text-3xl'>{transl('account-settings')}</h2>
                         <div className='flex flex-row gap-x-20 gap-y-10 flex-wrap'>
                             <SmashUpSlider
                                 amount={5}
-                                label='Битрейт мэшапов'
-                                markHints={['64кб', '96кб', '128кб', '160кб', 'Оригинал']}
+                                label={transl('bitrate.label')}
+                                markHints={transl('bitrate.marks')}
                             />
 
-                            <SmashUpToggle label='Разрешить мультисессии' />
+                            <SmashUpToggle label={transl('multisessions')} />
 
-                            <SmashUpToggle label='Показывать Explicit контент' />
+                            <SmashUpToggle label={transl('explicit')} />
                         </div>
                     </div>
 
                     <div className='p-5 bg-surface rounded-2xl absolute bottom-4 flex flex-row gap-6'>
-                        <SmashUpButton>Сохранить</SmashUpButton>
+                        <SmashUpButton>{transl('save')}</SmashUpButton>
                         <SmashUpButton category='fill-default' className='w-[230px]'>
-                            Отменить
+                            {transl('cancel')}
                         </SmashUpButton>
                     </div>
                 </div>

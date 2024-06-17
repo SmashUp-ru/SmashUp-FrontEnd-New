@@ -2,6 +2,7 @@ import React from 'react';
 import UploadIcon from '@/components/icons/UploadIcon';
 import { twMerge } from 'tailwind-merge';
 import SpinnerIcon from '@/components/icons/SpinnerIcon';
+import { useTranslations } from 'next-intl';
 
 export interface UploadButtonProps extends React.InputHTMLAttributes<HTMLInputElement> {
     loading?: number;
@@ -14,6 +15,7 @@ export default function SmashUpUploadButton({
     className,
     ...props
 }: UploadButtonProps) {
+    const transl = useTranslations('upload_button');
     return (
         <div
             className={twMerge(
@@ -29,7 +31,7 @@ export default function SmashUpUploadButton({
                 {loading && (
                     <div className='flex flex-row gap-4'>
                         <SpinnerIcon width={20} height={20} />
-                        <span>Загружено на {loading}%</span>
+                        <span>{transl('progress')}{loading}%</span>
                     </div>
                 )}
             </div>

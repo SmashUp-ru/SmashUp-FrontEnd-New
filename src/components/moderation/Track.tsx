@@ -11,10 +11,11 @@ import SmashUpCheckBox from '@/components/smashup/Checkbox/Checkbox';
 import SmashUpInput from '@/components/smashup/Input/Input';
 import { mashups_search } from '@/utils/data';
 import TrackItem from '@/components/TrackItem';
+import { useTranslations } from 'next-intl';
 
 export default function Track() {
     const [expanded, setExpanded] = React.useState(false);
-
+    const transl = useTranslations('moderation');
     return (
         <div>
             {/* TrackSideSheet */}
@@ -36,11 +37,11 @@ export default function Track() {
                         <PlayIcon width={32} height={32} color='primary' />
                     </button>
                     <SmashUpButton className='w-[140px] h-[36px] font-semibold text-base'>
-                        Принять
+                        {transl('accept')}
                     </SmashUpButton>
 
                     <SmashUpButton className='w-[140px] h-[36px] font-semibold text-base bg-onPrimary text-onSurface'>
-                        Отклонить
+                        {transl('reject')}
                     </SmashUpButton>
 
                     <button>
@@ -84,7 +85,7 @@ export default function Track() {
                     {/* Исходники */}
                     <div className='flex flex-col gap-2.5 w-[313px] h-[194px] overflow-y-scroll overflow-x-hidden flex-shrink-0'>
                         <span className='text-onSurfaceVariant font-medium text-base'>
-                            Исходники
+                            {transl('sources')}
                         </span>
                         {mashups_search.map((item) => (
                             <TrackItem key={item.id} {...item} id={undefined} showLiked={false} />
@@ -93,7 +94,7 @@ export default function Track() {
 
                     {/* Жанры */}
                     <div className='flex flex-col gap-2.5 w-[313px] h-[194px] overflow-y-scroll overflow-x-hidden flex-shrink-0'>
-                        <span className='text-onSurfaceVariant font-medium text-base'>Жанры</span>
+                        <span className='text-onSurfaceVariant font-medium text-base'>{transl('genres')}</span>
                         <div className='w-[304px] min-h-[49px] rounded-xl bg-surface text-center flex flex-col justify-center font-medium text-base text-onSurfaceVariant'>
                             Мемы
                         </div>
@@ -112,7 +113,7 @@ export default function Track() {
                     <div className='flex flex-col justify-between w-[313px] gap-2'>
                         <div className='w-full flex flex-col gap-2.5'>
                             <label className='text-left text-onSurfaceVariant font-medium text-base'>
-                                Дополнительно
+                                {transl('misc')}
                             </label>
                             <div className='w-full bg-surfaceVariant h-[49px] rounded-xl flex flex-row items-center gap-1.5 px-4'>
                                 <SmashUpCheckBox label='Explixit (Мат, Банворды)' />

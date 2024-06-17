@@ -4,22 +4,24 @@ import { Toaster, ToastBar } from 'react-hot-toast';
 import getWarningToast from '@/components/toast/Warning';
 import getNotificationToast from '@/components/toast/Notification';
 import getComplexNotificationToast from '@/components/toast/ComplexNotification';
+import { useTranslations } from 'next-intl';
 
 export default function TestPage() {
     const warning = getWarningToast;
     const notification = getNotificationToast;
     const complexNotification = getComplexNotificationToast;
+    const transl = useTranslations('test');
 
     return (
         <div className='px-8'>
             <div className='flex flex-col gap-2 text-center'>
-                <a href='/test/components'>Открыть страницу со всеми компонентами</a>
+                <a href='/test/components'>{transl('open')}</a>
 
                 <button onClick={() => warning('Добавлено в плейлист', 'success')}>
-                    Открыть добрый попап
+                    {transl('good_popup')}
                 </button>
                 <button onClick={() => warning('Ебать 400 рублей', 'error')}>
-                    Открыть злой попап
+                    {transl('bad_popup')}
                 </button>
 
                 <button
@@ -30,7 +32,7 @@ export default function TestPage() {
                         )
                     }
                 >
-                    Добавить уведомление
+                    {transl('notification')}
                 </button>
 
                 <button
@@ -41,24 +43,22 @@ export default function TestPage() {
                         )
                     }
                 >
-                    Добавить большое уведомление
+                    {transl('big_notification')}
                 </button>
 
-                <a href='/login'>Открыть страницу входа</a>
-                <a href='/register'>Открыть страницу регистрации</a>
-                <a href='/restore'>Открыть страницу восстановления пароля</a>
-                <a href='/confirm-mail'>Открыть страницу подтверждения аккаунта</a>
-                <a href='/update-password'>
-                    Открыть страницу смены пароля после подтверждения аккаунта
-                </a>
-                <a href='/search'>Открыть страницу поиска</a>
-                <a href='/profile/dmhd6219'>Открыть страницу профиля</a>
-                <a href='/profile/settings'>Открыть страницу настроек профиля</a>
-                <a href='/profile/dmhd6219/uploaded'>Открыть страницу загруженных мэшапов</a>
-                <a href='/profile/moderation'>Открыть страницу модерации мэшапов</a>
-                <a href='/upload/track'>Открыть страницу загрузки трека</a>
-                <a href='/upload/mashup'>Открыть страницу загрузки мэшапа</a>
-                <a href='/not-found'>Открыть страницу 404</a>
+                <a href='/login'>{transl('links.login')}</a>
+                <a href='/register'>{transl('links.register')}</a>
+                <a href='/restore'>{transl('links.restore')}</a>
+                <a href='/confirm-mail'>{transl('links.confirm-mail')}</a>
+                <a href='/update-password'>{transl('links.update-password')}</a>
+                <a href='/search'>{transl('links.search')}</a>
+                <a href='/profile/dmhd6219'>{transl('links.profile')}</a>
+                <a href='/profile/settings'>{transl('links.settings')}</a>
+                <a href='/profile/dmhd6219/uploaded'>{transl('links.uploaded')}</a>
+                <a href='/profile/moderation'>{transl('links.moderation')}</a>
+                <a href='/upload/track'>{transl('links.track')}</a>
+                <a href='/upload/mashup'>{transl('links.mashup')}</a>
+                <a href='/not-found'>{transl('links.not-found')}</a>
             </div>
 
             <Toaster>{(t) => <ToastBar toast={t} />}</Toaster>

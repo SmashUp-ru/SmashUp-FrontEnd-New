@@ -1,6 +1,7 @@
 import toast from 'react-hot-toast';
 import { twMerge } from 'tailwind-merge';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import avatarka from '/public/dev/notification/avatarka.png';
 import SmashUpButton from '@/components/smashup/Button/Button';
@@ -10,12 +11,13 @@ export default function getComplexNotificationToast(
     text: string,
     className?: string
 ) {
+    const transl = useTranslations('complex_notification');
     return toast.custom(
         (t) => (
             <div className={twMerge('bg-surface rounded-2xl', className)}>
                 <div className='flex flex-col gap-2.5'>
                     <span className='px-5 py-4 font-bold text-base text-white'>
-                        Уведомления (35)
+                        {transl('title')} (35)
                     </span>
                 </div>
 
@@ -57,7 +59,7 @@ export default function getComplexNotificationToast(
                                 className='w-[149px] h-[27px] font-semibold text-xs'
                                 onClick={() => toast.dismiss(t.id)}
                             >
-                                Подтвердить
+                                {transl('button1')}
                             </SmashUpButton>
 
                             <SmashUpButton
@@ -65,7 +67,7 @@ export default function getComplexNotificationToast(
                                 onClick={() => toast.dismiss(t.id)}
                                 category='stroke'
                             >
-                                Отменить
+                                {transl('button2')}
                             </SmashUpButton>
                         </div>
                     </div>

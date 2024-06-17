@@ -1,8 +1,10 @@
 import SmashUpPopover from '@/components/smashup/Popover/Popover';
 import InfoIcon from '@/components/icons/InfoIcon';
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function PopoverOverview() {
+    const transl = useTranslations('upload');
     return (
         <div className='w-full h-full flex flex-col justify-center items-center'>
             <SmashUpPopover
@@ -10,33 +12,33 @@ export default function PopoverOverview() {
                 content={
                     <div className='flex flex-col gap-7 max-w-[737px]'>
                         <h1 className='font-semibold text-2xl'>
-                            Жанры выбираются в соответствии с жанром оригинального трека, однако это
-                            не подходит для следующих категорий:
+                            {transl('mashup.genres.description')}
                         </h1>
                         <div className='flex flex-col gap-1'>
                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                <span className='text-white'>Мемы -</span> Если в мэшапе активно
-                                использовались мемы, например, &ldquo;Случай в казино&ldquo;
+                                <span className='text-white'>{transl('mashup.genres.memes_t')} -</span>
+                                {transl('mashup.genres.memes')}
+                                &ldquo;Случай в казино&ldquo;
                             </span>
                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                <span className='text-white'>Мегамэшап -</span> Если использовалось
-                                очень много разных треков и мемов
+                                <span className='text-white'>{transl('mashup.genres.megamashup_t')} -</span>
+                                {transl('mashup.genres.megamashup')}
                             </span>
                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                <span className='text-white'>Cover -</span> Если мэшап был записан
-                                вживую с вашим голосом
+                                <span className='text-white'>Cover -</span>
+                                {transl('mashup.genres.cover')}
                             </span>
                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                <span className='text-white'>Soundclown -</span> Если мэшап
-                                представляет из себя не совсем музыкальную композицию
+                                <span className='text-white'>Soundclown -</span>
+                                {transl('mashup.genres.soundclown')}
                             </span>
                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                <span className='text-white'>Morph -</span> Если в мэшапе активно
-                                использовался такой эффект, как &ldquo;morphing&ldquo;
+                                <span className='text-white'>Morph -</span>
+                                {transl('mashup.genres.morph')}
                             </span>
                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                <span className='text-white'>Shitpost -</span> Если мэшап был создан
-                                исключительно как шутка без долгой работы над ним
+                                <span className='text-white'>Shitpost -</span>
+                                {transl('mashup.genres.shitpost')}
                             </span>
                         </div>
                     </div>

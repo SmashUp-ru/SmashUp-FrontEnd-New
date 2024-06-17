@@ -9,18 +9,21 @@ import SmashUpCheckBox from '@/components/smashup/Checkbox/Checkbox';
 import SmashUpInput from '@/components/smashup/Input/Input';
 import SmashUpPassword from '@/components/smashup/Password/Password';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function Login() {
     const router = useRouter();
 
     const query = `uuid=${v4()}&app_id=${process.env.NEXT_PUBLIC_VK_APP_ID}&response_type=silent_token&redirect_uri=${process.env.NEXT_PUBLIC_VK_REDIRECT_URL}&redirect_state=smashup`;
 
+    const transl = useTranslations('login');
+
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
             {/* Заголовок */}
             <div className='w-[90%] max-w-[580px] text-center flex flex-col gap-2.5'>
-                <h1 className='text-primary font-semibold text-5xl'>Вход</h1>
-                <p className='text-onSurface font-medium text-xl'>Добро пожаловать снова!</p>
+                <h1 className='text-primary font-semibold text-5xl'>{transl('title')}</h1>
+                <p className='text-onSurface font-medium text-xl'>{transl('welcome')}</p>
             </div>
 
             {/* Форма */}
@@ -30,7 +33,7 @@ export default function Login() {
                         <div className='flex flex-col gap-6'>
                             {/* Почта */}
                             <SmashUpInput
-                                heading='Электронная почта'
+                                heading={transl('email')}
                                 placeholder='tapiri@smashup.ru'
                                 icon={<MailIcon width={20} height={16} />}
                             />
@@ -43,15 +46,15 @@ export default function Login() {
                             />
                         </div>
 
-                        <SmashUpCheckBox label='Запомнить меня' />
+                        <SmashUpCheckBox label={transl('remember')} />
                     </div>
 
-                    <SmashUpButton>Войти</SmashUpButton>
+                    <SmashUpButton>{transl('log-in')}</SmashUpButton>
 
                     {/* Разделитель */}
                     <div className='flex flex-row justify-between items-center'>
                         <div className='w-[25%] bg-onSurface h-[1px]'></div>
-                        <span className='w-[35%]'>Войти с помощью</span>
+                        <span className='w-[35%]'>{transl('log-in-with')}</span>
                         <div className='w-[25%] bg-onSurface h-[1px]'></div>
                     </div>
 
@@ -67,9 +70,9 @@ export default function Login() {
                         </SmashUpButton>
 
                         <span>
-                            Нет аккаунта?{' '}
+                            {transl('no-account')}
                             <a className='text-primary' href='/register'>
-                                Зарегистрируйтесь
+                                {transl('register')}
                             </a>
                         </span>
                     </div>
