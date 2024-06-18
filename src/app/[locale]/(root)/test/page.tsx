@@ -55,7 +55,6 @@ export default function TestPage() {
                 <Link href='/search'>Открыть страницу поиска</Link>
                 <Link href='/profile/dmhd6219'>Открыть страницу профиля</Link>
                 <Link href='/profile/settings'>Открыть страницу настроек профиля</Link>
-                <Link href='/profile/dmhd6219/uploaded'>Открыть страницу загруженных мэшапов</Link>
                 <Link href='/profile/moderation'>Открыть страницу модерации мэшапов</Link>
                 <Link href='/upload/track'>Открыть страницу загрузки трека</Link>
                 <Link href='/upload/mashup'>Открыть страницу загрузки мэшапа</Link>

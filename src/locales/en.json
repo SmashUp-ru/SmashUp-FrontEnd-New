@@ -54,7 +54,9 @@
       "title": "Moderation",
       "pending": "Pending review",
       "accepted": "Accepted",
-      "rejected": "Rejected"
+      "rejected": "Rejected",
+      "name": "Name",
+      "mashupers": "Mashupers"
     },
     "not_found": {
       "title": "Something went wrong",
@@ -63,7 +65,7 @@
     "upload": {
       "load": "Upload a track",
       "mashup": {
-        "title": "Mashup title",
+        "title": "Upload a mashup",
         "load": "Upload a mashup ( mp3 )",
         "search_used": "Search for the tracks used",
         "genres": {
@@ -143,13 +145,10 @@
       "account-settings": "Account settings",
       "bitrate": {
         "label": "Mashup bitrate",
-        "marks": [
-          "64kb",
-          "96kb",
-          "128kb",
-          "160kb",
-          "Original"
-        ]
+        "marks": {
+          "kb": "Kb",
+          "original": "Original"
+        }
       },
       "multisessions": "Allow multisessions",
       "explicit": "Show explicit content",
@@ -164,12 +163,7 @@
       "upload": "Upload a mashup",
       "popular": "Popular tracks",
       "show-all": "Show all",
-      "new-release": "New release",
-      "uploaded": {
-        "moderation": "In moderation",
-        "accepted": "Accepted",
-        "rejected": "Rejected"
-      }
+      "new-release": "New release"
     },
     "favorites": {
       "playlist": "Playlist",

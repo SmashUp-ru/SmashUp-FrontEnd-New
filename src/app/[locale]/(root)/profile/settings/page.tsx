@@ -12,14 +12,17 @@ import SmashUpButton from '@/components/smashup/Button/Button';
 import EditIcon from '@/components/icons/EditIcon';
 import Link from 'next/link';
 import { usePathname, useRouter } from '@/navigation';
+import { useTranslations } from 'next-intl';
 
 export default function Settings() {
     const router = useRouter();
     const pathname = usePathname();
 
+    const t = useTranslations('pages.settings');
+
     return (
         <div className='h-[calc(100%_-_150px)]'>
-            <h1 className='font-bold text-4xl text-onSurface mb-6'>Настройки</h1>
+            <h1 className='font-bold text-4xl text-onSurface mb-6'>{t('title')}</h1>
             <div className='flex items-start gap-12 h-full'>
                 {/*Аватарка*/}
                 <label className='relative cursor-pointer' htmlFor='update-avatar'>
@@ -38,19 +41,21 @@ export default function Settings() {
                 <div className='relative flex flex-col gap-18 h-full'>
                     {/*Настройки профиля*/}
                     <div className='flex flex-col gap-9'>
-                        <h2 className='font-bold text-3xl'>Настройки профиля</h2>
+                        <h2 className='font-bold text-3xl'>{t('profile-settings')}</h2>
 
                         {/*Никнейм*/}
                         <div>
                             <h3 className='font-medium text-base text-onSurfaceVariant'>
-                                Отображаемый никнейм
+                                {t('nickname')}
                             </h3>
                             <span className='font-bold text-2xl text-onSurface'>LeonidM</span>
                         </div>
 
                         {/*Почта*/}
                         <div>
-                            <h3 className='font-medium text-base text-onSurfaceVariant'>Почта</h3>
+                            <h3 className='font-medium text-base text-onSurfaceVariant'>
+                                {t('mail')}
+                            </h3>
                             <span className='font-bold text-2xl text-onSurface'>
                                 leonidm@gmail.com
                             </span>
@@ -59,17 +64,17 @@ export default function Settings() {
                         {/*Пароль*/}
                         <div className='flex flex-row gap-x-20 gap-y-2 flex-wrap'>
                             <SmashUpPassword
-                                heading='Текущий пароль'
+                                heading={t('password.current')}
                                 className='w-[400px]'
                                 showPasswordButton
                             />
                             <SmashUpPassword
-                                heading='Новый пароль'
+                                heading={t('password.new')}
                                 className='w-[400px]'
                                 showPasswordButton
                             />
                             <SmashUpPassword
-                                heading='Новый ещё раз'
+                                heading={t('password.again')}
                                 className='w-[400px]'
                                 showPasswordButton
                             />
@@ -83,7 +88,7 @@ export default function Settings() {
                                     <GoogleIcon width={32} height={32} />
                                     <div>
                                         <h3 className='font-medium text-base text-onSurfaceVariant'>
-                                            Не подключено
+                                            {t('disabled')}
                                         </h3>
                                         <span className='font-bold text-2xl text-onSurface'>
                                             Google
@@ -100,7 +105,7 @@ export default function Settings() {
                                     <VkBlueIcon width={32} height={32} />
                                     <div>
                                         <h3 className='font-medium text-base text-onSurfaceVariant'>
-                                            Не подключено
+                                            {t('disabled')}
                                         </h3>
                                         <span className='font-bold text-2xl text-onSurface'>
                                             VK
@@ -115,29 +120,37 @@ export default function Settings() {
 
                     {/*Настройки аккаунта*/}
                     <div className='flex flex-col gap-9'>
-                        <h2 className='font-bold text-3xl'>Настройки аккаунта</h2>
+                        <h2 className='font-bold text-3xl'>{t('account-settings')}</h2>
                         <div className='flex flex-row gap-x-20 gap-y-10 flex-wrap'>
                             <SmashUpSlider
                                 amount={5}
-                                label='Битрейт мэшапов'
-                                markHints={['64кб', '96кб', '128кб', '160кб', 'Оригинал']}
+                                label={t('bitrate.label')}
+                                markHints={[
+                                    '64' + t('bitrate.marks.kb'),
+                                    '96' + t('bitrate.marks.kb'),
+                                    '128' + t('bitrate.marks.kb'),
+                                    '160' + t('bitrate.marks.kb'),
+                                    t('bitrate.marks.original')
+                                ]}
                             />
 
-                            <SmashUpToggle label='Разрешить мультисессии' />
+                            <SmashUpToggle label={t('multisessions')} />
 
-                            <SmashUpToggle label='Показывать Explicit контент' />
+                            <SmashUpToggle label={t('explicit')} />
                         </div>
                     </div>
 
-                    <select onChange={(e) => router.replace(pathname, { locale: e.target.value })}>
-                        <option value='en'>English</option>
-                        <option value='ru'>Русский</option>
-                    </select>
+                    <SmashUpButton onClick={() => router.replace(pathname, { locale: 'ru' })}>
+                        Russian
+                    </SmashUpButton>
+                    <SmashUpButton onClick={() => router.replace(pathname, { locale: 'en' })}>
+                        English
+                    </SmashUpButton>
 
                     <div className='p-5 bg-surface rounded-2xl absolute bottom-4 flex flex-row gap-6'>
-                        <SmashUpButton>Сохранить</SmashUpButton>
+                        <SmashUpButton>{t('save')}</SmashUpButton>
                         <SmashUpButton category='fill-default' className='w-[230px]'>
-                            Отменить
+                            {t('cancel')}
                         </SmashUpButton>
                     </div>
                 </div>
