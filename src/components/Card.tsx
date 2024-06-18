@@ -6,6 +6,7 @@ import PlayIcon from '@/components/icons/PlayIcon';
 import PauseIcon from '@/components/icons/PauseIcon';
 import Pin from '@/components/smashup/Pin/Pin';
 import HideIcon from '@/components/icons/HideButton';
+import Link from 'next/link';
 
 export default function Card({
     id,
@@ -45,18 +46,18 @@ export default function Card({
             </div>
             <div className='flex flex-col gap-2 text-left w-full'>
                 <div className='flex flex-row justify-between items-center'>
-                    <a href={`/playlist/${id}`}>
+                    <Link href={`/playlist/${id}`}>
                         <span className='text-onSurface font-semibold text-base'>{title}</span>
-                    </a>
+                    </Link>
                     {showVisibleButton && (
                         <Pin className='w-8 h-6 flex flex-col justify-center items-center p-0'>
                             <HideIcon width={20} height={20} color='primary' />
                         </Pin>
                     )}
                 </div>
-                <a href={`/profile/${author}`}>
+                <Link href={`/profile/${author}`}>
                     <span className='text-neutral-400 font-normal text-base '>{author}</span>
-                </a>
+                </Link>
             </div>
         </div>
     );

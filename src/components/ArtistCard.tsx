@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import PlayIcon from '@/components/icons/PlayIcon';
 import PauseIcon from '@/components/icons/PauseIcon';
+import Link from 'next/link';
 
 export default function ArtistCard({
     id,
@@ -42,9 +43,9 @@ export default function ArtistCard({
             </div>
             <div className='flex flex-col gap-2 text-left w-full'>
                 <div className='flex flex-row justify-center items-center'>
-                    <a href={`/playlist/${id}`}>
+                    <Link href={`/playlist/${id}`}>
                         <span className='text-onSurface font-semibold text-base'>{title}</span>
-                    </a>
+                    </Link>
                 </div>
                 <span className='text-neutral-400 font-normal text-base '>{description}</span>
             </div>

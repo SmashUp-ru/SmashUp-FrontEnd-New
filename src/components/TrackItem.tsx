@@ -6,6 +6,7 @@ import React, { useContext } from 'react';
 import { TrackContext } from '@/providers/Providers';
 import BorderlessPlayIcon from '@/components/icons/BorderlessPlayIcon';
 import HeartIcon from '@/components/icons/HeartIcon';
+import Link from 'next/link';
 
 export interface TrackItemProps {
     id?: number;
@@ -62,12 +63,12 @@ export default function TrackItem({
                             </span>
                             {explicit && <ExplicitIcon width={16} height={17} color='icon' />}
                         </div>
-                        <a
+                        <Link
                             className='font-normal text-sm text-onSurfaceVariant'
                             href={`/profile/${author}`}
                         >
                             {author}
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ import SmashUpSlider from '@/components/smashup/Slider/Slider';
 import SmashUpToggle from '@/components/smashup/Toggle/Toggle';
 import SmashUpButton from '@/components/smashup/Button/Button';
 import EditIcon from '@/components/icons/EditIcon';
+import Link from 'next/link';
 
 export default function Settings() {
     return (
@@ -71,7 +72,7 @@ export default function Settings() {
                         {/*OAuth*/}
                         <div className='flex flex-row gap-x-20 gap-y-10 flex-wrap'>
                             {/*Google*/}
-                            <a className='w-[400px] flex justify-between items-center' href='#'>
+                            <Link className='w-[400px] flex justify-between items-center' href='#'>
                                 <div className='flex flex-row gap-6 items-center'>
                                     <GoogleIcon width={32} height={32} />
                                     <div>
@@ -85,10 +86,10 @@ export default function Settings() {
                                 </div>
 
                                 <BackIcon width={32} height={32} className='transform rotate-180' />
-                            </a>
+                            </Link>
 
                             {/*VK*/}
-                            <a className='w-[400px] flex justify-between items-center' href='#'>
+                            <Link className='w-[400px] flex justify-between items-center' href='#'>
                                 <div className='flex flex-row gap-6 items-center'>
                                     <VkBlueIcon width={32} height={32} />
                                     <div>
@@ -102,7 +103,7 @@ export default function Settings() {
                                 </div>
 
                                 <BackIcon width={32} height={32} className='transform rotate-180' />
-                            </a>
+                            </Link>
                         </div>
                     </div>
 

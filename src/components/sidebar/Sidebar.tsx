@@ -8,6 +8,7 @@ import SmashUpLogo from '@/components/icons/SmashUpLogo';
 import { RouteType } from '@/models/sidebar';
 import { siteConfig } from '@/config/site';
 import React from 'react';
+import Link from 'next/link';
 
 function Sidebar({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -25,9 +26,9 @@ function Sidebar({ children }: { children: React.ReactNode }) {
         <div className='flex h-full px-4'>
             <div className='mt-4 hidden md:flex flex-col h-[958px] bg-surfaceVariant rounded-4xl w-[123px] gap-25 py-17.5'>
                 {/* Логотип */}
-                <a className='px-7' href='/'>
+                <Link className='px-7' href='/'>
                     <SmashUpLogo width={66} height={34} color='primary' />
-                </a>
+                </Link>
 
                 <div className='flex flex-col gap-y-12 px-12'>
                     {/* Навигация */}

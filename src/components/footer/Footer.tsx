@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 export default function Footer() {
     const t = useTranslations('common.agreements');
@@ -6,15 +7,15 @@ export default function Footer() {
         <div className='pb-5 flex flex-col gap-1'>
             <div className='flex flex-row justify-between'>
                 <div className='flex flex-row gap-8'>
-                    <a href='#' className='text-onSurface font-bold text-base'>
+                    <Link href='#' className='text-onSurface font-bold text-base'>
                         {t('rightholders')}
-                    </a>
-                    <a href='/agreement' className='text-onSurface font-bold text-base'>
+                    </Link>
+                    <Link href='/agreement' className='text-onSurface font-bold text-base'>
                         {t('agreement')}
-                    </a>{' '}
-                    <a href='#' className='text-onSurface font-bold text-base'>
+                    </Link>{' '}
+                    <Link href='#' className='text-onSurface font-bold text-base'>
                         {t('contacts')}
-                    </a>
+                    </Link>
                 </div>
                 <span className='text-primary font-bold text-base'>2024 SmashUp</span>
             </div>

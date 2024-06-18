@@ -9,6 +9,7 @@ import SmashUpCheckBox from '@/components/smashup/Checkbox/Checkbox';
 import SmashUpInput from '@/components/smashup/Input/Input';
 import SmashUpPassword from '@/components/smashup/Password/Password';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Login() {
     const router = useRouter();
@@ -58,9 +59,7 @@ export default function Login() {
                     <div className='flex flex-col gap-4'>
                         <SmashUpButton
                             category='stroke-default'
-                            icon={
-                                <VkBlueIcon width={25} height={25} color='vk' textColor='white' />
-                            }
+                            icon={<VkBlueIcon width={25} height={25} color='vk' />}
                             onClick={() => router.push(`https://id.vk.com/auth?${query}`)}
                         >
                             VK ID
@@ -68,9 +67,9 @@ export default function Login() {
 
                         <span>
                             Нет аккаунта?{' '}
-                            <a className='text-primary' href='/register'>
+                            <Link className='text-primary' href='/register'>
                                 Зарегистрируйтесь
-                            </a>
+                            </Link>
                         </span>
                     </div>
                 </form>

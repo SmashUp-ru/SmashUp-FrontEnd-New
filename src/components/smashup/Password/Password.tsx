@@ -5,6 +5,7 @@ import { twMerge } from 'tailwind-merge';
 import PasswordIcon from '@/components/icons/PasswordIcon';
 import HideIcon from '@/components/icons/HideButton';
 import ShowIcon from '@/components/icons/ShowButton';
+import Link from 'next/link';
 
 export interface PasswordProps extends React.InputHTMLAttributes<HTMLInputElement> {
     isFocused?: boolean;
@@ -45,9 +46,9 @@ export default function SmashUpPassword({
                     {heading ? heading : 'Пароль'}
                 </span>
                 {showForgotButton && (
-                    <a className='font-medium text-base text-primary' href='/restore'>
+                    <Link className='font-medium text-base text-primary' href='/restore'>
                         Забыл пароль?
-                    </a>
+                    </Link>
                 )}
             </div>
 

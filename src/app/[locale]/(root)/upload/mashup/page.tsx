@@ -11,6 +11,7 @@ import SmashUpInput from '@/components/smashup/Input/Input';
 import SmashUpCheckBox from '@/components/smashup/Checkbox/Checkbox';
 import SmashUpUploadButton from '@/components/smashup/UploadButton/UploadButton';
 import VkGrayIcon from '@/components/icons/VkGrayIcon';
+import Link from 'next/link';
 
 export default function UploadMashup() {
     return (
@@ -306,9 +307,9 @@ export default function UploadMashup() {
                             label={
                                 <span className='text-onSurfaceVariant font-medium text-base'>
                                     Я прочитал(-а) и согласен(-на) с{' '}
-                                    <a className='text-primary underline' href='#'>
+                                    <Link className='text-primary underline' href='#'>
                                         условиями пользовательского соглашения
-                                    </a>
+                                    </Link>
                                 </span>
                             }
                         />

@@ -8,6 +8,7 @@ import { twMerge } from 'tailwind-merge';
 import ProfileIcon from '@/components/icons/ProfileIcon';
 import ExitIcon from '@/components/icons/ExitIcon';
 import ModerationIcon from '@/components/icons/ModerationIcon';
+import Link from 'next/link';
 
 export default function Avatar() {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -30,12 +31,12 @@ export default function Avatar() {
                     onMouseEnter={() => setIsPopoverHovered(true)}
                     onMouseLeave={() => setIsPopoverHovered(false)}
                 >
-                    <a href='/profile/moderation'>
+                    <Link href='/profile/moderation'>
                         <ModerationIcon width={32} height={32} />
-                    </a>
-                    <a href='/login'>
+                    </Link>
+                    <Link href='/login'>
                         <ExitIcon width={32} height={32} />
-                    </a>
+                    </Link>
                 </div>
             }
             padding={-15}
@@ -53,7 +54,7 @@ export default function Avatar() {
                         isPopoverOpen ? 'brightness-50' : ''
                     )}
                 />
-                <a href='/profile/dmhd6219'>
+                <Link href='/profile/dmhd6219'>
                     <ProfileIcon
                         width={32}
                         height={32}
@@ -62,7 +63,7 @@ export default function Avatar() {
                             isPopoverOpen ? '' : 'hidden'
                         )}
                     />
-                </a>
+                </Link>
             </div>
         </Popover>
     );
