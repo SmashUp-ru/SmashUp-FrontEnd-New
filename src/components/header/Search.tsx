@@ -5,6 +5,7 @@ import SmashUpInput from '@/components/smashup/Input/Input';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function Search() {
     const pathname = usePathname();
@@ -30,10 +31,12 @@ export default function Search() {
         setSearchValue(searchParams.get('q')?.toString());
     }, [searchParams]);
 
+    const t = useTranslations('components.header.search');
+
     return (
         <div onClick={() => {}} className='py-[1px] flex-grow'>
             <SmashUpInput
-                placeholder='Поиск'
+                placeholder={t('search')}
                 icon={<SearchIcon width={16} height={16} color='onSurface' />}
                 className=''
                 onClick={() => {

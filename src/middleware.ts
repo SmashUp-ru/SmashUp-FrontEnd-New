@@ -4,7 +4,7 @@ import { locales } from './i18n.config';
 export default createMiddleware({
     defaultLocale: 'ru',
     locales,
-    localeDetection: false,
+    localeDetection: true,
     localePrefix: 'as-needed'
 });
 

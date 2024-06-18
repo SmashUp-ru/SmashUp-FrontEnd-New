@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 
 export default function IPadAd() {
-    const t = useTranslations('home.ad');
+    const t = useTranslations('pages.home.ad');
     return (
         <div className='w-full h-full bg-black flex flex-col gap-8 justify-end items-center'>
             <div className='flex flex-col items-center'>

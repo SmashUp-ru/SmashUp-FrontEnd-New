@@ -11,20 +11,29 @@
       "description": "The smashup.ru service may contain information not intended for minors"
     }
   },
-  "home": {
-    "ad": {
-      "title": "IPad Pro",
-      "description": "Unbelievably thin. Incredibly powerful.",
-      "button1": "Learn more",
-      "button2": "Buy"
-    },
-    "compilations": {
-      "title": "Compilations",
-      "button": "View all"
-    },
-    "premier": {
-      "title": "Premier!",
-      "button": "View all"
+  "pages": {
+    "home": {
+      "ad": {
+        "title": "IPad Pro",
+        "description": "Unbelievably thin. Incredibly powerful.",
+        "button1": "Learn more",
+        "button2": "Buy"
+      },
+      "compilations": {
+        "title": "Compilations",
+        "button": "View all"
+      },
+      "premier": {
+        "title": "Premier!",
+        "button": "View all"
+      }
+    }
+  },
+  "components": {
+    "header": {
+      "search": {
+        "search": "Search"
+      }
     }
   },
   "complex_notification": {
@@ -145,7 +154,13 @@
     },
     "slider": {
       "label": "Mashup bitrate",
-      "marks": ["64kb", "96kb", "128kb", "160kb", "Original"]
+      "marks": [
+        "64kb",
+        "96kb",
+        "128kb",
+        "160kb",
+        "Original"
+      ]
     }
   },
   "settings": {
@@ -163,7 +178,13 @@
     "account-settings": "Account settings",
     "bitrate": {
       "label": "Mashup bitrate",
-      "marks": ["64kb", "96kb", "128kb", "160kb", "Original"]
+      "marks": [
+        "64kb",
+        "96kb",
+        "128kb",
+        "160kb",
+        "Original"
+      ]
     },
     "multisessions": "Allow multisessions",
     "explicit": "Show explicit content",

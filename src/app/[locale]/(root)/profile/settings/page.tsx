@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import profile from '/public/dev/profile.png';
 import VkBlueIcon from '@/components/icons/VkBlueIcon';
@@ -9,8 +11,12 @@ import SmashUpToggle from '@/components/smashup/Toggle/Toggle';
 import SmashUpButton from '@/components/smashup/Button/Button';
 import EditIcon from '@/components/icons/EditIcon';
 import Link from 'next/link';
+import { usePathname, useRouter } from '@/navigation';
 
 export default function Settings() {
+    const router = useRouter();
+    const pathname = usePathname();
+
     return (
         <div className='h-[calc(100%_-_150px)]'>
             <h1 className='font-bold text-4xl text-onSurface mb-6'>Настройки</h1>
@@ -122,6 +128,11 @@ export default function Settings() {
                             <SmashUpToggle label='Показывать Explicit контент' />
                         </div>
                     </div>
+
+                    <select onChange={(e) => router.replace(pathname, { locale: e.target.value })}>
+                        <option value='en'>English</option>
+                        <option value='ru'>Русский</option>
+                    </select>
 
                     <div className='p-5 bg-surface rounded-2xl absolute bottom-4 flex flex-row gap-6'>
                         <SmashUpButton>Сохранить</SmashUpButton>

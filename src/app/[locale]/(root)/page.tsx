@@ -8,7 +8,7 @@ import TrackItem from '@/components/TrackItem';
 import { useTranslations } from 'next-intl';
 
 export default function Home() {
-    const t = useTranslations('home');
+    const t = useTranslations('pages.home');
     return (
         <div className='flex flex-col gap-12'>
             {/* Реклама */}

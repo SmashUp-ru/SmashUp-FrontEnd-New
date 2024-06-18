@@ -5,8 +5,9 @@ import Sidebar from '@/components/sidebar/Sidebar';
 import Providers from '@/providers/Providers';
 import MainLayout from '@/app/[locale]/(root)/MainLayout';
 
-import { getTranslations } from 'next-intl/server';
+import { getMessages, getTranslations } from 'next-intl/server';
 import { Locale } from '@/i18n.config';
+import { NextIntlClientProvider } from 'next-intl';
 
 const font = Manrope({ subsets: ['latin', 'cyrillic'] });
 
@@ -22,20 +23,23 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
     params: { locale }
 }: Readonly<{
     children: React.ReactNode;
     params: { locale: string };
 }>) {
+    const messages = await getMessages();
     return (
         <html lang={locale} className='bg-background'>
             <body className={font.className}>
                 <Providers>
-                    <Sidebar>
-                        <MainLayout>{children}</MainLayout>
-                    </Sidebar>
+                    <NextIntlClientProvider messages={messages}>
+                        <Sidebar>
+                            <MainLayout>{children}</MainLayout>
+                        </Sidebar>
+                    </NextIntlClientProvider>
                 </Providers>
             </body>
         </html>
