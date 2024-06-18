@@ -156,12 +156,15 @@
       "cancel": "Cancel"
     },
     "profile": {
+      "badges": {
+        "subscriptions": " subscriptions",
+        "subscribers": " subscribers",
+        "playlists": " playlists"
+      },
       "title": "Profile",
-      "subscriptions": " subscriptions",
-      "subscribers": " subscribers",
-      "playlists": " playlists",
-      "upload": "Upload a mashup",
-      "popular": "Popular tracks",
+      "playlists": "Playlists",
+      "upload": "Upload mashup",
+      "popular": "Popular Tracks",
       "show-all": "Show all",
       "new-release": "New release"
     },
