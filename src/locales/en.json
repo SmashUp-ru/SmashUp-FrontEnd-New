@@ -27,6 +27,198 @@
         "title": "Premier!",
         "button": "View all"
       }
+    },
+    "track_side_sheet": {
+      "used": "Tracks used"
+    },
+    "search_history": {
+      "title": "Search history"
+    },
+    "search_results": {
+      "all": "All",
+      "mashups": "Mashups",
+      "authors": "Authors",
+      "playlists": "Playlists",
+      "best_results": "Best results for your query",
+      "with_artist": "Mashups with this artist"
+    },
+    "player": {
+      "fullscreen": "You're in the fullscreen mode"
+    },
+    "moderation": {
+      "accept": "Accept",
+      "reject": "Reject",
+      "sources": "Sources",
+      "genres": "Genres",
+      "misc": "Miscellaneous",
+      "title": "Moderation",
+      "pending": "Pending review",
+      "accepted": "Accepted",
+      "rejected": "Rejected"
+    },
+    "not_found": {
+      "title": "Something went wrong",
+      "back": "Back to home"
+    },
+    "upload": {
+      "load": "Upload a track",
+      "mashup": {
+        "title": "Mashup title",
+        "load": "Upload a mashup ( mp3 )",
+        "search_used": "Search for the tracks used",
+        "genres": {
+          "description": "Genres are selected according to the genre of the original track, but this does not apply to the following categories:",
+          "select": "Genres selection",
+          "memes_t": "Memes",
+          "megamashup_t": "Megamashup",
+          "memes": "If a mashup made heavy use of memes, such as, ",
+          "megamashup": "If a really extensive number of different tracks and memes has been used",
+          "cover": "If a mashup was live recorded with your voice",
+          "soundclown": "If a mashup is not really a musical composition",
+          "morph": "If a mashup made heavy use of the &ldquo;morphing&ldquo; effect",
+          "shitpost": "If a mashup was created purely as a joke without much work on it"
+        },
+        "coauthors": "Add coauthors",
+        "misc": "Miscellaneous",
+        "explicit": "Explicit (swear or Twitch-banned words)",
+        "link": "Link to the base/alt version (if exists)",
+        "agreement": "I have read and agree with ",
+        "terms": "the terms of user agreement",
+        "select": "Choose genre",
+        "search": "Search",
+        "submit": "Submit"
+      },
+      "track": {
+        "name": "Track name",
+        "artist": "Artist",
+        "link": "Link to the official source video ( YouTube )"
+      },
+      "accept": "Accept",
+      "search": "Search"
+    },
+    "test": {
+      "open": "Open a page with all the components",
+      "good_popup": "Open a good popup",
+      "bad_popup": "Open a bad popup",
+      "notification": "Add a notification",
+      "big_notification": "Add a big notification",
+      "links": {
+        "login": "Open the login page",
+        "register": "Open the registration page",
+        "restore": "Open the password restorement page",
+        "confirm-mail": "Open the account confirmation page",
+        "update-password": "Open the page for password change after account confirmation",
+        "search": "Open the search page",
+        "profile": "Open the profile page",
+        "settings": "Open the profile settings page",
+        "uploaded": "Open the uploaded mashups page",
+        "moderation": "Open the mashup moderation page",
+        "track": "Open the track upload page",
+        "mashup": "Open the mashup upload page",
+        "not-found": "Open the page 404"
+      },
+      "components_overview": {
+        "inputs": "Open the Inputs page",
+        "password": "Open the Password page",
+        "buttons": "Open the Buttons page",
+        "upload-buttons": "Open the Upload Buttons page",
+        "toggle": "Open the Toggle page",
+        "checkbox": "Open the CheckBox page",
+        "slider": "Open the Slider (Bit Toggle) page",
+        "popover": "Open the Popover page"
+      }
+    },
+    "settings": {
+      "title": "Settings",
+      "pic": "Profile picture",
+      "profile-settings": "Profile settings",
+      "nickname": "Displayable nickname",
+      "mail": "Mail",
+      "password": {
+        "current": "Current password",
+        "new": "A new password",
+        "again": "The new password once again"
+      },
+      "disabled": "Disabled",
+      "account-settings": "Account settings",
+      "bitrate": {
+        "label": "Mashup bitrate",
+        "marks": [
+          "64kb",
+          "96kb",
+          "128kb",
+          "160kb",
+          "Original"
+        ]
+      },
+      "multisessions": "Allow multisessions",
+      "explicit": "Show explicit content",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "profile": {
+      "title": "Profile",
+      "subscriptions": " subscriptions",
+      "subscribers": " subscribers",
+      "playlists": " playlists",
+      "upload": "Upload a mashup",
+      "popular": "Popular tracks",
+      "show-all": "Show all",
+      "new-release": "New release",
+      "uploaded": {
+        "moderation": "In moderation",
+        "accepted": "Accepted",
+        "rejected": "Rejected"
+      }
+    },
+    "favorites": {
+      "playlist": "Playlist",
+      "title": "Favorites"
+    },
+    "agreement": {
+      "title": "User agreement",
+      "vk-title": "VK website terms of use",
+      "welcome": "Welcome to the VKontakte Site, an online resource that helps you keep in touch with your old and new friends. The VKontakte site (vk.com, vk.ru) is a networking project that brings people together based on where they study or work.",
+      "privacy": "You can also read the VK.com Website Privacy Policy.",
+      "civil-code": "The Site Administration provides you with access to use the VKontakte Site and its functionality on the terms and conditions that are the subject of these Terms of Use of the VKontakte Site. In this regard, you should carefully read the terms and conditions of these Rules, which are considered by the Website Administration as a public offer in accordance with Article 437 of the Civil Code of the Russian Federation.",
+      "terms-label": "1. Terms used in these Regulations",
+      "term-title-1": "1.1. Vkontakte website (or The Website)",
+      "term-content-1": " is a social network known under the name 'VKontakte', placed on the site in the Internet at the address: VK.com, VK.ru (including all levels of these domains, both functioning as of the date of acceptance by the User of these Rules and launched and put into operation during the entire period of its validity) and available to the User through the site, mobile version of the site, applications and other resources, representing a result of intellectual activity in the form of a computer program. The social network is represented in objective form by a set of data and commands and generated audiovisual displays (including graphic images and user interface), (hereinafter - data and commands), intended for functioning of computers and mobile devices in order to obtain a certain result in the form of organization of the social network functionality. The aggregate of data and commands consists of activated and non-activated data and commands. 1.2. Non-activated data and commands are data, commands and generated audiovisual displays that allow to increase the number of virtual values used within the functionality of the Website. The conditions of granting by the Administration to the User of the right to use inactivated data and commands are defined in the license agreement, which is an integral part of these Rules, the current version of which is freely available on the Internet at the address: https://vk.com/licence, concluded by the Administration of the Site with the User.",
+      "term-title-2": "2. The status of Vkontakte website",
+      "term-content-2": {
+        "t1": "2.1. These Rules of Use of the VKontakte Website (formerly and hereinafter - the Rules) are developed by the Website Administration and determine the terms of use and development of the Website, its services, as well as the rights and obligations of its Users and the Administration. The Rules also apply to relations related to the rights and interests of third parties who are not Users of the Site, but whose rights and interests may be affected by the actions of the Users of the Site.",
+        "t2": "2.2. These Rules are a legally binding agreement between the User and the Website Administration, the subject of which is the provision by the Website Administration to the User of access to the use of the Website and its functionality. In addition to these Rules, the agreement between the User and the Website Administration includes all special documents governing the provision of access to the use of certain functionalities of the Website (including its inactivated data, commands and services), placed in the relevant sections of the Website and/or services on the Website.",
+        "t3": "2.3. The User is obliged to fully familiarize with these Rules before registering on the Site. Registration of the User on the Site means full and unconditional acceptance of these Rules by the User in accordance with Article 438 of the Civil Code of the Russian Federation.",
+        "t4": "2.4. These Rules may be changed and/or amended by the Website Administration unilaterally with notification within 3 (three) working days from the date of changes and/or amendments. These Rules are an open and publicly available document. The current version of the Rules is available on the Internet at the following address: https://vk.com/terms. The Website Administration recommends Users to regularly check the terms of these Rules for changes and/or additions. Continued use of the Site by the User after changes and/or amendments to these Rules means acceptance and consent of the User with such changes and/or amendments."
+      }
+    },
+    "register": {
+      "title": "Registration",
+      "welcome": "Nice to meet you!",
+      "nickname": "Nickname",
+      "email": "Email",
+      "agree": "I have read and agree with ",
+      "terms": "the terms of user agreement ",
+      "privacy": "and the privacy policy",
+      "sign-up": "Sign up",
+      "sign-up-with": "Sign up with",
+      "already": "Already signed up? ",
+      "sign-in": "Sign in"
+    },
+    "login": {
+      "title": "Sign in",
+      "welcome": "Welcome back!",
+      "email": "Email",
+      "remember": "Remember me",
+      "log-in": "Sign in",
+      "log-in-with": "Sign in with",
+      "no-account": "Don't have an account yet? ",
+      "register": "Register"
+    },
+    "confirmation_mail": {
+      "title": "Password restorement",
+      "label": "A password reset link has been sent to your email.",
+      "button": "Confirm"
     }
   },
   "components": {
@@ -34,225 +226,30 @@
       "search": {
         "search": "Search"
       }
-    }
-  },
-  "complex_notification": {
-    "title": "Notifications",
-    "button1": "Confirm",
-    "button2": "Cancel"
-  },
-  "password": {
-    "forgot": "Forgot the password?",
-    "rules": "The password must contain 8 - 32 characters and may contain: uppercase and lowercase latin letters, digits, and special characters.",
-    "update": {
-      "restore": "Password restorement",
-      "label": "Don't forget!",
-      "confirmation": "Password confirmation",
-      "confirm": "Confirm"
     },
-    "email": "Email"
-  },
-  "upload_button": {
-    "progress": "Uploading",
-    "title": "Upload a mashup"
-  },
-  "track_side_sheet": {
-    "used": "Tracks used"
-  },
-  "search_history": {
-    "title": "Search history"
-  },
-  "search_results": {
-    "all": "All",
-    "mashups": "Mashups",
-    "authors": "Authors",
-    "playlists": "Playlists",
-    "best_results": "Best results for your query",
-    "with_artist": "Mashups with this artist"
-  },
-  "player": {
-    "fullscreen": "You're in the fullscreen mode"
-  },
-  "moderation": {
-    "accept": "Accept",
-    "reject": "Reject",
-    "sources": "Sources",
-    "genres": "Genres",
-    "misc": "Miscellaneous",
-    "title": "Moderation",
-    "pending": "Pending review",
-    "accepted": "Accepted",
-    "rejected": "Rejected"
-  },
-  "not_found": {
-    "title": "Something went wrong",
-    "back": "Back to home"
-  },
-  "upload": {
-    "load": "Upload a track",
-    "mashup": {
-      "title": "Mashup title",
-      "load": "Upload a mashup ( mp3 )",
-      "search": "Search for the tracks used",
-      "genres": {
-        "description": "Genres are selected according to the genre of the original track, but this does not apply to the following categories:",
-        "select": "Genres selection",
-        "memes_t": "Memes",
-        "megamashup_t": "Megamashup",
-        "memes": "If a mashup made heavy use of memes, such as, ",
-        "megamashup": "If a really extensive number of different tracks and memes has been used",
-        "cover": "If a mashup was live recorded with your voice",
-        "soundclown": "If a mashup is not really a musical composition",
-        "morph": "If a mashup made heavy use of the &ldquo;morphing&ldquo; effect",
-        "shitpost": "If a mashup was created purely as a joke without much work on it"
+    "notifications": {
+      "complex_notification": {
+        "title": "Notifications",
+        "button1": "Confirm",
+        "button2": "Cancel"
+      }
+    },
+    "smashup": {
+      "password": {
+        "forgot": "Forgot the password?",
+        "rules": "The password must contain 8 - 32 characters and may contain: uppercase and lowercase latin letters, digits, and special characters.",
+        "update": {
+          "restore": "Password restorement",
+          "label": "Don't forget!",
+          "confirmation": "Password confirmation",
+          "confirm": "Confirm"
+        },
+        "email": "Email"
       },
-      "coauthors": "Add coauthors",
-      "misc": "Miscellaneous",
-      "explicit": "Explicit (swear or Twitch-banned words)",
-      "link": "Link to the base/alt version (if exists)",
-      "agreement": "I have read and agree with ",
-      "terms": "the terms of user agreement"
-    },
-    "track": {
-      "name": "Track name",
-      "artist": "Artist",
-      "link": "Link to the official source video ( YouTube )"
-    },
-    "accept": "Accept",
-    "search": "Search"
-  },
-  "test": {
-    "open": "Open a page with all the components",
-    "good_popup": "Open a good popup",
-    "bad_popup": "Open a bad popup",
-    "notification": "Add a notification",
-    "big_notification": "Add a big notification",
-    "links": {
-      "login": "Open the login page",
-      "register": "Open the registration page",
-      "restore": "Open the password restorement page",
-      "confirm-mail": "Open the account confirmation page",
-      "update-password": "Open the page for password change after account confirmation",
-      "search": "Open the search page",
-      "profile": "Open the profile page",
-      "settings": "Open the profile settings page",
-      "uploaded": "Open the uploaded mashups page",
-      "moderation": "Open the mashup moderation page",
-      "track": "Open the track upload page",
-      "mashup": "Open the mashup upload page",
-      "not-found": "Open the page 404"
-    },
-    "components_overview": {
-      "inputs": "Open the Inputs page",
-      "password": "Open the Password page",
-      "buttons": "Open the Buttons page",
-      "upload-buttons": "Open the Upload Buttons page",
-      "toggle": "Open the Toggle page",
-      "checkbox": "Open the CheckBox page",
-      "slider": "Open the Slider (Bit Toggle) page",
-      "popover": "Open the Popover page"
-    },
-    "slider": {
-      "label": "Mashup bitrate",
-      "marks": [
-        "64kb",
-        "96kb",
-        "128kb",
-        "160kb",
-        "Original"
-      ]
+      "upload_button": {
+        "progress": "Uploading",
+        "title": "Upload a mashup"
+      }
     }
-  },
-  "settings": {
-    "title": "Settings",
-    "pic": "Profile picture",
-    "profile-settings": "Profile settings",
-    "nickname": "Displayable nickname",
-    "mail": "Mail",
-    "password": {
-      "current": "Current password",
-      "new": "A new password",
-      "again": "The new password once again"
-    },
-    "disabled": "Disabled",
-    "account-settings": "Account settings",
-    "bitrate": {
-      "label": "Mashup bitrate",
-      "marks": [
-        "64kb",
-        "96kb",
-        "128kb",
-        "160kb",
-        "Original"
-      ]
-    },
-    "multisessions": "Allow multisessions",
-    "explicit": "Show explicit content",
-    "save": "Save",
-    "cancel": "Cancel"
-  },
-  "profile": {
-    "title": "Profile",
-    "subscriptions": " subscriptions",
-    "subscribers": " subscribers",
-    "playlists": " playlists",
-    "upload": "Upload a mashup",
-    "popular": "Popular tracks",
-    "show-all": "Show all",
-    "new-release": "New release",
-    "uploaded": {
-      "moderation": "In moderation",
-      "accepted": "Accepted",
-      "rejected": "Rejected"
-    }
-  },
-  "favorites": {
-    "playlist": "Playlist",
-    "title": "Favorites"
-  },
-  "agreement": {
-    "title": "User agreement",
-    "vk-title": "VK website terms of use",
-    "welcome": "Welcome to the VKontakte Site, an online resource that helps you keep in touch with your old and new friends. The VKontakte site (vk.com, vk.ru) is a networking project that brings people together based on where they study or work.",
-    "privacy": "You can also read the VK.com Website Privacy Policy.",
-    "civil-code": "The Site Administration provides you with access to use the VKontakte Site and its functionality on the terms and conditions that are the subject of these Terms of Use of the VKontakte Site. In this regard, you should carefully read the terms and conditions of these Rules, which are considered by the Website Administration as a public offer in accordance with Article 437 of the Civil Code of the Russian Federation.",
-    "terms-label": "1. Terms used in these Regulations",
-    "term-title-1": "1.1. Vkontakte website (or The Website)",
-    "term-content-1": " is a social network known under the name 'VKontakte', placed on the site in the Internet at the address: VK.com, VK.ru (including all levels of these domains, both functioning as of the date of acceptance by the User of these Rules and launched and put into operation during the entire period of its validity) and available to the User through the site, mobile version of the site, applications and other resources, representing a result of intellectual activity in the form of a computer program. The social network is represented in objective form by a set of data and commands and generated audiovisual displays (including graphic images and user interface), (hereinafter - data and commands), intended for functioning of computers and mobile devices in order to obtain a certain result in the form of organization of the social network functionality. The aggregate of data and commands consists of activated and non-activated data and commands. 1.2. Non-activated data and commands are data, commands and generated audiovisual displays that allow to increase the number of virtual values used within the functionality of the Website. The conditions of granting by the Administration to the User of the right to use inactivated data and commands are defined in the license agreement, which is an integral part of these Rules, the current version of which is freely available on the Internet at the address: https://vk.com/licence, concluded by the Administration of the Site with the User.",
-    "term-title-2": "2. The status of Vkontakte website",
-    "term-content-2": {
-      "t1": "2.1. These Rules of Use of the VKontakte Website (formerly and hereinafter - the Rules) are developed by the Website Administration and determine the terms of use and development of the Website, its services, as well as the rights and obligations of its Users and the Administration. The Rules also apply to relations related to the rights and interests of third parties who are not Users of the Site, but whose rights and interests may be affected by the actions of the Users of the Site.",
-      "t2": "2.2. These Rules are a legally binding agreement between the User and the Website Administration, the subject of which is the provision by the Website Administration to the User of access to the use of the Website and its functionality. In addition to these Rules, the agreement between the User and the Website Administration includes all special documents governing the provision of access to the use of certain functionalities of the Website (including its inactivated data, commands and services), placed in the relevant sections of the Website and/or services on the Website.",
-      "t3": "2.3. The User is obliged to fully familiarize with these Rules before registering on the Site. Registration of the User on the Site means full and unconditional acceptance of these Rules by the User in accordance with Article 438 of the Civil Code of the Russian Federation.",
-      "t4": "2.4. These Rules may be changed and/or amended by the Website Administration unilaterally with notification within 3 (three) working days from the date of changes and/or amendments. These Rules are an open and publicly available document. The current version of the Rules is available on the Internet at the following address: https://vk.com/terms. The Website Administration recommends Users to regularly check the terms of these Rules for changes and/or additions. Continued use of the Site by the User after changes and/or amendments to these Rules means acceptance and consent of the User with such changes and/or amendments."
-    }
-  },
-  "register": {
-    "title": "Registration",
-    "welcome": "Nice to meet you!",
-    "nickname": "Nickname",
-    "email": "Email",
-    "agree": "I have read and agree with ",
-    "terms": "the terms of user agreement ",
-    "privacy": "and the privacy policy",
-    "sign-up": "Sign up",
-    "sign-up-with": "Sign up with",
-    "already": "Already signed up? ",
-    "sign-in": "Sign in"
-  },
-  "login": {
-    "title": "Sign in",
-    "welcome": "Welcome back!",
-    "email": "Email",
-    "remember": "Remember me",
-    "log-in": "Sign in",
-    "log-in-with": "Sign in with",
-    "no-account": "Don't have an account yet? ",
-    "register": "Register"
-  },
-  "confirmation_mail": {
-    "title": "Password restorement",
-    "label": "A password reset link has been sent to your email.",
-    "button": "Confirm"
   }
 }

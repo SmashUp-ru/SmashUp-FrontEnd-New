@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 
 export default function NotFound() {
     const router = useRouter();
-    const transl = useTranslations('not_found');
+    const transl = useTranslations('pages.not_found');
 
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-8 py-4'>
@@ -15,7 +15,10 @@ export default function NotFound() {
                 <h1 className='text-primary font-bold text-9xl'>404</h1>
                 <p className='text-onSurface font-normal text-2xl'>{transl('title')}</p>
             </div>
-            <SmashUpButton className='w-[90%] max-w-[400px] z-10' onClick={() => router.push('/')}>
+            <SmashUpButton
+                className='w-[90%] max-w-[400px] z-10 py-[13.5px]'
+                onClick={() => router.push('/')}
+            >
                 {transl('back')}
             </SmashUpButton>
         </div>

@@ -12,8 +12,10 @@ import SmashUpCheckBox from '@/components/smashup/Checkbox/Checkbox';
 import SmashUpUploadButton from '@/components/smashup/UploadButton/UploadButton';
 import VkGrayIcon from '@/components/icons/VkGrayIcon';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export default function UploadMashup() {
+    const t = useTranslations('pages.upload.mashup');
     return (
         <div className='px-8 flex flex-col gap-8'>
             <div className='flex flex-row bg-surfaceVariant w-full h-[238px] rounded-4xl px-6 py-6 gap-12'>
@@ -26,57 +28,58 @@ export default function UploadMashup() {
                 />
 
                 <div className='flex flex-col justify-center gap-2.5'>
-                    <h1 className='font-semibold text-5xl text-onSurface'>Название мэшапа</h1>
+                    <h1 className='font-semibold text-5xl text-onSurface'>{t('title')}</h1>
                     <span className='font-medium text-base text-onSurfaceVariant'>dmhd6219</span>
                 </div>
             </div>
 
             <form className='flex flex-col gap-8'>
-                <SmashUpUploadButton label='Загрузить мэшап ( mp3 )' />
+                <SmashUpUploadButton label={t('load')} />
 
                 <div className='w-full flex flex-row flex-wrap gap-12'>
                     {/*Поиск использованных треков*/}
                     <div className='flex flex-col gap-6'>
                         <div className='flex flex-row items-center gap-4'>
                             <h2 className='font-semibold text-2xl text-onSurface'>
-                                Поиск использованных треков
+                                {t('search_used')}
                             </h2>
                             <SmashUpPopover
                                 icon={<InfoIcon width={20} height={21} />}
                                 content={
                                     <div className='flex flex-col gap-7 max-w-[737px]'>
                                         <h1 className='font-semibold text-2xl'>
-                                            Жанры выбираются в соответствии с жанром оригинального
-                                            трека, однако это не подходит для следующих категорий:
+                                            {t('genres.description')}
                                         </h1>
                                         <div className='flex flex-col gap-1'>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Мемы -</span> Если в
-                                                мэшапе активно использовались мемы, например,
+                                                <span className='text-white'>
+                                                    {t('genres.memes_t')} -
+                                                </span>{' '}
+                                                {t('genres.memes')}
                                                 &ldquo;Случай в казино&ldquo;
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Мегамэшап -</span> Если
-                                                использовалось очень много разных треков и мемов
+                                                <span className='text-white'>
+                                                    {t('genres.megamashup_t')} -
+                                                </span>{' '}
+                                                {t('genres.megamashup')}
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Cover -</span> Если
-                                                мэшап был записан вживую с вашим голосом
+                                                <span className='text-white'>Cover -</span>{' '}
+                                                {t('genres.cover')}
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Soundclown -</span>{' '}
-                                                Если мэшап представляет из себя не совсем
-                                                музыкальную композицию
+                                                {t('genres.soundclown')}
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Morph -</span> Если в
-                                                мэшапе активно использовался такой эффект, как
+                                                <span className='text-white'>Morph -</span>{' '}
+                                                {t('genres.morph')}
                                                 &ldquo;morphing&ldquo;
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Shitpost -</span> Если
-                                                мэшап был создан исключительно как шутка без долгой
-                                                работы над ним
+                                                <span className='text-white'>Shitpost -</span>{' '}
+                                                {t('genres.shitpost')}
                                             </span>
                                         </div>
                                     </div>
@@ -114,43 +117,44 @@ export default function UploadMashup() {
                     {/*Выбор жанров*/}
                     <div className='flex flex-col gap-6'>
                         <div className='flex flex-row items-center gap-4'>
-                            <h2 className='font-semibold text-2xl text-onSurface'>Выбор жанров</h2>
+                            <h2 className='font-semibold text-2xl text-onSurface'>{t('select')}</h2>
                             <SmashUpPopover
                                 icon={<InfoIcon width={20} height={21} />}
                                 content={
                                     <div className='flex flex-col gap-7 max-w-[737px]'>
                                         <h1 className='font-semibold text-2xl'>
-                                            Жанры выбираются в соответствии с жанром оригинального
-                                            трека, однако это не подходит для следующих категорий:
+                                            {t('genres.description')}
                                         </h1>
                                         <div className='flex flex-col gap-1'>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Мемы -</span> Если в
-                                                мэшапе активно использовались мемы, например,
+                                                <span className='text-white'>
+                                                    {t('genres.memes_t')} -
+                                                </span>{' '}
+                                                {t('genres.memes')}
                                                 &ldquo;Случай в казино&ldquo;
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Мегамэшап -</span> Если
-                                                использовалось очень много разных треков и мемов
+                                                <span className='text-white'>
+                                                    {t('genres.megamashup_t')} -
+                                                </span>{' '}
+                                                {t('genres.megamashup')}
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Cover -</span> Если
-                                                мэшап был записан вживую с вашим голосом
+                                                <span className='text-white'>Cover -</span>{' '}
+                                                {t('genres.cover')}
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Soundclown -</span>{' '}
-                                                Если мэшап представляет из себя не совсем
-                                                музыкальную композицию
+                                                {t('genres.soundclown')}
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Morph -</span> Если в
-                                                мэшапе активно использовался такой эффект, как
+                                                <span className='text-white'>Morph -</span>{' '}
+                                                {t('genres.morph')}
                                                 &ldquo;morphing&ldquo;
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Shitpost -</span> Если
-                                                мэшап был создан исключительно как шутка без долгой
-                                                работы над ним
+                                                <span className='text-white'>Shitpost -</span>{' '}
+                                                {t('genres.shitpost')}
                                             </span>
                                         </div>
                                     </div>
@@ -178,44 +182,45 @@ export default function UploadMashup() {
                     <div className='flex flex-col gap-6'>
                         <div className='flex flex-row items-center gap-4'>
                             <h2 className='font-semibold text-2xl text-onSurface'>
-                                Добавить соавторов
+                                {t('coauthors')}
                             </h2>
                             <SmashUpPopover
                                 icon={<InfoIcon width={20} height={21} />}
                                 content={
                                     <div className='flex flex-col gap-7 max-w-[737px]'>
                                         <h1 className='font-semibold text-2xl'>
-                                            Жанры выбираются в соответствии с жанром оригинального
-                                            трека, однако это не подходит для следующих категорий:
+                                            {t('genres.description')}
                                         </h1>
                                         <div className='flex flex-col gap-1'>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Мемы -</span> Если в
-                                                мэшапе активно использовались мемы, например,
+                                                <span className='text-white'>
+                                                    {t('genres.memes_t')} -
+                                                </span>{' '}
+                                                {t('genres.memes')}
                                                 &ldquo;Случай в казино&ldquo;
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Мегамэшап -</span> Если
-                                                использовалось очень много разных треков и мемов
+                                                <span className='text-white'>
+                                                    {t('genres.megamashup_t')} -
+                                                </span>{' '}
+                                                {t('genres.megamashup')}
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Cover -</span> Если
-                                                мэшап был записан вживую с вашим голосом
+                                                <span className='text-white'>Cover -</span>{' '}
+                                                {t('genres.cover')}
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Soundclown -</span>{' '}
-                                                Если мэшап представляет из себя не совсем
-                                                музыкальную композицию
+                                                {t('genres.soundclown')}
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Morph -</span> Если в
-                                                мэшапе активно использовался такой эффект, как
+                                                <span className='text-white'>Morph -</span>{' '}
+                                                {t('genres.morph')}
                                                 &ldquo;morphing&ldquo;
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Shitpost -</span> Если
-                                                мэшап был создан исключительно как шутка без долгой
-                                                работы над ним
+                                                <span className='text-white'>Shitpost -</span>{' '}
+                                                {t('genres.shitpost')}
                                             </span>
                                         </div>
                                     </div>
@@ -224,7 +229,7 @@ export default function UploadMashup() {
                         </div>
 
                         <div className='flex flex-col gap-2'>
-                            <SmashUpInput placeholder='Поиск' className='w-[764px]' />
+                            <SmashUpInput placeholder={t('search')} className='w-[764px]' />
                             <div className='flex flex-col gap-4'>
                                 {coauthors.map((item) => (
                                     <div
@@ -243,43 +248,44 @@ export default function UploadMashup() {
                     {/*Дополнительно*/}
                     <div className='flex flex-col gap-6'>
                         <div className='flex flex-row items-center gap-4'>
-                            <h2 className='font-semibold text-2xl text-onSurface'>Дополнительно</h2>
+                            <h2 className='font-semibold text-2xl text-onSurface'>{t('misc')}</h2>
                             <SmashUpPopover
                                 icon={<InfoIcon width={20} height={21} />}
                                 content={
                                     <div className='flex flex-col gap-7 max-w-[737px]'>
                                         <h1 className='font-semibold text-2xl'>
-                                            Жанры выбираются в соответствии с жанром оригинального
-                                            трека, однако это не подходит для следующих категорий:
+                                            {t('genres.description')}
                                         </h1>
                                         <div className='flex flex-col gap-1'>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Мемы -</span> Если в
-                                                мэшапе активно использовались мемы, например,
+                                                <span className='text-white'>
+                                                    {t('genres.memes_t')} -
+                                                </span>{' '}
+                                                {t('genres.memes')}
                                                 &ldquo;Случай в казино&ldquo;
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Мегамэшап -</span> Если
-                                                использовалось очень много разных треков и мемов
+                                                <span className='text-white'>
+                                                    {t('genres.megamashup_t')} -
+                                                </span>{' '}
+                                                {t('genres.megamashup')}
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Cover -</span> Если
-                                                мэшап был записан вживую с вашим голосом
+                                                <span className='text-white'>Cover -</span>{' '}
+                                                {t('genres.cover')}
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
                                                 <span className='text-white'>Soundclown -</span>{' '}
-                                                Если мэшап представляет из себя не совсем
-                                                музыкальную композицию
+                                                {t('genres.soundclown')}
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Morph -</span> Если в
-                                                мэшапе активно использовался такой эффект, как
+                                                <span className='text-white'>Morph -</span>{' '}
+                                                {t('genres.morph')}
                                                 &ldquo;morphing&ldquo;
                                             </span>
                                             <span className='font-medium text-lg text-onSurfaceVariant'>
-                                                <span className='text-white'>Shitpost -</span> Если
-                                                мэшап был создан исключительно как шутка без долгой
-                                                работы над ним
+                                                <span className='text-white'>Shitpost -</span>{' '}
+                                                {t('genres.shitpost')}
                                             </span>
                                         </div>
                                     </div>
@@ -289,11 +295,11 @@ export default function UploadMashup() {
 
                         <div className='flex flex-col gap-6'>
                             <div className='w-[764px] h-[64px] flex flex-row items-center gap-4 px-5'>
-                                <SmashUpCheckBox label='Explicit (Мат или Бан-ворды Twitch’а)' />
+                                <SmashUpCheckBox label={t('explicit')} />
                             </div>
 
                             <SmashUpInput
-                                placeholder='Ссылка на основу / alt ( Если есть )'
+                                placeholder={t('link')}
                                 icon={<VkGrayIcon width={25} height={25} />}
                             />
                         </div>
@@ -306,15 +312,15 @@ export default function UploadMashup() {
                         <SmashUpCheckBox
                             label={
                                 <span className='text-onSurfaceVariant font-medium text-base'>
-                                    Я прочитал(-а) и согласен(-на) с{' '}
+                                    {t('agreement')}
                                     <Link className='text-primary underline' href='#'>
-                                        условиями пользовательского соглашения
+                                        {t('terms')}
                                     </Link>
                                 </span>
                             }
                         />
                     </div>
-                    <SmashUpButton className='w-[764px] h-[64px]'>Подтвердить</SmashUpButton>
+                    <SmashUpButton className='w-[764px] h-[64px]'>{t('submit')}</SmashUpButton>
                 </div>
             </form>
         </div>

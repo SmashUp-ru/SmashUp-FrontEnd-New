@@ -12,7 +12,7 @@ import egor from '/public/dev/search/egor.png';
 import { useTranslations } from 'next-intl';
 
 export default function Profile() {
-    const transl = useTranslations('profile');
+    const transl = useTranslations('pages.profile');
 
     return (
         <div className='flex flex-col gap-4'>
@@ -29,9 +29,9 @@ export default function Profile() {
                             <div className='flex flex-row gap-6'>
                                 <h2 className='font-bold text-3xl'>LeonidM</h2>
                                 <div className='flex flex-row gap-4 items-center'>
-                                    <Pin>15 {transl('subscriptions')}</Pin>
-                                    <Pin>5 {transl('subscribers')}</Pin>
-                                    <Pin>2 {transl('playlists')}</Pin>
+                                    <Pin>15 {transl('badges.subscriptions')}</Pin>
+                                    <Pin>5 {transl('badges.subscribers')}</Pin>
+                                    <Pin>2 {transl('badges.playlists')}</Pin>
                                 </div>
                             </div>
 
