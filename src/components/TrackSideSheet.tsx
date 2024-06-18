@@ -9,9 +9,11 @@ import ShareIcon from '@/components/icons/ShareIcon';
 import { TrackContext } from '@/providers/Providers';
 import React, { useContext } from 'react';
 import { mashups_search } from '@/utils/data';
+import { useTranslations } from 'next-intl';
 
 export default function TrackSideSheet() {
     const { setTrack } = useContext(TrackContext);
+    const transl = useTranslations('track_side_sheet');
     return (
         <div className='w-[468px] h-full flex flex-col items-center'>
             <div className='w-full flex flex-row justify-end h-[130px]'>
@@ -48,7 +50,7 @@ export default function TrackSideSheet() {
                 </div>
 
                 <div className='flex flex-col gap-2.5'>
-                    <span className='font-medium text-2xl'>Использованные треки</span>
+                    <span className='font-medium text-2xl'>{transl('used')}</span>
                     <div className='flex flex-col justify-between'>
                         {mashups_search.map((item) => (
                             <div key={item.id} className='flex flex-row gap-6 py-2 items-center'>

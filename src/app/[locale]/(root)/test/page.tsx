@@ -3,13 +3,13 @@
 import { Toaster, ToastBar } from 'react-hot-toast';
 import getWarningToast from '@/components/toast/Warning';
 import getNotificationToast from '@/components/toast/Notification';
-import getComplexNotificationToast from '@/components/toast/ComplexNotification';
+import ComplexNotificationToast from '@/components/toast/ComplexNotification';
 import Link from 'next/link';
 
 export default function TestPage() {
     const warning = getWarningToast;
     const notification = getNotificationToast;
-    const complexNotification = getComplexNotificationToast;
+    const complexNotification = ComplexNotificationToast;
 
     return (
         <div className='px-8'>

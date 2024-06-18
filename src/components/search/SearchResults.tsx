@@ -8,10 +8,11 @@ import letov from '/public/dev/search/letov.png';
 import ArtistCard from '@/components/ArtistCard';
 import Tabs from '@/components/tabs/Tabs';
 import Tab from '@/components/tabs/Tab';
+import { useTranslations } from 'next-intl';
 
 export default function SearchResults({ q }: { q: string }) {
     const [activeTab, setActiveTab] = useState(0);
-
+    const transl = useTranslations('search_results');
     return (
         <div className='flex flex-col gap-4'>
             <div className='flex flex-row items-center gap-4'>
@@ -20,28 +21,28 @@ export default function SearchResults({ q }: { q: string }) {
                     className='px-4 py-2'
                     onClick={() => setActiveTab(0)}
                 >
-                    Все
+                    {transl('all')}
                 </SmashUpButton>
                 <SmashUpButton
                     category={activeTab === 1 ? 'fill' : 'fill-default'}
                     className='px-4 py-2'
                     onClick={() => setActiveTab(1)}
                 >
-                    Мэшапы
+                    {transl('mashups')}
                 </SmashUpButton>
                 <SmashUpButton
                     category={activeTab === 2 ? 'fill' : 'fill-default'}
                     className='px-4 py-2'
                     onClick={() => setActiveTab(2)}
                 >
-                    Авторы
+                    {transl('authors')}
                 </SmashUpButton>
                 <SmashUpButton
                     category={activeTab === 3 ? 'fill' : 'fill-default'}
                     className='px-4 py-2'
                     onClick={() => setActiveTab(3)}
                 >
-                    Плейлисты
+                    {transl('playlists')}
                 </SmashUpButton>
             </div>
 
@@ -49,18 +50,21 @@ export default function SearchResults({ q }: { q: string }) {
                 {/*Лучшие результаты*/}
                 <Tab>
                     <div>
-                        <h1 className='font-semibold text-3xl'>Лучшие результаты по запросу {q}</h1>
+                        <h1 className='font-semibold text-3xl'>
+                            {transl('best_results')}
+                            {q}
+                        </h1>
                         <div className='flex flex-row items-center overflow-hidden'>
                             <ArtistCard
                                 id={0}
                                 title='Егор Летов'
-                                description='Мэшапы с исполнителем'
+                                description={transl('with_artist')}
                                 image={letov}
                             />
                             <ArtistCard
                                 id={0}
                                 title='Егор Летов'
-                                description='Мэшапы с исполнителем'
+                                description={transl('with_artist')}
                                 image={letov}
                             />
                             <Card
@@ -103,7 +107,7 @@ export default function SearchResults({ q }: { q: string }) {
                     </div>
 
                     <div>
-                        <h1 className='font-semibold text-3xl'>Мэшапы</h1>
+                        <h1 className='font-semibold text-3xl'>{transl('mashups')}</h1>
                         <div className='flex flex-row items-center overflow-hidden'>
                             <Card
                                 id={0}
@@ -145,49 +149,49 @@ export default function SearchResults({ q }: { q: string }) {
                     </div>
 
                     <div>
-                        <h1 className='font-semibold text-3xl'>Авторы</h1>
+                        <h1 className='font-semibold text-3xl'>{transl('authors')}</h1>
                         <div className='flex flex-row items-center overflow-hidden'>
                             <ArtistCard
                                 id={0}
                                 title='Егор Летов'
-                                description='Мэшапы с исполнителем'
+                                description={transl('with_artist')}
                                 image={letov}
                             />
                             <ArtistCard
                                 id={0}
                                 title='Егор Летов'
-                                description='Мэшапы с исполнителем'
+                                description={transl('with_artist')}
                                 image={letov}
                             />
                             <ArtistCard
                                 id={0}
                                 title='Егор Летов'
-                                description='Мэшапы с исполнителем'
+                                description={transl('with_artist')}
                                 image={letov}
                             />
                             <ArtistCard
                                 id={0}
                                 title='Егор Летов'
-                                description='Мэшапы с исполнителем'
+                                description={transl('with_artist')}
                                 image={letov}
                             />
                             <ArtistCard
                                 id={0}
                                 title='Егор Летов'
-                                description='Мэшапы с исполнителем'
+                                description={transl('with_artist')}
                                 image={letov}
                             />
                             <ArtistCard
                                 id={0}
                                 title='Егор Летов'
-                                description='Мэшапы с исполнителем'
+                                description={transl('with_artist')}
                                 image={letov}
                             />
                         </div>
                     </div>
 
                     <div>
-                        <h1 className='font-semibold text-3xl'>Плейлисты</h1>
+                        <h1 className='font-semibold text-3xl'>{transl('playlists')}</h1>
                         <div className='flex flex-row items-center overflow-hidden'>
                             <Card
                                 id={0}
@@ -231,17 +235,17 @@ export default function SearchResults({ q }: { q: string }) {
 
                 {/*Мэшапы*/}
                 <Tab>
-                    <div>Мэшапы</div>
+                    <div>{transl('mashups')}</div>
                 </Tab>
 
                 {/*Авторы*/}
                 <Tab>
-                    <div>Авторы</div>
+                    <div>{transl('authors')}</div>
                 </Tab>
 
                 {/*Плейлисты*/}
                 <Tab>
-                    <div>Плейлисты</div>
+                    <div>{transl('playlists')}</div>
                 </Tab>
             </Tabs>
         </div>

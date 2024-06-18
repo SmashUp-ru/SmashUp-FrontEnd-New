@@ -1,16 +1,18 @@
 import React from 'react';
 import SmashUpPassword from '@/components/smashup/Password/Password';
 import SmashUpButton from '@/components/smashup/Button/Button';
+import { useTranslations } from 'next-intl';
 
 export default function UpdatePage() {
+    const transl = useTranslations('password.update');
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
             {/* Заголовок */}
             <div className='w-[90%] max-w-[580px] text-center flex flex-col gap-2.5'>
                 <h1 className='text-4xl md:text-5xl text-primary font-semibold'>
-                    Восстановление пароля
+                    {transl('restore')}
                 </h1>
-                <p className='text-onSurface font-medium text-xl'>Не забывайте!</p>
+                <p className='text-onSurface font-medium text-xl'>{transl('label')}</p>
             </div>
 
             {/* Форма */}
@@ -21,13 +23,13 @@ export default function UpdatePage() {
 
                     {/* Второй пароль */}
                     <SmashUpPassword
-                        heading='Подтверждение пароля'
+                        heading={transl('confirmation')}
                         showPasswordButton
                         placeholder='12345qwerty'
                     />
 
                     <div className='w-full flex flex-col gap-5'>
-                        <SmashUpButton>Подтвердить</SmashUpButton>
+                        <SmashUpButton>{transl('confirm')}</SmashUpButton>
                     </div>
                 </form>
             </div>

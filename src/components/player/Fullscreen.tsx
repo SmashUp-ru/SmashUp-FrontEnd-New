@@ -3,6 +3,7 @@ import SmashUpLogo from '@/components/icons/SmashUpLogo';
 import Image from 'next/image';
 import track from '/public/dev/moderation/picture.png';
 import BackIcon from '@/components/icons/BackIcon';
+import { useTranslations } from 'next-intl';
 
 export default function Fullscreen({
     active,
@@ -12,6 +13,7 @@ export default function Fullscreen({
     // eslint-disable-next-line no-unused-vars
     setActive: (active: boolean) => void;
 }) {
+    const transl = useTranslations('player');
     return (
         <div
             className={twMerge(
@@ -23,7 +25,7 @@ export default function Fullscreen({
                 <div className='absolute top-10 px-10 w-full flex flex-row justify-between items-center'>
                     <SmashUpLogo width={66} height={34} color='onSurface' />
                     <div className='flex flex-row gap-4 items-center'>
-                        <span>Вы находитесь в полноэкранном режиме</span>
+                        <span>{transl('fullscreen')}</span>
                         <div
                             className='w-[40px] h-[40px] flex flex-col items-center justify-center rounded-full cursor-pointer bg-onSurfaceVariant -rotate-90'
                             onClick={() => setActive(false)}

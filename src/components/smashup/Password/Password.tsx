@@ -6,6 +6,7 @@ import PasswordIcon from '@/components/icons/PasswordIcon';
 import HideIcon from '@/components/icons/HideButton';
 import ShowIcon from '@/components/icons/ShowButton';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export interface PasswordProps extends React.InputHTMLAttributes<HTMLInputElement> {
     isFocused?: boolean;
@@ -39,6 +40,7 @@ export default function SmashUpPassword({
         showPassword ? showPassword : false
     );
 
+    const transl = useTranslations('password');
     return (
         <div className={twMerge('w-full flex flex-col gap-2.5', className)}>
             <div className='w-full flex flex-row justify-between'>
@@ -47,7 +49,7 @@ export default function SmashUpPassword({
                 </span>
                 {showForgotButton && (
                     <Link className='font-medium text-base text-primary' href='/restore'>
-                        Забыл пароль?
+                        {transl('forgot')}
                     </Link>
                 )}
             </div>
@@ -95,8 +97,7 @@ export default function SmashUpPassword({
 
             {showHelper && (
                 <span className='w-full font-normal text-xs text-onSurfaceVariant text-left'>
-                    Пароль должен содержать 8 - 32 символа и может содержать: Прописные и строчные
-                    буквы латиницы, цифры и спец. символы.
+                    {transl('rules')}
                 </span>
             )}
         </div>

@@ -9,8 +9,11 @@ import Pin from '@/components/smashup/Pin/Pin';
 import SmashUpButton from '@/components/smashup/Button/Button';
 import Card from '@/components/Card';
 import egor from '/public/dev/search/egor.png';
+import { useTranslations } from 'next-intl';
 
 export default function Profile() {
+    const transl = useTranslations('profile');
+
     return (
         <div className='flex flex-col gap-4'>
             {/* Профиль */}
@@ -19,20 +22,22 @@ export default function Profile() {
 
                 <div className='flex flex-col justify-center gap-4'>
                     <div>
-                        <span className='font-medium text-lg text-onSurfaceVariant'>Профиль</span>
+                        <span className='font-medium text-lg text-onSurfaceVariant'>
+                            {transl('title')}
+                        </span>
                         <div className='flex flex-col gap-4'>
                             <div className='flex flex-row gap-6'>
                                 <h2 className='font-bold text-3xl'>LeonidM</h2>
                                 <div className='flex flex-row gap-4 items-center'>
-                                    <Pin>15 подписок</Pin>
-                                    <Pin>5 подписчиков</Pin>
-                                    <Pin>2 Плейлиста</Pin>
+                                    <Pin>15 {transl('subscriptions')}</Pin>
+                                    <Pin>5 {transl('subscribers')}</Pin>
+                                    <Pin>2 {transl('playlists')}</Pin>
                                 </div>
                             </div>
 
                             <div className='flex flex-row gap-4 items-center'>
                                 <SmashUpButton className='w-[224px] h-[48px]'>
-                                    Загрузить мэшап
+                                    {transl('upload')}
                                 </SmashUpButton>
                                 <SettingsIcon width={28} height={28} color='onSurfaceVariant' />
                                 <ShareIcon width={26} height={22} color='onSurfaceVariant' />
@@ -47,9 +52,9 @@ export default function Profile() {
                 {/*Популярные треки*/}
                 <div className='flex flex-col gap-4 w-1/2'>
                     <div className='flex flex-row justify-between items-center'>
-                        <h2 className='font-semibold text-2xl'>Популярные треки</h2>
+                        <h2 className='font-semibold text-2xl'>{transl('popular')}</h2>
                         <span className='font-bold text-base text-onSurfaceVariant text-opacity-50 uppercase'>
-                            Показать все
+                            {transl('show-all')}
                         </span>
                     </div>
                     <div className='flex flex-col'>
@@ -61,7 +66,7 @@ export default function Profile() {
 
                 {/*Недавний релиз*/}
                 <div className='flex flex-col gap-4'>
-                    <h2 className='font-semibold text-2xl'>Недавний релиз</h2>
+                    <h2 className='font-semibold text-2xl'>{transl('new-release')}</h2>
                     <Card id={0} title='Егор комсомольцев' author='Егор ЛетоОоО' image={egor} />
                 </div>
             </div>
@@ -69,7 +74,7 @@ export default function Profile() {
             {/* Плейлисты */}
             <div className='flex flex-col gap-4'>
                 <div className='flex flex-row justify-between items-center'>
-                    <h2 className='font-semibold text-2xl'>Плейлисты</h2>
+                    <h2 className='font-semibold text-2xl'>{transl('playlists')}</h2>
                 </div>
                 <div className='overflow-visible flex flex-row gap-7'>
                     {profile_popular_playlists.map((item) => (
