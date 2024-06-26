@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import MailIcon from '@/components/icons/MailIcon';
 import VkBlueIcon from '@/components/icons/VkBlueIcon';
 import { v4 } from 'uuid';
@@ -11,6 +11,7 @@ import SmashUpPassword from '@/components/smashup/Password/Password';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import axios from 'axios';
 
 export default function Login() {
     const router = useRouter();
@@ -18,6 +19,17 @@ export default function Login() {
     const query = `uuid=${v4()}&app_id=${process.env.NEXT_PUBLIC_VK_APP_ID}&response_type=silent_token&redirect_uri=${process.env.NEXT_PUBLIC_VK_REDIRECT_URL}&redirect_state=smashup`;
 
     const transl = useTranslations('login');
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = () => {
+        axios
+            .post('/login/blablabla', { login: email, password: password })
+            .then(() => {})
+            .catch(() => {})
+            .finally(() => {});
+    };
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
             {/* Заголовок */}
@@ -36,6 +48,8 @@ export default function Login() {
                                 heading={transl('email')}
                                 placeholder='tapiri@smashup.ru'
                                 icon={<MailIcon width={20} height={16} />}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
 
                             {/* Пароль */}
@@ -43,13 +57,15 @@ export default function Login() {
                                 showForgotButton
                                 showPasswordButton
                                 placeholder='12345qwerty'
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
 
                         <SmashUpCheckBox label={transl('remember')} />
                     </div>
 
-                    <SmashUpButton>{transl('log-in')}</SmashUpButton>
+                    <SmashUpButton onClick={handleSubmit}>{transl('log-in')}</SmashUpButton>
 
                     {/* Разделитель */}
                     <div className='flex flex-row justify-between items-center'>
