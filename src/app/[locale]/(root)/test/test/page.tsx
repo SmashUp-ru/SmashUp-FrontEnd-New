@@ -2,12 +2,27 @@
 
 import Tabs from '@/components/tabs/Tabs';
 import Tab from '@/components/tabs/Tab';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Fullscreen from '@/components/player/Fullscreen';
 import SmashUpButton from '@/components/smashup/Button/Button';
+import { useUserCache } from '@/hooks/repositories';
+import ArtistCard from '@/components/ArtistCard';
+import { User } from '@/hooks/entities';
 
 export default function Test() {
     const [activeTab, setActiveTab] = useState(0);
+
+    const cache = useUserCache();
+    const [users, setUsers] = useState<User[]>([]);
+
+    useEffect(() => {
+        cache.getMany([1, 2, 3, 4, 5]).then((result) => {
+            setUsers(result);
+            console.log(result[0].permissions);
+            console.log(result[0].permissions.isAdmin);
+            console.log(result[0].permissions.isAdmin());
+        });
+    }, [cache]);
 
     const [fullScreen, setFullScreen] = useState(false);
     return (
@@ -31,6 +46,25 @@ export default function Test() {
             </SmashUpButton>
 
             <Fullscreen active={fullScreen} setActive={setFullScreen} />
+
+            {users.map((user) => (
+                <ArtistCard
+                    id={user.id}
+                    key={user.id}
+                    title={user.username}
+                    description={
+                        user.permissions.isAdmin()
+                            ? 'Администратор'
+                            : user.permissions.isModerator()
+                              ? 'Модератор'
+                              : user.permissions.isMashuper()
+                                ? 'Мэшапер'
+                                : 'Пользователь'
+                    }
+                    image={''}
+                    /*image={'https://api.smashup.ru/uploads/user/' + user.imageUrl + '_800x800.png'}*/
+                />
+            ))}
         </div>
     );
 }
