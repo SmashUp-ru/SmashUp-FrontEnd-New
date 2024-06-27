@@ -31,7 +31,9 @@ export default function Card({
             className={`${bg ? 'bg-surfaceVariant' : ''} flex flex-col items-center gap-3 w-[238px] h-[301px] rounded-4xl px-6 py-6`}
         >
             <div className='w-full relative group'>
-                <Image width={400} height={400} src={image} alt={title} className='w-full ' />
+                <Link href={`/playlist/${id}`}>
+                    <Image width={400} height={400} src={image} alt={title} className='w-full ' />
+                </Link>
                 <button
                     className='hidden group-hover:block absolute right-2.5 bottom-2.5'
                     onClick={() => {

@@ -20,6 +20,7 @@ import {
     userFromObject
 } from '@/utils/types';
 import axios, { AxiosResponse } from 'axios';
+import Link from 'next/link';
 
 export default function Profile({ params }: { params: { username: string } }) {
     const transl = useTranslations('pages.profile');
@@ -111,7 +112,9 @@ export default function Profile({ params }: { params: { username: string } }) {
                                 <SmashUpButton className='w-[224px] h-[48px]'>
                                     {transl('upload')}
                                 </SmashUpButton>
-                                <SettingsIcon width={28} height={28} color='onSurfaceVariant' />
+                                <Link href='/profile/settings'>
+                                    <SettingsIcon width={28} height={28} color='onSurfaceVariant' />
+                                </Link>
                                 <ShareIcon width={26} height={22} color='onSurfaceVariant' />
                             </div>
                         </div>
@@ -148,6 +151,7 @@ export default function Profile({ params }: { params: { username: string } }) {
                                             author={item.authors.join(', ')}
                                             title={item.name}
                                             mashup={item}
+                                            explicit={item.statuses.isExplicit()}
                                         />
                                     ))}
                             </div>

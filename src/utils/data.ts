@@ -1,7 +1,4 @@
 import radio from '/public/dev/main/radio.png';
-import news from '/public/dev/main/new.png';
-import chart from '/public/dev/main/chart.png';
-import selection1 from '/public/dev/main/selection1.png';
 import selection2 from '/public/dev/main/selection2.png';
 import selection3 from '/public/dev/main/selection3.png';
 import track1 from '/public/dev/main/track1.png';
@@ -23,37 +20,40 @@ import track14 from '/public/dev/upload/track3.png';
 export const selections = [
     {
         id: 1,
+        title: 'Новинки',
+        author: 'SmashUp',
+        // TODO: unhardcode
+        image: 'https://api.smashup.ru/uploads/playlist/55cc15adaadcd2360a3ffcf3209dd801b09b44e5681ad25531fda294ad104773_800x800.png'
+    },
+    {
+        id: 2,
+        title: 'Чарт | 24 часа',
+        author: 'SmashUp',
+        // TODO: unhardcode
+        image: 'https://api.smashup.ru/uploads/playlist/355116314c66c5eca2e309ff2228460b339443ed282e6e1687f5c01fe52359f8_800x800.png'
+    },
+    {
+        id: 3,
+        title: 'Чарт | 7 дней',
+        author: 'SmashUp',
+        // TODO: unhardcode
+        image: 'https://api.smashup.ru/uploads/playlist/0d622dd3e7eab5bb3b3a755e0811ebd33c7ce18fa958e4eb0b08498042f8bc42_800x800.png'
+    },
+    {
+        id: 4,
         title: 'Мэшап-Радио',
         author: 'SmashUp',
         image: radio
     },
     {
-        id: 2,
-        title: 'Новинки!!',
-        author: 'SmashUp',
-        image: news
-    },
-    {
-        id: 3,
-        title: 'Чарт 24 часа',
-        author: 'SmashUp',
-        image: chart
-    },
-    {
-        id: 4,
-        title: 'Подборка 1',
-        author: 'SmashUp',
-        image: selection1
-    },
-    {
         id: 5,
-        title: 'Подборка 2',
+        title: 'Подборка 1',
         author: 'SmashUp',
         image: selection2
     },
     {
         id: 6,
-        title: 'Подборка 3',
+        title: 'Подборка 2',
         author: 'SmashUp',
         image: selection3
     }
