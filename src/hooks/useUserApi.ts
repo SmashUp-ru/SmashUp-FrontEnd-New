@@ -1,7 +1,8 @@
+'use client';
 import { useEffect, useState } from 'react';
 import { changeArray, incrementArray } from '@/utils/arrays';
 import axios, { AxiosResponse } from 'axios';
-import { mockUser, User } from '@/utils/types';
+import { MockUser, User } from '@/utils/types';
 import Cookies from 'js-cookie';
 
 export function useUserApi(query: number[]): {
@@ -16,26 +17,27 @@ export function useUserApi(query: number[]): {
 
     useEffect(() => {
         // @ts-ignore
-        for (const i, index of query) {
+        for (const index in query) {
+            const i = query[index];
             const cookie = Cookies.get(i.toString());
 
             if (cookie === undefined) {
                 setLoad(incrementArray(load, { id: index, value: i }));
             } else {
                 setLoad(incrementArray(load, { id: index, value: i }));
-                setData(incrementArray(data, mockUser));
+                setData(incrementArray(data, new MockUser()));
             }
-
-            axios
-                .get(`https://api.smasup.ru/user?id=${load.map((i) => i.value).join(',')}`)
-                .then((res: AxiosResponse<User[]>) => {
-                    for (const i of res.data) {
-                        setData(changeArray(data, data[i.id], i));
-                    }
-                })
-                .catch(() => setError(true))
-                .finally(() => setLoading(false));
         }
+
+        axios
+            .get(`https://api.smashup.ru/user/get_many?id=${load.map((i) => i.value).join(',')}`)
+            .then((res: AxiosResponse<User[]>) => {
+                for (const i of res.data) {
+                    setData(changeArray(data, data[i.id], i));
+                }
+            })
+            .catch(() => setError(true))
+            .finally(() => setLoading(false));
     }, [data, load, error]);
 
     return { data, loading, error };

@@ -7,21 +7,28 @@ import { TrackContext } from '@/providers/Providers';
 import BorderlessPlayIcon from '@/components/icons/BorderlessPlayIcon';
 import HeartIcon from '@/components/icons/HeartIcon';
 import Link from 'next/link';
+import { Mashup } from '@/utils/types';
 
+// TODO: change declaration to Mashup from types.js
 export interface TrackItemProps {
     id?: number;
-    image: StaticImageData;
+    index?: number;
+    image: string | StaticImageData;
     title: string;
+    // TODO: add support for multiple authors
     author: string;
     explicit?: boolean;
     listened?: number;
     length?: string;
     liked?: boolean;
     showLiked?: boolean;
+    // TODO: replace all above with Mashup
+    mashup: Mashup;
 }
 
 export default function TrackItem({
     id,
+    index,
     image,
     title,
     author,
@@ -29,16 +36,19 @@ export default function TrackItem({
     listened,
     length,
     liked,
-    showLiked
+    showLiked,
+    mashup
 }: TrackItemProps) {
-    const { setTrack } = useContext(TrackContext);
+    const { track, setTrack } = useContext(TrackContext);
 
     return (
         <div className='px-4 flex flex-row justify-between group hover:bg-surface rounded-lg'>
             <div className='flex flex-row my-2.5 items-center h-[40px]'>
-                {id && (
+                {(index || id) && (
                     <button className='w-6 h-6 m-4 flex flex-row items-center justify-center'>
-                        <span className='text-onSurfaceVariant group-hover:hidden'>{id}</span>
+                        <span className='text-onSurfaceVariant group-hover:hidden'>
+                            {index ? index : id}
+                        </span>
                         <BorderlessPlayIcon
                             width={11}
                             height={12}
@@ -48,14 +58,24 @@ export default function TrackItem({
                     </button>
                 )}
                 <div className='flex flex-row gap-3.5 items-center'>
-                    <Image src={image} alt={title} className='w-[40px] h-[40px] rounded-lg' />
+                    <Image
+                        width={100}
+                        height={100}
+                        src={image}
+                        alt={title}
+                        className='w-[40px] h-[40px] rounded-lg'
+                    />
                     <div className='flex flex-col'>
                         <div className='flex flex-row gap-2 items-center'>
                             <span
                                 className='font-bold text-base cursor-pointer'
                                 onClick={() => {
                                     if (setTrack) {
-                                        setTrack(id);
+                                        if (track && track.id === mashup.id) {
+                                            setTrack(undefined);
+                                        } else {
+                                            setTrack(mashup);
+                                        }
                                     }
                                 }}
                             >
