@@ -5,50 +5,39 @@ import PlayIcon from '@/components/icons/PlayIcon';
 import HideIcon from '@/components/icons/HideButton';
 import ShareIcon from '@/components/icons/ShareIcon';
 import { useTranslations } from 'next-intl';
+import { Mashup, MockMashup, MockPlaylist, Playlist } from '@/utils/types';
+import { useState } from 'react';
 import {
-    Mashup,
-    MockMashup,
-    MockPlaylist,
-    Playlist,
-    mashupFromObject,
-    playlistFromObject
-} from '@/utils/types';
-import { useEffect, useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
+    useMashupCache,
+    usePlaylistCache,
+    useRepositoryGetMany,
+    useRepositoryRequest,
+    useRepositoryStateSet
+} from '@/hooks/repositories';
 
 // TODO: think about name
 export default function PlaylistPage({ params }: { params: { playlist_id: number } }) {
     // TODO: change key
     const transl = useTranslations('pages.favorites');
 
-    const [playlist, setPlaylist] = useState<Playlist | undefined>(undefined);
-    const [mashups, setMashups] = useState<Mashup[] | undefined>(undefined);
+    const [playlist, setPlaylist] = useState<Playlist>();
+    const [mashups, setMashups] = useState<Mashup[]>();
 
-    useEffect(() => {
-        axios
-            .get(`https://api.smashup.ru/playlist/get?id=${params.playlist_id}`)
-            .then((res: AxiosResponse<{ response: Playlist[] }>) => {
-                setPlaylist(playlistFromObject(res.data.response[0]));
-            })
-            .catch(() => {
-                setPlaylist(new MockPlaylist());
-            });
-    }, [params.playlist_id]);
+    const playlistCache = usePlaylistCache();
+    const mashupCache = useMashupCache();
 
-    useEffect(() => {
-        if (!playlist || playlist.mashups.length === 0) {
-            return;
-        }
+    const playlistResponse = useRepositoryRequest(new MockPlaylist(), () =>
+        playlistCache.get(params.playlist_id)
+    );
+    useRepositoryStateSet(playlistResponse, setPlaylist, () => new MockPlaylist());
 
-        axios
-            .get(`https://api.smashup.ru/mashup/get?id=${playlist.mashups}`)
-            .then((res: AxiosResponse<{ response: Mashup[] }>) => {
-                setMashups(res.data.response.map((i) => mashupFromObject(i)));
-            })
-            .catch(() => {
-                setMashups(playlist.mashups.map(() => new MockMashup()));
-            });
-    }, [playlist]);
+    const mashupsResponse = useRepositoryGetMany(
+        mashupCache,
+        playlistResponse.promise.then((playlist) => playlist.mashups)
+    );
+    useRepositoryStateSet(mashupsResponse, setMashups, () =>
+        playlist?.mashups.map(() => new MockMashup())
+    );
 
     if (!playlist) {
         return;

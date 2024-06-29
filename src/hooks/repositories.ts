@@ -81,12 +81,12 @@ export abstract class AbstractCachingRepository<T> extends AbstractRepository<T>
         return result;
     }
 
-    async load(id: number): Promise<T> {
+    protected async load(id: number): Promise<T> {
         return this.loadMany([id]).then((r) => r[0]);
     }
 
     // eslint-disable-next-line no-unused-vars
-    abstract loadMany(ids: number[]): Promise<T[]>;
+    protected abstract loadMany(ids: number[]): Promise<T[]>;
 }
 
 export class ApiCachingRepository<T> extends AbstractCachingRepository<T> {
@@ -105,7 +105,7 @@ export class ApiCachingRepository<T> extends AbstractCachingRepository<T> {
         this.mockEntity = mockEntity;
     }
 
-    async loadMany(ids: number[]): Promise<T[]> {
+    protected async loadMany(ids: number[]): Promise<T[]> {
         return this.api.get(this.endpoint, { id: ids.join() }).then((response) => {
             if (response.status == 200) {
                 return response.data.response.map(this.mapper);
@@ -138,7 +138,7 @@ export class UserApiCachingRepository extends ApiCachingRepository<User> {
         });
     }
 
-    async loadMany(ids: number[]): Promise<User[]> {
+    protected async loadMany(ids: number[]): Promise<User[]> {
         return super.loadMany(ids).then((users) => {
             for (let user of users) {
                 this.usernameStorage.set(user.username, user);
