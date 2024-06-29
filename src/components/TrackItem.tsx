@@ -3,7 +3,7 @@
 import Image, { StaticImageData } from 'next/image';
 import ExplicitIcon from '@/components/icons/ExplicitIcon';
 import React, { useContext } from 'react';
-import { TrackContext } from '@/providers/Providers';
+import { PlayerContext, TrackContext } from '@/providers/Providers';
 import BorderlessPlayIcon from '@/components/icons/BorderlessPlayIcon';
 import HeartIcon from '@/components/icons/HeartIcon';
 import Link from 'next/link';
@@ -40,6 +40,7 @@ export default function TrackItem({
     mashup
 }: TrackItemProps) {
     const { track, setTrack } = useContext(TrackContext);
+    const { currentMashup, setCurrentMashup, paused, setPaused } = useContext(PlayerContext);
 
     return (
         <div className='px-4 flex flex-row justify-between group hover:bg-surface rounded-lg'>
@@ -54,6 +55,19 @@ export default function TrackItem({
                             height={12}
                             color='primary'
                             className='hidden group-hover:block'
+                            onClick={() => {
+                                if (!setCurrentMashup || !setPaused) {
+                                    return;
+                                }
+
+                                if (!currentMashup || currentMashup.id !== mashup.id) {
+                                    // TODO: provide playlist
+                                    setCurrentMashup(mashup);
+                                    setPaused(false);
+                                } else {
+                                    setPaused(!paused);
+                                }
+                            }}
                         />
                     </button>
                 )}

@@ -1,6 +1,7 @@
 import { Manrope } from 'next/font/google';
 import '../globals.css';
 import React from 'react';
+import Player from '@/components/player/Player';
 import Sidebar from '@/components/sidebar/Sidebar';
 import Providers from '@/providers/Providers';
 import MainLayout from '@/app/[locale]/(root)/MainLayout';
@@ -36,6 +37,7 @@ export default async function RootLayout({
             <body className={font.className}>
                 <Providers>
                     <NextIntlClientProvider messages={messages}>
+                        <Player></Player>
                         <Sidebar>
                             <MainLayout>{children}</MainLayout>
                         </Sidebar>
