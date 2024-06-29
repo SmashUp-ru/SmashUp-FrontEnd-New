@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import SettingsIcon from '@/components/icons/SettingsIcon';
 import ShareIcon from '@/components/icons/ShareIcon';
@@ -8,71 +8,48 @@ import Pin from '@/components/smashup/Pin/Pin';
 import SmashUpButton from '@/components/smashup/Button/Button';
 import Card from '@/components/Card';
 import { useTranslations } from 'next-intl';
-import {
-    Mashup,
-    MockMashup,
-    MockPlaylist,
-    MockUser,
-    Playlist,
-    User,
-    mashupFromObject,
-    playlistFromObject,
-    userFromObject
-} from '@/utils/types';
-import axios, { AxiosResponse } from 'axios';
+import { Mashup, MockMashup, MockPlaylist, MockUser, Playlist, User } from '@/utils/types';
 import Link from 'next/link';
+import {
+    useMashupCache,
+    usePlaylistCache,
+    useRepositoryGetMany,
+    useRepositoryRequest,
+    useRepositoryStateSet,
+    useUserCache
+} from '@/hooks/repositories';
 
 export default function Profile({ params }: { params: { username: string } }) {
     const transl = useTranslations('pages.profile');
 
-    const [user, setUser] = useState<User | undefined>(undefined);
-    const [mashups, setMashups] = useState<Mashup[] | undefined>(undefined);
-    const [playlists, setPlaylists] = useState<Playlist[] | undefined>(undefined);
+    const [user, setUser] = useState<User>();
+    const [mashups, setMashups] = useState<Mashup[]>();
+    const [playlists, setPlaylists] = useState<Playlist[]>();
 
-    // TODO: move to separate hooks
-    useEffect(() => {
-        axios
-            .get(`https://api.smashup.ru/user/get?username=${params.username}`)
-            .then((res: AxiosResponse<{ response: User }>) => {
-                let user = userFromObject(res.data.response);
-                // TODO: fix playlists overflow
-                user.playlists = user.playlists.slice(0, 3);
-                setUser(user);
-            })
-            .catch(() => {
-                setUser(new MockUser());
-            });
-    }, [params.username]);
+    const userCache = useUserCache();
+    const mashupCache = useMashupCache();
+    const playlistCache = usePlaylistCache();
 
-    useEffect(() => {
-        if (!user || user.mashups.length === 0) {
-            return;
-        }
+    const userResponse = useRepositoryRequest(new MockUser(), () =>
+        userCache.getByUsername(decodeURI(params.username))
+    );
+    useRepositoryStateSet(userResponse, setUser, () => new MockUser());
 
-        axios
-            .get(`https://api.smashup.ru/mashup/get?id=${user.mashups.join(',')}`)
-            .then((res: AxiosResponse<{ response: Mashup[] }>) => {
-                setMashups(res.data.response.map((i) => mashupFromObject(i)));
-            })
-            .catch(() => {
-                setMashups(user.mashups.map(() => new MockMashup()));
-            });
-    }, [user]);
+    const mashupsResponse = useRepositoryGetMany(
+        mashupCache,
+        userResponse.promise.then((user) => user.mashups)
+    );
+    useRepositoryStateSet(mashupsResponse, setMashups, () =>
+        user?.mashups.map(() => new MockMashup())
+    );
 
-    useEffect(() => {
-        if (!user || user.playlists.length === 0) {
-            return;
-        }
-
-        axios
-            .get(`https://api.smashup.ru/playlist/get?id=${user.playlists.join(',')}`)
-            .then((res: AxiosResponse<{ response: Playlist[] }>) => {
-                setPlaylists(res.data.response.map((i) => playlistFromObject(i)));
-            })
-            .catch(() => {
-                setPlaylists(user.mashups.map(() => new MockPlaylist()));
-            });
-    }, [user]);
+    const playlistsResponse = useRepositoryGetMany(
+        playlistCache,
+        userResponse.promise.then((user) => user.playlists)
+    );
+    useRepositoryStateSet(playlistsResponse, setPlaylists, () =>
+        user?.mashups.map(() => new MockPlaylist())
+    );
 
     if (!user) {
         return <></>;
@@ -175,6 +152,7 @@ export default function Profile({ params }: { params: { username: string } }) {
                 </>
             )}
 
+            {/* TODO: fix playlists overflow */}
             {playlists && playlists.length > 0 && (
                 <>
                     {/* Плейлисты */}

@@ -10,7 +10,7 @@ import {
     playlistFromObject,
     userFromObject
 } from '../utils/types';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export abstract class AbstractRepository<T> {
     async get(id: number): Promise<T> {
@@ -55,6 +55,8 @@ export abstract class AbstractCachingRepository<T> extends AbstractRepository<T>
             for (let index in result) {
                 if (result[index] === null) {
                     result[index] = loaded[loadedIndex];
+                    this.storage.set(ids[index], loaded[loadedIndex]);
+
                     loadedIndex++;
                 }
             }
@@ -123,13 +125,13 @@ export class UserApiCachingRepository extends ApiCachingRepository<User> {
         this.usernameStorage = usernameStorage;
     }
 
-    async loadByUsername(username: string): Promise<User> {
+    async getByUsername(username: string): Promise<User> {
         let user = this.usernameStorage.get(username);
         if (user !== undefined) {
             return Promise.resolve(user);
         }
 
-        return this.api.get(this.endpoint, { username: username }).then((response) => {
+        return this.api.get('/user/get', { username: username }).then((response) => {
             let mappedUser = this.mapper(response.data.response);
             this.usernameStorage.set(mappedUser.username, mappedUser);
             return mappedUser;
@@ -183,33 +185,68 @@ export interface RepositoryResponse<T> {
     data: T;
     loading: boolean;
     error: boolean;
+    promise: Promise<T>;
 }
 
 export function useRepositoryRequest<R>(
     dataInitialValue: R,
-    promise: Promise<R>
+    promise: () => Promise<R>
 ): RepositoryResponse<R> {
     const [data, setData] = useState<R>(dataInitialValue);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<boolean>(false);
 
+    // eslint-disable-next-line no-unused-vars
+    let complete: (r: R) => void;
+    let returnPromise = new Promise<R>((onFulfilled) => {
+        complete = onFulfilled;
+    });
+
     useState(() => {
-        promise
-            .then((result) => setData(result))
-            .catch(() => setError(true))
-            .finally(() => setLoading(false));
+        promise()
+            .then((result) => {
+                setData(result);
+                setLoading(false);
+                complete(result);
+            })
+            .catch(() => {
+                setError(true);
+                setLoading(false);
+                complete(dataInitialValue);
+            });
     });
 
     return {
         data,
         loading,
-        error
+        error,
+        promise: returnPromise
     };
 }
 
 export function useRepositoryGetMany<T>(
     repository: AbstractRepository<T>,
-    ids: number[]
+    idsPromise: Promise<number[]>
 ): RepositoryResponse<T[]> {
-    return useRepositoryRequest([], repository.getMany(ids));
+    return useRepositoryRequest([], () => idsPromise.then((ids) => repository.getMany(ids)));
+}
+
+export function useRepositoryStateSet<T>(
+    response: RepositoryResponse<T>,
+    stateSetter:
+        | React.Dispatch<React.SetStateAction<T>>
+        | React.Dispatch<React.SetStateAction<T | undefined>>,
+    errorData: () => T
+) {
+    useEffect(() => {
+        if (response.loading) {
+            return;
+        }
+
+        if (!response.error) {
+            stateSetter(response.data);
+        } else {
+            stateSetter(errorData());
+        }
+    }, [response.data, response.error]);
 }
