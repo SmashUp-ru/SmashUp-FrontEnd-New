@@ -89,7 +89,7 @@ export abstract class AbstractCachingRepository<T> extends AbstractRepository<T>
 
 export class ApiCachingRepository<T> extends AbstractCachingRepository<T> {
     api: Api;
-    endpont: string;
+    endpoint: string;
     // eslint-disable-next-line no-unused-vars
     mapper: (object: any) => T;
     mockEntity: T;
@@ -98,18 +98,52 @@ export class ApiCachingRepository<T> extends AbstractCachingRepository<T> {
     constructor(api: Api, endpont: string, mapper: (object: any) => T, mockEntity: T) {
         super();
         this.api = api;
-        this.endpont = endpont;
+        this.endpoint = endpont;
         this.mapper = mapper;
         this.mockEntity = mockEntity;
     }
 
     async loadMany(ids: number[]): Promise<T[]> {
-        let response = await this.api.get(this.endpont, { id: ids.join() });
-        if (response.status == 200) {
-            return response.data.response.map(this.mapper);
+        return this.api.get(this.endpoint, { id: ids.join() }).then((response) => {
+            if (response.status == 200) {
+                return response.data.response.map(this.mapper);
+            }
+
+            return ids.map(() => this.mockEntity);
+        });
+    }
+}
+
+export class UserApiCachingRepository extends ApiCachingRepository<User> {
+    usernameStorage: Map<string, User>;
+
+    constructor(api: Api, usernameStorage: Map<string, User>) {
+        super(api, 'user/get_many', userFromObject, new MockUser());
+
+        this.usernameStorage = usernameStorage;
+    }
+
+    async loadByUsername(username: string): Promise<User> {
+        let user = this.usernameStorage.get(username);
+        if (user !== undefined) {
+            return Promise.resolve(user);
         }
 
-        return Promise.resolve(ids.map(() => this.mockEntity));
+        return this.api.get(this.endpoint, { username: username }).then((response) => {
+            let mappedUser = this.mapper(response.data.response);
+            this.usernameStorage.set(mappedUser.username, mappedUser);
+            return mappedUser;
+        });
+    }
+
+    async loadMany(ids: number[]): Promise<User[]> {
+        return super.loadMany(ids).then((users) => {
+            for (let user of users) {
+                this.usernameStorage.set(user.username, user);
+            }
+
+            return users;
+        });
     }
 }
 
@@ -138,35 +172,30 @@ export function usePlaylistCache(): ApiCachingRepository<Playlist> {
 }
 
 const staticUserStorage = new Map<number, User>();
-export function useUserCache(): ApiCachingRepository<User> {
-    let repository = new ApiCachingRepository(
-        useApi(),
-        'user/get_many',
-        userFromObject,
-        new MockUser()
-    );
+const staticUserUsernameStorage = new Map<string, User>();
+export function useUserCache(): UserApiCachingRepository {
+    let repository = new UserApiCachingRepository(useApi(), staticUserUsernameStorage);
     repository.storage = staticUserStorage;
     return repository;
 }
 
 export interface RepositoryResponse<T> {
-    data: T[];
+    data: T;
     loading: boolean;
     error: boolean;
 }
 
-export function useRepository<T>(
-    repository: AbstractRepository<T>,
-    ids: number[]
-): RepositoryResponse<T> {
-    const [data, setData] = useState<T[]>([]);
+export function useRepositoryRequest<R>(
+    dataInitialValue: R,
+    promise: Promise<R>
+): RepositoryResponse<R> {
+    const [data, setData] = useState<R>(dataInitialValue);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<boolean>(false);
 
     useState(() => {
-        repository
-            .getMany(ids)
-            .then((entities) => setData(entities))
+        promise
+            .then((result) => setData(result))
             .catch(() => setError(true))
             .finally(() => setLoading(false));
     });
@@ -176,4 +205,11 @@ export function useRepository<T>(
         loading,
         error
     };
+}
+
+export function useRepositoryGetMany<T>(
+    repository: AbstractRepository<T>,
+    ids: number[]
+): RepositoryResponse<T[]> {
+    return useRepositoryRequest([], repository.getMany(ids));
 }
