@@ -12,7 +12,7 @@ import { useTranslations } from 'next-intl';
 
 export default function SearchResults({ q }: { q: string }) {
     const [activeTab, setActiveTab] = useState(0);
-    const transl = useTranslations('search_results');
+    const transl = useTranslations('pages.search_results');
     return (
         <div className='flex flex-col gap-4'>
             <div className='flex flex-row items-center gap-4'>

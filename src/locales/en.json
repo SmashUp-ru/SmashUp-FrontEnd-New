@@ -32,7 +32,9 @@
       "used": "Tracks used"
     },
     "search_history": {
-      "title": "Search history"
+      "title": "Search history",
+      "search": "Search",
+      "crossover": "Crossover"
     },
     "search_results": {
       "all": "All",

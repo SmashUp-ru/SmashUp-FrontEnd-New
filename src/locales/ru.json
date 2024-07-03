@@ -32,7 +32,9 @@
       "used": "Используемые треки"
     },
     "search_history": {
-      "title": "История поиска"
+      "title": "История поиска",
+      "search": "Поиск",
+      "crossover": "Кроссовер"
     },
     "search_results": {
       "all": "Все",

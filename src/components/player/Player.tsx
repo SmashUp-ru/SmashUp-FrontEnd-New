@@ -1,6 +1,7 @@
 'use client';
-import { PlayerContext } from '@/providers/Providers';
+
 import { useContext, useEffect, useState } from 'react';
+import PlayerContext from '@/providers/player';
 
 export default function Player() {
     const { currentMashup, paused, setPaused } = useContext(PlayerContext);

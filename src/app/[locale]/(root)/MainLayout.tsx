@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useContext } from 'react';
-import { TrackContext } from '@/providers/Providers';
 import Header from '@/components/header/Header';
 import TrackSideSheet from '@/components/TrackSideSheet';
+import TrackContext from '@/providers/track';
 
 export default function MainLayout({
     children

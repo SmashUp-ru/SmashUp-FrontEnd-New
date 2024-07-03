@@ -10,8 +10,7 @@ export default function Search() {
     const query = searchParams.get('q');
 
     if (query !== null) {
-        // @ts-ignore
-        return <SearchResults q={searchParams.get('q').toString()} />;
+        return <SearchResults q={query.toString()} />;
     }
 
     return <SearchHistory />;

@@ -3,11 +3,12 @@
 import Image, { StaticImageData } from 'next/image';
 import ExplicitIcon from '@/components/icons/ExplicitIcon';
 import React, { useContext } from 'react';
-import { PlayerContext, TrackContext } from '@/providers/Providers';
 import BorderlessPlayIcon from '@/components/icons/BorderlessPlayIcon';
 import HeartIcon from '@/components/icons/HeartIcon';
 import Link from 'next/link';
 import { Mashup } from '@/utils/types';
+import TrackContext from '@/providers/track';
+import PlayerContext from '@/providers/player';
 
 // TODO: change declaration to Mashup from types.js
 export interface TrackItemProps {
