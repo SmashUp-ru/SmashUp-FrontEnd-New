@@ -4,18 +4,21 @@ import ExplicitIcon from '@/components/icons/ExplicitIcon';
 import PlayIcon from '@/components/icons/PlayIcon';
 import HeartIcon from '@/components/icons/HeartIcon';
 import ShareIcon from '@/components/icons/ShareIcon';
-import { TrackContext } from '@/providers/Providers';
+import TrackContext from '@/providers/track';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Mashup, MockMashup, MockTrack, Track, trackFromObject } from '@/utils/types';
 import axios, { AxiosResponse } from 'axios';
+import PlayerContext from '@/providers/player';
+import PauseIcon from './icons/PauseIcon';
 
 export default function TrackSideSheet() {
     const { track, setTrack } = useContext(TrackContext);
+    const { currentMashup, setCurrentMashup, paused, setPaused } = useContext(PlayerContext);
     const transl = useTranslations('pages.track_side_sheet');
 
     const [mashup, setMashup] = useState<Mashup>(new MockMashup());
-    const [tracks, setTracks] = useState<Track[] | undefined>(undefined);
+    const [tracks, setTracks] = useState<Track[]>();
 
     useEffect(() => {
         if (!track) {
@@ -46,9 +49,7 @@ export default function TrackSideSheet() {
             <div className='w-full flex flex-row justify-end h-[130px]'>
                 <button
                     onClick={() => {
-                        if (setTrack) {
-                            setTrack(undefined);
-                        }
+                        setTrack(undefined);
                     }}
                 >
                     <CloseIcon width={28} height={28} className='cursor-pointer' />
@@ -60,9 +61,7 @@ export default function TrackSideSheet() {
                     alt={mashup.name}
                     width={800}
                     height={800}
-                    src={
-                        'https://api.smashup.ru/uploads/mashup/' + mashup.imageUrl + '_800x800.png'
-                    }
+                    src={mashup.imageUrl + '_800x800.png'}
                     className='w-[420px] h-[236px] rounded-3xl object-cover'
                 />
 
@@ -77,7 +76,23 @@ export default function TrackSideSheet() {
                 </div>
 
                 <div className='flex flex-row gap-5 items-center'>
-                    <PlayIcon width={48} height={48} color='primary' />
+                    <button
+                        className='cursor-pointer'
+                        onClick={() => {
+                            if (!currentMashup || currentMashup.id !== mashup.id) {
+                                // TODO: provide playlist from which this side sheet was opened
+                                setCurrentMashup(mashup);
+                            } else {
+                                setPaused(!paused);
+                            }
+                        }}
+                    >
+                        {currentMashup?.id === mashup.id && !paused ? (
+                            <PauseIcon width={48} height={48} color='primary' />
+                        ) : (
+                            <PlayIcon width={48} height={48} color='primary' />
+                        )}
+                    </button>
                     <HeartIcon width={32} height={32} color='icon' />
                     <ShareIcon width={26} height={22} color='icon' />
                 </div>
@@ -95,11 +110,7 @@ export default function TrackSideSheet() {
                                     <Image
                                         width={100}
                                         height={100}
-                                        src={
-                                            'https://api.smashup.ru/uploads/track/' +
-                                            item.imageUrl +
-                                            '_100x100.png'
-                                        }
+                                        src={item.imageUrl + '_100x100.png'}
                                         alt={item.name}
                                         className='w-[40px] h-[40px]'
                                     ></Image>

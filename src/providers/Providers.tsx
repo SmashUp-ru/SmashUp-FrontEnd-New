@@ -4,39 +4,45 @@ import { Mashup } from '@/utils/types';
 import React, { useState } from 'react';
 import TrackContext from '@/providers/track';
 import PlayerContext from '@/providers/player';
-import SearchContext from '@/providers/search';
+import SearchContext, { CrossoverEntry } from '@/providers/search';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-    const [track, setTrack] = useState<Mashup | undefined>(undefined);
+    const [track, setTrack] = useState<Mashup>();
 
     const [type, setType] = useState<'search' | 'crossover'>('search');
-    const [crossoverEntries, setCrossoverEntries] = useState<string[]>(['Oxxymiron']);
+    const [crossoverEntries, setCrossoverEntries] = useState<CrossoverEntry[]>([]);
 
-    const [currentPlaylist, setCurrentPlaylist] = useState<number | undefined>(undefined);
-    const [queue, setQueue] = useState<number[] | undefined>(undefined);
-    const [currentMashup, setCurrentMashup] = useState<Mashup | undefined>(undefined);
-    const [paused, setPaused] = useState<boolean | undefined>(undefined);
+    const [currentPlaylist, setCurrentPlaylist] = useState<number>();
+    const [queue, setQueue] = useState<number[]>();
+    const [currentMashup, setCurrentMashup] = useState<Mashup>();
+    const [paused, setPaused] = useState<boolean>(true);
+    const [shuffle, setShuffle] = useState<boolean>(false);
+    const [repeat, setRepeat] = useState<'no' | 'playlist' | 'one'>('no');
 
     return (
         <TrackContext.Provider value={{ track: track, setTrack: setTrack }}>
             <PlayerContext.Provider
                 value={{
-                    currentPlaylist: currentPlaylist,
-                    setCurrentPlaylist: setCurrentPlaylist,
-                    queue: queue,
-                    setQueue: setQueue,
-                    currentMashup: currentMashup,
-                    setCurrentMashup: setCurrentMashup,
-                    paused: paused,
-                    setPaused: setPaused
+                    currentPlaylist,
+                    setCurrentPlaylist,
+                    queue,
+                    setQueue,
+                    currentMashup,
+                    setCurrentMashup,
+                    paused,
+                    setPaused,
+                    shuffle,
+                    setShuffle,
+                    repeat,
+                    setRepeat
                 }}
             >
                 <SearchContext.Provider
                     value={{
-                        type: type,
-                        setType: setType,
-                        crossoverEntries: crossoverEntries,
-                        setCrossoverEntries: setCrossoverEntries
+                        type,
+                        setType,
+                        crossoverEntries,
+                        setCrossoverEntries
                     }}
                 >
                     {children}

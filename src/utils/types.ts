@@ -14,6 +14,27 @@ export class Bitmask {
     }
 }
 
+export interface TrackAuthor {
+    id: number;
+    name: string;
+    imageUrl: string;
+    backgroundColor: number;
+}
+
+export class MockTrackAuthor implements TrackAuthor {
+    id: number = 0;
+    name: string = 'Error';
+    imageUrl: string = 'https://api.smashup.ru/uploads/track_author/default';
+    backgroundColor: number = 0;
+}
+
+export function trackAuthorFromObject(object: any): TrackAuthor {
+    if (!object.imageUrl.startsWith('https://')) {
+        object.imageUrl = 'https://api.smashup.ru/uploads/track_author/' + object.imageUrl;
+    }
+    return object;
+}
+
 export interface Track {
     id: number;
     name: string;
@@ -29,12 +50,15 @@ export class MockTrack implements Track {
     name: string = 'Error';
     authors: string[] = ['SmashUp'];
     authorsIds: number[] = [0];
-    imageUrl: string = 'default';
+    imageUrl: string = 'https://api.smashup.ru/uploads/track/default';
     backgroundColor: number = 0;
     link: string = '';
 }
 
 export function trackFromObject(object: any): Track {
+    if (!object.imageUrl.startsWith('https://')) {
+        object.imageUrl = 'https://api.smashup.ru/uploads/track/' + object.imageUrl;
+    }
     return object;
 }
 
@@ -80,7 +104,7 @@ export class MockMashup {
     authorsIds: number[] = [0];
     genres: string[] = ['рок'];
     tracks: number[] = [1, 2];
-    imageUrl: string = 'default';
+    imageUrl: string = 'https://api.smashup.ru/uploads/mashup/default';
     backgroundColor: number = 0;
     statuses: MashupStatuses = new MashupStatuses(0);
     albumId: number = -1;
@@ -92,6 +116,9 @@ export class MockMashup {
 
 export function mashupFromObject(object: any): Mashup {
     object.statuses = new MashupStatuses(object.statuses);
+    if (!object.imageUrl.startsWith('https://')) {
+        object.imageUrl = 'https://api.smashup.ru/uploads/mashup/' + object.imageUrl;
+    }
     return object;
 }
 
@@ -112,7 +139,7 @@ export class MockPlaylist {
     name: string = 'Error';
     description: string = 'Error';
     authors: string[] = ['SmashUp'];
-    imageUrl: string = 'default';
+    imageUrl: string = 'https://api.smashup.ru/uploads/playlist/default';
     backgroundColor: number = 0;
     mashups: number[] = [];
     likes: number = 0;
@@ -120,6 +147,9 @@ export class MockPlaylist {
 }
 
 export function playlistFromObject(object: any): Playlist {
+    if (!object.imageUrl.startsWith('https://')) {
+        object.imageUrl = 'https://api.smashup.ru/uploads/playlist/' + object.imageUrl;
+    }
     return object;
 }
 
@@ -162,7 +192,7 @@ export interface User {
 export class MockUser implements User {
     id: number = 0;
     username: string = 'Error';
-    imageUrl: string = 'default';
+    imageUrl: string = 'https://api.smashup.ru/uploads/user/default';
     backgroundColor: number = 0;
     permissions: UserPermissions = new UserPermissions(0);
     mashups: number[] = [];
@@ -171,5 +201,8 @@ export class MockUser implements User {
 
 export function userFromObject(object: any): User {
     object.permissions = new UserPermissions(object.permissions);
+    if (!object.imageUrl.startsWith('https://')) {
+        object.imageUrl = 'https://api.smashup.ru/uploads/user/' + object.imageUrl;
+    }
     return object;
 }

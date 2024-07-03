@@ -3,11 +3,17 @@ import {
     Mashup,
     MockMashup,
     MockPlaylist,
+    MockTrack,
+    MockTrackAuthor,
     MockUser,
     Playlist,
+    Track,
+    TrackAuthor,
     User,
     mashupFromObject,
     playlistFromObject,
+    trackAuthorFromObject,
+    trackFromObject,
     userFromObject
 } from '../utils/types';
 import React, { useEffect, useState } from 'react';
@@ -147,6 +153,30 @@ export class UserApiCachingRepository extends ApiCachingRepository<User> {
             return users;
         });
     }
+}
+
+const staticTrackAuthorStorage = new Map<number, TrackAuthor>();
+export function useTrackAuthorCache(): ApiCachingRepository<TrackAuthor> {
+    let repository = new ApiCachingRepository(
+        useApi(),
+        'track_author/get',
+        trackAuthorFromObject,
+        new MockTrackAuthor()
+    );
+    repository.storage = staticTrackAuthorStorage;
+    return repository;
+}
+
+const staticTrackStorage = new Map<number, Track>();
+export function useTrackCache(): ApiCachingRepository<Track> {
+    let repository = new ApiCachingRepository(
+        useApi(),
+        'track/get',
+        trackFromObject,
+        new MockTrack()
+    );
+    repository.storage = staticTrackStorage;
+    return repository;
 }
 
 const staticMashupStorage = new Map<number, Mashup>();

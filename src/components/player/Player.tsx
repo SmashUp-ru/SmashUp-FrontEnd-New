@@ -2,12 +2,14 @@
 
 import { useContext, useEffect, useState } from 'react';
 import PlayerContext from '@/providers/player';
+import { useMashupCache } from '@/hooks/repositories';
 
 export default function Player() {
-    const { currentMashup, paused, setPaused } = useContext(PlayerContext);
+    const { queue, currentMashup, setCurrentMashup, paused, setPaused, repeat } =
+        useContext(PlayerContext);
 
-    const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | undefined>();
-    // const [index, setIndex] = useState<number>(0);
+    const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement>();
+    const mashupCache = useMashupCache();
 
     useEffect(() => {
         if (currentAudio) {
@@ -18,12 +20,40 @@ export default function Player() {
             return;
         }
 
-        // let currentIndex = index + 0;
-
         let audio = new Audio('https://api.smashup.ru/uploads/mashup/' + currentMashup.id + '.mp3');
         console.log('Loaded', currentMashup.name);
         audio.volume = 0.05;
         setCurrentAudio(audio);
+
+        audio.onended = () => {
+            if (repeat === 'one') {
+                audio.currentTime = 0;
+                return;
+            }
+
+            if (currentMashup && queue) {
+                let index = queue.indexOf(currentMashup.id);
+
+                if (index === queue.length - 1) {
+                    if (repeat === 'playlist') {
+                        index = 0;
+                    } else {
+                        setPaused(true);
+                        audio.currentTime = 0;
+                        return;
+                    }
+                } else {
+                    index++;
+                }
+
+                mashupCache.get(queue[index]).then((mashup) => {
+                    setCurrentMashup(mashup);
+                });
+            } else {
+                setPaused(true);
+                audio.currentTime = 0;
+            }
+        };
 
         if (paused && setPaused) {
             setPaused(false);
@@ -33,12 +63,7 @@ export default function Player() {
     }, [currentMashup]);
 
     useEffect(() => {
-        console.log('UPDATE', paused);
-        if (paused === undefined) {
-            return;
-        }
-
-        if (currentAudio) {
+        if (currentAudio && !currentAudio.ended) {
             if (paused) {
                 try {
                     currentAudio.pause();
@@ -51,5 +76,5 @@ export default function Player() {
         }
     }, [paused]);
 
-    return <>{currentMashup ? JSON.stringify(currentMashup) : 'undefined'}</>;
+    // return <>{currentMashup ? JSON.stringify(currentMashup) : 'undefined'}</>;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { MouseEventHandler } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import PlayIcon from '@/components/icons/PlayIcon';
 import PauseIcon from '@/components/icons/PauseIcon';
@@ -15,7 +15,11 @@ export default function Card({
     author,
     image,
     bg,
-    showVisibleButton
+    showVisibleButton,
+    href,
+    onClick,
+    isPlaying,
+    playAction
 }: {
     id: number;
     title: string;
@@ -23,23 +27,47 @@ export default function Card({
     image: string | StaticImageData;
     bg?: boolean;
     showVisibleButton?: boolean;
+    href?: string;
+    onClick?: MouseEventHandler<HTMLDivElement>;
+    isPlaying: boolean;
+    playAction: MouseEventHandler<HTMLButtonElement>;
 }) {
-    const [isPlaying, setIsPlaying] = useState(false);
-
     return (
         <div
             className={`${bg ? 'bg-surfaceVariant' : ''} flex flex-col items-center gap-3 w-[238px] h-[301px] rounded-4xl px-6 py-6`}
         >
             <div className='w-full relative group'>
-                <Link href={`/playlist/${id}`}>
-                    <Image width={400} height={400} src={image} alt={title} className='w-full ' />
-                </Link>
+                {href && (
+                    <div onClick={onClick}>
+                        <Link href={`/${href}/${id}`}>
+                            <Image
+                                width={400}
+                                height={400}
+                                src={image}
+                                alt={title}
+                                className='w-full '
+                            />
+                        </Link>
+                    </div>
+                )}
+
+                {!href && (
+                    <div onClick={onClick} className={onClick ? 'cursor-pointer' : ''}>
+                        <Image
+                            width={400}
+                            height={400}
+                            src={image}
+                            alt={title}
+                            className='w-full '
+                        />
+                    </div>
+                )}
+
                 <button
                     className='hidden group-hover:block absolute right-2.5 bottom-2.5'
-                    onClick={() => {
-                        setIsPlaying(!isPlaying);
-                    }}
+                    onClick={playAction}
                 >
+                    {/* TODO: fix wrong icons ???? */}
                     {isPlaying ? (
                         <PauseIcon width={48} height={48} color='primary' />
                     ) : (

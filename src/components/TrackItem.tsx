@@ -57,14 +57,9 @@ export default function TrackItem({
                             color='primary'
                             className='hidden group-hover:block'
                             onClick={() => {
-                                if (!setCurrentMashup || !setPaused) {
-                                    return;
-                                }
-
                                 if (!currentMashup || currentMashup.id !== mashup.id) {
                                     // TODO: provide playlist
                                     setCurrentMashup(mashup);
-                                    setPaused(false);
                                 } else {
                                     setPaused(!paused);
                                 }
@@ -85,12 +80,10 @@ export default function TrackItem({
                             <span
                                 className='font-bold text-base cursor-pointer'
                                 onClick={() => {
-                                    if (setTrack) {
-                                        if (track && track.id === mashup.id) {
-                                            setTrack(undefined);
-                                        } else {
-                                            setTrack(mashup);
-                                        }
+                                    if (track && track.id === mashup.id) {
+                                        setTrack(undefined);
+                                    } else {
+                                        setTrack(mashup);
                                     }
                                 }}
                             >

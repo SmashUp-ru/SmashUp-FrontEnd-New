@@ -65,7 +65,7 @@ export default function Profile({ params }: { params: { username: string } }) {
                 <Image
                     width={800}
                     height={800}
-                    src={'https://api.smashup.ru/uploads/user/' + user.imageUrl + '_800x800.png'}
+                    src={user.imageUrl + '_800x800.png'}
                     alt={user.username}
                     className='w-[200px] h-[200px] rounded-full'
                 />
@@ -120,11 +120,7 @@ export default function Profile({ params }: { params: { username: string } }) {
                                             key={item.id}
                                             index={index + 1}
                                             {...item}
-                                            image={
-                                                'https://api.smashup.ru/uploads/mashup/' +
-                                                item.imageUrl +
-                                                '_100x100.png'
-                                            }
+                                            image={item.imageUrl + '_100x100.png'}
                                             author={item.authors.join(', ')}
                                             title={item.name}
                                             mashup={item}
@@ -141,11 +137,7 @@ export default function Profile({ params }: { params: { username: string } }) {
                                 id={0}
                                 title={lastMashup.name}
                                 author={lastMashup.authors.join(', ')}
-                                image={
-                                    'https://api.smashup.ru/uploads/mashup/' +
-                                    lastMashup.imageUrl +
-                                    '_400x400.png'
-                                }
+                                image={lastMashup.imageUrl + '_400x400.png'}
                             />
                         </div>
                     </div>
@@ -166,11 +158,7 @@ export default function Profile({ params }: { params: { username: string } }) {
                                     key={item.id}
                                     showVisibleButton={false}
                                     {...item}
-                                    image={
-                                        'https://api.smashup.ru/uploads/playlist/' +
-                                        item.imageUrl +
-                                        '_400x400.png'
-                                    }
+                                    image={item.imageUrl + '_400x400.png'}
                                     author={item.authors.join(', ')}
                                     title={item.name}
                                 />

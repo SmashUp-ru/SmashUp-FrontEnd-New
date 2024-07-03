@@ -48,11 +48,7 @@ export default function PlaylistPage({ params }: { params: { playlist_id: number
             {/* Профиль */}
             <div className='flex flex-row bg-surfaceVariant w-full h-[238px] rounded-4xl px-6 py-6 gap-12'>
                 <Image
-                    src={
-                        'https://api.smashup.ru/uploads/playlist/' +
-                        playlist.imageUrl +
-                        '_800x800.png'
-                    }
+                    src={playlist.imageUrl + '_800x800.png'}
                     width={188}
                     height={188}
                     alt={playlist.name}
@@ -93,11 +89,7 @@ export default function PlaylistPage({ params }: { params: { playlist_id: number
                             key={item.id}
                             index={index + 1}
                             {...item}
-                            image={
-                                'https://api.smashup.ru/uploads/mashup/' +
-                                item.imageUrl +
-                                '_100x100.png'
-                            }
+                            image={item.imageUrl + '_100x100.png'}
                             author={item.authors.join(', ')}
                             title={item.name}
                             mashup={item}
