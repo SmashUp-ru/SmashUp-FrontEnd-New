@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SmashUpButton from '@/components/smashup/Button/Button';
 import Card from '@/components/Card';
 import ArtistCard from '@/components/ArtistCard';
@@ -28,8 +28,7 @@ import {
     useTrackCache,
     useUserCache
 } from '@/hooks/repositories';
-import TrackContext from '@/providers/track';
-import PlayerContext from '@/providers/player';
+import MashupCard from '../MashupCard';
 
 function search<R extends { id: number }>(
     api: Api,
@@ -89,9 +88,6 @@ export default function SearchResults({ query }: { query: string }) {
             );
         }
     }, [query]);
-
-    const { track, setTrack } = useContext(TrackContext);
-    const { currentMashup, setCurrentMashup, paused, setPaused } = useContext(PlayerContext);
 
     return (
         <div className='flex flex-col gap-4'>
@@ -188,29 +184,7 @@ export default function SearchResults({ query }: { query: string }) {
                             <h1 className='font-semibold text-3xl'>{transl('mashups')}</h1>
                             <div className='flex flex-row items-center overflow-hidden'>
                                 {mashups.map((mashup, index) => (
-                                    <Card
-                                        key={index}
-                                        id={mashup.id}
-                                        title={mashup.name}
-                                        author={mashup.authors.join(', ')}
-                                        image={mashup.imageUrl + '_400x400.png'}
-                                        onClick={() => {
-                                            if (track && track.id === mashup.id) {
-                                                setTrack(undefined);
-                                            } else {
-                                                setTrack(mashup);
-                                            }
-                                        }}
-                                        isPlaying={currentMashup?.id === mashup.id && !paused}
-                                        playAction={() => {
-                                            if (!currentMashup || currentMashup.id !== mashup.id) {
-                                                // TODO: provide playlist
-                                                setCurrentMashup(mashup);
-                                            } else {
-                                                setPaused(!paused);
-                                            }
-                                        }}
-                                    />
+                                    <MashupCard key={index} mashup={mashup} />
                                 ))}
                             </div>
                         </div>

@@ -2,13 +2,12 @@
 
 import Image, { StaticImageData } from 'next/image';
 import ExplicitIcon from '@/components/icons/ExplicitIcon';
-import React, { useContext } from 'react';
+import React from 'react';
 import BorderlessPlayIcon from '@/components/icons/BorderlessPlayIcon';
 import HeartIcon from '@/components/icons/HeartIcon';
 import Link from 'next/link';
 import { Mashup } from '@/utils/types';
-import TrackContext from '@/providers/track';
-import PlayerContext from '@/providers/player';
+import { useMashupSideSheetUtils, usePlayerUtils } from '@/hooks/utils';
 
 // TODO: change declaration to Mashup from types.js
 export interface TrackItemProps {
@@ -40,8 +39,8 @@ export default function TrackItem({
     showLiked,
     mashup
 }: TrackItemProps) {
-    const { track, setTrack } = useContext(TrackContext);
-    const { currentMashup, setCurrentMashup, paused, setPaused } = useContext(PlayerContext);
+    const playerUtils = usePlayerUtils();
+    const mashupSideSheetUtils = useMashupSideSheetUtils();
 
     return (
         <div className='px-4 flex flex-row justify-between group hover:bg-surface rounded-lg'>
@@ -50,12 +49,8 @@ export default function TrackItem({
                     <button
                         className='w-6 h-6 m-4 flex flex-row items-center justify-center'
                         onClick={() => {
-                            if (!currentMashup || currentMashup.id !== mashup.id) {
-                                // TODO: provide playlist
-                                setCurrentMashup(mashup);
-                            } else {
-                                setPaused(!paused);
-                            }
+                            // TODO: provide playlist
+                            playerUtils.playMashup(mashup);
                         }}
                     >
                         <span className='text-onSurfaceVariant group-hover:hidden'>
@@ -66,7 +61,8 @@ export default function TrackItem({
                             width={11}
                             height={12}
                             color={
-                                currentMashup?.id === mashup.id && !paused ? 'secondary' : 'primary'
+                                // TODO: provide playlist
+                                playerUtils.isPlaying(mashup) ? 'secondary' : 'primary'
                             }
                             className='hidden group-hover:block'
                         />
@@ -84,13 +80,7 @@ export default function TrackItem({
                         <div className='flex flex-row gap-2 items-center'>
                             <span
                                 className='font-bold text-base cursor-pointer'
-                                onClick={() => {
-                                    if (track && track.id === mashup.id) {
-                                        setTrack(undefined);
-                                    } else {
-                                        setTrack(mashup);
-                                    }
-                                }}
+                                onClick={() => mashupSideSheetUtils.open(mashup)}
                             >
                                 {title}
                             </span>

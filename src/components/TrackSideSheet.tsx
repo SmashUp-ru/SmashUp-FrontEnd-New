@@ -8,14 +8,17 @@ import TrackContext from '@/providers/track';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { MockMashup, Track } from '@/utils/types';
-import PlayerContext from '@/providers/player';
 import PauseIcon from './icons/PauseIcon';
 import { useTrackCache } from '@/hooks/repositories';
+import Link from 'next/link';
+import { usePlayerUtils } from '@/hooks/utils';
 
 // TODO: rename to MashupSideSheet
 export default function TrackSideSheet() {
     const { track, setTrack } = useContext(TrackContext);
-    const { currentMashup, setCurrentMashup, paused, setPaused } = useContext(PlayerContext);
+
+    const playerUtils = usePlayerUtils();
+
     const transl = useTranslations('pages.track_side_sheet');
 
     const [tracks, setTracks] = useState<Track[]>();
@@ -77,24 +80,23 @@ export default function TrackSideSheet() {
                         <span className='text-base font-semibold'>{mashup.name}</span>
                         <ExplicitIcon width={16} height={17} color='icon' />
                     </div>
-                    <span className='text-base font-normal text-onSurfaceVariant'>
-                        {mashup.authors.join(', ')}
-                    </span>
+                    {/* TODO: support for multipel authors */}
+                    <Link href={`/profile/${mashup.authors[0]}`}>
+                        <span className='text-base font-normal text-onSurfaceVariant'>
+                            {mashup.authors.join(', ')}
+                        </span>
+                    </Link>
                 </div>
 
                 <div className='flex flex-row gap-5 items-center'>
                     <button
                         className='cursor-pointer'
                         onClick={() => {
-                            if (!currentMashup || currentMashup.id !== mashup.id) {
-                                // TODO: provide playlist from which this side sheet was opened
-                                setCurrentMashup(mashup);
-                            } else {
-                                setPaused(!paused);
-                            }
+                            // TODO: provide playlist from which this side sheet was opened
+                            playerUtils.playMashup(mashup);
                         }}
                     >
-                        {currentMashup?.id === mashup.id && !paused ? (
+                        {playerUtils.isPlaying(mashup) ? (
                             <PauseIcon width={48} height={48} color='primary' />
                         ) : (
                             <PlayIcon width={48} height={48} color='primary' />

@@ -1,7 +1,7 @@
 import { Mashup } from '@/utils/types';
 import React, { createContext } from 'react';
 
-const PlayerContext = createContext<{
+export interface PlayerContextType {
     currentPlaylist?: number;
     setCurrentPlaylist: React.Dispatch<React.SetStateAction<number | undefined>>;
 
@@ -22,7 +22,9 @@ const PlayerContext = createContext<{
 
     repeat: 'no' | 'playlist' | 'one';
     setRepeat: React.Dispatch<React.SetStateAction<'no' | 'playlist' | 'one'>>;
-}>({
+}
+
+const PlayerContext = createContext<PlayerContextType>({
     setCurrentPlaylist: () => {},
 
     setQueue: () => {},

@@ -5,10 +5,8 @@ import { useMashupCache } from '@/hooks/repositories';
 import SearchContext from '@/providers/search';
 import { Mashup } from '@/utils/types';
 import { useContext, useEffect, useState } from 'react';
-import Card from '../Card';
 import { useTranslations } from 'next-intl';
-import TrackContext from '@/providers/track';
-import PlayerContext from '@/providers/player';
+import MashupCard from '../MashupCard';
 
 export default function CrossoverSearchResults() {
     const transl = useTranslations('pages.search.results');
@@ -19,9 +17,6 @@ export default function CrossoverSearchResults() {
     const api = useApi();
 
     const mashupCache = useMashupCache();
-
-    const { track, setTrack } = useContext(TrackContext);
-    const { currentMashup, setCurrentMashup, paused, setPaused } = useContext(PlayerContext);
 
     useEffect(() => {
         if (crossoverEntries.length < 1 || crossoverEntries.length > 4) {
@@ -68,33 +63,7 @@ export default function CrossoverSearchResults() {
         <div>
             <h1 className='font-semibold text-3xl'>{transl('mashups')}</h1>
             <div className='flex flex-row items-center overflow-hidden'>
-                {mashups?.map((item, index) => {
-                    return (
-                        <Card
-                            key={index}
-                            id={item.id}
-                            title={item.name}
-                            author={item.authors.join(', ')}
-                            image={item.imageUrl + '_400x400.png'}
-                            onClick={() => {
-                                if (track && track.id === item.id) {
-                                    setTrack(undefined);
-                                } else {
-                                    setTrack(item);
-                                }
-                            }}
-                            isPlaying={currentMashup?.id === item.id && !paused}
-                            playAction={() => {
-                                if (!currentMashup || currentMashup.id !== item.id) {
-                                    // TODO: provide playlist
-                                    setCurrentMashup(item);
-                                } else {
-                                    setPaused(!paused);
-                                }
-                            }}
-                        />
-                    );
-                })}
+                {mashups?.map((item, index) => <MashupCard key={index} mashup={item} />)}
             </div>
         </div>
     );

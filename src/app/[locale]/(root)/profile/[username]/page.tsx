@@ -1,5 +1,5 @@
 'use client';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import SettingsIcon from '@/components/icons/SettingsIcon';
 import ShareIcon from '@/components/icons/ShareIcon';
@@ -18,8 +18,7 @@ import {
     useRepositoryStateSet,
     useUserCache
 } from '@/hooks/repositories';
-import PlayerContext from '@/providers/player';
-import TrackContext from '@/providers/track';
+import MashupCard from '@/components/MashupCard';
 
 export default function Profile({ params }: { params: { username: string } }) {
     const transl = useTranslations('pages.profile');
@@ -54,9 +53,6 @@ export default function Profile({ params }: { params: { username: string } }) {
     useRepositoryStateSet(playlistsResponse, setPlaylists, () =>
         user?.mashups.map(() => new MockPlaylist())
     );
-
-    const { track, setTrack } = useContext(TrackContext);
-    const { currentMashup, setCurrentMashup, paused, setPaused } = useContext(PlayerContext);
 
     if (!user) {
         return <></>;
@@ -140,29 +136,7 @@ export default function Profile({ params }: { params: { username: string } }) {
                         {/*Недавний релиз*/}
                         <div className='flex flex-col gap-4'>
                             <h2 className='font-semibold text-2xl'>{transl('new-release')}</h2>
-                            {/* TODO: move to MashupCard component */}
-                            <Card
-                                id={lastMashup.id}
-                                title={lastMashup.name}
-                                author={lastMashup.authors.join(', ')}
-                                image={lastMashup.imageUrl + '_400x400.png'}
-                                onClick={() => {
-                                    if (track && track.id === lastMashup.id) {
-                                        setTrack(undefined);
-                                    } else {
-                                        setTrack(lastMashup);
-                                    }
-                                }}
-                                isPlaying={currentMashup?.id === lastMashup.id && !paused}
-                                playAction={() => {
-                                    if (!currentMashup || currentMashup.id !== lastMashup.id) {
-                                        // TODO: provide playlist
-                                        setCurrentMashup(lastMashup);
-                                    } else {
-                                        setPaused(!paused);
-                                    }
-                                }}
-                            />
+                            <MashupCard mashup={lastMashup} />
                         </div>
                     </div>
                 </>

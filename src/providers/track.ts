@@ -2,10 +2,12 @@ import React, { createContext } from 'react';
 import { Mashup } from '@/utils/types';
 
 // TODO: rename to MashupContext and fields inside
-const TrackContext = createContext<{
+export interface TrackContextType {
     track?: Mashup;
     setTrack: React.Dispatch<React.SetStateAction<Mashup | undefined>>;
-}>({
+}
+
+const TrackContext = createContext<TrackContextType>({
     setTrack: () => {}
 });
 
