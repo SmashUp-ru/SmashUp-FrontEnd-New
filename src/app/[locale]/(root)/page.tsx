@@ -23,7 +23,7 @@ export default function Home() {
                 </h2>
                 <div className='flex flex-row gap-7 w-full h-[301px] overflow-visible'>
                     {selections.map((item) => (
-                        <Card key={item.id} {...item} bg />
+                        <Card href='playlist' key={item.id} {...item} bg />
                     ))}
                 </div>
             </div>

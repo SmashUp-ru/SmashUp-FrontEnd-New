@@ -51,10 +51,13 @@ export default function TrackItem({
                         <span className='text-onSurfaceVariant group-hover:hidden'>
                             {index ? index : id}
                         </span>
+                        {/* TODO: pause icon */}
                         <BorderlessPlayIcon
                             width={11}
                             height={12}
-                            color='primary'
+                            color={
+                                currentMashup?.id === mashup.id && !paused ? 'secondary' : 'primary'
+                            }
                             className='hidden group-hover:block'
                             onClick={() => {
                                 if (!currentMashup || currentMashup.id !== mashup.id) {

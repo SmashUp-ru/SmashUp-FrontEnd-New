@@ -220,7 +220,8 @@ export interface RepositoryResponse<T> {
 
 export function useRepositoryRequest<R>(
     dataInitialValue: R,
-    promise: () => Promise<R>
+    promise: () => Promise<R>,
+    failVailue: R = dataInitialValue
 ): RepositoryResponse<R> {
     const [data, setData] = useState<R>(dataInitialValue);
     const [loading, setLoading] = useState<boolean>(false);
@@ -242,7 +243,7 @@ export function useRepositoryRequest<R>(
             .catch(() => {
                 setError(true);
                 setLoading(false);
-                complete(dataInitialValue);
+                complete(failVailue);
             });
     });
 

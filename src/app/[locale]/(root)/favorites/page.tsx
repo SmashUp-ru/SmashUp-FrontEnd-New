@@ -8,7 +8,7 @@ import ShareIcon from '@/components/icons/ShareIcon';
 import { useTranslations } from 'next-intl';
 
 export default function Favorites() {
-    const transl = useTranslations('pages.favorites');
+    const transl = useTranslations('pages.playlist');
     return (
         <div className='flex flex-col gap-6'>
             {/* Профиль */}

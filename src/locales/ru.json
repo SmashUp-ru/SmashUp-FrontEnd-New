@@ -170,9 +170,12 @@
       "show-all": "Показать все",
       "new-release": "Недавний релиз"
     },
-    "favorites": {
+    "playlist": {
       "playlist": "Плейлист",
-      "title": "Мне нравится"
+      "compilation": "Компиляция",
+
+      "favorites": "Мне нравится",
+      "recommendations": "Рекомендации"
     },
     "agreement": {
       "title": "Пользовательское соглашение",

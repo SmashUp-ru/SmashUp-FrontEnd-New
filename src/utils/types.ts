@@ -131,7 +131,7 @@ export interface Playlist {
     backgroundColor: number;
     mashups: number[];
     likes: number;
-    strems: number;
+    streams: number;
 }
 
 export class MockPlaylist {
@@ -143,7 +143,7 @@ export class MockPlaylist {
     backgroundColor: number = 0;
     mashups: number[] = [];
     likes: number = 0;
-    strems: number = 0;
+    streams: number = 0;
 }
 
 export function playlistFromObject(object: any): Playlist {

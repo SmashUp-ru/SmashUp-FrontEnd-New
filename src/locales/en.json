@@ -170,9 +170,12 @@
       "show-all": "Show all",
       "new-release": "New release"
     },
-    "favorites": {
+    "playlist": {
       "playlist": "Playlist",
-      "title": "Favorites"
+      "compilation": "Compilation",
+
+      "favorites": "Favorites",
+      "recommendations": "Recommendations"
     },
     "agreement": {
       "title": "User agreement",
