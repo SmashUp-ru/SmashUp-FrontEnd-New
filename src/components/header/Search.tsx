@@ -4,7 +4,7 @@ import SearchIcon from '@/components/icons/SearchIcon';
 import SmashUpInput from '@/components/smashup/Input/Input';
 import { useRouter } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Popover } from 'react-tiny-popover';
 import Image from 'next/image';
@@ -32,17 +32,14 @@ export default function Search() {
     const trackAuthorCache = useTrackAuthorCache();
     const trackCache = useTrackCache();
 
-    const handleSearch = useDebouncedCallback((term: string) => {
-        setQuery(term);
-
-        let finalQuery = term.trim();
-        // TODO: maybe move to another component
+    // TODO: maybe move to another component
+    const crossoverSearch = (query: string) => {
         if (type === 'crossover') {
             setCrossoverTracks([]);
             setCrossoverTrackAuthors([]);
 
-            if (finalQuery.length >= 4 && finalQuery.length <= 32) {
-                api.get('/track_author/search', { query: finalQuery }).then((response) => {
+            if (query.length >= 4 && query.length <= 32) {
+                api.get('/track_author/search', { query }).then((response) => {
                     // TODO: limit at API
                     let trackAuthors: TrackAuthor[] =
                         response.data.response.map(trackAuthorFromObject);
@@ -55,7 +52,7 @@ export default function Search() {
                     }
                 });
 
-                api.get('/track/search', { query: finalQuery }).then((response) => {
+                api.get('/track/search', { query }).then((response) => {
                     // TODO: limit at API
                     let tracks: Track[] = response.data.response.map(trackFromObject);
                     if (tracks.length > 5) {
@@ -68,7 +65,19 @@ export default function Search() {
                 });
             }
         }
+    };
+
+    const handleSearch = useDebouncedCallback((term: string) => {
+        setQuery(term);
+
+        // TODO: maybe move to another component
+        crossoverSearch(term.trim());
     }, 300);
+
+    useEffect(() => {
+        // TODO: maybe move to another component
+        crossoverSearch(query);
+    }, [type]);
 
     const t = useTranslations('components.header.search');
 

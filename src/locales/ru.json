@@ -31,18 +31,26 @@
     "track_side_sheet": {
       "used": "Используемые треки"
     },
-    "search_history": {
-      "title": "История поиска",
-      "search": "Поиск",
-      "crossover": "Кроссовер"
-    },
-    "search_results": {
-      "all": "Все",
-      "mashups": "Мэшапы",
-      "authors": "Авторы",
-      "playlists": "Плейлисты",
-      "best_results": "Лучшие результаты по вашему запросу ",
-      "with_artist": "Мэшапы с этим артистом"
+    "search": {
+      "buttons": {
+        "search": "Поиск",
+        "crossover": "Кроссовер"
+      },
+      "history": {
+        "title": "История поиска"
+      },
+      "results": {
+        "title": "Результаты поиска",
+        "all": "Все",
+        "mashups": "Мэшапы",
+        "authors": "Авторы",
+        "playlists": "Плейлисты",
+        "best_results": "Лучшие результаты по вашему запросу ",
+        "with_artist": "Мэшапы с этим артистом",
+        "crossover": {
+          "title": "Кроссовер"
+        }
+      }
     },
     "player": {
       "fullscreen": "Вы находитесь в полноэкранном режиме"
@@ -59,7 +67,6 @@
       "rejected": "Отклонённые",
       "name": "Название",
       "mashupers": "Мэшаперы"
-
     },
     "not_found": {
       "title": "Что-то пошло не так",

@@ -31,18 +31,26 @@
     "track_side_sheet": {
       "used": "Tracks used"
     },
-    "search_history": {
-      "title": "Search history",
-      "search": "Search",
-      "crossover": "Crossover"
-    },
-    "search_results": {
-      "all": "All",
-      "mashups": "Mashups",
-      "authors": "Authors",
-      "playlists": "Playlists",
-      "best_results": "Best results for your query",
-      "with_artist": "Mashups with this artist"
+    "search": {
+      "buttons": {
+        "search": "Search",
+        "crossover": "Crossover"
+      },
+      "history": {
+        "title": "Search history"
+      },
+      "results": {
+        "title": "Search results",
+        "all": "All",
+        "mashups": "Mashups",
+        "authors": "Authors",
+        "playlists": "Playlists",
+        "best_results": "Best results for your query",
+        "with_artist": "Mashups with this artist",
+        "crossover": {
+          "title": "Crossover"
+        }
+      }
     },
     "player": {
       "fullscreen": "You're in the fullscreen mode"

@@ -56,7 +56,7 @@ function search<R extends { id: number }>(
 
 export default function SearchResults({ query }: { query: string }) {
     const [activeTab, setActiveTab] = useState(0);
-    const transl = useTranslations('pages.search_results');
+    const transl = useTranslations('pages.search.results');
 
     const api = useApi();
 

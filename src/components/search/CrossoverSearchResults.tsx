@@ -11,7 +11,7 @@ import TrackContext from '@/providers/track';
 import PlayerContext from '@/providers/player';
 
 export default function CrossoverSearchResults() {
-    const transl = useTranslations('pages.search_results');
+    const transl = useTranslations('pages.search.results');
     const { crossoverEntries } = useContext(SearchContext);
 
     const [mashups, setMashups] = useState<Mashup[]>();
