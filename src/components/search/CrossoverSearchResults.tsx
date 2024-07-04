@@ -24,7 +24,7 @@ export default function CrossoverSearchResults() {
     const { currentMashup, setCurrentMashup, paused, setPaused } = useContext(PlayerContext);
 
     useEffect(() => {
-        if (crossoverEntries.length < 2 || crossoverEntries.length > 4) {
+        if (crossoverEntries.length < 1 || crossoverEntries.length > 4) {
             return;
         }
 
@@ -60,8 +60,8 @@ export default function CrossoverSearchResults() {
             });
     }, [crossoverEntries]);
 
-    if (crossoverEntries.length < 2 || crossoverEntries.length > 4) {
-        return <div className='flex flex-col gap-4'>Add from 2 to 4 sources!</div>;
+    if (crossoverEntries.length < 1 || crossoverEntries.length > 4) {
+        return <div className='flex flex-col gap-4'>Add from 1 to 4 sources!</div>;
     }
 
     return (

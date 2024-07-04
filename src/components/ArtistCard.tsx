@@ -27,7 +27,13 @@ export default function ArtistCard({
             className={`${bg ? 'bg-surfaceVariant' : ''} flex flex-col items-center gap-3 w-[238px] h-[301px] rounded-4xl px-6 py-6`}
         >
             <div className='w-full relative group'>
-                <Image src={image} alt={title} className='w-full ' />
+                <Image
+                    width={190}
+                    height={190}
+                    src={image}
+                    alt={title}
+                    className='w-full rounded-full'
+                />
                 <button
                     className='hidden group-hover:block absolute right-2.5 bottom-2.5'
                     onClick={() => {

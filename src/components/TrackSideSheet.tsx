@@ -7,26 +7,22 @@ import ShareIcon from '@/components/icons/ShareIcon';
 import TrackContext from '@/providers/track';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Mashup, MockMashup, MockTrack, Track, trackFromObject } from '@/utils/types';
-import axios, { AxiosResponse } from 'axios';
+import { MockMashup, Track } from '@/utils/types';
 import PlayerContext from '@/providers/player';
 import PauseIcon from './icons/PauseIcon';
+import { useTrackCache } from '@/hooks/repositories';
 
+// TODO: rename to MashupSideSheet
 export default function TrackSideSheet() {
     const { track, setTrack } = useContext(TrackContext);
     const { currentMashup, setCurrentMashup, paused, setPaused } = useContext(PlayerContext);
     const transl = useTranslations('pages.track_side_sheet');
 
-    const [mashup, setMashup] = useState<Mashup>(new MockMashup());
     const [tracks, setTracks] = useState<Track[]>();
 
-    useEffect(() => {
-        if (!track) {
-            setMashup(new MockMashup());
-        } else {
-            setMashup(track);
-        }
-    }, [track]);
+    const mashup = track ? track : new MockMashup();
+
+    const trackCache = useTrackCache();
 
     useEffect(() => {
         setTracks(undefined);
@@ -34,18 +30,29 @@ export default function TrackSideSheet() {
             return;
         }
 
-        axios
-            .get(`https://api.smashup.ru/track/get?id=${track.tracks.join(',')}`)
-            .then((res: AxiosResponse<{ response: Track[] }>) => {
-                setTracks(res.data.response.map((i) => trackFromObject(i)));
-            })
-            .catch(() => {
-                setTracks(track.tracks.map(() => new MockTrack()));
-            });
+        trackCache.getMany(track.tracks).then((tracks) => {
+            setTracks(tracks);
+        });
+    }, [track]);
+
+    const handleEscapeKey = (event: any) => {
+        if (event.key === 'Escape') {
+            setTrack(undefined);
+        }
+    };
+
+    useEffect(() => {
+        if (track) {
+            document.addEventListener('keydown', handleEscapeKey, true);
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleEscapeKey);
+        };
     }, [track]);
 
     return (
-        <div className='w-[468px] h-full flex flex-col items-center'>
+        <div className='w-[468px] h-full flex flex-col items-center ml-5'>
             <div className='w-full flex flex-row justify-end h-[130px]'>
                 <button
                     onClick={() => {

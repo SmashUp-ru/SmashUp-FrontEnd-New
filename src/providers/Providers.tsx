@@ -9,6 +9,7 @@ import SearchContext, { CrossoverEntry } from '@/providers/search';
 export default function Providers({ children }: { children: React.ReactNode }) {
     const [track, setTrack] = useState<Mashup>();
 
+    const [query, setQuery] = useState<string>('');
     const [type, setType] = useState<'search' | 'crossover'>('search');
     const [crossoverEntries, setCrossoverEntries] = useState<CrossoverEntry[]>([]);
 
@@ -51,6 +52,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             >
                 <SearchContext.Provider
                     value={{
+                        query,
+                        setQuery,
                         type,
                         setType,
                         crossoverEntries,

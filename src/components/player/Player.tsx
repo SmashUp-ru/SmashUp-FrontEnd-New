@@ -4,12 +4,35 @@ import { useContext, useEffect, useState } from 'react';
 import PlayerContext from '@/providers/player';
 import { useMashupCache } from '@/hooks/repositories';
 
+let actualPaused: boolean = true;
+
 export default function Player() {
     const { queue, currentMashup, setCurrentMashup, paused, setPaused, repeat } =
         useContext(PlayerContext);
 
     const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement>();
     const mashupCache = useMashupCache();
+
+    const handleKey = (event: any) => {
+        if (event.key === ' ' && event.target === document.body) {
+            setPaused(!actualPaused);
+            event.preventDefault();
+        }
+    };
+
+    useEffect(() => {
+        actualPaused = paused;
+    }, [paused]);
+
+    useEffect(() => {
+        if (currentAudio) {
+            document.addEventListener('keydown', handleKey, true);
+        }
+
+        return () => {
+            document.removeEventListener('keydown', handleKey);
+        };
+    }, [currentAudio]);
 
     useEffect(() => {
         if (currentAudio) {

@@ -8,12 +8,17 @@ export interface CrossoverEntry {
 }
 
 const SearchContext = createContext<{
+    query: string;
+    setQuery: React.Dispatch<React.SetStateAction<string>>;
+
     type: 'search' | 'crossover';
     setType: React.Dispatch<React.SetStateAction<'search' | 'crossover'>>;
 
     crossoverEntries: CrossoverEntry[];
     setCrossoverEntries: React.Dispatch<React.SetStateAction<CrossoverEntry[]>>;
 }>({
+    query: '',
+    setQuery: () => {},
     type: 'search',
     setType: () => {},
     crossoverEntries: [],

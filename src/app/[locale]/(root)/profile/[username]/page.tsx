@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Image from 'next/image';
 import SettingsIcon from '@/components/icons/SettingsIcon';
 import ShareIcon from '@/components/icons/ShareIcon';
@@ -18,6 +18,8 @@ import {
     useRepositoryStateSet,
     useUserCache
 } from '@/hooks/repositories';
+import PlayerContext from '@/providers/player';
+import TrackContext from '@/providers/track';
 
 export default function Profile({ params }: { params: { username: string } }) {
     const transl = useTranslations('pages.profile');
@@ -30,14 +32,16 @@ export default function Profile({ params }: { params: { username: string } }) {
     const mashupCache = useMashupCache();
     const playlistCache = usePlaylistCache();
 
-    const userResponse = useRepositoryRequest(new MockUser(), () =>
-        userCache.getByUsername(decodeURI(params.username))
+    const userResponse = useRepositoryRequest(
+        undefined,
+        () => userCache.getByUsername(decodeURI(params.username)),
+        new MockUser()
     );
     useRepositoryStateSet(userResponse, setUser, () => new MockUser());
 
     const mashupsResponse = useRepositoryGetMany(
         mashupCache,
-        userResponse.promise.then((user) => user.mashups)
+        userResponse.promise.then((user) => (user ? user.mashups : []))
     );
     useRepositoryStateSet(mashupsResponse, setMashups, () =>
         user?.mashups.map(() => new MockMashup())
@@ -45,11 +49,14 @@ export default function Profile({ params }: { params: { username: string } }) {
 
     const playlistsResponse = useRepositoryGetMany(
         playlistCache,
-        userResponse.promise.then((user) => user.playlists)
+        userResponse.promise.then((user) => (user ? user.playlists : []))
     );
     useRepositoryStateSet(playlistsResponse, setPlaylists, () =>
         user?.mashups.map(() => new MockPlaylist())
     );
+
+    const { track, setTrack } = useContext(TrackContext);
+    const { currentMashup, setCurrentMashup, paused, setPaused } = useContext(PlayerContext);
 
     if (!user) {
         return <></>;
@@ -133,11 +140,28 @@ export default function Profile({ params }: { params: { username: string } }) {
                         {/*Недавний релиз*/}
                         <div className='flex flex-col gap-4'>
                             <h2 className='font-semibold text-2xl'>{transl('new-release')}</h2>
+                            {/* TODO: move to MashupCard component */}
                             <Card
-                                id={0}
+                                id={lastMashup.id}
                                 title={lastMashup.name}
                                 author={lastMashup.authors.join(', ')}
                                 image={lastMashup.imageUrl + '_400x400.png'}
+                                onClick={() => {
+                                    if (track && track.id === lastMashup.id) {
+                                        setTrack(undefined);
+                                    } else {
+                                        setTrack(lastMashup);
+                                    }
+                                }}
+                                isPlaying={currentMashup?.id === lastMashup.id && !paused}
+                                playAction={() => {
+                                    if (!currentMashup || currentMashup.id !== lastMashup.id) {
+                                        // TODO: provide playlist
+                                        setCurrentMashup(lastMashup);
+                                    } else {
+                                        setPaused(!paused);
+                                    }
+                                }}
                             />
                         </div>
                     </div>
@@ -157,6 +181,7 @@ export default function Profile({ params }: { params: { username: string } }) {
                                 <Card
                                     key={item.id}
                                     showVisibleButton={false}
+                                    href='playlist'
                                     {...item}
                                     image={item.imageUrl + '_400x400.png'}
                                     author={item.authors.join(', ')}

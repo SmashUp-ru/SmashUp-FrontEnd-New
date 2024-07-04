@@ -2,9 +2,9 @@
 
 import SearchIcon from '@/components/icons/SearchIcon';
 import SmashUpInput from '@/components/smashup/Input/Input';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Popover } from 'react-tiny-popover';
 import Image from 'next/image';
@@ -14,17 +14,14 @@ import { useApi } from '@/hooks/api';
 import { useTrackAuthorCache, useTrackCache } from '@/hooks/repositories';
 
 export default function Search() {
-    const pathname = usePathname();
     const router = useRouter();
-    const searchParams = useSearchParams();
 
-    const { type, crossoverEntries, setCrossoverEntries } = useContext(SearchContext);
+    const { query, setQuery, type, crossoverEntries, setCrossoverEntries } =
+        useContext(SearchContext);
 
     const searchRef = useRef<HTMLInputElement | null>(null);
 
-    const [searchValue, setSearchValue] = useState(
-        searchParams.get('q') ? searchParams.get('q')?.toString() : ''
-    );
+    const [searchValue, setSearchValue] = useState<string>(query);
 
     // TODO: maybe move to another component
     const [crossoverTracks, setCrossoverTracks] = useState<Track[]>([]);
@@ -36,48 +33,42 @@ export default function Search() {
     const trackCache = useTrackCache();
 
     const handleSearch = useDebouncedCallback((term: string) => {
-        const params = new URLSearchParams(searchParams);
-        if (term) {
-            params.set('q', term);
-        } else {
-            params.delete('q');
-        }
-        setSearchValue(term);
-        router.push(`${pathname}?${params.toString()}`);
+        setQuery(term);
 
+        let finalQuery = term.trim();
         // TODO: maybe move to another component
-        if (type === 'crossover' && term.length >= 4 && term.length <= 32) {
+        if (type === 'crossover') {
             setCrossoverTracks([]);
             setCrossoverTrackAuthors([]);
 
-            api.get('/track_author/search', { query: term }).then((response) => {
-                // TODO: limit at API
-                let trackAuthors: TrackAuthor[] = response.data.response.map(trackAuthorFromObject);
-                if (trackAuthors.length > 5) {
-                    trackAuthors = trackAuthors.slice(0, 5);
-                }
-                setCrossoverTrackAuthors(trackAuthors);
-                for (let trackAuthor of trackAuthors) {
-                    trackAuthorCache.storage.set(trackAuthor.id, trackAuthor);
-                }
-            });
+            if (finalQuery.length >= 4 && finalQuery.length <= 32) {
+                api.get('/track_author/search', { query: finalQuery }).then((response) => {
+                    // TODO: limit at API
+                    let trackAuthors: TrackAuthor[] =
+                        response.data.response.map(trackAuthorFromObject);
+                    if (trackAuthors.length > 5) {
+                        trackAuthors = trackAuthors.slice(0, 5);
+                    }
+                    setCrossoverTrackAuthors(trackAuthors);
+                    for (let trackAuthor of trackAuthors) {
+                        trackAuthorCache.storage.set(trackAuthor.id, trackAuthor);
+                    }
+                });
 
-            api.get('/track/search', { query: term }).then((response) => {
-                let tracks: Track[] = response.data.response.map(trackFromObject);
-                if (tracks.length > 5) {
-                    tracks = tracks.slice(0, 5);
-                }
-                setCrossoverTracks(tracks);
-                for (let track of tracks) {
-                    trackCache.storage.set(track.id, track);
-                }
-            });
+                api.get('/track/search', { query: finalQuery }).then((response) => {
+                    // TODO: limit at API
+                    let tracks: Track[] = response.data.response.map(trackFromObject);
+                    if (tracks.length > 5) {
+                        tracks = tracks.slice(0, 5);
+                    }
+                    setCrossoverTracks(tracks);
+                    for (let track of tracks) {
+                        trackCache.storage.set(track.id, track);
+                    }
+                });
+            }
         }
     }, 300);
-
-    useEffect(() => {
-        setSearchValue(searchParams.get('q')?.toString());
-    }, [searchParams]);
 
     const t = useTranslations('components.header.search');
 
@@ -182,7 +173,7 @@ export default function Search() {
                                                 className='w-8 h-8 rounded'
                                             />
                                             <span className='font-medium text-base text-icon'>
-                                                {item.name}
+                                                {item.authors.join(', ') + ' — ' + item.name}
                                             </span>
                                         </div>
                                     );
@@ -209,7 +200,7 @@ export default function Search() {
                     icon={<SearchIcon width={16} height={16} color='onSurface' />}
                     className=''
                     onClick={() => {
-                        router.push(`/search${searchValue ? `?q=${searchValue}` : ''}`);
+                        router.push('/search');
                     }}
                     onChange={(e) => {
                         setSearchValue(e.target.value);

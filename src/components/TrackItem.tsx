@@ -47,7 +47,17 @@ export default function TrackItem({
         <div className='px-4 flex flex-row justify-between group hover:bg-surface rounded-lg'>
             <div className='flex flex-row my-2.5 items-center h-[40px]'>
                 {(index || id) && (
-                    <button className='w-6 h-6 m-4 flex flex-row items-center justify-center'>
+                    <button
+                        className='w-6 h-6 m-4 flex flex-row items-center justify-center'
+                        onClick={() => {
+                            if (!currentMashup || currentMashup.id !== mashup.id) {
+                                // TODO: provide playlist
+                                setCurrentMashup(mashup);
+                            } else {
+                                setPaused(!paused);
+                            }
+                        }}
+                    >
                         <span className='text-onSurfaceVariant group-hover:hidden'>
                             {index ? index : id}
                         </span>
@@ -59,14 +69,6 @@ export default function TrackItem({
                                 currentMashup?.id === mashup.id && !paused ? 'secondary' : 'primary'
                             }
                             className='hidden group-hover:block'
-                            onClick={() => {
-                                if (!currentMashup || currentMashup.id !== mashup.id) {
-                                    // TODO: provide playlist
-                                    setCurrentMashup(mashup);
-                                } else {
-                                    setPaused(!paused);
-                                }
-                            }}
                         />
                     </button>
                 )}
