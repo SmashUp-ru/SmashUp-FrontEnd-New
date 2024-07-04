@@ -89,7 +89,33 @@ export class PlayerUtils {
         }
     }
 
-    playPrevious() {}
+    playPrevious() {
+        const { queue, currentMashup, setCurrentMashup, currentAudio, setPaused } = this.context;
+
+        if (currentAudio && currentAudio.currentTime > 5000) {
+            currentAudio.currentTime = 0;
+            return;
+        }
+
+        if (currentMashup && queue) {
+            let index = queue.indexOf(currentMashup.id);
+
+            if (index === 0) {
+                index = queue.length - 1;
+            } else {
+                index--;
+            }
+
+            this.mashupCache.get(queue[index]).then((mashup) => {
+                setCurrentMashup(mashup);
+            });
+        } else {
+            setPaused(true);
+            if (currentAudio) {
+                currentAudio.currentTime = 0;
+            }
+        }
+    }
 }
 
 export function usePlayerUtils(): PlayerUtils {

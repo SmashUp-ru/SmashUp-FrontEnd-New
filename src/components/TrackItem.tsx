@@ -44,6 +44,8 @@ export default function TrackItem({
     const playerUtils = usePlayerUtils();
     const mashupSideSheetUtils = useMashupSideSheetUtils();
 
+    let isPlaying = playerUtils.isPlaying(mashup, playlist);
+
     return (
         <div className='px-4 flex flex-row justify-between group hover:bg-surface rounded-lg'>
             <div className='flex flex-row my-2.5 items-center h-[40px]'>
@@ -53,15 +55,20 @@ export default function TrackItem({
                         onClick={() => playerUtils.playMashup(mashup, playlist)}
                     >
                         <span className='text-onSurfaceVariant group-hover:hidden'>
-                            {index ? index : id}
+                            {/* TODO: playing icon */}
+                            {isPlaying ? (
+                                <a className='text-primary'>{'>>'}</a>
+                            ) : index ? (
+                                index
+                            ) : (
+                                id
+                            )}
                         </span>
                         {/* TODO: pause icon */}
                         <BorderlessPlayIcon
                             width={11}
                             height={12}
-                            color={
-                                playerUtils.isPlaying(mashup, playlist) ? 'secondary' : 'primary'
-                            }
+                            color={isPlaying ? 'secondary' : 'primary'}
                             className='hidden group-hover:block'
                         />
                     </button>

@@ -40,6 +40,11 @@ export default function Player() {
                         actualPlayerUtils.playNext(false);
                     }
                     event.preventDefault();
+                } else if (event.key === 'ArrowLeft') {
+                    if (actualPlayerUtils) {
+                        actualPlayerUtils.playPrevious();
+                    }
+                    event.preventDefault();
                 }
             }
         };
