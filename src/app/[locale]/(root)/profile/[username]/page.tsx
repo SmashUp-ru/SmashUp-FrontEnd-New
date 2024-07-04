@@ -127,6 +127,10 @@ export default function Profile({ params }: { params: { username: string } }) {
                                             author={item.authors.join(', ')}
                                             title={item.name}
                                             mashup={item}
+                                            playlist={{
+                                                mashups: user.mashups,
+                                                link: `/profile/${user.username}`
+                                            }}
                                             explicit={item.statuses.isExplicit()}
                                         />
                                     ))}

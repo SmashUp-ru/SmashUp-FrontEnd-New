@@ -7,7 +7,7 @@ import BorderlessPlayIcon from '@/components/icons/BorderlessPlayIcon';
 import HeartIcon from '@/components/icons/HeartIcon';
 import Link from 'next/link';
 import { Mashup } from '@/utils/types';
-import { useMashupSideSheetUtils, usePlayerUtils } from '@/hooks/utils';
+import { PlaylistLike, useMashupSideSheetUtils, usePlayerUtils } from '@/hooks/utils';
 
 // TODO: change declaration to Mashup from types.js
 export interface TrackItemProps {
@@ -24,6 +24,7 @@ export interface TrackItemProps {
     showLiked?: boolean;
     // TODO: replace all above with Mashup
     mashup: Mashup;
+    playlist: PlaylistLike;
 }
 
 export default function TrackItem({
@@ -37,7 +38,8 @@ export default function TrackItem({
     length,
     liked,
     showLiked,
-    mashup
+    mashup,
+    playlist
 }: TrackItemProps) {
     const playerUtils = usePlayerUtils();
     const mashupSideSheetUtils = useMashupSideSheetUtils();
@@ -48,10 +50,7 @@ export default function TrackItem({
                 {(index || id) && (
                     <button
                         className='w-6 h-6 m-4 flex flex-row items-center justify-center'
-                        onClick={() => {
-                            // TODO: provide playlist
-                            playerUtils.playMashup(mashup);
-                        }}
+                        onClick={() => playerUtils.playMashup(mashup, playlist)}
                     >
                         <span className='text-onSurfaceVariant group-hover:hidden'>
                             {index ? index : id}
@@ -61,8 +60,7 @@ export default function TrackItem({
                             width={11}
                             height={12}
                             color={
-                                // TODO: provide playlist
-                                playerUtils.isPlaying(mashup) ? 'secondary' : 'primary'
+                                playerUtils.isPlaying(mashup, playlist) ? 'secondary' : 'primary'
                             }
                             className='hidden group-hover:block'
                         />

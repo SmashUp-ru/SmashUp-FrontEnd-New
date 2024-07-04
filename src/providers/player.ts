@@ -14,6 +14,9 @@ export interface PlayerContextType {
     currentMashup?: Mashup;
     setCurrentMashup: React.Dispatch<React.SetStateAction<Mashup | undefined>>;
 
+    currentAudio?: HTMLAudioElement;
+    setCurrentAudio: React.Dispatch<React.SetStateAction<HTMLAudioElement | undefined>>;
+
     paused: boolean;
     setPaused: React.Dispatch<React.SetStateAction<boolean>>;
 
@@ -32,6 +35,8 @@ const PlayerContext = createContext<PlayerContextType>({
     setOriginalQueue: () => {},
 
     setCurrentMashup: () => {},
+
+    setCurrentAudio: () => {},
 
     paused: true,
     setPaused: () => {},

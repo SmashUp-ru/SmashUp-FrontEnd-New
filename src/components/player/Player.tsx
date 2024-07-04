@@ -1,37 +1,54 @@
 'use client';
 
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import PlayerContext from '@/providers/player';
-import { useMashupCache } from '@/hooks/repositories';
+import { PlayerUtils, usePlayerUtils } from '@/hooks/utils';
 
 let actualPaused: boolean = true;
+let actualCurrentAudio: HTMLAudioElement | undefined = undefined;
+let actualPlayerUtils: PlayerUtils | undefined = undefined;
 
 export default function Player() {
-    const { queue, currentMashup, setCurrentMashup, paused, setPaused, repeat } =
+    const { currentMashup, currentAudio, setCurrentAudio, paused, setPaused } =
         useContext(PlayerContext);
 
-    const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement>();
-    const mashupCache = useMashupCache();
-
-    const handleKey = (event: any) => {
-        if (event.key === ' ' && event.target === document.body) {
-            setPaused(!actualPaused);
-            event.preventDefault();
-        }
-    };
+    const playerUtils = usePlayerUtils();
 
     useEffect(() => {
         actualPaused = paused;
     }, [paused]);
 
     useEffect(() => {
-        if (currentAudio) {
-            document.addEventListener('keydown', handleKey, true);
+        actualPlayerUtils = playerUtils;
+    }, [playerUtils]);
+
+    const initialized = useRef(false);
+
+    useEffect(() => {
+        if (initialized.current) {
+            return;
         }
 
-        return () => {
-            document.removeEventListener('keydown', handleKey);
+        initialized.current = true;
+        const handleKey = (event: any) => {
+            if (event.target === document.body) {
+                if (event.key === ' ') {
+                    setPaused(!actualPaused);
+                    event.preventDefault();
+                } else if (event.key === 'ArrowRight') {
+                    if (actualPlayerUtils) {
+                        actualPlayerUtils.playNext(false);
+                    }
+                    event.preventDefault();
+                }
+            }
         };
+
+        document.addEventListener('keydown', handleKey, true);
+    }, []);
+
+    useEffect(() => {
+        actualCurrentAudio = currentAudio;
     }, [currentAudio]);
 
     useEffect(() => {
@@ -49,32 +66,8 @@ export default function Player() {
         setCurrentAudio(audio);
 
         audio.onended = () => {
-            if (repeat === 'one') {
-                audio.currentTime = 0;
-                return;
-            }
-
-            if (currentMashup && queue) {
-                let index = queue.indexOf(currentMashup.id);
-
-                if (index === queue.length - 1) {
-                    if (repeat === 'playlist') {
-                        index = 0;
-                    } else {
-                        setPaused(true);
-                        audio.currentTime = 0;
-                        return;
-                    }
-                } else {
-                    index++;
-                }
-
-                mashupCache.get(queue[index]).then((mashup) => {
-                    setCurrentMashup(mashup);
-                });
-            } else {
-                setPaused(true);
-                audio.currentTime = 0;
+            if (actualCurrentAudio === audio) {
+                playerUtils.playNext(true);
             }
         };
 
@@ -98,6 +91,4 @@ export default function Player() {
             }
         }
     }, [paused]);
-
-    // return <>{currentMashup ? JSON.stringify(currentMashup) : 'undefined'}</>;
 }

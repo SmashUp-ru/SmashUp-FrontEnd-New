@@ -17,6 +17,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     const [originalQueue, setOriginalQueue] = useState<number[]>();
     const [queue, setQueue] = useState<number[]>();
     const [currentMashup, setCurrentMashup] = useState<Mashup>();
+    const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement>();
     const [paused, setPaused] = useState<boolean>(true);
     const [shuffle, setShuffle] = useState<boolean>(false);
     const [repeat, setRepeat] = useState<'no' | 'playlist' | 'one'>('no');
@@ -42,6 +43,8 @@ export default function Providers({ children }: { children: React.ReactNode }) {
                     setQueue,
                     currentMashup,
                     setCurrentMashup,
+                    currentAudio,
+                    setCurrentAudio,
                     paused,
                     setPaused,
                     shuffle,

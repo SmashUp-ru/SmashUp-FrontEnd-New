@@ -14,6 +14,7 @@ import {
     useRepositoryRequest,
     useRepositoryStateSet
 } from '@/hooks/repositories';
+import { playlistLike } from '@/hooks/utils';
 
 // TODO: think about name
 export default function PlaylistPage({ params }: { params: { playlist_id: number } }) {
@@ -94,6 +95,7 @@ export default function PlaylistPage({ params }: { params: { playlist_id: number
                             author={item.authors.join(', ')}
                             title={item.name}
                             mashup={item}
+                            playlist={playlistLike(playlist)}
                             explicit={item.statuses.isExplicit()}
                         />
                     ))}
