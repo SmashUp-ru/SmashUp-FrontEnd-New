@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 import { Mashup } from '@/utils/types';
 import { useMashupCache } from '@/hooks/repositories';
 import { useApi } from '@/hooks/api';
+import { PlaylistLike, usePlayerUtils } from '@/hooks/utils';
+import PauseIcon from '@/components/icons/PauseIcon';
 
 export default function Favorites() {
     const transl = useTranslations('pages.playlist');
@@ -18,16 +20,21 @@ export default function Favorites() {
 
     const mashupCache = useMashupCache();
     const api = useApi();
+    const playerUtils = usePlayerUtils();
 
     useEffect(() => {
         api.get('/mashup/get_all_likes', { id: 2 }).then((response) => {
-            let ids: number[] = response.data.response;
+            let ids: number[] = response.data.response.reverse();
             setMashupIds(ids);
             mashupCache.getMany(ids).then((mashups) => {
                 setMashups(mashups);
             });
         });
     }, []);
+
+    let playlistLike: PlaylistLike = { mashups: mashupIds ? mashupIds : [], link: '/favorites' };
+
+    let isPlaying = playerUtils.isPlaying(undefined, playlistLike);
 
     return (
         <div className='flex flex-col gap-6'>
@@ -46,11 +53,25 @@ export default function Favorites() {
                         <span className='font-medium text-lg text-onSurfaceVariant'>
                             {transl('playlist')}
                         </span>
-                        <h1 className='font-bold text-4xl text-onSurface'>{transl('title')}</h1>
+                        <h1 className='font-bold text-4xl text-onSurface'>{transl('favorites')}</h1>
                     </div>
 
                     <div className='flex gap-5 items-center'>
-                        <PlayIcon width={48} height={48} color='primary' />
+                        {isPlaying ? (
+                            <PauseIcon
+                                width={48}
+                                height={48}
+                                color='primary'
+                                onClick={() => playerUtils.playPlaylist(playlistLike)}
+                            />
+                        ) : (
+                            <PlayIcon
+                                width={48}
+                                height={48}
+                                color='primary'
+                                onClick={() => playerUtils.playPlaylist(playlistLike)}
+                            />
+                        )}
                     </div>
                 </div>
             </div>
@@ -68,7 +89,7 @@ export default function Favorites() {
                             author={item.authors.join(', ')}
                             title={item.name}
                             mashup={item}
-                            playlist={{ mashups: mashupIds as number[], link: '/favorites' }}
+                            playlist={playlistLike}
                             explicit={item.statuses.isExplicit()}
                         />
                     ))}

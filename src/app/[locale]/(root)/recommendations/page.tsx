@@ -9,23 +9,32 @@ import { Mashup } from '@/utils/types';
 import { useEffect, useState } from 'react';
 import { useMashupCache } from '@/hooks/repositories';
 import { useApi } from '@/hooks/api';
+import { PlaylistLike, usePlayerUtils } from '@/hooks/utils';
+import PauseIcon from '@/components/icons/PauseIcon';
 
 export default function Recommendations() {
     const transl = useTranslations('pages.playlist');
 
+    const [mashupIds, setMashupIds] = useState<number[]>();
     const [mashups, setMashups] = useState<Mashup[]>();
 
     const mashupCache = useMashupCache();
     const api = useApi();
+    const playerUtils = usePlayerUtils();
 
     useEffect(() => {
         api.get('/recommendations/v2', { id: 2 }).then((response) => {
             let ids: number[] = response.data.response;
+            setMashupIds(ids);
             mashupCache.getMany(ids).then((mashups) => {
                 setMashups(mashups);
             });
         });
     }, []);
+
+    let playlistLike: PlaylistLike = { mashups: mashupIds ? mashupIds : [], link: '/favorites' };
+
+    let isPlaying = playerUtils.isPlaying(undefined, playlistLike);
 
     return (
         <div className='flex flex-col gap-6'>
@@ -50,7 +59,21 @@ export default function Recommendations() {
                     </div>
 
                     <div className='flex gap-5 items-center'>
-                        <PlayIcon width={48} height={48} color='primary' />
+                        {isPlaying ? (
+                            <PauseIcon
+                                width={48}
+                                height={48}
+                                color='primary'
+                                onClick={() => playerUtils.playPlaylist(playlistLike)}
+                            />
+                        ) : (
+                            <PlayIcon
+                                width={48}
+                                height={48}
+                                color='primary'
+                                onClick={() => playerUtils.playPlaylist(playlistLike)}
+                            />
+                        )}
                     </div>
                 </div>
             </div>

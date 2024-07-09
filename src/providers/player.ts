@@ -1,12 +1,10 @@
+import { PlaylistLike } from '@/hooks/utils';
 import { Mashup } from '@/utils/types';
 import React, { createContext } from 'react';
 
 export interface PlayerContextType {
-    currentPlaylist?: number;
-    setCurrentPlaylist: React.Dispatch<React.SetStateAction<number | undefined>>;
-
-    originalQueue?: number[];
-    setOriginalQueue: React.Dispatch<React.SetStateAction<number[] | undefined>>;
+    currentPlaylist?: PlaylistLike;
+    setCurrentPlaylist: React.Dispatch<React.SetStateAction<PlaylistLike | undefined>>;
 
     queue?: number[];
     setQueue: React.Dispatch<React.SetStateAction<number[] | undefined>>;
@@ -17,6 +15,9 @@ export interface PlayerContextType {
     currentAudio?: HTMLAudioElement;
     setCurrentAudio: React.Dispatch<React.SetStateAction<HTMLAudioElement | undefined>>;
 
+    currentTime: number;
+    setCurrentTime: React.Dispatch<React.SetStateAction<number>>;
+
     paused: boolean;
     setPaused: React.Dispatch<React.SetStateAction<boolean>>;
 
@@ -25,6 +26,9 @@ export interface PlayerContextType {
 
     repeat: 'no' | 'playlist' | 'one';
     setRepeat: React.Dispatch<React.SetStateAction<'no' | 'playlist' | 'one'>>;
+
+    volume: number;
+    setVolume: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const PlayerContext = createContext<PlayerContextType>({
@@ -32,11 +36,12 @@ const PlayerContext = createContext<PlayerContextType>({
 
     setQueue: () => {},
 
-    setOriginalQueue: () => {},
-
     setCurrentMashup: () => {},
 
     setCurrentAudio: () => {},
+
+    currentTime: 0,
+    setCurrentTime: () => {},
 
     paused: true,
     setPaused: () => {},
@@ -46,7 +51,10 @@ const PlayerContext = createContext<PlayerContextType>({
     setShuffle: () => {},
 
     repeat: 'no',
-    setRepeat: () => {}
+    setRepeat: () => {},
+
+    volume: 0,
+    setVolume: () => {}
 });
 
 export default PlayerContext;

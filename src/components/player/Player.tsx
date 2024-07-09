@@ -9,8 +9,15 @@ let actualCurrentAudio: HTMLAudioElement | undefined = undefined;
 let actualPlayerUtils: PlayerUtils | undefined = undefined;
 
 export default function Player() {
-    const { currentMashup, currentAudio, setCurrentAudio, paused, setPaused } =
-        useContext(PlayerContext);
+    const {
+        currentMashup,
+        currentAudio,
+        setCurrentAudio,
+        setCurrentTime,
+        paused,
+        setPaused,
+        volume
+    } = useContext(PlayerContext);
 
     const playerUtils = usePlayerUtils();
 
@@ -31,7 +38,7 @@ export default function Player() {
 
         initialized.current = true;
         const handleKey = (event: any) => {
-            if (event.target === document.body) {
+            if (event.target.nodeName !== 'INPUT') {
                 if (event.key === ' ') {
                     setPaused(!actualPaused);
                     event.preventDefault();
@@ -66,14 +73,18 @@ export default function Player() {
         }
 
         let audio = new Audio('https://api.smashup.ru/uploads/mashup/' + currentMashup.id + '.mp3');
-        console.log('Loaded', currentMashup.name);
-        audio.volume = 0.05;
+        audio.volume = volume;
         setCurrentAudio(audio);
+        setCurrentTime(0);
 
         audio.onended = () => {
             if (actualCurrentAudio === audio) {
                 playerUtils.playNext(true);
             }
+        };
+
+        audio.ontimeupdate = () => {
+            setCurrentTime(audio.currentTime);
         };
 
         if (paused && setPaused) {

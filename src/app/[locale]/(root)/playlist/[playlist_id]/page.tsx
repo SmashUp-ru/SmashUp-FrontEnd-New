@@ -14,6 +14,7 @@ import {
     useRepositoryStateSet
 } from '@/hooks/repositories';
 import { playlistLike, usePlayerUtils } from '@/hooks/utils';
+import PauseIcon from '@/components/icons/PauseIcon';
 
 // TODO: think about name
 export default function PlaylistPage({ params }: { params: { playlist_id: number } }) {
@@ -46,6 +47,8 @@ export default function PlaylistPage({ params }: { params: { playlist_id: number
         return;
     }
 
+    let isPlaying = playerUtils.isPlaying(undefined, playlistLike(playlist));
+
     return (
         <div className='flex flex-col gap-6'>
             {/* Профиль */}
@@ -67,18 +70,21 @@ export default function PlaylistPage({ params }: { params: { playlist_id: number
                     </div>
 
                     <div className='flex gap-5 items-center'>
-                        <PlayIcon
-                            width={48}
-                            height={48}
-                            color='primary'
-                            onClick={() => playerUtils.playPlaylist(playlistLike(playlist))}
-                        />
-                        {/* <HideIcon
-                            width={26}
-                            height={28}
-                            color='onSurfaceVariant'
-                            className='w-8 h-8'
-                        /> */}
+                        {isPlaying ? (
+                            <PauseIcon
+                                width={48}
+                                height={48}
+                                color='primary'
+                                onClick={() => playerUtils.playPlaylist(playlistLike(playlist))}
+                            />
+                        ) : (
+                            <PlayIcon
+                                width={48}
+                                height={48}
+                                color='primary'
+                                onClick={() => playerUtils.playPlaylist(playlistLike(playlist))}
+                            />
+                        )}
                         <ShareIcon
                             width={26}
                             height={22}

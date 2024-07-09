@@ -8,6 +8,7 @@ import SearchContext, { CrossoverEntry } from '@/providers/search';
 import AuthenticationContext from './authentication';
 import { useApi } from '@/hooks/api';
 import Cookies from 'js-cookie';
+import { PlaylistLike } from '@/hooks/utils';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
     const [track, setTrack] = useState<Mashup>();
@@ -16,23 +17,34 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     const [type, setType] = useState<'search' | 'crossover'>('search');
     const [crossoverEntries, setCrossoverEntries] = useState<CrossoverEntry[]>([]);
 
-    const [currentPlaylist, setCurrentPlaylist] = useState<number>();
-    const [originalQueue, setOriginalQueue] = useState<number[]>();
+    const [currentPlaylist, setCurrentPlaylist] = useState<PlaylistLike>();
     const [queue, setQueue] = useState<number[]>();
     const [currentMashup, setCurrentMashup] = useState<Mashup>();
     const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement>();
+    const [currentTime, setCurrentTime] = useState<number>(0);
     const [paused, setPaused] = useState<boolean>(true);
     const [shuffle, setShuffle] = useState<boolean>(false);
     const [repeat, setRepeat] = useState<'no' | 'playlist' | 'one'>('no');
+    const [volume, setVolume] = useState<number>(0.05);
 
     useEffect(() => {
-        if (shuffle) {
-            // TODO: shuffle
-            setQueue(originalQueue);
-        } else {
-            setQueue(originalQueue);
+        if (!currentPlaylist) {
+            setQueue(undefined);
+            return;
         }
-    }, [originalQueue]);
+
+        if (shuffle) {
+            let array = [...currentPlaylist.mashups];
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+
+            setQueue(array);
+        } else {
+            setQueue(currentPlaylist.mashups);
+        }
+    }, [currentPlaylist]);
 
     const [user, setUser] = useState<SelfUser>();
 
@@ -68,20 +80,22 @@ export default function Providers({ children }: { children: React.ReactNode }) {
                     value={{
                         currentPlaylist,
                         setCurrentPlaylist,
-                        originalQueue,
-                        setOriginalQueue,
                         queue,
                         setQueue,
                         currentMashup,
                         setCurrentMashup,
                         currentAudio,
                         setCurrentAudio,
+                        currentTime,
+                        setCurrentTime,
                         paused,
                         setPaused,
                         shuffle,
                         setShuffle,
                         repeat,
-                        setRepeat
+                        setRepeat,
+                        volume,
+                        setVolume
                     }}
                 >
                     <SearchContext.Provider

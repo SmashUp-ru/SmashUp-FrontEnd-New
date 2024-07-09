@@ -1,3 +1,5 @@
+import { formatTime } from './time';
+
 export class Bitmask {
     bitmask: number;
 
@@ -95,9 +97,11 @@ export interface Mashup {
     streams: number;
     bitrate: number;
     duration: number;
+    durationStr: string;
+    liked: boolean;
 }
 
-export class MockMashup {
+export class MockMashup implements Mashup {
     id: number = 0;
     name: string = 'Error';
     authors: string[] = ['SmashUp'];
@@ -111,7 +115,9 @@ export class MockMashup {
     likes: number = 0;
     streams: number = 0;
     bitrate: number = 64000;
-    duration: number = 10000;
+    duration: number = 3600000;
+    durationStr: string = '1:00:00';
+    liked: boolean = false;
 }
 
 export function mashupFromObject(object: any): Mashup {
@@ -119,6 +125,7 @@ export function mashupFromObject(object: any): Mashup {
     if (!object.imageUrl.startsWith('https://')) {
         object.imageUrl = 'https://api.smashup.ru/uploads/mashup/' + object.imageUrl;
     }
+    object.durationStr = formatTime(object.duration / 1000);
     return object;
 }
 

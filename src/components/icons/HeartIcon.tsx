@@ -5,7 +5,14 @@ export interface HeartIconProps extends IconComponentProps {
     filled?: boolean;
 }
 
-export default function HeartIcon({ width, height, color, filled, className }: HeartIconProps) {
+export default function HeartIcon({
+    width,
+    height,
+    color,
+    filled,
+    className,
+    onClick
+}: HeartIconProps) {
     return (
         <svg
             width={width}
@@ -13,6 +20,7 @@ export default function HeartIcon({ width, height, color, filled, className }: H
             viewBox='0 0 20 17'
             xmlns='http://www.w3.org/2000/svg'
             className={`text-${color} fill-current ${filled} ${className}`}
+            onClick={onClick}
         >
             <path
                 fill=''

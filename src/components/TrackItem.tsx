@@ -2,12 +2,13 @@
 
 import Image, { StaticImageData } from 'next/image';
 import ExplicitIcon from '@/components/icons/ExplicitIcon';
-import React from 'react';
+import React, { useState } from 'react';
 import BorderlessPlayIcon from '@/components/icons/BorderlessPlayIcon';
 import HeartIcon from '@/components/icons/HeartIcon';
 import Link from 'next/link';
 import { Mashup } from '@/utils/types';
 import { PlaylistLike, useMashupSideSheetUtils, usePlayerUtils } from '@/hooks/utils';
+import { useApi } from '@/hooks/api';
 
 // TODO: change declaration to Mashup from types.js
 export interface TrackItemProps {
@@ -20,7 +21,6 @@ export interface TrackItemProps {
     explicit?: boolean;
     listened?: number;
     length?: string;
-    liked?: boolean;
     showLiked?: boolean;
     // TODO: replace all above with Mashup
     mashup: Mashup;
@@ -36,7 +36,6 @@ export default function TrackItem({
     explicit,
     listened,
     length,
-    liked,
     showLiked,
     mashup,
     playlist
@@ -46,6 +45,14 @@ export default function TrackItem({
 
     let isPlaying = mashup && playerUtils.isPlaying(mashup, playlist);
     let isCurrent = mashup && playerUtils.isCurrent(mashup, playlist);
+
+    // TODO: remove ?
+    if (!length) {
+        length = mashup?.durationStr;
+    }
+    const [liked, setLiked] = useState<boolean>(mashup?.liked);
+
+    const api = useApi();
 
     return (
         <div className='px-4 flex flex-row justify-between group hover:bg-surface rounded-lg'>
@@ -71,7 +78,7 @@ export default function TrackItem({
                         <BorderlessPlayIcon
                             width={11}
                             height={12}
-                            color={isPlaying ? 'secondary' : 'primary'}
+                            color={isPlaying ? '' : 'primary'}
                             className='hidden group-hover:block'
                         />
                     </button>
@@ -111,6 +118,18 @@ export default function TrackItem({
                             width={20}
                             height={17}
                             color={liked ? 'primary' : 'onSurfaceVariant'}
+                            className='cursor-pointer'
+                            onClick={() => {
+                                let newLiked = !liked;
+                                mashup.liked = newLiked;
+                                setLiked(newLiked);
+
+                                if (newLiked) {
+                                    api.post('/mashup/add_like?id=' + mashup.id);
+                                } else {
+                                    api.post('/mashup/remove_like?id=' + mashup.id);
+                                }
+                            }}
                         />
                     )}
                     {listened && <span className='text-onSurfaceVariant'>{listened}</span>}

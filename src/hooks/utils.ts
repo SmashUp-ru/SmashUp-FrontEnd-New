@@ -3,6 +3,7 @@ import PlayerContext, { PlayerContextType } from '@/providers/player';
 import { useContext } from 'react';
 import TrackContext, { TrackContextType } from '@/providers/track';
 import { ApiCachingRepository, useMashupCache } from './repositories';
+import _ from 'lodash';
 
 export interface PlaylistLike {
     mashups: number[];
@@ -26,15 +27,14 @@ export class PlayerUtils {
     }
 
     playMashup(mashup: Mashup, playlist?: PlaylistLike) {
-        const { setOriginalQueue, currentMashup, setCurrentMashup, paused, setPaused } =
+        const { setCurrentPlaylist, currentMashup, setCurrentMashup, paused, setPaused } =
             this.context;
 
         if (!currentMashup || currentMashup.id !== mashup.id) {
             if (playlist) {
-                setOriginalQueue(playlist.mashups);
-                console.log(playlist.mashups);
+                setCurrentPlaylist(playlist);
             } else {
-                setOriginalQueue([mashup.id]);
+                setCurrentPlaylist({ mashups: [mashup.id], link: `/mashup/${mashup.id}` });
             }
 
             setCurrentMashup(mashup);
@@ -44,27 +44,44 @@ export class PlayerUtils {
     }
 
     playPlaylist(playlist: PlaylistLike) {
-        const { shuffle, setOriginalQueue, setCurrentMashup } = this.context;
+        const {
+            shuffle,
+            currentPlaylist,
+            setCurrentPlaylist,
+            setCurrentMashup,
+            paused,
+            setPaused
+        } = this.context;
 
-        setOriginalQueue(playlist.mashups);
+        if (!_.isEqual(currentPlaylist, playlist)) {
+            setCurrentPlaylist(playlist);
+            setCurrentMashup(undefined);
 
-        let index = shuffle ? Math.floor(Math.random() * playlist.mashups.length) : 0;
-        this.mashupCache.get(playlist.mashups[index]).then((mashup) => {
-            setCurrentMashup(mashup);
-        });
+            let index = shuffle ? Math.floor(Math.random() * playlist.mashups.length) : 0;
+            this.mashupCache.get(playlist.mashups[index]).then((mashup) => {
+                setCurrentMashup(mashup);
+            });
+        } else {
+            setPaused(!paused);
+        }
     }
 
-    isPlaying(mashup: Mashup, playlist?: PlaylistLike) {
+    isPlaying(mashup?: Mashup, playlist?: PlaylistLike) {
         const { paused } = this.context;
 
         return this.isCurrent(mashup, playlist) && !paused;
     }
 
-    // eslint-disable-next-line no-unused-vars
-    isCurrent(mashup: Mashup, playlist?: PlaylistLike) {
-        const { currentMashup } = this.context;
+    isCurrent(mashup?: Mashup, playlist?: PlaylistLike) {
+        if (mashup) {
+            const { currentPlaylist, currentMashup } = this.context;
 
-        return currentMashup?.id === mashup.id;
+            return playlist?.link === currentPlaylist?.link && currentMashup?.id === mashup.id;
+        } else {
+            const { currentPlaylist } = this.context;
+
+            return playlist?.link === currentPlaylist?.link;
+        }
     }
 
     playNext(naturally: boolean) {
@@ -107,10 +124,12 @@ export class PlayerUtils {
     }
 
     playPrevious() {
-        const { queue, currentMashup, setCurrentMashup, currentAudio, setPaused } = this.context;
+        const { queue, currentMashup, setCurrentMashup, currentAudio, setPaused, setCurrentTime } =
+            this.context;
 
         if (currentAudio && currentAudio.currentTime > 5000) {
             currentAudio.currentTime = 0;
+            setCurrentTime(0);
             return;
         }
 
