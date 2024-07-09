@@ -96,4 +96,6 @@ export default function Player() {
             }
         }
     }, [paused]);
+
+    return <></>;
 }

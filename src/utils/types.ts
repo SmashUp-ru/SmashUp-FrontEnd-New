@@ -189,6 +189,11 @@ export interface User {
     playlists: number[];
 }
 
+export interface SelfUser extends User {
+    email: string;
+    settings: Bitmask;
+}
+
 export class MockUser implements User {
     id: number = 0;
     username: string = 'Error';

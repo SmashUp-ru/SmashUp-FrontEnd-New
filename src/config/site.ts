@@ -11,6 +11,13 @@ export const siteConfig = {
             label: 'Home',
             href: '/',
             icon: HomeIcon
+        }
+    ],
+    authorizedNavItems: [
+        {
+            label: 'Home',
+            href: '/',
+            icon: HomeIcon
         },
         {
             label: 'Favorites',

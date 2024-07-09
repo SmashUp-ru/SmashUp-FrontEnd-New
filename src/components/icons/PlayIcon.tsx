@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconComponentProps } from '@/models/icons';
 
-export default function PlayIcon({ width, height, color }: IconComponentProps) {
+export default function PlayIcon({ width, height, color, onClick }: IconComponentProps) {
     // w: 48, h: 48
     return (
         <svg
@@ -10,7 +10,8 @@ export default function PlayIcon({ width, height, color }: IconComponentProps) {
             viewBox='0 0 48 48'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
-            className={`text-${color} fill-current`}
+            className={`text-${color} fill-current ${onClick ? 'cursor-pointer' : ''}`}
+            onClick={onClick}
         >
             <g clipPath='url(#clip0_4867_3484)'>
                 <path

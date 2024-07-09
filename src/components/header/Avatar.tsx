@@ -1,14 +1,14 @@
 'use client';
 
-import profile from '/public/dev/profile.png';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Popover } from 'react-tiny-popover';
 import { twMerge } from 'tailwind-merge';
 import ProfileIcon from '@/components/icons/ProfileIcon';
 import ExitIcon from '@/components/icons/ExitIcon';
 import ModerationIcon from '@/components/icons/ModerationIcon';
 import Link from 'next/link';
+import AuthenticationContext from '@/providers/authentication';
 
 export default function Avatar() {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -19,6 +19,17 @@ export default function Avatar() {
     useEffect(() => {
         setIsPopoverOpen(isAvatarHovered || isPopoverHovered);
     }, [isAvatarHovered, isPopoverHovered]);
+
+    const { user } = useContext(AuthenticationContext);
+
+    if (!user) {
+        return (
+            <Link href='/login'>
+                {/* TODO: login icon */}
+                <ExitIcon width={32} height={32} />
+            </Link>
+        );
+    }
 
     return (
         <Popover
@@ -47,14 +58,16 @@ export default function Avatar() {
                 onMouseLeave={() => setIsAvatarHovered(false)}
             >
                 <Image
-                    src={profile}
+                    width={48}
+                    height={48}
+                    src={user.imageUrl + '_100x100.png'}
                     alt='Фото профиля'
                     className={twMerge(
                         'text-onSurface h-12 w-12 rounded-full',
                         isPopoverOpen ? 'brightness-50' : ''
                     )}
                 />
-                <Link href='/profile/dmhd6219'>
+                <Link href={`/profile/${user.username}`}>
                     <ProfileIcon
                         width={32}
                         height={32}

@@ -254,7 +254,8 @@
           "confirmation": "Password confirmation",
           "confirm": "Confirm"
         },
-        "email": "Email"
+        "email": "Email",
+        "password": "Password"
       },
       "upload_button": {
         "progress": "Uploading",

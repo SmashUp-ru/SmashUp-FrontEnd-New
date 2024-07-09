@@ -4,8 +4,6 @@ import favorites from '/public/icons/like.png';
 import Image from 'next/image';
 import TrackItem from '@/components/TrackItem';
 import PlayIcon from '@/components/icons/PlayIcon';
-import HideIcon from '@/components/icons/HideButton';
-import ShareIcon from '@/components/icons/ShareIcon';
 import { useTranslations } from 'next-intl';
 import { Mashup } from '@/utils/types';
 import { useEffect, useState } from 'react';
@@ -53,18 +51,6 @@ export default function Recommendations() {
 
                     <div className='flex gap-5 items-center'>
                         <PlayIcon width={48} height={48} color='primary' />
-                        <HideIcon
-                            width={26}
-                            height={28}
-                            color='onSurfaceVariant'
-                            className='w-8 h-8'
-                        />
-                        <ShareIcon
-                            width={26}
-                            height={22}
-                            color='onSurfaceVariant'
-                            className='w-8 h-8'
-                        />
                     </div>
                 </div>
             </div>

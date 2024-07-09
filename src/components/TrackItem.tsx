@@ -44,7 +44,8 @@ export default function TrackItem({
     const playerUtils = usePlayerUtils();
     const mashupSideSheetUtils = useMashupSideSheetUtils();
 
-    let isPlaying = playerUtils.isPlaying(mashup, playlist);
+    let isPlaying = mashup && playerUtils.isPlaying(mashup, playlist);
+    let isCurrent = mashup && playerUtils.isCurrent(mashup, playlist);
 
     return (
         <div className='px-4 flex flex-row justify-between group hover:bg-surface rounded-lg'>
@@ -58,6 +59,8 @@ export default function TrackItem({
                             {/* TODO: playing icon */}
                             {isPlaying ? (
                                 <a className='text-primary'>{'>>'}</a>
+                            ) : isCurrent ? (
+                                <a>{'>>'}</a>
                             ) : index ? (
                                 index
                             ) : (

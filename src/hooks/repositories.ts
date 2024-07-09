@@ -36,6 +36,15 @@ export abstract class AbstractCachingRepository<T> extends AbstractRepository<T>
     }
 
     async getMany(ids: number[]): Promise<T[]> {
+        if (ids.length > 100) {
+            let promise1 = this.getMany(ids.slice(0, 100));
+            let promise2 = this.getMany(ids.slice(100));
+
+            return Promise.all([promise1, promise2]).then((entities) => {
+                return [...entities[0], ...entities[1]];
+            });
+        }
+
         let result: (T | null)[] = [];
         let load: number[] = [];
 

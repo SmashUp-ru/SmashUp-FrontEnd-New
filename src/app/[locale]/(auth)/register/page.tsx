@@ -17,7 +17,7 @@ export default function Register() {
     const router = useRouter();
 
     const query = `uuid=${v4()}&app_id=${process.env.NEXT_PUBLIC_VK_APP_ID}&response_type=silent_token&redirect_uri=${process.env.NEXT_PUBLIC_VK_REDIRECT_URL}&redirect_state=smashup`;
-    const transl = useTranslations('register');
+    const transl = useTranslations('pages.register');
 
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>

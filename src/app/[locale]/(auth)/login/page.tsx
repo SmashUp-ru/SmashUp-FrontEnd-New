@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import MailIcon from '@/components/icons/MailIcon';
 import VkBlueIcon from '@/components/icons/VkBlueIcon';
-import { v4 } from 'uuid';
 import SmashUpButton from '@/components/smashup/Button/Button';
 import SmashUpCheckBox from '@/components/smashup/Checkbox/Checkbox';
 import SmashUpInput from '@/components/smashup/Input/Input';
@@ -11,24 +10,28 @@ import SmashUpPassword from '@/components/smashup/Password/Password';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import axios from 'axios';
+import { useApi } from '@/hooks/api';
+import Cookies from 'js-cookie';
 
 export default function Login() {
     const router = useRouter();
 
-    const query = `uuid=${v4()}&app_id=${process.env.NEXT_PUBLIC_VK_APP_ID}&response_type=silent_token&redirect_uri=${process.env.NEXT_PUBLIC_VK_REDIRECT_URL}&redirect_state=smashup`;
-
-    const transl = useTranslations('login');
+    const transl = useTranslations('pages.login');
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = () => {
-        axios
-            .post('/login/blablabla', { login: email, password: password })
-            .then(() => {})
-            .catch(() => {})
-            .finally(() => {});
+    const api = useApi();
+
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+        api.post('/login', { username: email, password: password }).then((response) => {
+            if (response.status === 200) {
+                console.log(response.data);
+                Cookies.set('token', response.data.response.token);
+                router.push('/');
+            }
+        });
     };
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
@@ -78,7 +81,11 @@ export default function Login() {
                         <SmashUpButton
                             category='stroke-default'
                             icon={<VkBlueIcon width={25} height={25} color='vk' />}
-                            onClick={() => router.push(`https://id.vk.com/auth?${query}`)}
+                            onClick={() => {
+                                api.get('/vk/authorize/url').then((response) => {
+                                    router.push(response.data.response);
+                                });
+                            }}
                         >
                             VK ID
                         </SmashUpButton>

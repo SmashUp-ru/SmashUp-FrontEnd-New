@@ -7,20 +7,40 @@ import SidebarItem from '@/components/sidebar/SidebarItem';
 import SmashUpLogo from '@/components/icons/SmashUpLogo';
 import { RouteType } from '@/models/sidebar';
 import { siteConfig } from '@/config/site';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
+import AuthenticationContext from '@/providers/authentication';
 
 function Sidebar({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
 
-    const routes: RouteType[] = siteConfig.navItems.map((item) => {
-        return {
-            label: item.label,
-            active: pathname === item.href,
-            href: item.href,
-            icon: item.icon
-        };
-    });
+    const [routes, setRoutes] = useState<RouteType[]>(
+        siteConfig.navItems.map((item) => {
+            return {
+                label: item.label,
+                active: pathname === item.href,
+                href: item.href,
+                icon: item.icon
+            };
+        })
+    );
+
+    const { user } = useContext(AuthenticationContext);
+
+    useEffect(() => {
+        if (user) {
+            setRoutes(
+                siteConfig.authorizedNavItems.map((item) => {
+                    return {
+                        label: item.label,
+                        active: pathname === item.href,
+                        href: item.href,
+                        icon: item.icon
+                    };
+                })
+            );
+        }
+    }, [user]);
 
     return (
         <div className='flex h-full px-4'>

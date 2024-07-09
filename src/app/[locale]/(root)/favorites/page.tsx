@@ -1,14 +1,34 @@
+'use client';
+
 import Image from 'next/image';
 import favorites from '/public/icons/like.png';
-import { profile_popular_tracks } from '@/utils/data';
 import TrackItem from '@/components/TrackItem';
 import PlayIcon from '@/components/icons/PlayIcon';
-import HideIcon from '@/components/icons/HideButton';
-import ShareIcon from '@/components/icons/ShareIcon';
 import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
+import { Mashup } from '@/utils/types';
+import { useMashupCache } from '@/hooks/repositories';
+import { useApi } from '@/hooks/api';
 
 export default function Favorites() {
     const transl = useTranslations('pages.playlist');
+
+    const [mashupIds, setMashupIds] = useState<number[]>();
+    const [mashups, setMashups] = useState<Mashup[]>();
+
+    const mashupCache = useMashupCache();
+    const api = useApi();
+
+    useEffect(() => {
+        api.get('/mashup/get_all_likes', { id: 2 }).then((response) => {
+            let ids: number[] = response.data.response;
+            setMashupIds(ids);
+            mashupCache.getMany(ids).then((mashups) => {
+                setMashups(mashups);
+            });
+        });
+    }, []);
+
     return (
         <div className='flex flex-col gap-6'>
             {/* Профиль */}
@@ -31,34 +51,29 @@ export default function Favorites() {
 
                     <div className='flex gap-5 items-center'>
                         <PlayIcon width={48} height={48} color='primary' />
-                        <HideIcon
-                            width={26}
-                            height={28}
-                            color='onSurfaceVariant'
-                            className='w-8 h-8'
-                        />
-                        <ShareIcon
-                            width={26}
-                            height={22}
-                            color='onSurfaceVariant'
-                            className='w-8 h-8'
-                        />
                     </div>
                 </div>
             </div>
 
             {/* Мэшапы */}
-            <div className='flex flex-col gap-1'>
-                {profile_popular_tracks.map((item) => (
-                    <TrackItem key={item.id} {...item} id={undefined} />
-                ))}
-                {profile_popular_tracks.map((item) => (
-                    <TrackItem key={item.id} {...item} id={undefined} />
-                ))}
-                {profile_popular_tracks.map((item) => (
-                    <TrackItem key={item.id} {...item} id={undefined} />
-                ))}
-            </div>
+
+            {mashups && mashups.length > 0 && (
+                <div className='flex flex-col gap-1'>
+                    {mashups.map((item, index) => (
+                        <TrackItem
+                            key={item.id}
+                            index={index + 1}
+                            {...item}
+                            image={item.imageUrl + '_100x100.png'}
+                            author={item.authors.join(', ')}
+                            title={item.name}
+                            mashup={item}
+                            playlist={{ mashups: mashupIds as number[], link: '/favorites' }}
+                            explicit={item.statuses.isExplicit()}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     );
 }

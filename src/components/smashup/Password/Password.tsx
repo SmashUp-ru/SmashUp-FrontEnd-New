@@ -40,12 +40,12 @@ export default function SmashUpPassword({
         showPassword ? showPassword : false
     );
 
-    const transl = useTranslations('password');
+    const transl = useTranslations('components.smashup.password');
     return (
         <div className={twMerge('w-full flex flex-col gap-2.5', className)}>
             <div className='w-full flex flex-row justify-between'>
                 <span className='font-medium text-base text-onSurfaceVariant'>
-                    {heading ? heading : 'Пароль'}
+                    {heading ? heading : transl('password')}
                 </span>
                 {showForgotButton && (
                     <Link className='font-medium text-base text-primary' href='/restore'>

@@ -2,7 +2,6 @@
 import Image from 'next/image';
 import TrackItem from '@/components/TrackItem';
 import PlayIcon from '@/components/icons/PlayIcon';
-import HideIcon from '@/components/icons/HideButton';
 import ShareIcon from '@/components/icons/ShareIcon';
 import { useTranslations } from 'next-intl';
 import { Mashup, MockMashup, MockPlaylist, Playlist } from '@/utils/types';
@@ -14,7 +13,7 @@ import {
     useRepositoryRequest,
     useRepositoryStateSet
 } from '@/hooks/repositories';
-import { playlistLike } from '@/hooks/utils';
+import { playlistLike, usePlayerUtils } from '@/hooks/utils';
 
 // TODO: think about name
 export default function PlaylistPage({ params }: { params: { playlist_id: number } }) {
@@ -41,6 +40,8 @@ export default function PlaylistPage({ params }: { params: { playlist_id: number
         playlist?.mashups.map(() => new MockMashup())
     );
 
+    const playerUtils = usePlayerUtils();
+
     if (!playlist) {
         return;
     }
@@ -66,13 +67,18 @@ export default function PlaylistPage({ params }: { params: { playlist_id: number
                     </div>
 
                     <div className='flex gap-5 items-center'>
-                        <PlayIcon width={48} height={48} color='primary' />
-                        <HideIcon
+                        <PlayIcon
+                            width={48}
+                            height={48}
+                            color='primary'
+                            onClick={() => playerUtils.playPlaylist(playlistLike(playlist))}
+                        />
+                        {/* <HideIcon
                             width={26}
                             height={28}
                             color='onSurfaceVariant'
                             className='w-8 h-8'
-                        />
+                        /> */}
                         <ShareIcon
                             width={26}
                             height={22}

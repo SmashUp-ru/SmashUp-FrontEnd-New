@@ -43,11 +43,28 @@ export class PlayerUtils {
         }
     }
 
-    // eslint-disable-next-line no-unused-vars
-    isPlaying(mashup: Mashup, playlist?: PlaylistLike) {
-        const { currentMashup, paused } = this.context;
+    playPlaylist(playlist: PlaylistLike) {
+        const { shuffle, setOriginalQueue, setCurrentMashup } = this.context;
 
-        return currentMashup?.id === mashup.id && !paused;
+        setOriginalQueue(playlist.mashups);
+
+        let index = shuffle ? Math.floor(Math.random() * playlist.mashups.length) : 0;
+        this.mashupCache.get(playlist.mashups[index]).then((mashup) => {
+            setCurrentMashup(mashup);
+        });
+    }
+
+    isPlaying(mashup: Mashup, playlist?: PlaylistLike) {
+        const { paused } = this.context;
+
+        return this.isCurrent(mashup, playlist) && !paused;
+    }
+
+    // eslint-disable-next-line no-unused-vars
+    isCurrent(mashup: Mashup, playlist?: PlaylistLike) {
+        const { currentMashup } = this.context;
+
+        return currentMashup?.id === mashup.id;
     }
 
     playNext(naturally: boolean) {
