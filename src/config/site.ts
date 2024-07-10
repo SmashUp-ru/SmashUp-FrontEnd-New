@@ -26,7 +26,7 @@ export const siteConfig = {
         },
         {
             label: 'Create Playlist',
-            href: '/create-playlist',
+            href: '/create_playlist',
             icon: PlusIcon
         },
         {

@@ -10,12 +10,15 @@ let actualPlayerUtils: PlayerUtils | undefined = undefined;
 
 export default function Player() {
     const {
+        currentPlaylist,
+        setQueue,
         currentMashup,
         currentAudio,
         setCurrentAudio,
         setCurrentTime,
         paused,
         setPaused,
+        shuffle,
         volume
     } = useContext(PlayerContext);
 
@@ -28,6 +31,31 @@ export default function Player() {
     useEffect(() => {
         actualPlayerUtils = playerUtils;
     }, [playerUtils]);
+
+    useEffect(() => {
+        if (currentPlaylist) {
+            if (shuffle) {
+                let array = [...currentPlaylist.mashups];
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+
+                if (currentMashup) {
+                    let index = array.indexOf(currentMashup.id);
+                    if (index > 0) {
+                        [array[0], array[index]] = [array[index], array[0]];
+                    }
+                }
+
+                console.log(array);
+
+                setQueue(array);
+            } else {
+                setQueue(currentPlaylist.mashups);
+            }
+        }
+    }, [shuffle]);
 
     const initialized = useRef(false);
 

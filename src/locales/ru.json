@@ -182,7 +182,12 @@
       "compilation": "Компиляция",
 
       "favorites": "Мне нравится",
-      "recommendations": "Рекомендации"
+      "recommendations": "Рекомендации",
+
+      "create": {
+        "name": "Название плейлиста",
+        "create": "Создать"
+      }
     },
     "agreement": {
       "title": "Пользовательское соглашение",
@@ -260,6 +265,11 @@
         "button1": "Подтвердить",
         "button2": "Отменить"
       }
+    },
+    "mashup_options": {
+      "share": "Поделиться",
+      "add_to_playlist": "Добавить в плейлист",
+      "remove_from_playlist": "Удалить из плейлиста"
     }
   }
 }

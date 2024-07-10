@@ -2,14 +2,15 @@
 
 import Image, { StaticImageData } from 'next/image';
 import ExplicitIcon from '@/components/icons/ExplicitIcon';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BorderlessPlayIcon from '@/components/icons/BorderlessPlayIcon';
 import HeartIcon from '@/components/icons/HeartIcon';
 import Link from 'next/link';
-import { Mashup } from '@/utils/types';
+import { Mashup, Playlist } from '@/utils/types';
 import { PlaylistLike, useMashupSideSheetUtils, usePlayerUtils } from '@/hooks/utils';
 import { useApi } from '@/hooks/api';
 import TrackOptions from '@/components/TrackOptions';
+import { usePlaylistCache } from '@/hooks/repositories';
 
 // TODO: change declaration to Mashup from types.js
 export interface TrackItemProps {
@@ -54,6 +55,17 @@ export default function TrackItem({
     const [liked, setLiked] = useState<boolean>(mashup?.liked);
 
     const api = useApi();
+
+    const playlistCache = usePlaylistCache();
+
+    const [realPlaylist, setRealPlaylist] = useState<Playlist>();
+
+    useEffect(() => {
+        if (playlist && playlist.link.startsWith('/playlist/')) {
+            let id = parseInt(playlist.link.substring('/playlist/'.length));
+            playlistCache.get(id).then(setRealPlaylist);
+        }
+    }, []);
 
     return (
         <div className='px-4 flex flex-row justify-between group hover:bg-surface rounded-lg'>
@@ -136,7 +148,7 @@ export default function TrackItem({
                     {listened && <span className='text-onSurfaceVariant'>{listened}</span>}
                     {length && <span className='text-onSurfaceVariant'>{length}</span>}
 
-                    <TrackOptions />
+                    <TrackOptions mashup={mashup} playlist={realPlaylist} />
                 </div>
             )}
         </div>

@@ -27,32 +27,57 @@ export abstract class AbstractRepository<T> {
     abstract getMany(ids: number[]): Promise<T[]>;
 }
 
+export abstract class AbstractHolder<T> {
+    abstract get(): Promise<T>;
+}
+
+export class Holder<T> extends AbstractHolder<T> {
+    readonly value: T;
+
+    constructor(value: T) {
+        super();
+        this.value = value;
+    }
+
+    get(): Promise<T> {
+        return Promise.resolve(this.value);
+    }
+}
+
+export class LoadingHolder<T> extends AbstractHolder<T> {
+    readonly promise: Promise<T>;
+
+    constructor(promise: Promise<T>) {
+        super();
+        this.promise = promise;
+    }
+
+    get(): Promise<T> {
+        return this.promise;
+    }
+}
+
 export abstract class AbstractCachingRepository<T> extends AbstractRepository<T> {
-    storage: Map<number, T>;
+    storage: Map<number, AbstractHolder<T>>;
 
     constructor() {
         super();
-        this.storage = new Map<number, T>();
+        this.storage = new Map();
     }
 
     async getMany(ids: number[]): Promise<T[]> {
-        if (ids.length > 100) {
-            let promise1 = this.getMany(ids.slice(0, 100));
-            let promise2 = this.getMany(ids.slice(100));
-
-            return Promise.all([promise1, promise2]).then((entities) => {
-                return [...entities[0], ...entities[1]];
-            });
+        if (ids.length === 0) {
+            return Promise.resolve([]);
         }
 
-        let result: (T | null)[] = [];
+        let result: (Promise<T> | null)[] = [];
         let load: number[] = [];
 
         for (let index in ids) {
             let id = ids[index];
-            let entity: T | undefined = this.storage.get(id);
+            let entity: AbstractHolder<T> | undefined = this.storage.get(id);
             if (entity !== undefined) {
-                result.push(entity);
+                result.push(entity.get());
             } else {
                 result.push(null);
                 load.push(id);
@@ -60,24 +85,35 @@ export abstract class AbstractCachingRepository<T> extends AbstractRepository<T>
         }
 
         if (load.length === 0) {
-            let a: any = result;
-            let r: T[] = a;
-            return Promise.resolve(r);
+            return Promise.all(result as Promise<T>[]);
+        }
+
+        // eslint-disable-next-line no-unused-vars
+        let loadPromises: ((value: T) => void)[] = [];
+
+        for (let id of load) {
+            let promise = new Promise<T>((onFulfilled) => {
+                loadPromises.push(onFulfilled);
+            });
+
+            this.storage.set(id, new LoadingHolder(promise));
         }
 
         return this.loadMany(load).then((loaded) => {
             let loadedIndex = 0;
             for (let index in result) {
                 if (result[index] === null) {
-                    result[index] = loaded[loadedIndex];
-                    this.storage.set(ids[index], loaded[loadedIndex]);
+                    let value: T = loaded[loadedIndex];
+
+                    loadPromises[loadedIndex](value);
+                    result[index] = Promise.resolve(value);
+                    this.storage.set(ids[index], new Holder(value));
 
                     loadedIndex++;
                 }
             }
 
-            let a: any = result;
-            return a;
+            return Promise.all(result as Promise<T>[]);
         });
     }
 
@@ -85,9 +121,9 @@ export abstract class AbstractCachingRepository<T> extends AbstractRepository<T>
         let result: T[] = [];
 
         for (let id of ids) {
-            let entity: T | undefined = this.storage.get(id);
-            if (entity !== undefined) {
-                result.push(entity);
+            let entity: AbstractHolder<T> | undefined = this.storage.get(id);
+            if (entity instanceof Holder) {
+                result.push(entity.value);
             } else {
                 return undefined;
             }
@@ -121,6 +157,15 @@ export class ApiCachingRepository<T> extends AbstractCachingRepository<T> {
     }
 
     protected async loadMany(ids: number[]): Promise<T[]> {
+        if (ids.length > 100) {
+            let promise1 = this.getMany(ids.slice(0, 100));
+            let promise2 = this.getMany(ids.slice(100));
+
+            return Promise.all([promise1, promise2]).then((entities) => {
+                return [...entities[0], ...entities[1]];
+            });
+        }
+
         return this.api.get(this.endpoint, { id: ids.join() }).then((response) => {
             if (response.status == 200) {
                 return response.data.response.map(this.mapper);
@@ -132,6 +177,7 @@ export class ApiCachingRepository<T> extends AbstractCachingRepository<T> {
 }
 
 export class UserApiCachingRepository extends ApiCachingRepository<User> {
+    // TODO: use AbstractHolder<User>
     usernameStorage: Map<string, User>;
 
     constructor(api: Api, usernameStorage: Map<string, User>) {
@@ -164,7 +210,7 @@ export class UserApiCachingRepository extends ApiCachingRepository<User> {
     }
 }
 
-const staticTrackAuthorStorage = new Map<number, TrackAuthor>();
+const staticTrackAuthorStorage = new Map<number, AbstractHolder<TrackAuthor>>();
 export function useTrackAuthorCache(): ApiCachingRepository<TrackAuthor> {
     let repository = new ApiCachingRepository(
         useApi(),
@@ -176,7 +222,7 @@ export function useTrackAuthorCache(): ApiCachingRepository<TrackAuthor> {
     return repository;
 }
 
-const staticTrackStorage = new Map<number, Track>();
+const staticTrackStorage = new Map<number, AbstractHolder<Track>>();
 export function useTrackCache(): ApiCachingRepository<Track> {
     let repository = new ApiCachingRepository(
         useApi(),
@@ -188,7 +234,7 @@ export function useTrackCache(): ApiCachingRepository<Track> {
     return repository;
 }
 
-const staticMashupStorage = new Map<number, Mashup>();
+const staticMashupStorage = new Map<number, AbstractHolder<Mashup>>();
 export function useMashupCache(): ApiCachingRepository<Mashup> {
     let repository = new ApiCachingRepository(
         useApi(),
@@ -200,7 +246,7 @@ export function useMashupCache(): ApiCachingRepository<Mashup> {
     return repository;
 }
 
-const staticPlaylistStorage = new Map<number, Playlist>();
+const staticPlaylistStorage = new Map<number, AbstractHolder<Playlist>>();
 export function usePlaylistCache(): ApiCachingRepository<Playlist> {
     let repository = new ApiCachingRepository(
         useApi(),
@@ -212,7 +258,7 @@ export function usePlaylistCache(): ApiCachingRepository<Playlist> {
     return repository;
 }
 
-const staticUserStorage = new Map<number, User>();
+const staticUserStorage = new Map<number, AbstractHolder<User>>();
 const staticUserUsernameStorage = new Map<string, User>();
 export function useUserCache(): UserApiCachingRepository {
     let repository = new UserApiCachingRepository(useApi(), staticUserUsernameStorage);

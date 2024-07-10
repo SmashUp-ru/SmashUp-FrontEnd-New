@@ -44,6 +44,10 @@ export class PlayerUtils {
     }
 
     playPlaylist(playlist: PlaylistLike) {
+        if (playlist.mashups.length === 0) {
+            return;
+        }
+
         const {
             shuffle,
             currentPlaylist,
@@ -54,11 +58,12 @@ export class PlayerUtils {
         } = this.context;
 
         if (!_.isEqual(currentPlaylist, playlist)) {
-            setCurrentPlaylist(playlist);
+            setCurrentPlaylist(undefined);
             setCurrentMashup(undefined);
 
             let index = shuffle ? Math.floor(Math.random() * playlist.mashups.length) : 0;
             this.mashupCache.get(playlist.mashups[index]).then((mashup) => {
+                setCurrentPlaylist(playlist);
                 setCurrentMashup(mashup);
             });
         } else {
