@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { Mashup } from '@/utils/types';
 import { PlaylistLike, useMashupSideSheetUtils, usePlayerUtils } from '@/hooks/utils';
 import { useApi } from '@/hooks/api';
+import TrackOptions from '@/components/TrackOptions';
 
 // TODO: change declaration to Mashup from types.js
 export interface TrackItemProps {
@@ -134,6 +135,8 @@ export default function TrackItem({
                     )}
                     {listened && <span className='text-onSurfaceVariant'>{listened}</span>}
                     {length && <span className='text-onSurfaceVariant'>{length}</span>}
+
+                    <TrackOptions />
                 </div>
             )}
         </div>
