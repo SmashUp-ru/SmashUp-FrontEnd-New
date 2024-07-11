@@ -20,8 +20,6 @@ export class Api {
     async post(endpoint: string, data: any = {}, queryParams: object = {}) {
         let token = Cookies.get('token');
 
-        console.log(apiBaseUrl, endpoint);
-
         return axios.post(endpoint, data, {
             baseURL: apiBaseUrl,
             headers: {

@@ -2,7 +2,7 @@ import { useMashupSideSheetUtils, usePlayerUtils } from '@/hooks/utils';
 import PlayerContext from '@/providers/player';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import ReactSlider from 'react-slider';
 import { twMerge } from 'tailwind-merge';
 import VolumeIcon from '../icons/VolumeIcon';
@@ -32,8 +32,31 @@ export default function PlayerBar() {
     const playerUtils = usePlayerUtils();
     const mashupSideSheetUtils = useMashupSideSheetUtils();
 
+    const lastAudio1 = useRef<HTMLAudioElement>();
+    const lastAudio2 = useRef<HTMLAudioElement>();
+    const lastAudio3 = useRef<HTMLAudioElement>();
+    const lastAudio4 = useRef<HTMLAudioElement>();
+
     if (!currentMashup) {
         return <></>;
+    }
+
+    // TODO: ==^)
+    let finalTime;
+    if (currentAudio !== lastAudio1.current) {
+        finalTime = 0;
+        lastAudio1.current = currentAudio;
+    } else if (currentAudio !== lastAudio2.current) {
+        finalTime = 0;
+        lastAudio2.current = currentAudio;
+    } else if (currentAudio !== lastAudio3.current) {
+        finalTime = 0;
+        lastAudio3.current = currentAudio;
+    } else if (currentAudio !== lastAudio4.current) {
+        finalTime = 0;
+        lastAudio4.current = currentAudio;
+    } else {
+        finalTime = currentTime;
     }
 
     return (
@@ -41,7 +64,7 @@ export default function PlayerBar() {
             <ReactSlider
                 min={0}
                 max={currentMashup.duration / 10}
-                value={currentTime * 100}
+                value={finalTime * 100}
                 className={'w-full h-2 absolute top-1 -mt-1'}
                 renderTrack={(props, state) => {
                     return (
@@ -66,7 +89,7 @@ export default function PlayerBar() {
                 }}
             ></ReactSlider>
             <div className='w-full mb-4 flex items-center justify-between bg-surfaceVariant rounded-b-2xl px-4 py-4'>
-                <div className='flex flex-row'>
+                <div className='flex flex-row w-[600px]'>
                     <Image
                         className='w-12 h-12 rounded mr-3'
                         width={100}
@@ -97,7 +120,7 @@ export default function PlayerBar() {
                     </div>
                 </div>
 
-                <div className='flex flex-row gap-4'>
+                <div className='flex flex-row gap-4 w-[196px] items-center'>
                     <ShuffleIcon
                         width={32}
                         height={32}
@@ -159,7 +182,7 @@ export default function PlayerBar() {
                     ></RepeatIcon>
                 </div>
 
-                <div className='flex flex-row gap-4'>
+                <div className='flex flex-row gap-4 w-[600px] justify-end items-center'>
                     {/* {formatTime(currentTime)} */}
                     {/* {currentMashup.durationStr} */}
 

@@ -26,7 +26,7 @@ export default function CreatePlaylist() {
     }
 
     return (
-        <div className='flex flow-row gap-4'>
+        <div className='flex flex-row gap-4'>
             <SmashUpInput
                 placeholder={transl('name')}
                 value={name}
@@ -38,7 +38,7 @@ export default function CreatePlaylist() {
                 onClick={() => {
                     api.post('/playlist/create', { name, description: '' })
                         .then((response) => {
-                            router.push(`/playlist/${response.data.response.id}`);
+                            router.replace(`/playlist/${response.data.response.id}`);
                         })
                         .catch(() => {
                             warning('Что-то пошло не так...', 'error');

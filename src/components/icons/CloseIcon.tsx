@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconComponentProps } from '@/models/icons';
 
-export default function CloseIcon({ width, height, className }: IconComponentProps) {
+export default function CloseIcon({ width, height, className, onClick }: IconComponentProps) {
     // w: 28, h: 28
     return (
         <svg
@@ -11,6 +11,7 @@ export default function CloseIcon({ width, height, className }: IconComponentPro
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
             className={className}
+            onClick={onClick}
         >
             <path
                 fillRule='evenodd'

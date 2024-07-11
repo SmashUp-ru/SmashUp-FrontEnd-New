@@ -188,6 +188,12 @@
       "create": {
         "name": "Playlist name",
         "create": "Create"
+      },
+
+      "edit": {
+        "name": "Playlist name",
+        "edit": "Edit",
+        "delete": "Delete"
       }
     },
     "agreement": {
