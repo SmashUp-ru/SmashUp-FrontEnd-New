@@ -207,7 +207,7 @@ export default function PlayerBar() {
                                 />
                             );
                         }}
-                        onAfterChange={(value) => {
+                        onChange={(value) => {
                             value /= 100;
                             if (currentAudio) {
                                 currentAudio.volume = value;

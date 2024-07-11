@@ -110,9 +110,11 @@ export default function Profile({ params }: { params: { username: string } }) {
                         <div className='flex flex-col gap-4 w-1/2'>
                             <div className='flex flex-row justify-between items-center'>
                                 <h2 className='font-semibold text-2xl'>{transl('popular')}</h2>
-                                <span className='font-bold text-base text-onSurfaceVariant text-opacity-50 uppercase'>
-                                    {transl('show-all')}
-                                </span>
+                                <Link href={`/profile/${user.username}/mashups`}>
+                                    <span className='font-bold text-base text-onSurfaceVariant text-opacity-50 uppercase cursor-pointer'>
+                                        {transl('show-all')}
+                                    </span>
+                                </Link>
                             </div>
                             <div className='flex flex-col'>
                                 {[...mashups]

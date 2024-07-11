@@ -1,4 +1,5 @@
 'use client';
+
 import Image from 'next/image';
 import TrackItem from '@/components/TrackItem';
 import PlayIcon from '@/components/icons/PlayIcon';
