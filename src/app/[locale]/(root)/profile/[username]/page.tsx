@@ -1,11 +1,9 @@
 'use client';
+
 import React, { useState } from 'react';
 import Image from 'next/image';
-import SettingsIcon from '@/components/icons/SettingsIcon';
-import ShareIcon from '@/components/icons/ShareIcon';
 import TrackItem from '@/components/TrackItem';
 import Pin from '@/components/smashup/Pin/Pin';
-import SmashUpButton from '@/components/smashup/Button/Button';
 import Card from '@/components/Card';
 import { useTranslations } from 'next-intl';
 import { Mashup, MockMashup, MockPlaylist, MockUser, Playlist, User } from '@/utils/types';
@@ -19,6 +17,7 @@ import {
     useUserCache
 } from '@/hooks/repositories';
 import MashupCard from '@/components/MashupCard';
+import ShareCurrentIcon from '@/components/icons/ShareCurrentPageIcon';
 
 export default function Profile({ params }: { params: { username: string } }) {
     const transl = useTranslations('pages.profile');
@@ -82,20 +81,28 @@ export default function Profile({ params }: { params: { username: string } }) {
                             <div className='flex flex-row gap-6'>
                                 <h2 className='font-bold text-3xl'>{user.username}</h2>
                                 <div className='flex flex-row gap-4 items-center'>
-                                    <Pin>15 {transl('badges.subscriptions')}</Pin>
-                                    <Pin>5 {transl('badges.subscribers')}</Pin>
-                                    <Pin>2 {transl('badges.playlists')}</Pin>
+                                    {user.mashups.length > 0 && (
+                                        <Pin>
+                                            {user.mashups.length} {transl('badges.mashups')}
+                                        </Pin>
+                                    )}
+
+                                    {user.playlists.length > 0 && (
+                                        <Pin>
+                                            {user.playlists.length} {transl('badges.playlists')}
+                                        </Pin>
+                                    )}
                                 </div>
                             </div>
 
                             <div className='flex flex-row gap-4 items-center'>
-                                <SmashUpButton className='w-[224px] h-[48px]'>
+                                {/* <SmashUpButton className='w-[224px] h-[48px]'>
                                     {transl('upload')}
-                                </SmashUpButton>
-                                <Link href='/profile/settings'>
+                                </SmashUpButton> */}
+                                {/* <Link href='/profile/settings'>
                                     <SettingsIcon width={28} height={28} color='onSurfaceVariant' />
-                                </Link>
-                                <ShareIcon width={26} height={22} color='onSurfaceVariant' />
+                                </Link> */}
+                                <ShareCurrentIcon width={26} height={22} color='onSurfaceVariant' />
                             </div>
                         </div>
                     </div>

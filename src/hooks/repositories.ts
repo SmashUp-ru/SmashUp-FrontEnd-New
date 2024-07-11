@@ -158,8 +158,8 @@ export class ApiCachingRepository<T> extends AbstractCachingRepository<T> {
 
     protected async loadMany(ids: number[]): Promise<T[]> {
         if (ids.length > 100) {
-            let promise1 = this.getMany(ids.slice(0, 100));
-            let promise2 = this.getMany(ids.slice(100));
+            let promise1 = this.loadMany(ids.slice(0, 100));
+            let promise2 = this.loadMany(ids.slice(100));
 
             return Promise.all([promise1, promise2]).then((entities) => {
                 return [...entities[0], ...entities[1]];
@@ -177,8 +177,7 @@ export class ApiCachingRepository<T> extends AbstractCachingRepository<T> {
 }
 
 export class UserApiCachingRepository extends ApiCachingRepository<User> {
-    // TODO: use AbstractHolder<User>
-    usernameStorage: Map<string, User>;
+    usernameStorage: Map<string, AbstractHolder<User>>;
 
     constructor(api: Api, usernameStorage: Map<string, User>) {
         super(api, 'user/get_many', userFromObject, new MockUser());

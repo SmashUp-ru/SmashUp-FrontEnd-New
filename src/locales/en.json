@@ -169,7 +169,8 @@
       "badges": {
         "subscriptions": " subscriptions",
         "subscribers": " subscribers",
-        "playlists": " playlists"
+        "playlists": " playlists",
+        "mashups": " mashups"
       },
       "title": "Profile",
       "playlists": "Playlists",
@@ -274,13 +275,16 @@
       }
     },
     "mashup_options": {
-      "share": "Поделиться",
-      "add_to_playlist": "Добавить в плейлист",
-      "remove_from_playlist": "Удалить из плейлиста",
+      "share": "Share",
+      "add_to_playlist": "Add to playlist",
+      "remove_from_playlist": "Remove from playlist",
       "messages": {
-        "success": "Успешно!",
-        "already_added": "Этот мэшап уже есть в плейлисте!"
+        "success": "Mashup was added successfully!",
+        "already_added": "This mashup was already added in this playlist!"
       }
+    },
+    "share": {
+      "copied_to_clipboard": "Ссылка скопирована в буфер обмена"
     }
   }
 }

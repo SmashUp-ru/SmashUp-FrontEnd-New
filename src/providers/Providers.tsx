@@ -53,6 +53,10 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         let token = Cookies.get('token');
 
+        if (!token) {
+            return;
+        }
+
         api.get('/user/get', { token })
             .then((response) => userFromObject(response.data.response))
             .then(async (user) => {
@@ -70,7 +74,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
                 setUser(selfUser);
             })
-            .catch(() => {});
+            .catch(() => {
+                Cookies.remove('token');
+            });
     }, []);
 
     return (

@@ -168,7 +168,8 @@
       "badges": {
         "subscriptions": " подписок",
         "subscribers": " подписчиков",
-        "playlists": " плейлистов"
+        "playlists": " плейлистов",
+        "mashups": " мэшапов"
       },
       "title": "Профиль",
       "playlists": "Плейлисты",
@@ -275,7 +276,14 @@
     "mashup_options": {
       "share": "Поделиться",
       "add_to_playlist": "Добавить в плейлист",
-      "remove_from_playlist": "Удалить из плейлиста"
+      "remove_from_playlist": "Удалить из плейлиста",
+      "messages": {
+        "success": "Успешно!",
+        "already_added": "Этот мэшап уже есть в плейлисте!"
+      }
+    },
+    "share": {
+      "copied_to_clipboard": "Ссылка скопирована в буфер обмена"
     }
   }
 }

@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import TrackItem from '@/components/TrackItem';
 import PlayIcon from '@/components/icons/PlayIcon';
-import ShareIcon from '@/components/icons/ShareIcon';
 import { useTranslations } from 'next-intl';
 import { Mashup, MockMashup, MockPlaylist, Playlist } from '@/utils/types';
 import { useContext, useEffect, useState } from 'react';
@@ -24,6 +23,7 @@ import { useApi } from '@/hooks/api';
 import CloseIcon from '@/components/icons/CloseIcon';
 import getWarningToast from '@/components/toast/Warning';
 import { useRouter } from 'next/navigation';
+import ShareCurrentIcon from '@/components/icons/ShareCurrentPageIcon';
 
 // TODO: think about name
 export default function PlaylistPage({ params }: { params: { playlist_id: number } }) {
@@ -184,11 +184,11 @@ export default function PlaylistPage({ params }: { params: { playlist_id: number
                                 onClick={() => setEditing(true)}
                             />
                         )}
-                        <ShareIcon
+                        <ShareCurrentIcon
                             width={26}
                             height={22}
                             color='onSurfaceVariant'
-                            className='w-8 h-8 cursor-pointer'
+                            className='w-8 h-8'
                         />
                     </div>
                 </div>

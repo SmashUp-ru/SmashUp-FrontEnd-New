@@ -11,7 +11,7 @@ import Image from 'next/image';
 import SearchContext, { CrossoverEntry } from '@/providers/search';
 import { Track, TrackAuthor, trackAuthorFromObject, trackFromObject } from '@/utils/types';
 import { useApi } from '@/hooks/api';
-import { useTrackAuthorCache, useTrackCache } from '@/hooks/repositories';
+import { Holder, useTrackAuthorCache, useTrackCache } from '@/hooks/repositories';
 
 export default function Search() {
     const router = useRouter();
@@ -48,7 +48,7 @@ export default function Search() {
                     }
                     setCrossoverTrackAuthors(trackAuthors);
                     for (let trackAuthor of trackAuthors) {
-                        trackAuthorCache.storage.set(trackAuthor.id, trackAuthor);
+                        trackAuthorCache.storage.set(trackAuthor.id, new Holder(trackAuthor));
                     }
                 });
 
@@ -60,7 +60,7 @@ export default function Search() {
                     }
                     setCrossoverTracks(tracks);
                     for (let track of tracks) {
-                        trackCache.storage.set(track.id, track);
+                        trackCache.storage.set(track.id, new Holder(track));
                     }
                 });
             }

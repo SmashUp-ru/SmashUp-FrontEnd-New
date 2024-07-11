@@ -22,6 +22,7 @@ import {
 import { Api, useApi } from '@/hooks/api';
 import {
     AbstractCachingRepository,
+    Holder,
     useMashupCache,
     usePlaylistCache,
     useTrackAuthorCache,
@@ -48,7 +49,7 @@ function search<R extends { id: number }>(
 
         setter(result);
         for (let entity of result) {
-            cache.storage.set(entity.id, entity);
+            cache.storage.set(entity.id, new Holder(entity));
         }
     });
 }

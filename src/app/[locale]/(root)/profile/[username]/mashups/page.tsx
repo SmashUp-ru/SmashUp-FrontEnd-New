@@ -96,6 +96,9 @@ export default function AllMashups({ params }: { params: { username: string } })
                             height={22}
                             color='onSurfaceVariant'
                             className='w-8 h-8 cursor-pointer'
+                            onClick={() => {
+                                navigator.clipboard.writeText(window.location.href);
+                            }}
                         />
                     </div>
                 </div>
