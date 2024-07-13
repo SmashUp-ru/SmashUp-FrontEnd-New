@@ -34,7 +34,7 @@ export default function Card({
 }) {
     return (
         <div
-            className={`${bg ? 'bg-surfaceVariant' : ''} flex flex-col items-center gap-3 w-[238px] h-[301px] rounded-4xl px-6 py-6`}
+            className={`${bg ? 'bg-surfaceVariant' : ''} flex flex-col items-center gap-3 min-w-[238px] min-h-[301px] w-[238px] h-[301px] rounded-4xl px-6 py-6`}
         >
             <div className='w-full relative group'>
                 {href && (

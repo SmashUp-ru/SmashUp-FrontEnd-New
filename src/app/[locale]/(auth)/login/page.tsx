@@ -26,6 +26,7 @@ export default function Login() {
     const handleSubmit = (event: any) => {
         event.preventDefault();
         api.post('/login', { username: email, password: password }).then((response) => {
+            console.log(response);
             if (response.status === 200) {
                 console.log(response.data);
                 Cookies.set('token', response.data.response.token);

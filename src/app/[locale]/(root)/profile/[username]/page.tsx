@@ -163,7 +163,7 @@ export default function Profile({ params }: { params: { username: string } }) {
                         <div className='flex flex-row justify-between items-center'>
                             <h2 className='font-semibold text-2xl'>{transl('playlists')}</h2>
                         </div>
-                        <div className='overflow-visible flex flex-row gap-7'>
+                        <div className='overflow-scroll flex flex-row gap-7'>
                             {playlists.map((item) => (
                                 <Card
                                     key={item.id}
