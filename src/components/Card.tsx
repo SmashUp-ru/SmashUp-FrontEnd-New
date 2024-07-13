@@ -77,8 +77,13 @@ export default function Card({
             </div>
             <div className='flex flex-col gap-2 text-left w-full'>
                 <div className='flex flex-row justify-between items-center'>
-                    <Link href={`/playlist/${id}`}>
-                        <span className='text-onSurface font-semibold text-base'>{title}</span>
+                    <Link
+                        href={`/playlist/${id}`}
+                        className='w-full text-ellipsis whitespace-nowrap overflow-hidden'
+                    >
+                        <span className='text-onSurface font-semibold text-base w-full '>
+                            {title}
+                        </span>
                     </Link>
                     {showVisibleButton && (
                         <Pin className='w-8 h-6 flex flex-col justify-center items-center p-0'>
@@ -86,8 +91,11 @@ export default function Card({
                         </Pin>
                     )}
                 </div>
-                <Link href={`/profile/${author}`}>
-                    <span className='text-neutral-400 font-normal text-base '>{author}</span>
+                <Link
+                    href={`/profile/${author}`}
+                    className='w-full text-ellipsis whitespace-nowrap overflow-hidden'
+                >
+                    <span className='text-neutral-400 font-normal text-base'>{author}</span>
                 </Link>
             </div>
         </div>

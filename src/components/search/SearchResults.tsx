@@ -43,9 +43,9 @@ function search<R extends { id: number }>(
     api.get(`/${endpoint}/search`, { query }).then((response) => {
         // TODO: limit at API
         let result: R[] = response.data.response.map(mapper);
-        if (result.length > 5) {
-            result = result.slice(0, 5);
-        }
+        // if (result.length > 5) {
+        //     result = result.slice(0, 5);
+        // }
 
         setter(result);
         for (let entity of result) {
@@ -183,7 +183,7 @@ export default function SearchResults({ query }: { query: string }) {
                     {mashups && mashups.length > 0 && (
                         <div>
                             <h1 className='font-semibold text-3xl'>{transl('mashups')}</h1>
-                            <div className='flex flex-row items-center overflow-hidden'>
+                            <div className='flex flex-row items-center overflow-x-scroll overflow-y-hidden'>
                                 {mashups.map((mashup, index) => (
                                     <MashupCard key={index} mashup={mashup} />
                                 ))}
@@ -194,7 +194,7 @@ export default function SearchResults({ query }: { query: string }) {
                     {trackAuthors && trackAuthors.length > 0 && (
                         <div>
                             <h1 className='font-semibold text-3xl'>{transl('authors')}</h1>
-                            <div className='flex flex-row items-center overflow-hidden'>
+                            <div className='flex flex-row items-center overflow-x-scroll overflow-y-hidden'>
                                 {trackAuthors.map((item, index) => (
                                     <ArtistCard
                                         key={index}
@@ -211,7 +211,7 @@ export default function SearchResults({ query }: { query: string }) {
                     {playlists && playlists.length > 0 && (
                         <div>
                             <h1 className='font-semibold text-3xl'>{transl('playlists')}</h1>
-                            <div className='flex flex-row items-center overflow-hidden'>
+                            <div className='flex flex-row items-center overflow-x-scroll overflow-y-hidden'>
                                 {playlists.map((item, index) => (
                                     <Card
                                         key={index}

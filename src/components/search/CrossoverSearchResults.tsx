@@ -62,7 +62,7 @@ export default function CrossoverSearchResults() {
     return (
         <div>
             <h1 className='font-semibold text-3xl'>{transl('mashups')}</h1>
-            <div className='flex flex-row items-center overflow-hidden'>
+            <div className='flex flex-row items-center overflow-x-scroll overflow-y-hidden'>
                 {mashups?.map((item, index) => <MashupCard key={index} mashup={item} />)}
             </div>
         </div>
