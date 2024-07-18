@@ -65,7 +65,7 @@ export default function PlayerBar() {
                 min={0}
                 max={currentMashup.duration / 10}
                 value={finalTime * 100}
-                className={'w-full h-2 absolute top-1 -mt-1'}
+                className={'h-2 absolute top-1 -mt-1'}
                 renderTrack={(props, state) => {
                     return (
                         <div
@@ -88,8 +88,8 @@ export default function PlayerBar() {
                     setCurrentTime(value);
                 }}
             ></ReactSlider>
-            <div className='w-full mb-4 flex items-center justify-between bg-surfaceVariant rounded-b-2xl px-4 py-4'>
-                <div className='flex flex-row w-[600px]'>
+            <div className='mb-4 flex items-center justify-between bg-surfaceVariant rounded-b-2xl px-4 py-4 relative'>
+                <div className='flex flex-row max-w-1/3 overflow-hidden'>
                     <Image
                         className='w-12 h-12 rounded mr-3'
                         width={100}
@@ -120,7 +120,7 @@ export default function PlayerBar() {
                     </div>
                 </div>
 
-                <div className='flex flex-row gap-4 w-[196px] items-center'>
+                <div className='flex flex-row gap-4 items-center absolute right-1/2'>
                     <ShuffleIcon
                         width={32}
                         height={32}
@@ -163,7 +163,7 @@ export default function PlayerBar() {
                     <PlayerRepeatIcon repeat={repeat} setRepeat={setRepeat} />
                 </div>
 
-                <div className='flex flex-row gap-4 w-[600px] justify-end items-center'>
+                <div className='flex flex-row gap-4 justify-end items-center'>
                     {/* {formatTime(currentTime)} */}
                     {/* {currentMashup.durationStr} */}
 
