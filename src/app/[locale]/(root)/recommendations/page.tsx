@@ -28,6 +28,9 @@ export default function Recommendations() {
 
     useEffect(() => {
         if (user === undefined || mashups !== undefined) {
+            if (mashups) {
+                setMashupIds(mashups.map((m) => m.id));
+            }
             return;
         }
 
@@ -100,6 +103,7 @@ export default function Recommendations() {
                             title={item.name}
                             mashup={item}
                             explicit={item.statuses.isExplicit()}
+                            playlist={playlistLike}
                         />
                     ))}
                 </div>

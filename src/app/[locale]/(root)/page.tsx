@@ -88,11 +88,11 @@ export default function Home() {
                         </div>
                         <div className='flex flex-row flex-wrap'>
                             <div className='flex flex-col gap-4 w-1/3'>
-                                {recCol1.map((item) => (
+                                {recCol1.map((item, index) => (
                                     <TrackItem
                                         key={item.id}
+                                        index={1 + index}
                                         {...item}
-                                        id={undefined}
                                         image={item.imageUrl + '_100x100.png'}
                                         author={item.authors.join(', ')}
                                         title={item.name}
@@ -104,11 +104,11 @@ export default function Home() {
                             </div>
 
                             <div className='flex flex-col gap-4 w-1/3'>
-                                {recCol2.map((item) => (
+                                {recCol2.map((item, index) => (
                                     <TrackItem
                                         key={item.id}
+                                        index={3 + index}
                                         {...item}
-                                        id={undefined}
                                         image={item.imageUrl + '_100x100.png'}
                                         author={item.authors.join(', ')}
                                         title={item.name}
@@ -120,11 +120,11 @@ export default function Home() {
                             </div>
 
                             <div className='flex flex-col gap-4 w-1/3'>
-                                {recCol3.map((item) => (
+                                {recCol3.map((item, index) => (
                                     <TrackItem
                                         key={item.id}
+                                        index={5 + index}
                                         {...item}
-                                        id={undefined}
                                         image={item.imageUrl + '_100x100.png'}
                                         author={item.authors.join(', ')}
                                         title={item.name}
