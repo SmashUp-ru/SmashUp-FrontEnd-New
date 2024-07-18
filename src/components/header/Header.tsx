@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import NotificationLogo from '@/components/icons/NotificationIcon';
+// import NotificationLogo from '@/components/icons/NotificationIcon';
 import Search from '@/components/header/Search';
 import BackButton from '@/components/header/BackButton';
 import Avatar from '@/components/header/Avatar';
@@ -55,7 +55,7 @@ export default function Header() {
             )}
 
             <div className='flex items-center gap-6'>
-                <NotificationLogo width={24} height={24} color='primary' active={true} />
+                {/* <NotificationLogo width={24} height={24} color='primary' active={true} /> */}
                 <Avatar />
             </div>
         </div>

@@ -1,20 +1,64 @@
-import { premier, selections } from '@/utils/data';
+'use client';
+
+import { selections } from '@/utils/data';
 import Card from '@/components/Card';
-import Banner from '@/components/banners/Banner';
-import IPadAd from '@/components/banners/IPadAd';
+// import Banner from '@/components/banners/Banner';
+// import IPadAd from '@/components/banners/IPadAd';
 import Footer from '@/components/footer/Footer';
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import TrackItem from '@/components/TrackItem';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { Mashup } from '@/utils/types';
+import { useApi } from '@/hooks/api';
+import { useMashupCache } from '@/hooks/repositories';
+import { PlaylistLike } from '@/hooks/utils';
+import { shareRecommendations } from '@/utils/share';
+import AuthenticationContext from '@/providers/authentication';
 
 export default function Home() {
     const t = useTranslations('pages.home');
+
+    const [recommendations, setRecommendations] = useState<Mashup[] | undefined>(
+        shareRecommendations.value
+    );
+
+    const mashupCache = useMashupCache();
+    const api = useApi();
+
+    const { user } = useContext(AuthenticationContext);
+
+    useEffect(() => {
+        if (user === undefined || recommendations !== undefined) {
+            return;
+        }
+
+        api.get('/recommendations/v2', { id: user.id }).then((response) => {
+            let ids: number[] = response.data.response;
+            mashupCache.getMany(ids).then((mashups) => {
+                setRecommendations(mashups);
+                shareRecommendations.value = mashups;
+            });
+        });
+    }, [user]);
+
+    const [recCol1, recCol2, recCol3] = recommendations
+        ? [recommendations.slice(0, 2), recommendations.slice(2, 4), recommendations.slice(4, 6)]
+        : [[], [], []];
+
+    const recPlaylist: PlaylistLike | undefined = recommendations
+        ? {
+              link: '/recommendations/v2',
+              mashups: recommendations.map((m) => m.id)
+          }
+        : undefined;
+
     return (
         <div className='flex flex-col gap-12'>
             {/* Реклама */}
-            <Banner>
+            {/* <Banner>
                 <IPadAd />
-            </Banner>
+            </Banner> */}
 
             {/* Подборки */}
             <div>
@@ -30,40 +74,69 @@ export default function Home() {
 
             {/* Недавно прослушано */}
             <div>
-                <div className='flex flex-row justify-between'>
-                    <h2 className='font-semibold text-2xl text-onSurface pb-5'>
-                        {t('premier.title')}
-                    </h2>
-                    <span className='font-bold text-base text-onSurfaceVariant text-opacity-50 uppercase'>
-                        {t('premier.button')}
-                    </span>
-                </div>
+                {recommendations && (
+                    <>
+                        <div className='flex flex-row justify-between'>
+                            <h2 className='font-semibold text-2xl text-onSurface pb-5'>
+                                {t('recommendations.title')}
+                            </h2>
+                            <Link href='/recommendations'>
+                                <span className='font-bold text-base text-onSurfaceVariant text-opacity-50 uppercase cursor-pointer'>
+                                    {t('recommendations.button')}
+                                </span>
+                            </Link>
+                        </div>
+                        <div className='flex flex-row flex-wrap'>
+                            <div className='flex flex-col gap-4 w-1/3'>
+                                {recCol1.map((item) => (
+                                    <TrackItem
+                                        key={item.id}
+                                        {...item}
+                                        id={undefined}
+                                        image={item.imageUrl + '_100x100.png'}
+                                        author={item.authors.join(', ')}
+                                        title={item.name}
+                                        mashup={item}
+                                        explicit={item.statuses.isExplicit()}
+                                        playlist={recPlaylist as PlaylistLike}
+                                    />
+                                ))}
+                            </div>
 
-                <div className='flex flex-row flex-wrap'>
-                    <div className='flex flex-col gap-4 w-1/3'>
-                        {premier
-                            .filter((item) => item.id <= 2)
-                            .map((item) => (
-                                <TrackItem key={item.id} {...item} id={undefined} />
-                            ))}
-                    </div>
+                            <div className='flex flex-col gap-4 w-1/3'>
+                                {recCol2.map((item) => (
+                                    <TrackItem
+                                        key={item.id}
+                                        {...item}
+                                        id={undefined}
+                                        image={item.imageUrl + '_100x100.png'}
+                                        author={item.authors.join(', ')}
+                                        title={item.name}
+                                        mashup={item}
+                                        explicit={item.statuses.isExplicit()}
+                                        playlist={recPlaylist as PlaylistLike}
+                                    />
+                                ))}
+                            </div>
 
-                    <div className='flex flex-col gap-4 w-1/3'>
-                        {premier
-                            .filter((item) => item.id > 2 && item.id <= 4)
-                            .map((item) => (
-                                <TrackItem key={item.id} {...item} id={undefined} />
-                            ))}
-                    </div>
-
-                    <div className='flex flex-col gap-4 w-1/3'>
-                        {premier
-                            .filter((item) => item.id > 4 && item.id <= 6)
-                            .map((item) => (
-                                <TrackItem key={item.id} {...item} id={undefined} />
-                            ))}
-                    </div>
-                </div>
+                            <div className='flex flex-col gap-4 w-1/3'>
+                                {recCol3.map((item) => (
+                                    <TrackItem
+                                        key={item.id}
+                                        {...item}
+                                        id={undefined}
+                                        image={item.imageUrl + '_100x100.png'}
+                                        author={item.authors.join(', ')}
+                                        title={item.name}
+                                        mashup={item}
+                                        explicit={item.statuses.isExplicit()}
+                                        playlist={recPlaylist as PlaylistLike}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
 
             <Footer />

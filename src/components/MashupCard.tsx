@@ -18,6 +18,7 @@ export default function MashupCard({
         <Card
             id={mashup.id}
             title={mashup.name}
+            explicit={mashup.statuses.isExplicit()}
             author={mashup.authors.join(', ')}
             image={mashup.imageUrl + '_400x400.png'}
             onClick={() => mashupSideSheetUtils.open(mashup)}

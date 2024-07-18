@@ -54,7 +54,7 @@ export default function TrackSideSheet() {
     }, [track]);
 
     return (
-        <div className='w-[468px] h-full flex flex-col items-center ml-5'>
+        <div className='min-w-[468px] w-[468px] h-full flex flex-col items-center ml-5'>
             <div className='w-full flex flex-row justify-end h-[130px]'>
                 <button
                     onClick={() => {
@@ -77,7 +77,9 @@ export default function TrackSideSheet() {
                 <div className='flex flex-col gap-3'>
                     <div className='flex flex-row gap-2.5 items-center'>
                         <span className='text-base font-semibold'>{mashup.name}</span>
-                        <ExplicitIcon width={16} height={17} color='icon' />
+                        {mashup.statuses.isExplicit() && (
+                            <ExplicitIcon width={16} height={17} color='icon' />
+                        )}
                     </div>
                     {/* TODO: support for multipel authors */}
                     <Link href={`/profile/${mashup.authors[0]}`}>

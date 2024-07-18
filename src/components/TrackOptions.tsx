@@ -1,20 +1,27 @@
 'use client';
 
 import { Popover } from 'react-tiny-popover';
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AuthenticationContext from '@/providers/authentication';
 import { usePlaylistCache } from '@/hooks/repositories';
 import { Mashup, Playlist } from '@/utils/types';
 import { useApi } from '@/hooks/api';
 import getWarningToast from './toast/Warning';
 import { useTranslations } from 'next-intl';
+import { playlistLike, usePlayerUtils } from '@/hooks/utils';
+import PlayerContext from '@/providers/player';
+import _ from 'lodash';
 
 export default function TrackOptions({
     mashup,
-    playlist
+    playlist,
+    forceUpdate,
+    setPlaylist
 }: {
     mashup: Mashup;
     playlist?: Playlist;
+    forceUpdate?: React.DispatchWithoutAction;
+    setPlaylist?: React.Dispatch<React.SetStateAction<Playlist | undefined>>;
 }) {
     const [isPopoverOpen, setIsPopoverOpen] = useState(false);
     const [isPlaylistsPopoverOpen, setIsPlaylistsPopoverOpen] = useState(false);
@@ -34,6 +41,10 @@ export default function TrackOptions({
     const warning = getWarningToast;
 
     const transl = useTranslations('components.mashup_options');
+
+    const playerUtils = usePlayerUtils();
+    const { queue, setQueue, currentPlaylist, setCurrentPlaylist, shuffle } =
+        useContext(PlayerContext);
 
     let playlistsJsx;
     if (user && playlists.length > 0) {
@@ -55,6 +66,35 @@ export default function TrackOptions({
                                         .then(() => {
                                             p.mashups.push(mashup.id);
                                             warning(transl('messages.success'), 'success');
+
+                                            if (
+                                                queue &&
+                                                currentPlaylist &&
+                                                playerUtils.isCurrent(undefined, playlistLike(p))
+                                            ) {
+                                                let newCurrentPlaylist =
+                                                    _.cloneDeep(currentPlaylist);
+                                                newCurrentPlaylist.mashups.push(mashup.id);
+
+                                                let newQueue;
+
+                                                if (shuffle) {
+                                                    let index = Math.floor(
+                                                        Math.random() * queue.length
+                                                    );
+                                                    newQueue = [
+                                                        ...queue.slice(0, index),
+                                                        mashup.id,
+                                                        ...queue.slice(index)
+                                                    ];
+                                                } else {
+                                                    newQueue = [...queue];
+                                                    newQueue.push(mashup.id);
+                                                }
+
+                                                setQueue(newQueue);
+                                                setCurrentPlaylist(newCurrentPlaylist);
+                                            }
                                         })
                                         .catch(() => {
                                             warning(transl('messages.already_added'), 'error');
@@ -82,7 +122,13 @@ export default function TrackOptions({
     }
 
     let removeJsx;
-    if (user && playlist && playlist.authors.includes(user.username)) {
+    if (
+        user &&
+        forceUpdate &&
+        setPlaylist &&
+        playlist &&
+        playlist.authors.includes(user.username)
+    ) {
         removeJsx = (
             <div
                 className='cursor-pointer'
@@ -95,6 +141,23 @@ export default function TrackOptions({
                             let index = playlist.mashups.indexOf(mashup.id);
                             playlist.mashups.splice(index, 1);
                             warning(transl('messages.success'), 'success');
+                            forceUpdate();
+
+                            if (
+                                queue &&
+                                currentPlaylist &&
+                                playerUtils.isCurrent(undefined, playlistLike(playlist))
+                            ) {
+                                let newCurrentPlaylist = _.cloneDeep(currentPlaylist);
+                                newCurrentPlaylist.mashups.splice(index, 1);
+
+                                index = queue.indexOf(mashup.id);
+                                let newQueue = [...queue];
+                                newQueue.splice(index, 1);
+
+                                setQueue(newQueue);
+                                setCurrentPlaylist(newCurrentPlaylist);
+                            }
                         }
                     );
                 }}

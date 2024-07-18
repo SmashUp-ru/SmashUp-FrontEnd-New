@@ -1,14 +1,16 @@
 'use client';
 
 import Modal from 'react-modal';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import CloseIcon from '@/components/icons/CloseIcon';
 import SmashUpInput from '@/components/smashup/Input/Input';
 import SmashUpButton from '@/components/smashup/Button/Button';
 import { useTranslations } from 'next-intl';
 import { useApi } from '@/hooks/api';
-import AuthenticationContext from '@/providers/authentication';
 import { Playlist } from '@/utils/types';
+import Image from 'next/image';
+import egor from '/public/dev/search/egor.png';
+import EditIcon from '@/components/icons/EditIcon';
 
 interface EditModalProps {
     modalIsOpen: boolean;
@@ -34,25 +36,55 @@ export default function EditModal({
 
     const [editName, setEditName] = useState(playlist.name);
 
-    const { user } = useContext(AuthenticationContext);
-
     return (
-        <Modal isOpen={modalIsOpen} contentLabel='Example Modal'>
-            <div className='flex flex-row gap-4 items-center'>
-                <CloseIcon
-                    width={28}
-                    height={28}
-                    className='w-8 h-8 cursor-pointer'
-                    onClick={() => {
-                        setModalIsOpen(false);
-                    }}
-                ></CloseIcon>
-                <SmashUpInput
-                    placeholder={transl('edit.name')}
-                    value={editName}
-                    onChange={(e) => setEditName(e.target.value)}
-                    className='w-[400px]'
-                ></SmashUpInput>
+        <Modal
+            isOpen={modalIsOpen}
+            className='absolute w-full h-full z-9999 flex justify-center items-center bg-transparent'
+            style={{
+                overlay: {
+                    backgroundColor: 'rgba(0, 0, 0, 0)'
+                }
+            }}
+        >
+            <div className='relative bg-surfaceVariant flex flex-col gap-4 items-center rounded-4xl p-7'>
+                <div className='w-full flex justify-start'>
+                    <h1 className='text-onSurface font-bold text-3xl'>Редактирование плейлиста</h1>
+                </div>
+
+                <div className='flex flex-row gap-8'>
+                    <CloseIcon
+                        width={28}
+                        height={28}
+                        className='w-8 h-8 cursor-pointer absolute top-6 right-6'
+                        onClick={() => {
+                            setModalIsOpen(false);
+                        }}
+                    ></CloseIcon>
+
+                    <label className='relative cursor-pointer' htmlFor='update-avatar'>
+                        <Image
+                            src={egor}
+                            alt='Аватарка профиля'
+                            className='w-[216px] h-[216px] rounded-2xl brightness-50'
+                        />
+                        <EditIcon
+                            width={70}
+                            height={70}
+                            className='absolute top-0 right-0 left-0 bottom-0 m-auto'
+                        />
+                        <input id='update-avatar' type='file' className='hidden' />
+                    </label>
+
+                    <div className='flex flex-col gap-1'>
+                        <p className='text-onSurface'>Название</p>
+                        <SmashUpInput
+                            placeholder={transl('edit.name')}
+                            value={editName}
+                            onChange={(e) => setEditName(e.target.value)}
+                            className='w-[400px]'
+                        ></SmashUpInput>
+                    </div>
+                </div>
 
                 <SmashUpButton
                     onClick={() => {
@@ -68,36 +100,15 @@ export default function EditModal({
                                 playlist.name = response.data.response.name;
                                 setPlaylist({ ...playlist });
                                 setModalIsOpen(false);
+                                warning('Удачно', 'success');
                             })
                             .catch(() => {
                                 warning('Что-то пошло не так...', 'error');
-                            })
-                            .finally(() => {
-                                warning('Что-то пошло так...', 'success');
                             });
                     }}
-                    className='w-[100px]'
+                    className='w-full py-3'
                 >
                     {transl('edit.edit')}
-                </SmashUpButton>
-
-                <SmashUpButton
-                    onClick={() => {
-                        api.post('/playlist/delete', {}, { id: playlist.id })
-                            .then(() => {
-                                if (user) {
-                                    let index = user.playlists.indexOf(playlist.id);
-                                    user.playlists.splice(index, 1);
-                                    setModalIsOpen(false);
-                                }
-                            })
-                            .catch(() => {
-                                warning('Что-то пошло не так...', 'error');
-                            });
-                    }}
-                    className='w-[100px]'
-                >
-                    {transl('edit.delete')}
                 </SmashUpButton>
             </div>
         </Modal>

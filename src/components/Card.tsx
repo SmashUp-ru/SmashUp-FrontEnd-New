@@ -7,10 +7,12 @@ import PauseIcon from '@/components/icons/PauseIcon';
 import Pin from '@/components/smashup/Pin/Pin';
 import HideIcon from '@/components/icons/HideButton';
 import Link from 'next/link';
+import ExplicitIcon from './icons/ExplicitIcon';
 
 export default function Card({
     id,
     title,
+    explicit,
     // TODO: add support for multiple authors
     author,
     image,
@@ -23,6 +25,7 @@ export default function Card({
 }: {
     id: number;
     title: string;
+    explicit?: boolean;
     author: string;
     image: string | StaticImageData;
     bg?: boolean;
@@ -77,14 +80,40 @@ export default function Card({
             </div>
             <div className='flex flex-col gap-2 text-left w-full'>
                 <div className='flex flex-row justify-between items-center'>
-                    <Link
-                        href={`/playlist/${id}`}
-                        className='w-full text-ellipsis whitespace-nowrap overflow-hidden'
-                    >
-                        <span className='text-onSurface font-semibold text-base w-full '>
-                            {title}
-                        </span>
-                    </Link>
+                    {href && (
+                        <div onClick={onClick}>
+                            <Link
+                                href={`/playlist/${id}`}
+                                className='w-full text-ellipsis whitespace-nowrap overflow-hidden'
+                            >
+                                <div className='flex flex-row items-center gap-1'>
+                                    {explicit && (
+                                        <ExplicitIcon width={16} height={17} color='icon' />
+                                    )}
+
+                                    <span className='text-onSurface font-semibold text-base '>
+                                        {title.length > (explicit ? 16 : 20)
+                                            ? title.substring(0, explicit ? 16 : 20) + '...'
+                                            : title}
+                                    </span>
+                                </div>
+                            </Link>
+                        </div>
+                    )}
+                    {!href && (
+                        <div
+                            onClick={onClick}
+                            className={`flex flex-row items-center gap-1 ${onClick ? 'cursor-pointer' : ''}`}
+                        >
+                            {explicit && <ExplicitIcon width={16} height={17} color='icon' />}
+
+                            <span className='text-onSurface font-semibold text-base '>
+                                {title.length > (explicit ? 16 : 20)
+                                    ? title.substring(0, explicit ? 16 : 20) + '...'
+                                    : title}
+                            </span>
+                        </div>
+                    )}
                     {showVisibleButton && (
                         <Pin className='w-8 h-6 flex flex-col justify-center items-center p-0'>
                             <HideIcon width={20} height={20} color='primary' />

@@ -1,7 +1,7 @@
 'use client';
 
 import { Bitmask, Mashup, SelfUser, userFromObject } from '@/utils/types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import TrackContext from '@/providers/track';
 import PlayerContext from '@/providers/player';
 import SearchContext, { CrossoverEntry } from '@/providers/search';
@@ -27,9 +27,18 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     const [repeat, setRepeat] = useState<'no' | 'playlist' | 'one'>('no');
     const [volume, setVolume] = useState<number>(0.05);
 
+    const prevCurrentPlaylist = useRef<PlaylistLike>();
+
     useEffect(() => {
         if (!currentPlaylist) {
             setQueue(undefined);
+            return;
+        }
+
+        if (
+            prevCurrentPlaylist.current &&
+            currentPlaylist.link === prevCurrentPlaylist.current.link
+        ) {
             return;
         }
 
@@ -42,7 +51,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
 
             setQueue(array);
         } else {
-            setQueue(currentPlaylist.mashups);
+            setQueue([...currentPlaylist.mashups]);
         }
     }, [currentPlaylist]);
 

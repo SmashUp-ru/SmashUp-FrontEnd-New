@@ -5,7 +5,7 @@ import TrackItem from '@/components/TrackItem';
 import PlayIcon from '@/components/icons/PlayIcon';
 import { useTranslations } from 'next-intl';
 import { Mashup, MockMashup, MockPlaylist, Playlist } from '@/utils/types';
-import { useContext, useState } from 'react';
+import { useContext, useReducer, useState } from 'react';
 import {
     useMashupCache,
     usePlaylistCache,
@@ -21,27 +21,37 @@ import ShareCurrentIcon from '@/components/icons/ShareCurrentPageIcon';
 import EditModal from '@/components/playlist/EditModal';
 import getWarningToast from '@/components/toast/Warning';
 import { ToastBar, Toaster } from 'react-hot-toast';
+import _ from 'lodash';
 
 // TODO: think about name
-export default function PlaylistPage({ params }: { params: { playlist_id: number } }) {
+export default function PlaylistPage({ params }: { params: { playlist_id: string } }) {
     const transl = useTranslations('pages.playlist');
 
     const [playlist, setPlaylist] = useState<Playlist>();
     const [mashups, setMashups] = useState<Mashup[]>();
+
+    const [update, forceUpdate] = useReducer((x) => x + 1, 0);
 
     const playlistCache = usePlaylistCache();
     const mashupCache = useMashupCache();
 
     const playlistResponse = useRepositoryRequest(
         undefined,
-        () => playlistCache.get(params.playlist_id),
-        new MockPlaylist()
+        () => playlistCache.get(parseInt(params.playlist_id)),
+        new MockPlaylist(),
+        [update]
     );
-    useRepositoryStateSet(playlistResponse, setPlaylist, () => new MockPlaylist());
+
+    useRepositoryStateSet(
+        playlistResponse,
+        (p: Playlist | undefined) => setPlaylist(_.cloneDeep(p)),
+        () => new MockPlaylist()
+    );
 
     const mashupsResponse = useRepositoryGetMany(
         mashupCache,
-        playlistResponse.promise.then((playlist) => (playlist ? playlist.mashups : []))
+        () => playlistResponse.promise.then((playlist) => (playlist ? playlist.mashups : [])),
+        [update, playlist]
     );
     useRepositoryStateSet(mashupsResponse, setMashups, () =>
         playlist?.mashups.map(() => new MockMashup())
@@ -137,6 +147,8 @@ export default function PlaylistPage({ params }: { params: { playlist_id: number
                             mashup={item}
                             playlist={playlistLike(playlist)}
                             explicit={item.statuses.isExplicit()}
+                            forceUpdate={forceUpdate}
+                            setPlaylist={setPlaylist}
                         />
                     ))}
                 </div>

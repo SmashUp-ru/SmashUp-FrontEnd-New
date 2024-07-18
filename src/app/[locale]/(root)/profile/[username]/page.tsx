@@ -112,7 +112,7 @@ export default function Profile({ params }: { params: { username: string } }) {
             {mashups && mashups.length > 0 && (
                 <>
                     {/* Семые популярные мэшапы */}
-                    <div className='flex flex-row gap-6 flex-wrap w-full'>
+                    <div className='flex flex-row gap-6 flex-wrap'>
                         {/*Популярные треки*/}
                         <div className='flex flex-col gap-4 w-1/2'>
                             <div className='flex flex-row justify-between items-center'>
@@ -157,27 +157,24 @@ export default function Profile({ params }: { params: { username: string } }) {
 
             {/* TODO: fix playlists overflow */}
             {playlists && playlists.length > 0 && (
-                <>
-                    {/* Плейлисты */}
-                    <div className='flex flex-col gap-4'>
-                        <div className='flex flex-row justify-between items-center'>
-                            <h2 className='font-semibold text-2xl'>{transl('playlists')}</h2>
-                        </div>
-                        <div className='overflow-scroll flex flex-row gap-7'>
-                            {playlists.map((item) => (
-                                <Card
-                                    key={item.id}
-                                    showVisibleButton={false}
-                                    href='playlist'
-                                    {...item}
-                                    image={item.imageUrl + '_400x400.png'}
-                                    author={item.authors.join(', ')}
-                                    title={item.name}
-                                />
-                            ))}
-                        </div>
+                <div className='flex flex-col gap-4 max-w-full'>
+                    <div className='flex flex-row justify-between items-center'>
+                        <h2 className='font-semibold text-2xl'>{transl('playlists')}</h2>
                     </div>
-                </>
+                    <div className='max-w-full overflow-scroll flex flex-row flex-wrap gap-7'>
+                        {playlists.map((item) => (
+                            <Card
+                                key={item.id}
+                                showVisibleButton={false}
+                                href='playlist'
+                                {...item}
+                                image={item.imageUrl + '_400x400.png'}
+                                author={item.authors.join(', ')}
+                                title={item.name}
+                            />
+                        ))}
+                    </div>
+                </div>
             )}
         </div>
     );

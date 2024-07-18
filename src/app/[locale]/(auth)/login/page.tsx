@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import MailIcon from '@/components/icons/MailIcon';
-import VkBlueIcon from '@/components/icons/VkBlueIcon';
+// import VkBlueIcon from '@/components/icons/VkBlueIcon';
 import SmashUpButton from '@/components/smashup/Button/Button';
 import SmashUpCheckBox from '@/components/smashup/Checkbox/Checkbox';
 import SmashUpInput from '@/components/smashup/Input/Input';
@@ -26,9 +26,7 @@ export default function Login() {
     const handleSubmit = (event: any) => {
         event.preventDefault();
         api.post('/login', { username: email, password: password }).then((response) => {
-            console.log(response);
             if (response.status === 200) {
-                console.log(response.data);
                 Cookies.set('token', response.data.response.token);
                 router.push('/');
             }
@@ -58,7 +56,7 @@ export default function Login() {
 
                             {/* Пароль */}
                             <SmashUpPassword
-                                showForgotButton
+                                // showForgotButton
                                 showPasswordButton
                                 placeholder='12345qwerty'
                                 value={password}
@@ -72,14 +70,14 @@ export default function Login() {
                     <SmashUpButton onClick={handleSubmit}>{transl('log-in')}</SmashUpButton>
 
                     {/* Разделитель */}
-                    <div className='flex flex-row justify-between items-center'>
+                    {/* <div className='flex flex-row justify-between items-center'>
                         <div className='w-[25%] bg-onSurface h-[1px]'></div>
                         <span className='w-[35%]'>{transl('log-in-with')}</span>
                         <div className='w-[25%] bg-onSurface h-[1px]'></div>
-                    </div>
+                    </div> */}
 
                     <div className='flex flex-col gap-4'>
-                        <SmashUpButton
+                        {/* <SmashUpButton
                             category='stroke-default'
                             icon={<VkBlueIcon width={25} height={25} color='vk' />}
                             onClick={() => {
@@ -89,7 +87,7 @@ export default function Login() {
                             }}
                         >
                             VK ID
-                        </SmashUpButton>
+                        </SmashUpButton> */}
 
                         <span>
                             {transl('no-account')}

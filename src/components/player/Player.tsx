@@ -5,7 +5,6 @@ import PlayerContext from '@/providers/player';
 import { PlayerUtils, usePlayerUtils } from '@/hooks/utils';
 
 let actualPaused: boolean = true;
-let actualCurrentAudio: HTMLAudioElement | undefined = undefined;
 let actualPlayerUtils: PlayerUtils | undefined = undefined;
 
 export default function Player() {
@@ -19,7 +18,8 @@ export default function Player() {
         paused,
         setPaused,
         shuffle,
-        volume
+        volume,
+        currentTime
     } = useContext(PlayerContext);
 
     const playerUtils = usePlayerUtils();
@@ -48,11 +48,9 @@ export default function Player() {
                     }
                 }
 
-                console.log(array);
-
                 setQueue(array);
             } else {
-                setQueue(currentPlaylist.mashups);
+                setQueue([...currentPlaylist.mashups]);
             }
         }
     }, [shuffle]);
@@ -88,10 +86,6 @@ export default function Player() {
     }, []);
 
     useEffect(() => {
-        actualCurrentAudio = currentAudio;
-    }, [currentAudio]);
-
-    useEffect(() => {
         if (currentAudio) {
             currentAudio.pause();
         }
@@ -105,12 +99,6 @@ export default function Player() {
         setCurrentAudio(audio);
         setCurrentTime(0);
 
-        audio.onended = () => {
-            if (actualCurrentAudio === audio) {
-                playerUtils.playNext(true);
-            }
-        };
-
         audio.ontimeupdate = () => {
             setCurrentTime(audio.currentTime);
         };
@@ -123,7 +111,13 @@ export default function Player() {
     }, [currentMashup]);
 
     useEffect(() => {
-        if (currentAudio && !currentAudio.ended) {
+        if (currentAudio && currentTime >= currentAudio.duration) {
+            playerUtils.playNext(true);
+        }
+    }, [currentTime]);
+
+    useEffect(() => {
+        if (currentAudio) {
             if (paused) {
                 try {
                     currentAudio.pause();
@@ -131,6 +125,11 @@ export default function Player() {
                     // eslint-disable-line
                 }
             } else {
+                if (currentAudio.ended) {
+                    currentAudio.currentTime = 0;
+                    setCurrentTime(0);
+                }
+
                 currentAudio.play();
             }
         }

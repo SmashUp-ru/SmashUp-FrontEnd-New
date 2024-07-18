@@ -32,8 +32,9 @@ export default function Search() {
         }
     }
 
+    // transl('history.title')
     return (
-        <SearchButtons title={transl('history.title')}>
+        <SearchButtons title='Enter query'>
             <SearchHistory />
         </SearchButtons>
     );

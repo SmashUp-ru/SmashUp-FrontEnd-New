@@ -10,8 +10,8 @@ import PreviousIcon from '../icons/PreviousIcon';
 import PlayIcon from '../icons/PlayIcon';
 import NextIcon from '../icons/NextIcon';
 import ShuffleIcon from '../icons/ShuffleIcon';
-import RepeatIcon from '../icons/RepeatIcon';
 import PauseIcon from '../icons/PauseIcon';
+import PlayerRepeatIcon from '../icons/PlayerRepeatIcon';
 
 export default function PlayerBar() {
     const {
@@ -160,26 +160,7 @@ export default function PlayerBar() {
                             playerUtils.playNext(false);
                         }}
                     ></NextIcon>
-                    <RepeatIcon
-                        width={32}
-                        height={32}
-                        color={
-                            repeat === 'no'
-                                ? 'onSurfaceVariant'
-                                : repeat === 'one'
-                                  ? 'primary'
-                                  : 'secondary'
-                        }
-                        onClick={() => {
-                            if (repeat === 'no') {
-                                setRepeat('playlist');
-                            } else if (repeat === 'playlist') {
-                                setRepeat('one');
-                            } else {
-                                setRepeat('no');
-                            }
-                        }}
-                    ></RepeatIcon>
+                    <PlayerRepeatIcon repeat={repeat} setRepeat={setRepeat} />
                 </div>
 
                 <div className='flex flex-row gap-4 w-[600px] justify-end items-center'>

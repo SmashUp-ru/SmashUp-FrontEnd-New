@@ -27,6 +27,8 @@ export interface TrackItemProps {
     // TODO: replace all above with Mashup
     mashup: Mashup;
     playlist: PlaylistLike;
+    forceUpdate?: React.DispatchWithoutAction;
+    setPlaylist?: React.Dispatch<React.SetStateAction<Playlist | undefined>>;
 }
 
 export default function TrackItem({
@@ -40,7 +42,9 @@ export default function TrackItem({
     length,
     showLiked,
     mashup,
-    playlist
+    playlist,
+    forceUpdate,
+    setPlaylist
 }: TrackItemProps) {
     const playerUtils = usePlayerUtils();
     const mashupSideSheetUtils = useMashupSideSheetUtils();
@@ -148,7 +152,12 @@ export default function TrackItem({
                     {listened && <span className='text-onSurfaceVariant'>{listened}</span>}
                     {length && <span className='text-onSurfaceVariant'>{length}</span>}
 
-                    <TrackOptions mashup={mashup} playlist={realPlaylist} />
+                    <TrackOptions
+                        mashup={mashup}
+                        playlist={realPlaylist}
+                        forceUpdate={forceUpdate}
+                        setPlaylist={setPlaylist}
+                    />
                 </div>
             )}
         </div>

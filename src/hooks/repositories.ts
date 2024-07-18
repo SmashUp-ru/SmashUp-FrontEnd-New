@@ -177,7 +177,7 @@ export class ApiCachingRepository<T> extends AbstractCachingRepository<T> {
 }
 
 export class UserApiCachingRepository extends ApiCachingRepository<User> {
-    usernameStorage: Map<string, AbstractHolder<User>>;
+    usernameStorage: Map<string, User>;
 
     constructor(api: Api, usernameStorage: Map<string, User>) {
         super(api, 'user/get_many', userFromObject, new MockUser());
@@ -275,10 +275,11 @@ export interface RepositoryResponse<T> {
 export function useRepositoryRequest<R>(
     dataInitialValue: R,
     promise: () => Promise<R>,
-    failVailue: R = dataInitialValue
+    failVailue: R = dataInitialValue,
+    dependencies: any[] = []
 ): RepositoryResponse<R> {
     const [data, setData] = useState<R>(dataInitialValue);
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);
 
     // eslint-disable-next-line no-unused-vars
@@ -287,7 +288,7 @@ export function useRepositoryRequest<R>(
         complete = onFulfilled;
     });
 
-    useState(() => {
+    useEffect(() => {
         promise()
             .then((result) => {
                 setData(result);
@@ -299,7 +300,7 @@ export function useRepositoryRequest<R>(
                 setLoading(false);
                 complete(failVailue);
             });
-    });
+    }, dependencies);
 
     return {
         data,
@@ -311,16 +312,35 @@ export function useRepositoryRequest<R>(
 
 export function useRepositoryGetMany<T>(
     repository: AbstractRepository<T>,
-    idsPromise: Promise<number[]>
+    idsPromise: Promise<number[]> | (() => Promise<number[]>),
+    dependencies: any[] = []
 ): RepositoryResponse<T[]> {
-    return useRepositoryRequest([], () => idsPromise.then((ids) => repository.getMany(ids)));
+    return useRepositoryRequest(
+        [],
+        () => {
+            let realIdsPromise: Promise<number[]>;
+            if (!(idsPromise instanceof Promise)) {
+                realIdsPromise = idsPromise();
+            } else {
+                realIdsPromise = idsPromise;
+            }
+
+            return realIdsPromise.then((ids) => repository.getMany(ids));
+        },
+        [],
+        dependencies
+    );
 }
 
 export function useRepositoryStateSet<T>(
     response: RepositoryResponse<T>,
     stateSetter:
         | React.Dispatch<React.SetStateAction<T>>
-        | React.Dispatch<React.SetStateAction<T | undefined>>,
+        | React.Dispatch<React.SetStateAction<T | undefined>>
+        // eslint-disable-next-line no-unused-vars
+        | ((t: T) => void)
+        // eslint-disable-next-line no-unused-vars
+        | ((t: T | undefined) => void),
     errorData: () => T
 ) {
     useEffect(() => {

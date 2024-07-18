@@ -17,7 +17,9 @@ export default function MainLayout({
         <div className='w-full h-full flex flex-row px-6'>
             <div className='w-full h-full'>
                 <Header />
-                <PlayerBar />
+                <div>
+                    <PlayerBar />
+                </div>
                 {children}
             </div>
             {track && <TrackSideSheet />}

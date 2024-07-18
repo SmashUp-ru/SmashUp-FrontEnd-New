@@ -26,6 +26,10 @@
       "premier": {
         "title": "Премьера!",
         "button": "Посмотреть всё"
+      },
+      "recommendations": {
+        "title": "Рекоммендации",
+        "button": "Посмотреть всё"
       }
     },
     "track_side_sheet": {

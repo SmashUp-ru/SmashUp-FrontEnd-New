@@ -6,7 +6,7 @@ import { Popover } from 'react-tiny-popover';
 import { twMerge } from 'tailwind-merge';
 import ProfileIcon from '@/components/icons/ProfileIcon';
 import ExitIcon from '@/components/icons/ExitIcon';
-import ModerationIcon from '@/components/icons/ModerationIcon';
+// import ModerationIcon from '@/components/icons/ModerationIcon';
 import Link from 'next/link';
 import AuthenticationContext from '@/providers/authentication';
 
@@ -42,9 +42,9 @@ export default function Avatar() {
                     onMouseEnter={() => setIsPopoverHovered(true)}
                     onMouseLeave={() => setIsPopoverHovered(false)}
                 >
-                    <Link href='/profile/moderation'>
+                    {/* <Link href='/profile/moderation'>
                         <ModerationIcon width={32} height={32} />
-                    </Link>
+                    </Link> */}
                     <Link href='/login'>
                         <ExitIcon width={32} height={32} />
                     </Link>

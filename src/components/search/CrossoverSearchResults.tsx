@@ -7,6 +7,7 @@ import { Mashup } from '@/utils/types';
 import { useContext, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import MashupCard from '../MashupCard';
+import { PlaylistLike } from '@/hooks/utils';
 
 export default function CrossoverSearchResults() {
     const transl = useTranslations('pages.search.results');
@@ -59,11 +60,18 @@ export default function CrossoverSearchResults() {
         return <div className='flex flex-col gap-4'>Add from 1 to 4 sources!</div>;
     }
 
+    let playlistLike: PlaylistLike = {
+        link: `/crossover_search/${crossoverEntries.map((e) => e.entity.id).join(',')}`,
+        mashups: mashups ? mashups.map((m) => m.id) : []
+    };
+
     return (
         <div>
             <h1 className='font-semibold text-3xl'>{transl('mashups')}</h1>
-            <div className='flex flex-row items-center overflow-x-scroll overflow-y-hidden'>
-                {mashups?.map((item, index) => <MashupCard key={index} mashup={item} />)}
+            <div className='flex flex-row items-center overflow-x-scroll overflow-y-hidden flex-wrap'>
+                {mashups?.map((item, index) => (
+                    <MashupCard key={index} mashup={item} playlist={playlistLike} />
+                ))}
             </div>
         </div>
     );

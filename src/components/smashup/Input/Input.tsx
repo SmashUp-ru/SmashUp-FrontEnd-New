@@ -11,6 +11,7 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
     heading?: string;
     value?: string;
     defaultValue?: string;
+    inputClassName?: string;
 }
 
 const SmashUpInput = forwardRef(
@@ -25,6 +26,7 @@ const SmashUpInput = forwardRef(
             value,
             defaultValue,
             onChange,
+            inputClassName,
             ...props
         }: InputProps,
         ref: React.ForwardedRef<HTMLInputElement | null>
@@ -53,7 +55,8 @@ const SmashUpInput = forwardRef(
                             'font-normal text-base text-onSurfaceVariant placeholder-onSurfaceVariant',
                             icon ? 'pl-14' : '',
                             focus ? 'border-none outline outline-primary' : '',
-                            error ? 'border-none outline outline-red-600' : ''
+                            error ? 'border-none outline outline-red-600' : '',
+                            inputClassName
                         )}
                         type='text'
                         value={value}

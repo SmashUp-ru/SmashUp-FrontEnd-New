@@ -12,7 +12,7 @@ export interface PlaylistLike {
 
 export function playlistLike(playlist: Playlist): PlaylistLike {
     return {
-        mashups: playlist.mashups,
+        mashups: [...playlist.mashups],
         link: `/playlist/${playlist.id}`
     };
 }
@@ -79,9 +79,9 @@ export class PlayerUtils {
 
     isCurrent(mashup?: Mashup, playlist?: PlaylistLike) {
         if (mashup) {
-            const { currentPlaylist, currentMashup } = this.context;
+            const { /*currentPlaylist, */ currentMashup } = this.context;
 
-            return playlist?.link === currentPlaylist?.link && currentMashup?.id === mashup.id;
+            return /*playlist?.link === currentPlaylist?.link && */ currentMashup?.id === mashup.id;
         } else {
             const { currentPlaylist } = this.context;
 
@@ -90,12 +90,22 @@ export class PlayerUtils {
     }
 
     playNext(naturally: boolean) {
-        const { queue, currentMashup, setCurrentMashup, currentAudio, setPaused, repeat } =
-            this.context;
+        const {
+            queue,
+            currentMashup,
+            setCurrentMashup,
+            currentAudio,
+            setPaused,
+            setCurrentTime,
+            repeat
+        } = this.context;
 
         if (naturally && repeat === 'one') {
             if (currentAudio) {
                 currentAudio.currentTime = 0;
+                currentAudio.play();
+                setPaused(false);
+                setCurrentTime(0);
             }
             return;
         }

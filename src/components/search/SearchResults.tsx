@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import SmashUpButton from '@/components/smashup/Button/Button';
+// import SmashUpButton from '@/components/smashup/Button/Button';
 import Card from '@/components/Card';
-import ArtistCard from '@/components/ArtistCard';
+// import ArtistCard from '@/components/ArtistCard';
 import Tabs from '@/components/tabs/Tabs';
 import Tab from '@/components/tabs/Tab';
 import { useTranslations } from 'next-intl';
@@ -30,6 +30,7 @@ import {
     useUserCache
 } from '@/hooks/repositories';
 import MashupCard from '../MashupCard';
+import { PlaylistLike } from '@/hooks/utils';
 
 function search<R extends { id: number }>(
     api: Api,
@@ -55,7 +56,7 @@ function search<R extends { id: number }>(
 }
 
 export default function SearchResults({ query }: { query: string }) {
-    const [activeTab, setActiveTab] = useState(0);
+    const [activeTab /*setActiveTab*/] = useState(0);
     const transl = useTranslations('pages.search.results');
 
     const api = useApi();
@@ -63,7 +64,7 @@ export default function SearchResults({ query }: { query: string }) {
     const [mashups, setMashups] = useState<Mashup[]>();
     const [playlists, setPlaylists] = useState<Playlist[]>();
     const [users, setUsers] = useState<User[]>();
-    const [trackAuthors, setTrackAuthors] = useState<TrackAuthor[]>();
+    const [, /*trackAuthors*/ setTrackAuthors] = useState<TrackAuthor[]>();
     const [tracks, setTracks] = useState<Track[]>();
 
     const mashupCache = useMashupCache();
@@ -90,9 +91,14 @@ export default function SearchResults({ query }: { query: string }) {
         }
     }, [query]);
 
+    let playlistLike: PlaylistLike = {
+        link: `/search/query`,
+        mashups: mashups ? mashups.map((m) => m.id) : []
+    };
+
     return (
         <div className='flex flex-col gap-4'>
-            <div className='flex flex-row items-center gap-4'>
+            {/* <div className='flex flex-row items-center gap-4'>
                 <SmashUpButton
                     category={activeTab === 0 ? 'fill' : 'fill-default'}
                     className='px-4 py-2'
@@ -121,7 +127,7 @@ export default function SearchResults({ query }: { query: string }) {
                 >
                     {transl('playlists')}
                 </SmashUpButton>
-            </div>
+            </div> */}
 
             <Tabs activeTab={activeTab}>
                 {/*Лучшие результаты*/}
@@ -183,18 +189,22 @@ export default function SearchResults({ query }: { query: string }) {
                     {mashups && mashups.length > 0 && (
                         <div>
                             <h1 className='font-semibold text-3xl'>{transl('mashups')}</h1>
-                            <div className='flex flex-row items-center overflow-x-scroll overflow-y-hidden'>
+                            <div className='flex flex-wrap flex-row items-center overflow-x-scroll overflow-y-hidden'>
                                 {mashups.map((mashup, index) => (
-                                    <MashupCard key={index} mashup={mashup} />
+                                    <MashupCard
+                                        key={index}
+                                        mashup={mashup}
+                                        playlist={playlistLike}
+                                    />
                                 ))}
                             </div>
                         </div>
                     )}
 
-                    {trackAuthors && trackAuthors.length > 0 && (
+                    {/* {trackAuthors && trackAuthors.length > 0 && (
                         <div>
                             <h1 className='font-semibold text-3xl'>{transl('authors')}</h1>
-                            <div className='flex flex-row items-center overflow-x-scroll overflow-y-hidden'>
+                            <div className='flex flex-wrap flex-row items-center overflow-x-scroll overflow-y-hidden'>
                                 {trackAuthors.map((item, index) => (
                                     <ArtistCard
                                         key={index}
@@ -206,12 +216,12 @@ export default function SearchResults({ query }: { query: string }) {
                                 ))}
                             </div>
                         </div>
-                    )}
+                    )} */}
 
                     {playlists && playlists.length > 0 && (
                         <div>
                             <h1 className='font-semibold text-3xl'>{transl('playlists')}</h1>
-                            <div className='flex flex-row items-center overflow-x-scroll overflow-y-hidden'>
+                            <div className='flex flex-wrap flex-row items-center overflow-x-scroll overflow-y-hidden'>
                                 {playlists.map((item, index) => (
                                     <Card
                                         key={index}

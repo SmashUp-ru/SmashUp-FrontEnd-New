@@ -3,20 +3,20 @@
 import React from 'react';
 import MailIcon from '@/components/icons/MailIcon';
 import ProfileIcon from '@/components/icons/ProfileIcon';
-import VkBlueIcon from '@/components/icons/VkBlueIcon';
-import { v4 } from 'uuid';
+// import VkBlueIcon from '@/components/icons/VkBlueIcon';
+// import { v4 } from 'uuid';
 import SmashUpInput from '@/components/smashup/Input/Input';
 import SmashUpPassword from '@/components/smashup/Password/Password';
 import SmashUpCheckBox from '@/components/smashup/Checkbox/Checkbox';
 import SmashUpButton from '@/components/smashup/Button/Button';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 export default function Register() {
-    const router = useRouter();
+    // const router = useRouter();
 
-    const query = `uuid=${v4()}&app_id=${process.env.NEXT_PUBLIC_VK_APP_ID}&response_type=silent_token&redirect_uri=${process.env.NEXT_PUBLIC_VK_REDIRECT_URL}&redirect_state=smashup`;
+    // const query = `uuid=${v4()}&app_id=${process.env.NEXT_PUBLIC_VK_APP_ID}&response_type=silent_token&redirect_uri=${process.env.NEXT_PUBLIC_VK_REDIRECT_URL}&redirect_state=smashup`;
     const transl = useTranslations('pages.register');
 
     return (
@@ -48,7 +48,7 @@ export default function Register() {
 
                             {/* Пароль */}
                             <SmashUpPassword
-                                showForgotButton
+                                // showForgotButton
                                 showPasswordButton
                                 placeholder='12345qwerty'
                             />
@@ -74,20 +74,20 @@ export default function Register() {
                     <SmashUpButton>{transl('sign-up')}</SmashUpButton>
 
                     {/* Разделитель */}
-                    <div className='flex flex-row justify-between items-center'>
+                    {/* <div className='flex flex-row justify-between items-center'>
                         <div className='w-[15%] bg-onSurface h-[1px]'></div>
                         <span className='w-[60%]'>{transl('sign-up-with')}</span>
                         <div className='w-[15%] bg-onSurface h-[1px]'></div>
-                    </div>
+                    </div> */}
 
                     <div className='flex flex-col gap-4'>
-                        <SmashUpButton
+                        {/* <SmashUpButton
                             category='stroke-default'
                             icon={<VkBlueIcon width={25} height={25} color='vk' />}
                             onClick={() => router.push(`https://id.vk.com/auth?${query}`)}
                         >
                             VK ID
-                        </SmashUpButton>
+                        </SmashUpButton> */}
 
                         <span>
                             {transl('already')}

@@ -26,6 +26,10 @@
       "premier": {
         "title": "Premier!",
         "button": "View all"
+      },
+      "recommendations": {
+        "title": "Recommendations",
+        "button": "View all"
       }
     },
     "track_side_sheet": {
@@ -279,7 +283,7 @@
       "add_to_playlist": "Add to playlist",
       "remove_from_playlist": "Remove from playlist",
       "messages": {
-        "success": "Mashup was added successfully!",
+        "success": "Playlist was changed successfully!",
         "already_added": "This mashup was already added in this playlist!"
       }
     },

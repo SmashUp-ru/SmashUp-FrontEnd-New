@@ -6,31 +6,40 @@ import TrackItem from '@/components/TrackItem';
 import PlayIcon from '@/components/icons/PlayIcon';
 import { useTranslations } from 'next-intl';
 import { Mashup } from '@/utils/types';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useMashupCache } from '@/hooks/repositories';
 import { useApi } from '@/hooks/api';
 import { PlaylistLike, usePlayerUtils } from '@/hooks/utils';
 import PauseIcon from '@/components/icons/PauseIcon';
+import { shareRecommendations } from '@/utils/share';
+import AuthenticationContext from '@/providers/authentication';
 
 export default function Recommendations() {
     const transl = useTranslations('pages.playlist');
 
     const [mashupIds, setMashupIds] = useState<number[]>();
-    const [mashups, setMashups] = useState<Mashup[]>();
+    const [mashups, setMashups] = useState<Mashup[] | undefined>(shareRecommendations.value);
 
     const mashupCache = useMashupCache();
     const api = useApi();
     const playerUtils = usePlayerUtils();
 
+    const { user } = useContext(AuthenticationContext);
+
     useEffect(() => {
-        api.get('/recommendations/v2', { id: 2 }).then((response) => {
+        if (user === undefined || mashups !== undefined) {
+            return;
+        }
+
+        api.get('/recommendations/v2', { id: user.id }).then((response) => {
             let ids: number[] = response.data.response;
             setMashupIds(ids);
             mashupCache.getMany(ids).then((mashups) => {
                 setMashups(mashups);
+                shareRecommendations.value = mashups;
             });
         });
-    }, []);
+    }, [user]);
 
     let playlistLike: PlaylistLike = { mashups: mashupIds ? mashupIds : [], link: '/favorites' };
 
