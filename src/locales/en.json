@@ -196,9 +196,16 @@
       },
 
       "edit": {
+        "title": "Playlist edit",
         "name": "Playlist name",
         "edit": "Edit",
-        "delete": "Delete"
+        "delete": "Delete",
+        "messages": {
+          "success": "Playlist was edited successfully!",
+          "bad_image_size": "Image must have size at least 800x800 px",
+          "cant_be_transparent": "Image must be non-transparent",
+          "something_went_wrong": "Something went wrong..."
+        }
       }
     },
     "agreement": {

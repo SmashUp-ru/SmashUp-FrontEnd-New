@@ -9,7 +9,6 @@ import { useTranslations } from 'next-intl';
 import { useApi } from '@/hooks/api';
 import { Playlist } from '@/utils/types';
 import Image from 'next/image';
-import egor from '/public/dev/search/egor.png';
 import EditIcon from '@/components/icons/EditIcon';
 
 interface EditModalProps {
@@ -30,11 +29,12 @@ export default function EditModal({
     playlist,
     setPlaylist
 }: EditModalProps) {
-    const transl = useTranslations('pages.playlist');
+    const transl = useTranslations('pages.playlist.edit');
 
     const api = useApi();
 
     const [editName, setEditName] = useState(playlist.name);
+    const [editImageUrl, setEditImageUrl] = useState(playlist.imageUrl + '_800x800.png');
 
     return (
         <Modal
@@ -48,7 +48,7 @@ export default function EditModal({
         >
             <div className='relative bg-surfaceVariant flex flex-col gap-4 items-center rounded-4xl p-7'>
                 <div className='w-full flex justify-start'>
-                    <h1 className='text-onSurface font-bold text-3xl'>Редактирование плейлиста</h1>
+                    <h1 className='text-onSurface font-bold text-3xl'>{transl('title')}</h1>
                 </div>
 
                 <div className='flex flex-row gap-8'>
@@ -61,10 +61,12 @@ export default function EditModal({
                         }}
                     ></CloseIcon>
 
-                    <label className='relative cursor-pointer' htmlFor='update-avatar'>
+                    <label className='relative cursor-pointer' htmlFor='update-playlist-cover'>
                         <Image
-                            src={egor}
-                            alt='Аватарка профиля'
+                            src={editImageUrl}
+                            width={216}
+                            height={216}
+                            alt={editName}
                             className='w-[216px] h-[216px] rounded-2xl brightness-50'
                         />
                         <EditIcon
@@ -72,13 +74,33 @@ export default function EditModal({
                             height={70}
                             className='absolute top-0 right-0 left-0 bottom-0 m-auto'
                         />
-                        <input id='update-avatar' type='file' className='hidden' />
+                        <input
+                            id='update-playlist-cover'
+                            type='file'
+                            accept='.png'
+                            className='hidden'
+                            onChange={(event) => {
+                                let reader = new FileReader();
+
+                                reader.addEventListener('load', () => {
+                                    setEditImageUrl(reader.result as string);
+                                });
+
+                                let input = event.target;
+
+                                if (input.files === null || !input.files[0]) {
+                                    setEditImageUrl(playlist.imageUrl + '_800x800.png');
+                                } else {
+                                    reader.readAsDataURL(input.files[0]);
+                                }
+                            }}
+                        />
                     </label>
 
                     <div className='flex flex-col gap-1'>
-                        <p className='text-onSurface'>Название</p>
+                        <p className='text-onSurface'>{transl('name')}</p>
                         <SmashUpInput
-                            placeholder={transl('edit.name')}
+                            placeholder={transl('name')}
                             value={editName}
                             onChange={(e) => setEditName(e.target.value)}
                             className='w-[400px]'
@@ -88,27 +110,49 @@ export default function EditModal({
 
                 <SmashUpButton
                     onClick={() => {
+                        let basedImageFile = undefined;
+
+                        const prefix = 'data:image/png;base64,';
+                        if (editImageUrl.startsWith(prefix)) {
+                            basedImageFile = editImageUrl.slice(prefix.length);
+                        }
+
                         api.post(
                             '/playlist/edit',
                             {
                                 name: editName,
-                                description: ''
+                                description: '',
+                                basedImageFile
                             },
                             { id: playlist.id }
                         )
                             .then((response) => {
                                 playlist.name = response.data.response.name;
+                                playlist.imageUrl =
+                                    'https://api.smashup.ru/uploads/playlist/' +
+                                    response.data.response.imageUrl;
                                 setPlaylist({ ...playlist });
                                 setModalIsOpen(false);
-                                warning('Удачно', 'success');
+                                warning(transl('messages.success'), 'success');
                             })
-                            .catch(() => {
-                                warning('Что-то пошло не так...', 'error');
+                            .catch((response) => {
+                                if (
+                                    response.response.data.message === 'upload.image.bad_image_size'
+                                ) {
+                                    warning(transl('messages.bad_image_size'), 'error');
+                                } else if (
+                                    response.response.data.message ===
+                                    'upload.image.cant_be_transparent'
+                                ) {
+                                    warning(transl('messages.cant_be_transparent'), 'error');
+                                } else {
+                                    warning(transl('messages.something_went_wrong'), 'error');
+                                }
                             });
                     }}
                     className='w-full py-3'
                 >
-                    {transl('edit.edit')}
+                    {transl('edit')}
                 </SmashUpButton>
             </div>
         </Modal>
