@@ -76,20 +76,22 @@ export default function Home() {
                         {t('compilations.title')}
                     </h2>
                     <div className='flex flex-row gap-7 w-full h-[301px] overflow-visible'>
-                        {compilations.map((item) => (
-                            <Card
-                                key={item.id}
-                                showVisibleButton={false}
-                                href='playlist'
-                                {...item}
-                                image={item.imageUrl + '_400x400.png'}
-                                author={item.authors.join(', ')}
-                                title={item.name}
-                                isPlaying={playerUtils.isPlaying(undefined, playlistLike(item))}
-                                playAction={() => playerUtils.playPlaylist(playlistLike(item))}
-                                bg
-                            />
-                        ))}
+                        {compilations
+                            .filter((item) => item.mashups.length > 0)
+                            .map((item) => (
+                                <Card
+                                    key={item.id}
+                                    showVisibleButton={false}
+                                    href='playlist'
+                                    {...item}
+                                    image={item.imageUrl + '_400x400.png'}
+                                    author={item.authors.join(', ')}
+                                    title={item.name}
+                                    isPlaying={playerUtils.isPlaying(undefined, playlistLike(item))}
+                                    playAction={() => playerUtils.playPlaylist(playlistLike(item))}
+                                    bg
+                                />
+                            ))}
                     </div>
                 </div>
             )}
