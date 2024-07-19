@@ -65,7 +65,7 @@ export default function PlayerBar() {
                 min={0}
                 max={currentMashup.duration / 10}
                 value={finalTime * 100}
-                className={'h-2 absolute top-1 -mt-1'}
+                className={'h-2 absolute -mt-1'}
                 renderTrack={(props, state) => {
                     return (
                         <div
