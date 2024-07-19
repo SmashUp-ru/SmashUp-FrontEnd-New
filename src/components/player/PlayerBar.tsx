@@ -120,7 +120,7 @@ export default function PlayerBar() {
                     </div>
                 </div>
 
-                <div className='flex flex-row gap-4 items-center absolute right-1/2'>
+                <div className='flex flex-row gap-4 items-center absolute w-full justify-center'>
                     <ShuffleIcon
                         width={32}
                         height={32}
