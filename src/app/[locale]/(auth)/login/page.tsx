@@ -12,6 +12,8 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useApi } from '@/hooks/api';
 import Cookies from 'js-cookie';
+import getWarningToast from '@/components/toast/Warning';
+import { Toaster, ToastBar } from 'react-hot-toast';
 
 export default function Login() {
     const router = useRouter();
@@ -23,17 +25,24 @@ export default function Login() {
 
     const api = useApi();
 
+    const warning = getWarningToast;
+
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        api.post('/login', { username: email, password: password }).then((response) => {
-            if (response.status === 200) {
-                Cookies.set('token', response.data.response.token);
-                router.push('/');
-            }
-        });
+        api.post('/login', { username: email, password: password })
+            .then((response) => {
+                if (response.status === 200) {
+                    Cookies.set('token', response.data.response.token);
+                    router.push('/');
+                }
+            })
+            .catch((response) => {
+                warning(response.response.data.message, 'error');
+            });
     };
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
+            <Toaster>{(t) => <ToastBar toast={t} />}</Toaster>
             {/* Заголовок */}
             <div className='w-[90%] max-w-[580px] text-center flex flex-col gap-2.5'>
                 <h1 className='text-primary font-semibold text-5xl'>{transl('title')}</h1>

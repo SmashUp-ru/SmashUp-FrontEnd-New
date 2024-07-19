@@ -236,7 +236,10 @@
       "sign-up": "Sign up",
       "sign-up-with": "Sign up with",
       "already": "Already signed up? ",
-      "sign-in": "Sign in"
+      "sign-in": "Sign in",
+      "confirm": {
+        "title": "Confirming you registration... Please, wait..."
+      }
     },
     "login": {
       "title": "Sign in",
