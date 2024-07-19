@@ -6,6 +6,8 @@ import PlusIcon from '@/components/icons/PlusIcon';
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
+    name: 'SmashUp',
+    description: 'Streaming mash-up service',
     navItems: [
         {
             label: 'Home',
