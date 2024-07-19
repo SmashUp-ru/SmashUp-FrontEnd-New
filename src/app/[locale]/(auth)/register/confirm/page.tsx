@@ -2,7 +2,6 @@
 
 import getWarningToast from '@/components/toast/Warning';
 import { useApi } from '@/hooks/api';
-import Cookies from 'js-cookie';
 import { useTranslations } from 'next-intl';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
@@ -23,7 +22,7 @@ export default function RegisterConfirm() {
         api.post('/register/confirm', {}, { id: searchParams.get('id') })
             .then((response) => {
                 if (response.status === 200) {
-                    Cookies.set('token', response.data.response.token);
+                    localStorage.setItem('token', response.data.response.token);
                     router.push('/');
                 }
             })

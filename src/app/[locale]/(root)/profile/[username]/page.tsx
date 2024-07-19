@@ -18,6 +18,7 @@ import {
 } from '@/hooks/repositories';
 import MashupCard from '@/components/MashupCard';
 import ShareCurrentIcon from '@/components/icons/ShareCurrentPageIcon';
+import { playlistLike, usePlayerUtils } from '@/hooks/utils';
 
 export default function Profile({ params }: { params: { username: string } }) {
     const transl = useTranslations('pages.profile');
@@ -52,6 +53,8 @@ export default function Profile({ params }: { params: { username: string } }) {
     useRepositoryStateSet(playlistsResponse, setPlaylists, () =>
         user?.mashups.map(() => new MockPlaylist())
     );
+
+    const playerUtils = usePlayerUtils();
 
     if (!user) {
         return <></>;
@@ -171,6 +174,8 @@ export default function Profile({ params }: { params: { username: string } }) {
                                 image={item.imageUrl + '_400x400.png'}
                                 author={item.authors.join(', ')}
                                 title={item.name}
+                                isPlaying={playerUtils.isPlaying(undefined, playlistLike(item))}
+                                playAction={() => playerUtils.playPlaylist(playlistLike(item))}
                             />
                         ))}
                     </div>

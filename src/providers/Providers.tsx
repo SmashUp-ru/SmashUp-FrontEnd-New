@@ -7,7 +7,6 @@ import PlayerContext from '@/providers/player';
 import SearchContext, { CrossoverEntry } from '@/providers/search';
 import AuthenticationContext from './authentication';
 import { useApi } from '@/hooks/api';
-import Cookies from 'js-cookie';
 import { PlaylistLike } from '@/hooks/utils';
 
 export default function Providers({ children }: { children: React.ReactNode }) {
@@ -60,7 +59,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     const api = useApi();
 
     useEffect(() => {
-        let token = Cookies.get('token');
+        let token = localStorage.getItem('token');
 
         if (!token) {
             return;
@@ -84,7 +83,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
                 setUser(selfUser);
             })
             .catch(() => {
-                Cookies.remove('token');
+                localStorage.removeItem('token');
             });
     }, []);
 

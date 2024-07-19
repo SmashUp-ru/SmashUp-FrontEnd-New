@@ -11,7 +11,6 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useApi } from '@/hooks/api';
-import Cookies from 'js-cookie';
 import getWarningToast from '@/components/toast/Warning';
 import { Toaster, ToastBar } from 'react-hot-toast';
 
@@ -32,7 +31,7 @@ export default function Login() {
         api.post('/login', { username: email, password: password })
             .then((response) => {
                 if (response.status === 200) {
-                    Cookies.set('token', response.data.response.token);
+                    localStorage.setItem('token', response.data.response.token);
                     router.push('/');
                 }
             })
