@@ -49,7 +49,7 @@ export default function ButtonsOverview() {
                     </SmashUpButton>
                     <SmashUpButton
                         category='stroke'
-                        icon={<VkBlueIcon width={25} height={25} color='vk' textColor='white' />}
+                        icon={<VkBlueIcon width={25} height={25} color='vk' />}
                         disabled
                     >
                         Text

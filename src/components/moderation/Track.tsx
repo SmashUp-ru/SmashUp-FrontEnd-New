@@ -12,6 +12,8 @@ import SmashUpInput from '@/components/smashup/Input/Input';
 import { mashups_search } from '@/utils/data';
 import TrackItem from '@/components/TrackItem';
 import { useTranslations } from 'next-intl';
+import { MockMashup, MockPlaylist } from '@/utils/types';
+import { playlistLike } from '@/hooks/utils';
 
 export default function Track() {
     const [expanded, setExpanded] = React.useState(false);
@@ -88,7 +90,14 @@ export default function Track() {
                             {t('sources')}
                         </span>
                         {mashups_search.map((item) => (
-                            <TrackItem key={item.id} {...item} id={undefined} showLiked={false} />
+                            <TrackItem
+                                key={item.id}
+                                {...item}
+                                id={undefined}
+                                showLiked={false}
+                                mashup={new MockMashup()}
+                                playlist={playlistLike(new MockPlaylist())}
+                            />
                         ))}
                     </div>
 

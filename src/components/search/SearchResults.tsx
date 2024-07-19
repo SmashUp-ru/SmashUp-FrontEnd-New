@@ -30,7 +30,7 @@ import {
     useUserCache
 } from '@/hooks/repositories';
 import MashupCard from '../MashupCard';
-import { PlaylistLike } from '@/hooks/utils';
+import { PlaylistLike, playlistLike, usePlayerUtils } from '@/hooks/utils';
 
 function search<R extends { id: number }>(
     api: Api,
@@ -91,10 +91,12 @@ export default function SearchResults({ query }: { query: string }) {
         }
     }, [query]);
 
-    let playlistLike: PlaylistLike = {
+    let searchPlaylistLike: PlaylistLike = {
         link: `/search/query`,
         mashups: mashups ? mashups.map((m) => m.id) : []
     };
+
+    const playerUtils = usePlayerUtils();
 
     return (
         <div className='flex flex-col gap-4'>
@@ -194,7 +196,7 @@ export default function SearchResults({ query }: { query: string }) {
                                     <MashupCard
                                         key={index}
                                         mashup={mashup}
-                                        playlist={playlistLike}
+                                        playlist={searchPlaylistLike}
                                     />
                                 ))}
                             </div>
@@ -231,6 +233,13 @@ export default function SearchResults({ query }: { query: string }) {
                                         image={item.imageUrl + '_400x400.png'}
                                         author={item.authors.join(', ')}
                                         title={item.name}
+                                        isPlaying={playerUtils.isPlaying(
+                                            undefined,
+                                            playlistLike(item)
+                                        )}
+                                        playAction={() =>
+                                            playerUtils.playPlaylist(playlistLike(item))
+                                        }
                                     />
                                 ))}
                             </div>

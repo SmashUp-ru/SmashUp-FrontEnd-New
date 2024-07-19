@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import MailIcon from '@/components/icons/MailIcon';
 import ProfileIcon from '@/components/icons/ProfileIcon';
 // import VkBlueIcon from '@/components/icons/VkBlueIcon';
@@ -12,6 +12,9 @@ import SmashUpButton from '@/components/smashup/Button/Button';
 // import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { useApi } from '@/hooks/api';
+import getWarningToast from '@/components/toast/Warning';
+import { ToastBar, Toaster } from 'react-hot-toast';
 
 export default function Register() {
     // const router = useRouter();
@@ -19,8 +22,31 @@ export default function Register() {
     // const query = `uuid=${v4()}&app_id=${process.env.NEXT_PUBLIC_VK_APP_ID}&response_type=silent_token&redirect_uri=${process.env.NEXT_PUBLIC_VK_REDIRECT_URL}&redirect_state=smashup`;
     const transl = useTranslations('pages.register');
 
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const api = useApi();
+
+    const warning = getWarningToast;
+
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+        api.post('/register', { email, username, password })
+            .then((response) => {
+                if (response.status === 200) {
+                    warning(response.data.message, 'success');
+                }
+            })
+            .catch((response) => {
+                console.log(response);
+                warning(response.response.data.message, 'error');
+            });
+    };
+
     return (
         <div className='w-full h-full flex flex-col justify-center items-center gap-9'>
+            <Toaster>{(t) => <ToastBar toast={t} />}</Toaster>
             {/* Заголовок */}
             <div className='w-[90%] max-w-[580px] text-center flex flex-col gap-2.5'>
                 <h1 className='text-primary font-semibold text-5xl'>{transl('title')}</h1>
@@ -37,6 +63,8 @@ export default function Register() {
                                 heading={transl('nickname')}
                                 placeholder='Аркадий Гачибасов'
                                 icon={<ProfileIcon width={24} height={25} />}
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
 
                             {/* Почта */}
@@ -44,6 +72,8 @@ export default function Register() {
                                 heading={transl('email')}
                                 placeholder='tapiri@example.com'
                                 icon={<MailIcon width={20} height={17} />}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
 
                             {/* Пароль */}
@@ -51,6 +81,8 @@ export default function Register() {
                                 // showForgotButton
                                 showPasswordButton
                                 placeholder='12345qwerty'
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
 
@@ -71,7 +103,7 @@ export default function Register() {
                         />
                     </div>
 
-                    <SmashUpButton>{transl('sign-up')}</SmashUpButton>
+                    <SmashUpButton onClick={handleSubmit}>{transl('sign-up')}</SmashUpButton>
 
                     {/* Разделитель */}
                     {/* <div className='flex flex-row justify-between items-center'>

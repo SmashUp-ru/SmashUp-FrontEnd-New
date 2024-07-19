@@ -1,15 +1,15 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-
+import { usePathname, useRouter } from '@/navigation';
 import SidebarItem from '@/components/sidebar/SidebarItem';
-
 import SmashUpLogo from '@/components/icons/SmashUpLogo';
 import { RouteType } from '@/models/sidebar';
 import { siteConfig } from '@/config/site';
 import React, { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import AuthenticationContext from '@/providers/authentication';
+import SmashUpButton from '../smashup/Button/Button';
+import Cookies from 'js-cookie';
 
 function Sidebar({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -26,6 +26,8 @@ function Sidebar({ children }: { children: React.ReactNode }) {
     );
 
     const { user } = useContext(AuthenticationContext);
+
+    const router = useRouter();
 
     useEffect(() => {
         if (user) {
@@ -56,6 +58,22 @@ function Sidebar({ children }: { children: React.ReactNode }) {
                         {routes.map((item: RouteType) => (
                             <SidebarItem key={item.label} {...item} />
                         ))}
+
+                        {Cookies.get('NEXT_LOCALE') === 'en' ? (
+                            <SmashUpButton
+                                className='w-[24px] h-[24px] text-xs'
+                                onClick={() => router.replace(pathname, { locale: 'ru' })}
+                            >
+                                RU
+                            </SmashUpButton>
+                        ) : (
+                            <SmashUpButton
+                                className='w-[24px] h-[24px] text-xs'
+                                onClick={() => router.replace(pathname, { locale: 'en' })}
+                            >
+                                EN
+                            </SmashUpButton>
+                        )}
                     </div>
                 </div>
             </div>

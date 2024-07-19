@@ -1,11 +1,10 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
 const apiBaseUrl = 'https://api.smashup.ru';
 
 export class Api {
     async get(endpoint: string, queryParams: object = {}) {
-        let token = Cookies.get('token');
+        let token = localStorage.getItem('token');
 
         return axios.get(endpoint, {
             baseURL: apiBaseUrl,
@@ -18,7 +17,7 @@ export class Api {
     }
 
     async post(endpoint: string, data: any = {}, queryParams: object = {}) {
-        let token = Cookies.get('token');
+        let token = localStorage.getItem('token');
 
         return axios.post(endpoint, data, {
             baseURL: apiBaseUrl,
