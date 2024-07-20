@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 
 export default function Agreement() {
-    const transl = useTranslations('agreement');
+    const transl = useTranslations('pages.agreement');
     return (
         <div className='flex flex-col gap-6'>
             <h1 className='font-semibold text-3xl'>{transl('title')}</h1>
