@@ -34,7 +34,7 @@ export default function Search() {
 
     // transl('history.title')
     return (
-        <SearchButtons title='Enter query'>
+        <SearchButtons title='Enter query from 4 to 32 symbols'>
             <SearchHistory />
         </SearchButtons>
     );

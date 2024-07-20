@@ -117,6 +117,14 @@ export default function EditModal({
                             basedImageFile = editImageUrl.slice(prefix.length);
                         }
 
+                        if (!/^[а-яА-ЯёЁa-zA-Z0-9_$.,=+()*&^%$#@!\-?':| ]{4,48}$/.test(editName)) {
+                            warning(
+                                "Playlist name can contain only from 4 to 48  russian and latin letters, numbers and $\\.,=+()*&^%$#@!-?':|",
+                                'error'
+                            );
+                            return;
+                        }
+
                         api.post(
                             '/playlist/edit',
                             {

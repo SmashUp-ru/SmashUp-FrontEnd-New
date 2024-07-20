@@ -28,6 +28,17 @@ export default function Login() {
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
+
+        if (email.length < 4) {
+            warning('Email or username is incorrect', 'error');
+            return;
+        }
+
+        if (!/^[a-zA-Z0-9-_=+()*&^%$#@!]{8,32}$/.test(password)) {
+            warning('login.wrong_password', 'error');
+            return;
+        }
+
         api.post('/login', { username: email, password: password })
             .then((response) => {
                 if (response.status === 200) {

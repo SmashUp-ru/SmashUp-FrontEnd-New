@@ -6,8 +6,6 @@ export default function getWarningToast(
     type: 'success' | 'error',
     className?: string
 ) {
-    console.log('Toast!!!', text);
-
     return toast.custom(
         (t) => (
             <div

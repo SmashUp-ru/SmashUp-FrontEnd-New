@@ -32,6 +32,28 @@ export default function Register() {
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
+
+        if (email.length < 4 || !email.includes('@') || !email.includes('.')) {
+            warning('Email is incorrect', 'error');
+            return;
+        }
+
+        if (!/^[a-zA-Z0-9-_=+()*&^%$#@!]{8,32}$/.test(password)) {
+            warning(
+                'Password can contain only from 4 to 32 latin letters, numbers and -_=+()*&^%$#@!',
+                'error'
+            );
+            return;
+        }
+
+        if (!/(?=^[а-яА-ЯёЁa-zA-Z0-9_ ]{4,32}$)(?!^\d+$)^.+$/.test(username)) {
+            warning(
+                'Username can contain only from 4 to 32 russian and latin letters, numbers, spaces and underscore!',
+                'error'
+            );
+            return;
+        }
+
         api.post('/register', { email, username, password })
             .then((response) => {
                 if (response.status === 200) {
