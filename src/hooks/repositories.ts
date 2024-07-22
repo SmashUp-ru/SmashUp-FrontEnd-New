@@ -117,19 +117,28 @@ export abstract class AbstractCachingRepository<T> extends AbstractRepository<T>
         });
     }
 
-    getIfLoaded(ids: number[]): T[] | undefined {
+    getManyIfLoaded(ids: number[]): T[] | undefined {
         let result: T[] = [];
 
         for (let id of ids) {
-            let entity: AbstractHolder<T> | undefined = this.storage.get(id);
-            if (entity instanceof Holder) {
-                result.push(entity.value);
+            let value = this.getIfLoaded(id);
+            if (value !== undefined) {
+                result.push(value);
             } else {
                 return undefined;
             }
         }
 
         return result;
+    }
+
+    getIfLoaded(id: number): T | undefined {
+        let entity: AbstractHolder<T> | undefined = this.storage.get(id);
+        if (entity instanceof Holder) {
+            return entity.value;
+        } else {
+            return undefined;
+        }
     }
 
     protected async load(id: number): Promise<T> {
@@ -196,6 +205,10 @@ export class UserApiCachingRepository extends ApiCachingRepository<User> {
             this.usernameStorage.set(mappedUser.username, mappedUser);
             return mappedUser;
         });
+    }
+
+    getByUsernameIfLoaded(username: string): User | undefined {
+        return this.usernameStorage.get(username);
     }
 
     protected async loadMany(ids: number[]): Promise<User[]> {

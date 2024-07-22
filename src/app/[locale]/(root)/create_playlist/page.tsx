@@ -8,6 +8,7 @@ import { useApi } from '@/hooks/api';
 import AuthenticationContext from '@/providers/authentication';
 import getWarningToast from '@/components/toast/Warning';
 import { useRouter } from 'next/navigation';
+import { useUserCache } from '@/hooks/repositories';
 
 export default function CreatePlaylist() {
     const transl = useTranslations('pages.playlist.create');
@@ -20,6 +21,8 @@ export default function CreatePlaylist() {
     const { user } = useContext(AuthenticationContext);
 
     const warning = getWarningToast;
+
+    const userCache = useUserCache();
 
     if (!user) {
         return <></>;
@@ -38,7 +41,20 @@ export default function CreatePlaylist() {
                 onClick={() => {
                     api.post('/playlist/create', { name, description: '' })
                         .then((response) => {
-                            router.replace(`/playlist/${response.data.response.id}`);
+                            let id = response.data.response.id;
+                            router.replace(`/playlist/${id}`);
+
+                            user.playlists.push(id);
+
+                            let cachedUser = userCache.getIfLoaded(user.id);
+                            if (cachedUser) {
+                                cachedUser.playlists.push(id);
+                            }
+
+                            cachedUser = userCache.getByUsernameIfLoaded(user.username);
+                            if (cachedUser) {
+                                cachedUser.playlists.push(id);
+                            }
                         })
                         .catch(() => {
                             warning('Что-то пошло не так...', 'error');
