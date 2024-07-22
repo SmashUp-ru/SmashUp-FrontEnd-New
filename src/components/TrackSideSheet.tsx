@@ -2,7 +2,7 @@ import Image from 'next/image';
 import CloseIcon from '@/components/icons/CloseIcon';
 import ExplicitIcon from '@/components/icons/ExplicitIcon';
 import PlayIcon from '@/components/icons/PlayIcon';
-import HeartIcon from '@/components/icons/HeartIcon';
+// import HeartIcon from '@/components/icons/HeartIcon';
 import TrackContext from '@/providers/track';
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -103,7 +103,7 @@ export default function TrackSideSheet() {
                             <PlayIcon width={48} height={48} color='primary' />
                         )}
                     </button>
-                    <HeartIcon width={32} height={32} color='icon' />
+                    {/* <HeartIcon width={32} height={32} color='icon' /> */}
                     {/* <ShareIcon width={26} height={22} color='icon' /> */}
                 </div>
 
